@@ -63,6 +63,9 @@ equation
     Line(points = {{-10, -10}, {-10, 20}}, color = {0, 127, 255}));
   annotation(
     experiment(StartTime = 0, StopTime = 30, Tolerance = 1e-06, Interval = 0.01),
-    __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
+    __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"),
+  Diagram(coordinateSystem(extent = {{-100, -100}, {140, 100}})),
+  Icon(coordinateSystem(extent = {{-100, -100}, {140, 100}})),
+  __OpenModelica_commandLineOptions = "");
 
 end flowSupplyNetwork001;
