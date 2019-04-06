@@ -1,10 +1,16 @@
 within FluidSystemComponents.Interfaces;
 
 partial model Frame_2FluidPorts
+  /********************************************************
+        imports
+  ********************************************************/
   import Modelica.Constants;
+  import Modelica.SIunits;
+  
+  
   /********************************************************
             Declaration
-      ********************************************************/
+  ********************************************************/
   //********** Package **********
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);

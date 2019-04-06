@@ -5,6 +5,7 @@ partial model Frame_2FluidPorts_1Shaft
         imports
   ********************************************************/
   import Modelica.Constants;
+  import Modelica.SIunits;
   
   
   /********************************************************
@@ -106,11 +107,27 @@ partial model Frame_2FluidPorts_1Shaft
   //##### none #####
   
   //********** Interfaces **********
-  Modelica.Fluid.Interfaces.FluidPort_a port_1(redeclare package Medium = Medium, m_flow(min = if allowFlowReversal then -Constants.inf else 0.0, start = m_flow1_init), h_outflow.start = h1_init) "" annotation(
+  Modelica.Fluid.Interfaces.FluidPort_a port_1
+  (
+    redeclare package Medium = Medium, 
+    m_flow(min = if allowFlowReversal then -Constants.inf else 0.0, start = m_flow1_init), 
+    h_outflow.start = h1_init
+  ) 
+  "" 
+  annotation(
     Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Interfaces.FluidPort_b port_2(redeclare package Medium = Medium, m_flow(max = if allowFlowReversal then +Constants.inf else 0.0, start = m_flow2_init), h_outflow.start = h2_init) "" annotation(
+  Modelica.Fluid.Interfaces.FluidPort_b port_2
+  (
+    redeclare package Medium = Medium, 
+    m_flow(max = if allowFlowReversal then +Constants.inf else 0.0, start = m_flow2_init), 
+    h_outflow.start = h2_init
+  ) 
+  "" 
+  annotation(
     Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.Rotational.Interfaces.Flange_a flange_1 "" annotation(
+  Modelica.Mechanics.Rotational.Interfaces.Flange_a flange_1 
+  "" 
+  annotation(
     Placement(visible = true, transformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     Modelica.Icons.SignalBus signalBus1 annotation(
     Placement(visible = true, transformation(origin = {90, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {95, -95}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));

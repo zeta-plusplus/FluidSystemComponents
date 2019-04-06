@@ -8,20 +8,23 @@ model PumpConstQflow_ideal
     ""
     annotation(
     Dialog(group = "Characteristics"));
+  
   //********** Internal variables **********
   Modelica.SIunits.VolumeFlowRate qFlow(start=qFlowDes) "";
   //----- inner-connected variables -----
-
-//----- inner-outer-connected variables -----
-algorithm
+  //##### none #####
+  //----- inner-outer-connected variables -----
+  //##### none #####
   
+algorithm
+  //##### none #####
   
 equation
-//********** Geometries **********
-//##### none #####
-//********** Connections, interface <-> internal variables **********
-//##### none #####
-//********** Eqns describing physics **********
+  //********** Geometries **********
+  //##### none #####
+  //********** Connections, interface <-> internal variables **********
+  //##### none #####
+  //********** Eqns describing physics **********
   if(omega<0)then
     qFlow=0;
     port_2.m_flow=0.0;
