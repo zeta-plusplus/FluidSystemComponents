@@ -4,3 +4,5 @@ flowSupplyNetwork003
 test_checkValve001
 test_pump001
 pistonActuator001
+fluidSupplySystem001
+fluidSupplySystem002
