@@ -25,12 +25,12 @@ model pistonActuator001
   FluidSystemComponents.HydroThermal.Components.CheckValveSpringLoad_Linear checkValveSpringLoad_Linear1(redeclare package Medium = liquid1) annotation(
     Placement(visible = true, transformation(origin = {40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp1(duration = 20, height = 0.9, offset = 0.01, startTime = 40) annotation(
-    Placement(visible = true, transformation(origin = {-90, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-40, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Sources.Boundary_pT boundary annotation(
     Placement(visible = true, transformation(origin = {-10, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(ramp1.y, valveLinear1.opening) annotation(
-    Line(points = {{-79, 60}, {2, 60}}, color = {0, 0, 127}));
+    Line(points = {{-29, 60}, {2, 60}}, color = {0, 0, 127}));
   connect(valveLinear1.port_b, sweptVolume1.ports[1]) annotation(
     Line(points = {{10, 70}, {10, 80}, {50, 80}}, color = {0, 127, 255}));
   connect(sweptVolume1.flange, mass1.flange_a) annotation(
