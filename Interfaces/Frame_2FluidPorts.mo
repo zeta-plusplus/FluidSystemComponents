@@ -51,8 +51,8 @@ partial model Frame_2FluidPorts
     Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Interfaces.FluidPort_b port_2(redeclare package Medium = Medium, m_flow(max = if allowFlowReversal then +Constants.inf else 0.0, start = m_flow2_init), h_outflow.start = h2_init) "" annotation(
     Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Icons.SignalBus signalBus1 annotation(
-    Placement(visible = true, transformation(origin = {90, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {95, -95}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+    Modelica.Icons.SignalBus signalBus1 annotation(
+    Placement(visible = true, transformation(origin = {80, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {95, -95}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   //********** Protected objects **********
 protected
   parameter Boolean port_a_exposesState = false "= true if port_a exposes the state of a fluid volume";
@@ -72,10 +72,12 @@ initial algorithm
   */
 algorithm
 //***** debug-print *****
+/*
   print("time= " + String(time) + " [s]" + "\n");
   print(String(getInstanceName()) + "\n");
   print("fluid_1.state.p= " + String(fluid_1.state.p) + "\n");
   print("fluid_2.p= " + String(fluid_2.p) + "\n");
+  */
 //***** give warning in case of innapropriate fluid states *****
   assert(fluid_1.p < 0.0, getInstanceName() + ", fluid_1.p got less than 0", AssertionLevel.warning);
   assert(fluid_1.T < 0.0, getInstanceName() + ", fluid_1.T got less than 0", AssertionLevel.warning);

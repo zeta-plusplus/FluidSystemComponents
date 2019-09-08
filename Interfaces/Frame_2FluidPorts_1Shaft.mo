@@ -152,10 +152,12 @@ initial algorithm
   
 algorithm
   //***** debug-print *****
+  /*
   print("time= " + String(time) + " [s]" + "\n");
   print(String(getInstanceName()) + "\n");
   print("fluid_1.state.p= " + String(fluid_1.state.p) + "\n");
   print("fluid_2.p= " + String(fluid_2.p) + "\n");
+  */
   assert(fluid_1.p < 0.0, getInstanceName() + ", fluid_1.p got less than 0", AssertionLevel.warning);
   assert(fluid_1.T < 0.0, getInstanceName() + ", fluid_1.T got less than 0", AssertionLevel.warning);
   assert(fluid_1.h < 0.0, getInstanceName() + ", fluid_1.h got less than 0", AssertionLevel.warning);
