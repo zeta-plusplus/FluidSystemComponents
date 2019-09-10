@@ -8,8 +8,6 @@ model DirValve_4ports3positions
   ********************************************************/
   import Modelica.Constants;
   import Modelica.SIunits;
-  
-  
   //********** Parameters **********
   parameter Modelica.SIunits.Pressure dp_nominal(displayUnit="Pa")=10*1000 
     ""
@@ -23,8 +21,6 @@ model DirValve_4ports3positions
     ""
     annotation(
     Dialog(group = "Characteristics"));
-  
-  
   //********** internal objects **********
   Modelica.Fluid.Valves.ValveDiscrete valveDiscrete1(redeclare package Medium = Medium, dp_nominal(displayUnit = "Pa") = dp_nominal,m_flow_nominal = m_flow_nominal, opening_min = opening_min)  annotation(
     Placement(visible = true, transformation(origin = {-40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
@@ -53,6 +49,18 @@ model DirValve_4ports3positions
   Modelica.Blocks.Math.IntegerToReal integerToReal4 annotation(
     Placement(visible = true, transformation(origin = {45, 72}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
 equation
+  connect(port_3, valveDiscrete3.port_a) annotation(
+    Line(points = {{-100, 100}, {-100, 72}, {-8, 72}, {-8, -60}, {0, -60}}, color = {0, 127, 255}));
+  connect(port_1, valveDiscrete4.port_a) annotation(
+    Line(points = {{-100, -100}, {-100, -72}, {-14, -72}, {-14, 50}, {0, 50}}, color = {0, 127, 255}));
+  connect(valveDiscrete4.port_b, port_4) annotation(
+    Line(points = {{20, 50}, {84, 50}, {84, 90}, {100, 90}, {100, 100}}, color = {0, 127, 255}));
+  connect(port_4, valveDiscrete2.port_a) annotation(
+    Line(points = {{100, 100}, {100, 90}, {30, 90}, {30, 10}}, color = {0, 127, 255}));
+  connect(valveDiscrete1.port_b, port_3) annotation(
+    Line(points = {{-40, 10}, {-40, 80}, {-100, 80}, {-100, 100}}, color = {0, 127, 255}));
+  connect(port_1, valveDiscrete1.port_a) annotation(
+    Line(points = {{-100, -100}, {-100, -80}, {-40, -80}, {-40, -10}}, color = {0, 127, 255}));
   connect(integerToReal3.u, u_ctrl) annotation(
     Line(points = {{52, -40}, {90, -40}, {90, 0}, {120, 0}}, color = {255, 127, 0}));
   connect(u_ctrl, integerToReal1.u) annotation(
@@ -67,32 +75,20 @@ equation
     Line(points = {{10, -52}, {10, -52}, {10, -40}, {14, -40}, {14, -40}}, color = {255, 0, 255}));
   connect(valveDiscrete4.open, greaterEqualThreshold1.y) annotation(
     Line(points = {{10, 58}, {10, 58}, {10, 72}, {14, 72}, {14, 72}}, color = {255, 0, 255}));
-  connect(valveDiscrete4.port_b, port_4) annotation(
-    Line(points = {{20, 50}, {84, 50}, {84, 80}, {100, 80}, {100, 100}}, color = {0, 127, 255}));
-  connect(port_1, valveDiscrete4.port_a) annotation(
-    Line(points = {{-100, -100}, {-100, -72}, {-20, -72}, {-20, 50}, {0, 50}}, color = {0, 127, 255}));
   connect(integerToReal2.u, u_ctrl) annotation(
     Line(points = {{82, 0}, {106, 0}, {106, 0}, {120, 0}}, color = {255, 127, 0}));
   connect(lessEqualThreshold2.u, integerToReal2.y) annotation(
     Line(points = {{62, 0}, {70, 0}, {70, 0}, {70, 0}}, color = {0, 0, 127}));
   connect(valveDiscrete2.open, lessEqualThreshold2.y) annotation(
     Line(points = {{38, 0}, {48, 0}, {48, 0}, {50, 0}}, color = {255, 0, 255}));
-  connect(port_4, valveDiscrete2.port_a) annotation(
-    Line(points = {{100, 100}, {100, 80}, {30, 80}, {30, 10}}, color = {0, 127, 255}));
   connect(valveDiscrete2.port_b, port_2) annotation(
     Line(points = {{30, -10}, {30, -80}, {100, -80}, {100, -100}}, color = {0, 127, 255}));
   connect(valveDiscrete3.port_b, port_2) annotation(
     Line(points = {{20, -60}, {100, -60}, {100, -100}}, color = {0, 127, 255}));
-  connect(port_3, valveDiscrete3.port_a) annotation(
-    Line(points = {{-100, 100}, {-100, 72}, {-12, 72}, {-12, -60}, {0, -60}}, color = {0, 127, 255}));
   connect(integerToReal1.y, lessEqualThreshold1.u) annotation(
     Line(points = {{-80, 0}, {-68, 0}, {-68, 0}, {-68, 0}}, color = {0, 0, 127}));
   connect(lessEqualThreshold1.y, valveDiscrete1.open) annotation(
     Line(points = {{-55, 0}, {-48, 0}}, color = {255, 0, 255}));
-  connect(valveDiscrete1.port_b, port_3) annotation(
-    Line(points = {{-40, 10}, {-40, 80}, {-100, 80}, {-100, 100}}, color = {0, 127, 255}));
-  connect(port_1, valveDiscrete1.port_a) annotation(
-    Line(points = {{-100, -100}, {-100, -80}, {-40, -80}, {-40, -10}}, color = {0, 127, 255}));
   
   
   
