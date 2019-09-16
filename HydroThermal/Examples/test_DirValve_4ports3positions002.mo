@@ -12,23 +12,25 @@ model test_DirValve_4ports3positions002
     Placement(visible = true, transformation(origin = {8.88178e-16, 20}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   FluidSystemComponents.HydroThermal.Components.CheckValveSpringLoad_Linear checkValveSpringLoad_Linear1(redeclare package Medium = liquid1, deltapCrack = 5 * 101.3 * 1000, gradientQP = 0.001 * 50 / (100 * 1000)) annotation(
     Placement(visible = true, transformation(origin = {0, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = liquid1, T = 288.15, nPorts = 1, p = 101.3 * 1000) annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = liquid1, T = 288.15, nPorts = 1, p = 2 *101.3 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Fluid.Sources.Boundary_pT boundary2(redeclare package Medium = liquid1, T = 288.15, nPorts = 1, p = 2 * 101.3 * 1000) annotation(
     Placement(visible = true, transformation(origin = {20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = liquid1, V = 0.01, nPorts = 3, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {-30, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Blocks.Sources.IntegerStep integerStep1(height = -1, offset = 0, startTime = 5) annotation(
-    Placement(visible = true, transformation(origin = {50, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = liquid1, T = 288.15, nPorts = 3, p = 101.3 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-20, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  FluidSystemComponents.HydroThermal.Components.PumpConstQflow_ideal pumpConstQflow_ideal1(redeclare package Medium = liquid1, qFlowDes = 0.001) annotation(
+  FluidSystemComponents.HydroThermal.Components.PumpConstQflow_ideal pumpConstQflow_ideal1(redeclare package Medium = liquid1, qFlowDes = 0.01) annotation(
     Placement(visible = true, transformation(origin = {-20, -70}, extent = {{-10, 10}, {10, -10}}, rotation = 90)));
   Modelica.Mechanics.Rotational.Sources.Speed speed1 annotation(
     Placement(visible = true, transformation(origin = {-50, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const(k = 10000) annotation(
     Placement(visible = true, transformation(origin = {-80, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Sources.IntegerStep integerStep1(height = 1, offset = 0, startTime = 5)  annotation(
+    Placement(visible = true, transformation(origin = {50, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
 equation
+  connect(dirValve_4ports3positions1.u_ctrl, integerStep1.y) annotation(
+    Line(points = {{20, 20}, {38, 20}}, color = {255, 127, 0}));
   connect(boundary2.ports[1], dirValve_4ports3positions1.port_4) annotation(
     Line(points = {{20, 60}, {20, 50}, {16, 50}, {16, 40}}, color = {0, 127, 255}));
   connect(const.y, speed1.w_ref) annotation(
@@ -37,8 +39,6 @@ equation
     Line(points = {{-20, -40}, {-20, -21}, {-16, -21}, {-16, 0}}, color = {0, 127, 255}));
   connect(boundary1.ports[1], dirValve_4ports3positions1.port_3) annotation(
     Line(points = {{-20, 60}, {-20, 49}, {-16, 49}, {-16, 40}}, color = {0, 127, 255}));
-  connect(dirValve_4ports3positions1.u_ctrl, integerStep1.y) annotation(
-    Line(points = {{20, 20}, {38, 20}}, color = {255, 127, 0}));
   connect(dirValve_4ports3positions1.port_2, boundary.ports[3]) annotation(
     Line(points = {{16, 0}, {16, -90}, {-20, -90}}, color = {0, 127, 255}));
   connect(speed1.flange, pumpConstQflow_ideal1.flange_1) annotation(

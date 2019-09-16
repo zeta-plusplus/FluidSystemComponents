@@ -1,0 +1,95 @@
+within FluidSystemComponents.HydroThermal.Examples;
+
+model test_hydroCylinder004
+  extends Modelica.Icons.Example;
+  //----------
+  replaceable package liquid1 = Modelica.Media.Water.StandardWaterOnePhase;
+  // redeclare package Medium = liquid1
+  //----------
+  inner Modelica.Fluid.System system annotation(
+    Placement(visible = true, transformation(origin = {-150, 190}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = liquid1, T = 288.15, nPorts = 1, p = 101.3 * 1000) annotation(
+    Placement(visible = true, transformation(origin = {20, -212}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Fluid.Machines.SweptVolume sweptVolume2(redeclare package Medium = liquid1, clearance = 10e-6, nPorts = 2, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false, start = 0.1), use_portsData = false) annotation(
+    Placement(visible = true, transformation(origin = {-90, 130}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  FluidSystemComponents.HydroThermal.Components.DirValve_4ports3positions dirValve_4ports3positions1(redeclare package Medium = liquid1, dp_nominal =  1000, m_flow_nominal = 0.01) annotation(
+    Placement(visible = true, transformation(origin = {0, -110}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  Modelica.Blocks.Sources.IntegerStep integerStep1(height = 0, offset = -1, startTime = 5)  annotation(
+    Placement(visible = true, transformation(origin = {70, -110}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Modelica.Fluid.Machines.SweptVolume sweptVolume4(redeclare package Medium = liquid1,clearance = 10e-6, nPorts = 2, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false), use_portsData = false) annotation(
+    Placement(visible = true, transformation(origin = {170, 130}, extent = {{-10, 10}, {10, -10}}, rotation = -90)));
+  Modelica.Mechanics.Translational.Components.Fixed fixed1 annotation(
+    Placement(visible = true, transformation(origin = {-90, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Modelica.Mechanics.Translational.Components.Rod rod2(L = 0.5) annotation(
+    Placement(visible = true, transformation(origin = {90, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Translational.Sensors.RelPositionSensor relPositionSensor1 annotation(
+    Placement(visible = true, transformation(origin = {60, 100}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  Modelica.Mechanics.Translational.Sources.Position position1 annotation(
+    Placement(visible = true, transformation(origin = {110, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Translational.Sensors.ForceSensor forceSensor1 annotation(
+    Placement(visible = true, transformation(origin = {140, 130}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
+  Modelica.Mechanics.Translational.Components.Mass mass1(L = 0.1, m = 10, s(fixed = true, start = 0.2 + mass1.L / 2))  annotation(
+    Placement(visible = true, transformation(origin = {20, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Sources.IntegerTable integerTable1(table = [0, -1; 4.99, 0; 5, 0; 9.99, 1; 10, 1; 15, 1])  annotation(
+    Placement(visible = true, transformation(origin = {70, -150}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Modelica.Fluid.Fittings.SimpleGenericOrifice orifice(redeclare package Medium = liquid1, diameter = 0.1 / 1000, zeta = 1.0)  annotation(
+    Placement(visible = true, transformation(origin = {30, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Translational.Components.Rod rod1(L = 0.5)  annotation(
+    Placement(visible = true, transformation(origin = {70, 170}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = liquid1,V = 0.01, nPorts = 2, use_portsData = false)  annotation(
+    Placement(visible = true, transformation(origin = {-110, -40}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Modelica.Fluid.Vessels.ClosedVolume volume2(redeclare package Medium = liquid1,V = 0.01, nPorts = 2, use_portsData = false) annotation(
+    Placement(visible = true, transformation(origin = {190, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+
+  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = liquid1,T = 288.15, nPorts = 1, p = 10 *101.3 * 1000) annotation(
+    Placement(visible = true, transformation(origin = {-30, -170}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Fluid.Pipes.StaticPipe pipe(redeclare package Medium = liquid1, diameter = 0.05, length = 0.2) annotation(
+    Placement(visible = true, transformation(origin = {-120, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Fluid.Pipes.StaticPipe pipe1(redeclare package Medium = liquid1, diameter = 0.05, length = 0.2) annotation(
+    Placement(visible = true, transformation(origin = {200, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+equation
+  connect(volume2.ports[2], sweptVolume4.ports[1]) annotation(
+    Line(points = {{200, -40}, {200, 130}, {180, 130}}, color = {0, 127, 255}, thickness = 0.5));
+  connect(pipe1.port_b, volume2.ports[1]) annotation(
+    Line(points = {{200, -60}, {200, -40}}, color = {0, 127, 255}));
+  connect(volume1.ports[2], sweptVolume2.ports[1]) annotation(
+    Line(points = {{-120, -40}, {-120, 130}, {-100, 130}}, color = {0, 127, 255}, thickness = 0.5));
+  connect(pipe.port_b, volume1.ports[1]) annotation(
+    Line(points = {{-120, -60}, {-120, -40}}, color = {0, 127, 255}));
+  connect(dirValve_4ports3positions1.port_4, pipe1.port_a) annotation(
+    Line(points = {{16, -90}, {200, -90}, {200, -80}, {200, -80}}, color = {0, 127, 255}));
+  connect(pipe.port_a, dirValve_4ports3positions1.port_3) annotation(
+    Line(points = {{-120, -80}, {-120, -80}, {-120, -90}, {-16, -90}, {-16, -90}}, color = {0, 127, 255}));
+  connect(boundary1.ports[1], dirValve_4ports3positions1.port_1) annotation(
+    Line(points = {{-30, -160}, {-30, -160}, {-30, -150}, {-16, -150}, {-16, -130}, {-16, -130}}, color = {0, 127, 255}));
+  connect(dirValve_4ports3positions1.port_2, boundary.ports[1]) annotation(
+    Line(points = {{16, -130}, {16, -130}, {16, -172}, {20, -172}, {20, -202}, {20, -202}}, color = {0, 127, 255}));
+  connect(fixed1.flange, rod2.flange_a) annotation(
+    Line(points = {{-90, 70}, {80, 70}}, color = {0, 127, 0}));
+  connect(relPositionSensor1.flange_b, rod2.flange_b) annotation(
+    Line(points = {{70, 100}, {114, 100}, {114, 70}, {100, 70}}, color = {0, 127, 0}));
+  connect(mass1.flange_b, rod1.flange_a) annotation(
+    Line(points = {{30, 100}, {36, 100}, {36, 170}, {60, 170}, {60, 170}}, color = {0, 127, 0}));
+  connect(relPositionSensor1.s_rel, position1.s_ref) annotation(
+    Line(points = {{60, 111}, {60, 130}, {98, 130}}, color = {0, 0, 127}));
+  connect(mass1.flange_b, relPositionSensor1.flange_a) annotation(
+    Line(points = {{30, 100}, {50, 100}, {50, 100}, {50, 100}}, color = {0, 127, 0}));
+  connect(sweptVolume2.flange, mass1.flange_a) annotation(
+    Line(points = {{-80, 130}, {-66, 130}, {-66, 100}, {10, 100}}, color = {0, 127, 0}));
+  connect(sweptVolume2.ports[2], orifice.port_a) annotation(
+    Line(points = {{-100, 130}, {-114, 130}, {-114, 20}, {20, 20}}, color = {0, 127, 255}));
+  connect(orifice.port_b, sweptVolume4.ports[2]) annotation(
+    Line(points = {{40, 20}, {188, 20}, {188, 130}, {180, 130}}, color = {0, 127, 255}));
+  connect(dirValve_4ports3positions1.u_ctrl, integerTable1.y) annotation(
+    Line(points = {{20, -110}, {38, -110}, {38, -150}, {58, -150}, {58, -150}}, color = {255, 127, 0}));
+  connect(forceSensor1.flange_a, sweptVolume4.flange) annotation(
+    Line(points = {{150, 130}, {160, 130}, {160, 130}, {160, 130}}, color = {0, 127, 0}));
+  connect(position1.flange, forceSensor1.flange_b) annotation(
+    Line(points = {{120, 130}, {130, 130}, {130, 130}, {130, 130}}, color = {0, 127, 0}));
+  annotation(
+    experiment(StartTime = 0, StopTime = 15, Tolerance = 1e-06, Interval = 0.03),
+    __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"),
+    Diagram(coordinateSystem(extent = {{-160, -240}, {220, 200}}, initialScale = 0.1), graphics = {Rectangle(origin = {34, 82}, pattern = LinePattern.Dash, lineThickness = 0.5, extent = {{-164, 108}, {178, -88}}), Text(origin = {10, -17}, extent = {{-28, 9}, {92, -3}}, textString = "piston cylinder actuator", fontSize = 8, horizontalAlignment = TextAlignment.Left), Text(origin = {91, 56}, extent = {{-21, 4}, {21, -4}}, textString = "cylinder"), Text(origin = {73, 156}, extent = {{-21, 4}, {21, -4}}, textString = "actuator rod")}),
+    Icon(coordinateSystem(extent = {{-100, -140}, {100, 100}})),
+    __OpenModelica_commandLineOptions = "");
+end test_hydroCylinder004;
