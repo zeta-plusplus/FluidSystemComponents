@@ -40,9 +40,9 @@ partial model Frame_2FluidPorts_1MechLin
   //----- inner-outer-connected variables -----
   //##### none #####
   //********** Interfaces **********
-  Modelica.Fluid.Interfaces.FluidPort_a port_1 annotation(
+  Modelica.Fluid.Interfaces.FluidPort_a port_1(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(origin = {-80, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Interfaces.FluidPort_b port_2 annotation(
+  Modelica.Fluid.Interfaces.FluidPort_b port_2(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(origin = {80, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Mechanics.Translational.Interfaces.Flange_b flange_1 annotation(
     Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

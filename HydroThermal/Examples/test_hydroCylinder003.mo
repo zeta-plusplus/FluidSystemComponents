@@ -49,7 +49,11 @@ model test_hydroCylinder003
     Placement(visible = true, transformation(origin = {110, 80}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Mechanics.Translational.Sources.Position position1 annotation(
     Placement(visible = true, transformation(origin = {90, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Translational.Components.Rod rod1(L = 0.5) annotation(
+    Placement(visible = true, transformation(origin = {30, 170}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
+  connect(mass1.flange_b, rod1.flange_a) annotation(
+    Line(points = {{0, 130}, {8, 130}, {8, 170}, {20, 170}, {20, 170}}, color = {0, 127, 0}));
   connect(dirValve_4ports3positions1.u_ctrl, integerStep1.y) annotation(
     Line(points = {{20, -110}, {60, -110}, {60, -110}, {60, -110}}, color = {255, 127, 0}));
   connect(sweptVolume2.flange, mass1.flange_a) annotation(
