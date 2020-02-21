@@ -1,0 +1,8 @@
+within FluidSystemComponents.HeatTransfer.Examples;
+
+model HX_modulatedEff00_test01
+  
+  
+equation
+
+end HX_modulatedEff00_test01;

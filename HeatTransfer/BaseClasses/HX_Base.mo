@@ -61,111 +61,158 @@ partial model HX_Base
     Placement(visible = true, transformation(origin = {100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
 algorithm
+  //fluid_1_med1.state:= Medium1.setState_phX(port_1_med1.p, port_1_med1.h_outflow, port_1_med1.Xi_outflow);
+  //fluid_2_med1.state:= Medium1.setState_phX(port_2_med1.p, port_2_med1.h_outflow, port_2_med1.Xi_outflow);
+  //fluid_1_med2.state:= Medium2.setState_phX(port_1_med2.p, port_1_med2.h_outflow, port_1_med2.Xi_outflow);
+  //fluid_2_med2.state:= Medium2.setState_phX(port_2_med2.p, port_2_med2.h_outflow, port_2_med2.Xi_outflow);
+  
+  
   // distinguish inlet side, medium 1
-  if(fluid_1_med1.m_flow>0.0)then
+  if(port_1_med1.m_flow>0.0)then
     flagMedium1Inlet:= 1;
-  elseif(fluid_2_med1.m_flow>0.0)then
+  elseif(port_2_med1.m_flow>0.0)then
     flagMedium1Inlet:= 2;
   else
     flagMedium1Inlet:= 0;
   end if;
   
   // distinguish inlet side, medium 2
-  if(fluid_1_med2.m_flow>0.0)then
+  if(port_1_med2.m_flow>0.0)then
     flagMedium2Inlet:= 1;
-  elseif(fluid_2_med2.m_flow>0.0)then
+  elseif(port_2_med2.m_flow>0.0)then
     flagMedium2Inlet:= 2;
   else
     flagMedium2Inlet:= 0;
   end if;
   
   
-equation  
-  
-  //********** Connections, interface <-> internal variables **********
-  //-- fluidPort_1, medium 1 --
-  fluid_1_med1.p = port_1_med1.p;
-  port_1_med1.h_outflow= fluid_1_med1.h;
-  fluid_1_med1.h= actualStream(port_1_med1.h_outflow);
-  fluid_1_med1.Xi= actualStream(port_1_med1.Xi_outflow);
-  //-- fluidPort_2, medium 1 --
-  fluid_2_med1.p = port_2_med1.p;
-  fluid_2_med1.h= actualStream(port_2_med1.h_outflow);
-  fluid_2_med1.Xi= actualStream(port_2_med1.Xi_outflow);
-  
-  //-- fluidPort_1, medium 2 --
-  fluid_1_med2.p = port_1_med2.p;
-  port_1_med2.h_outflow= fluid_1_med2.h;
-  fluid_1_med2.h= actualStream(port_1_med2.h_outflow);
-  fluid_1_med2.Xi= actualStream(port_1_med2.Xi_outflow);
-  //-- fluidPort_2, medium 2 --
-  fluid_2_med2.p = port_2_med2.p;
-  fluid_2_med2.h= actualStream(port_2_med2.h_outflow);
-  fluid_2_med2.Xi= actualStream(port_2_med2.Xi_outflow);
-  
-  
   if(flagMedium1Inlet==1)then
-    T1in= fluid_1_med1.state.T;
-    dmCp1in= port_1_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_1_med1.state);
+    T1in:= fluid_1_med1.state.T;
+    dmCp1in:= port_1_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_1_med1.state);
   elseif(flagMedium1Inlet==2)then
-    T1in= fluid_2_med1.state.T;
-    dmCp1in= port_2_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_2_med1.state);
+    T1in:= fluid_2_med1.state.T;
+    dmCp1in:= port_2_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_2_med1.state);
   else
-    T1in= fluid_1_med1.state.T;
-    dmCp1in= port_1_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_1_med1.state);
+    T1in:= fluid_1_med1.state.T;
+    dmCp1in:= port_1_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_1_med1.state);
   end if;
   
   
   if(flagMedium2Inlet==1)then
-    T2in= fluid_1_med2.state.T;
-    dmCp2in= port_1_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_1_med2.state);
+    T2in:= fluid_1_med2.state.T;
+    dmCp2in:= port_1_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_1_med2.state);
   elseif(flagMedium2Inlet==2)then
-    T2in= fluid_2_med2.state.T;
-    dmCp2in= port_2_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_2_med2.state);
+    T2in:= fluid_2_med2.state.T;
+    dmCp2in:= port_2_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_2_med2.state);
   else
-    T2in= fluid_1_med2.state.T;
-    dmCp2in= port_1_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_1_med2.state);
+    T2in:= fluid_1_med2.state.T;
+    dmCp2in:= port_1_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_1_med2.state);
   end if;
   
   
   if(T1in>T2in)then
-    flagHotSide=1;
-    if(flagMedium1inlet==1)then
-      flagHotInlet="port1_medium1";
-    elseif(flagMedium1inlet==2)then
-      flagHotInlet="port2_medium1";
+    flagHotSide:=1;
+    
+    if(flagMedium1Inlet==1)then
+      flagHotInlet:="port1_medium1";
+      THIn:= fluid_1_med1.state.T;
+    elseif(flagMedium1Inlet==2)then
+      flagHotInlet:="port2_medium1";
+      THIn:= fluid_2_med1.state.T;
     end if;
+    
+    if(flagMedium2Inlet==1)then
+      flagColdInlet:="port1_medium2";
+      TCIn:= fluid_1_med2.state.T;
+    elseif(flagMedium2Inlet==2)then
+      flagColdInlet:="port2_medium2";
+      TCIn:= fluid_2_med2.state.T;
+    end if;
+    
   elseif(T1in<T2in)then
-    flagHotSide=2;
-    if(flagMedium2inlet==1)then
-      flagHotInlet="port1_medium2";
-    elseif(flagMedium2inlet==2)then
-      flagHotInlet="port2_medium2";
+    flagHotSide:=2;
+    
+    if(flagMedium2Inlet==1)then
+      flagHotInlet:="port1_medium2";
+      THIn:= fluid_1_med2.state.T;
+    elseif(flagMedium2Inlet==2)then
+      flagHotInlet:="port2_medium2";
+      THIn:= fluid_2_med2.state.T;
     end if;
+    
+    if(flagMedium1Inlet==1)then
+      flagColdInlet:="port1_medium1";
+      TCIn:= fluid_1_med1.state.T;
+    elseif(flagMedium1Inlet==2)then
+      flagColdInlet:="port2_medium1";
+      TCIn:= fluid_2_med1.state.T;
+    end if;
+    
+    
   else
-    flagHotSide=0;
+    flagHotSide:=0;
+    
+    if(flagMedium1Inlet==1)then
+      flagHotInlet:="equal inlet temperature";
+      THIn:= fluid_1_med1.state.T;
+      TCIn:= THIn;
+    elseif(flagMedium1Inlet==2)then
+      flagHotInlet:="equal inlet temperature";
+      THIn:= fluid_2_med1.state.T;
+      TCIn:= THIn;
+    end if;
+    
   end if;
   
-  dmCpMin= min(dmCp1in, dmCp2in);
-  dmCpMax= max(dmCp1in, dmCp2in);
+  dmCpMin:= min(dmCp1in, dmCp2in);
+  dmCpMax:= max(dmCp1in, dmCp2in);
+  
+equation  
+  
+  //********** Connections, interface <-> internal variables **********
+  //-- fluidPort_1, medium 1 --
+  
+  fluid_1_med1.p = port_1_med1.p;
+  fluid_1_med1.h= actualStream(port_1_med1.h_outflow);
+  fluid_1_med1.Xi= actualStream(port_1_med1.Xi_outflow);
+  port_1_med1.h_outflow= fluid_1_med1.h;
+  
+  //-- fluidPort_2, medium 1 --
+  
+  fluid_2_med1.p = port_2_med1.p;
+  fluid_2_med1.h= actualStream(port_2_med1.h_outflow);
+  fluid_2_med1.Xi= actualStream(port_2_med1.Xi_outflow);
+  //port_2_med1.h_outflow= fluid_2_med1.h;
+  
+  
+  //-- fluidPort_1, medium 2 --
+  
+  fluid_1_med2.p = port_1_med2.p;
+  fluid_1_med2.h= actualStream(port_1_med2.h_outflow);
+  fluid_1_med2.Xi= actualStream(port_1_med2.Xi_outflow);
+  port_1_med2.h_outflow= fluid_1_med2.h;
+  
+  
+  //-- fluidPort_2, medium 2 --
+  
+  fluid_2_med2.p = port_2_med2.p;
+  fluid_2_med2.h= actualStream(port_2_med2.h_outflow);
+  fluid_2_med2.Xi= actualStream(port_2_med2.Xi_outflow);
+  //port_2_med2.h_outflow= fluid_2_med2.h;
+  
   
   //********** equations of physics **********
   Q_flow_max= dmCpMin*(THIn - TCIn);
-  Q_flow= effHx*Q_flow_max;
+  Q_flow= effHX*Q_flow_max;
   
-  if(flagHotSide==1)then
-    Q_flow1= -1.0*Q_flow;
-    Q_flow2= Q_flow;
-  elseif(flagHotSide==2)then
-    Q_flow1= Q_flow;
-    Q_flow2= -1.0* Q_flow;
-  else
-    Q_flow1=0.0;
-    Q_flow2=0.0;
-  end if; 
+  port_1_med1.m_flow + port_2_med1.m_flow = 0.0;
+  port_1_med2.m_flow + port_2_med2.m_flow = 0.0;
   
   (port_1_med1.m_flow*fluid_1_med1.h) + (port_2_med1.m_flow*fluid_2_med1.h) + Q_flow1=0.0;
   (port_1_med2.m_flow*fluid_1_med2.h) + (port_2_med2.m_flow*fluid_2_med2.h) + Q_flow2=0.0;
+  
+  fluid_2_med1.p= fluid_1_med1.p;
+  fluid_2_med2.p= fluid_1_med2.p;
   
   
 annotation(
