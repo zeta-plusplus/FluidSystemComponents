@@ -16,10 +16,8 @@ partial model HX_Base
     choicesAllMatching = true);
   replaceable package Medium2 = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);
-  
   //********** Parameters **********
   //##### None #####
-  
   //********** Internal variables **********
   Medium1.BaseProperties fluid_1_med1 "flow station of port_1, medium 1";
   Medium1.BaseProperties fluid_2_med1 "flow station of port_2, medium 1";
@@ -48,41 +46,36 @@ partial model HX_Base
   Integer flagMedium2Inlet;
   String flagHotInlet;
   String flagColdInlet;
-  
-
   //********** Interfaces **********
   Modelica.Fluid.Interfaces.FluidPort_a port_1_med1(redeclare package Medium = Medium1) annotation(
-    Placement(visible = true, transformation(origin = {-100, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-100, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-140, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Interfaces.FluidPort_b port_2_med1(redeclare package Medium = Medium1) annotation(
-    Placement(visible = true, transformation(origin = {100, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {100, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {140, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Interfaces.FluidPort_a port_1_med2(redeclare package Medium = Medium2) annotation(
-    Placement(visible = true, transformation(origin = {-100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-140, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Interfaces.FluidPort_b port_2_med2(redeclare package Medium = Medium2) annotation(
-    Placement(visible = true, transformation(origin = {100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {140, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
 algorithm
-  //fluid_1_med1.state:= Medium1.setState_phX(port_1_med1.p, port_1_med1.h_outflow, port_1_med1.Xi_outflow);
-  //fluid_2_med1.state:= Medium1.setState_phX(port_2_med1.p, port_2_med1.h_outflow, port_2_med1.Xi_outflow);
-  //fluid_1_med2.state:= Medium2.setState_phX(port_1_med2.p, port_1_med2.h_outflow, port_1_med2.Xi_outflow);
-  //fluid_2_med2.state:= Medium2.setState_phX(port_2_med2.p, port_2_med2.h_outflow, port_2_med2.Xi_outflow);
-  
-  
-  // distinguish inlet side, medium 1
-  if(port_1_med1.m_flow>0.0)then
-    flagMedium1Inlet:= 1;
-  elseif(port_2_med1.m_flow>0.0)then
-    flagMedium1Inlet:= 2;
+//fluid_1_med1.state:= Medium1.setState_phX(port_1_med1.p, port_1_med1.h_outflow, port_1_med1.Xi_outflow);
+//fluid_2_med1.state:= Medium1.setState_phX(port_2_med1.p, port_2_med1.h_outflow, port_2_med1.Xi_outflow);
+//fluid_1_med2.state:= Medium2.setState_phX(port_1_med2.p, port_1_med2.h_outflow, port_1_med2.Xi_outflow);
+//fluid_2_med2.state:= Medium2.setState_phX(port_2_med2.p, port_2_med2.h_outflow, port_2_med2.Xi_outflow);
+// distinguish inlet side, medium 1
+  if port_1_med1.m_flow > 0.0 then
+    flagMedium1Inlet := 1;
+  elseif port_2_med1.m_flow > 0.0 then
+    flagMedium1Inlet := 2;
   else
-    flagMedium1Inlet:= 0;
+    flagMedium1Inlet := 0;
   end if;
-  
-  // distinguish inlet side, medium 2
-  if(port_1_med2.m_flow>0.0)then
-    flagMedium2Inlet:= 1;
-  elseif(port_2_med2.m_flow>0.0)then
-    flagMedium2Inlet:= 2;
+// distinguish inlet side, medium 2
+  if port_1_med2.m_flow > 0.0 then
+    flagMedium2Inlet := 1;
+  elseif port_2_med2.m_flow > 0.0 then
+    flagMedium2Inlet := 2;
   else
-    flagMedium2Inlet:= 0;
+    flagMedium2Inlet := 0;
   end if;
   
   
@@ -167,42 +160,30 @@ algorithm
   dmCpMin:= min(dmCp1in, dmCp2in);
   dmCpMax:= max(dmCp1in, dmCp2in);
   
-equation  
-  
-  //********** Connections, interface <-> internal variables **********
-  //-- fluidPort_1, medium 1 --
-  
+equation
+//********** Connections, interface <-> internal variables **********
+//-- fluidPort_1, medium 1 --
   fluid_1_med1.p = port_1_med1.p;
   fluid_1_med1.h= actualStream(port_1_med1.h_outflow);
   fluid_1_med1.Xi= actualStream(port_1_med1.Xi_outflow);
   port_1_med1.h_outflow= fluid_1_med1.h;
-  
-  //-- fluidPort_2, medium 1 --
-  
+//-- fluidPort_2, medium 1 --
   fluid_2_med1.p = port_2_med1.p;
   fluid_2_med1.h= actualStream(port_2_med1.h_outflow);
   fluid_2_med1.Xi= actualStream(port_2_med1.Xi_outflow);
-  //port_2_med1.h_outflow= fluid_2_med1.h;
-  
-  
-  //-- fluidPort_1, medium 2 --
-  
+//port_2_med1.h_outflow= fluid_2_med1.h;
+//-- fluidPort_1, medium 2 --
   fluid_1_med2.p = port_1_med2.p;
   fluid_1_med2.h= actualStream(port_1_med2.h_outflow);
   fluid_1_med2.Xi= actualStream(port_1_med2.Xi_outflow);
   port_1_med2.h_outflow= fluid_1_med2.h;
-  
-  
-  //-- fluidPort_2, medium 2 --
-  
+//-- fluidPort_2, medium 2 --
   fluid_2_med2.p = port_2_med2.p;
   fluid_2_med2.h= actualStream(port_2_med2.h_outflow);
   fluid_2_med2.Xi= actualStream(port_2_med2.Xi_outflow);
-  //port_2_med2.h_outflow= fluid_2_med2.h;
-  
-  
-  //********** equations of physics **********
-  Q_flow_max= dmCpMin*(THIn - TCIn);
+//port_2_med2.h_outflow= fluid_2_med2.h;
+//********** equations of physics **********
+  Q_flow_max = dmCpMin * (THIn - TCIn);
   Q_flow= effHX*Q_flow_max;
   
   port_1_med1.m_flow + port_2_med1.m_flow = 0.0;
@@ -216,4 +197,6 @@ equation
   
   
 annotation(
-    Diagram(graphics = {Line(origin = {0.0638821, -65.226}, points = {{0, 6}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, -67}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow2"), Line(origin = {0.00245751, 94.1476}, points = {{0, -34}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, 69}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow1")}));end HX_Base;
+    Diagram(graphics = {Line(origin = {0.0638821, -65.226}, points = {{0, 6}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, -67}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow2"), Line(origin = {0.00245751, 94.1476}, points = {{0, -34}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, 69}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow1")}),
+    Icon(coordinateSystem(extent = {{-140, -100}, {140, 100}})),
+    __OpenModelica_commandLineOptions = "");end HX_Base;

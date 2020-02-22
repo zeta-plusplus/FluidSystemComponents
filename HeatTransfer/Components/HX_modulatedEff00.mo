@@ -14,7 +14,7 @@ model HX_modulatedEff00
   ********************************************************/
   
   Modelica.Blocks.Interfaces.RealInput u_eff annotation(
-    Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
 equation
   
@@ -41,6 +41,7 @@ annotation(
 </p>
 </html>"
     ),
-    Icon(graphics = {Text(origin = {0, -90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Rectangle(origin = {0, 9}, fillColor = {211, 211, 211}, fillPattern = FillPattern.Solid, extent = {{-100, 71}, {100, -89}}), Line(origin = {0.45, 51.07}, points = {{-100, 9.64645}, {-80, -10.3536}, {-60, 9.64645}, {-40, -10.3536}, {-20, 9.64645}, {0, -10.3536}, {20, 9.64645}, {40, -10.3536}, {60, 9.64645}, {80, -10.3536}, {100, 9.64645}}, thickness = 3), Line(origin = {0.45, -50.93}, rotation = 180, points = {{-100, 9.64645}, {-80, -10.3536}, {-60, 9.64645}, {-40, -10.3536}, {-20, 9.64645}, {0, -10.3536}, {20, 9.64645}, {40, -10.3536}, {60, 9.64645}, {80, -10.3536}, {100, 9.64645}}, thickness = 3), Line(origin = {-2, 6.9656}, points = {{0, 26}, {0, -38}}, thickness = 4.5, arrow = {Arrow.Half, Arrow.Half}, arrowSize = 8), Text(origin = {26, 10}, extent = {{-14, 8}, {32, -22}}, textString = "Q_flow")}, coordinateSystem(initialScale = 0.1)));
+  Icon(graphics = {Text(origin = {0, -98}, extent = {{-140, 18}, {140, -2}}, textString = "%name"), Rectangle(origin = {0, 11}, fillColor = {211, 211, 211}, fillPattern = FillPattern.Solid, extent = {{-140, 71}, {140, -91}}), Line(origin = {-3.55, 51.07}, points = {{-136, 27.6465}, {-114, -10.3535}, {-96, 9.64643}, {-80, -10.3536}, {-60, 9.64645}, {-40, -10.3536}, {-20, 9.64645}, {0, -10.3536}, {20, 9.64645}, {40, -10.3536}, {60, 9.64645},  {80, -10.3536}, {100, 9.64645}, {118, -10.3535}, {142, 29.6465}}, thickness = 3), Line(origin = {0.45, -50.93}, rotation = 180, points = {{-138, 25.6465}, {-120, -11.3535}, {-100, 9.64643}, {-80, -10.3536}, {-60, 9.64645}, {-40, -10.3536}, {-20, 9.64645}, {0, -10.3536}, {20, 9.64645}, {40, -10.3536}, {60, 9.64645}, {80, -10.3536}, {100, 9.64645}, {120, -10.3535}, {142, 29.6465}}, thickness = 3), Line(origin = {-2, 6.9656}, points = {{0, 22}, {0, -36}}, thickness = 4.5, arrow = {Arrow.Half, Arrow.Half}, arrowSize = 8), Text(origin = {32, 8}, extent = {{-14, 8}, {32, -22}}, textString = "Q_flow")}, coordinateSystem(extent = {{-140, -100}, {140, 100}})),
+  __OpenModelica_commandLineOptions = "");
 
 end HX_modulatedEff00;
