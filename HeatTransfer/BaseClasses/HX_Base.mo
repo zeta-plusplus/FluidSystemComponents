@@ -71,64 +71,8 @@ partial model HX_Base
     Placement(visible = true, transformation(origin = {100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {140, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
 algorithm
-
-  /*
-  m_flow1_max:= max(port_1_med1.m_flow, port_2_med1.m_flow);
-  m_flow1_min:= min(port_1_med1.m_flow, port_2_med1.m_flow);
-  m_flow2_max:= max(port_1_med2.m_flow, port_2_med2.m_flow);
-  m_flow2_min:= min(port_1_med2.m_flow, port_2_med2.m_flow);
-  
-// distinguish inlet side, medium 1
-  if (m_flow1_max == port_1_med1.m_flow) then
-    flagMedium1Inlet := 1;
-    T1in:= fluid_1_med1.state.T;
-    dmCp1in:= port_1_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_1_med1.state);
-  elseif (m_flow1_max == port_2_med1.m_flow) then
-    flagMedium1Inlet := 2;
-    T1in:= fluid_2_med1.state.T;
-    dmCp1in:= port_2_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_2_med1.state);
-  else
-    flagMedium1Inlet:= 0;
-    T1in:= fluid_1_med1.state.T;
-    dmCp1in:= port_1_med1.m_flow * Medium1.specificHeatCapacityCp(fluid_1_med1.state);
-  end if;
-
-// distinguish inlet side, medium 2
-  if (m_flow2_max == port_1_med2.m_flow) then
-    flagMedium2Inlet := 1;
-    T2in:= fluid_1_med2.state.T;
-    dmCp2in:= port_1_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_1_med2.state);
-  elseif (m_flow2_max == port_2_med2.m_flow) then
-    flagMedium2Inlet := 2;
-    T2in:= fluid_2_med2.state.T;
-    dmCp2in:= port_2_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_2_med2.state);
-  else
-    flagMedium2Inlet:= 0;
-    T2in:= fluid_1_med2.state.T;
-    dmCp2in:= port_1_med2.m_flow * Medium2.specificHeatCapacityCp(fluid_1_med2.state);
-  end if;
-  
-  if(T1in > T2in)then
-    flagHotSide:=1;
-    THIn:= T1in;
-    TCIn:= T2in;
-  elseif(T1in < T2in)then
-    flagHotSide:=2;
-    THIn:= T2in;
-    TCIn:= T1in;
-  else
-    flagHotSide:=0;
-    THIn:= T1in;
-    TCIn:= T1in;
-  end if;
-  
-  
-  
-  dmCpMin:= min(dmCp1in, dmCp2in);
-  dmCpMax:= max(dmCp1in, dmCp2in);
-  Q_flow_max:= dmCpMin * (THIn - TCIn);
-  */
-  
+  // none
+    
 equation
 //********** Connections, interface <-> internal variables **********
 //-- fluidPort_1, medium 1 --
