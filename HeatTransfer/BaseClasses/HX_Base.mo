@@ -183,8 +183,13 @@ equation
   fluid_2_med1.p= fluid_1_med1.p;
   fluid_2_med2.p= fluid_1_med2.p;
   
+/********************************************************
+  Graphics
+********************************************************/
   
 annotation(
     Diagram(graphics = {Line(origin = {0.0638821, -65.226}, points = {{0, 6}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, -67}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow2"), Line(origin = {0.00245751, 94.1476}, points = {{0, -34}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, 69}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow1")}),
     Icon(coordinateSystem(extent = {{-140, -100}, {140, 100}})),
-    __OpenModelica_commandLineOptions = "");end HX_Base;
+    __OpenModelica_commandLineOptions = "");
+    
+end HX_Base;
