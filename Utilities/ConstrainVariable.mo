@@ -26,6 +26,7 @@ equation
   Graphics
 ********************************************************/
   annotation(
+    DefaultComponentName="Constraint",
     Diagram,
     Icon(graphics = {Rectangle(fillColor = {39, 39, 39}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Text(origin = {-3, -83}, lineColor = {255, 255, 255}, extent = {{-97, 3}, {103, -17}}, textString = "%name"), Text(origin = {-3, 37}, lineColor = {255, 255, 255}, extent = {{-97, 3}, {103, -77}}, textString = "Constraint", fontSize = 34)}, coordinateSystem(initialScale = 0.1)));
 
