@@ -32,7 +32,7 @@ equation
 ********************************************************/
   
   annotation(
-    DefaultComponentName="VarBySolver",
+    defaultComponentName= "VarBySolver",
     Icon(graphics = {Rectangle(origin = {0, -1}, fillColor = {225, 225, 225}, fillPattern = FillPattern.Solid, extent = {{-100, 101}, {100, -99}}), Text(origin = {-12, -95}, extent = {{-88, 15}, {112, -5}}, textString = "%name"), Text(origin = {-37, -30}, extent = {{-63, 50}, {137, -10}}, textString = "Solver", fontSize = 40), Text(origin = {-37, 8}, extent = {{-63, 72}, {137, 10}}, textString = "By", fontSize = 40)}, coordinateSystem(initialScale = 0.1)));
   
   
