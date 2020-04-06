@@ -62,7 +62,7 @@ partial model PumpMotorFixedDispBase00
   
   Real PR "pressure ratio";
   Modelica.SIunits.PressureDifference deltap "pressure difference";
-  //Real effVol "volumetric efficiency";
+  Real effVol "volumetric efficiency";
   //Real effMech "mechanical efficiency";
   Modelica.SIunits.SpecificEnthalpy dht_is "specific enthalpy change in isentropic compression";
   Modelica.SIunits.SpecificEnthalpy dht "specific enthalpy change in non-isentropic compression";
@@ -189,12 +189,10 @@ equation
   
   
   NqNdes = Nmech / NmechDes;
-  //V_flow_ideal_des= V_flow_des/effVolDes;
-  V_flow_ideal_des= V_flow_des;
+  V_flow_ideal_des= V_flow_des/effVolDes;
   disp= V_flow_ideal_des/(NmechDes/60.0);
   
-  //V_flow= V_flow_ideal*effVol;
-  V_flow= V_flow_ideal;
+  V_flow= V_flow_ideal*effVol;
   V_flow_ideal= V_flow_ideal_des*NqNdes;
   
   

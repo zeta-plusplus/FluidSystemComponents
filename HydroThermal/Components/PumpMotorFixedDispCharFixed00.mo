@@ -96,7 +96,7 @@ equation
   end if; 
   //--------------------
   
-  //effVol= effVolDes;
+  effVol= effVolDes;
   //effMech= effMechDes;
   
   
