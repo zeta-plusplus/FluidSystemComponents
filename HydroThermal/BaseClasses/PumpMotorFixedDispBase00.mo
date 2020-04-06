@@ -61,8 +61,9 @@ partial model PumpMotorFixedDispBase00
   Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm Nmech "mechanical rotation speed, rpm";
   
   Real PR "pressure ratio";
-  Modelica.SIunits.PressureDifference deltap "";
-  Real eff "adiabatic efficiency";
+  Modelica.SIunits.PressureDifference deltap "pressure difference";
+  //Real effVol "volumetric efficiency";
+  //Real effMech "mechanical efficiency";
   Modelica.SIunits.SpecificEnthalpy dht_is "specific enthalpy change in isentropic compression";
   Modelica.SIunits.SpecificEnthalpy dht "specific enthalpy change in non-isentropic compression";
   Modelica.SIunits.SpecificEnthalpy h_2is "";
@@ -70,8 +71,14 @@ partial model PumpMotorFixedDispBase00
   Modelica.SIunits.MassFlowRate m_flow_max;
   Modelica.SIunits.MassFlowRate m_flow_min;
   
-  Modelica.SIunits.VolumeFlowRate V_flow_des "volume flow rate, design point";
+  Modelica.SIunits.VolumeFlowRate V_flow "volume flow rate, referring to fluid_1.T";
+  Modelica.SIunits.VolumeFlowRate V_flow_ideal "volume flow rate, ideal, referring to fluid_1.T";
+  
+  Modelica.SIunits.VolumeFlowRate V_flow_des "volume flow rate, referring to fluid_1.T, design point";
+  Modelica.SIunits.VolumeFlowRate V_flow_ideal_des "volume flow rate, ideal, referring to fluid_1.T, design point";
   Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm NmechDes "mechanical rotation speed, design point";
+  Real effVolDes "volumetric efficiency, design point";
+  Real effMechDes "mechanical efficiency, design point";
   Modelica.SIunits.Volume disp;
   
   
@@ -99,7 +106,7 @@ partial model PumpMotorFixedDispBase00
   Modelica.Mechanics.Rotational.Interfaces.Flange_a flange_1 annotation(
     Placement(visible = true, transformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.Types.InfoBus infoBus1 annotation(
-    Placement(visible = true, transformation(origin = {100, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {70, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 algorithm
 
 equation
@@ -137,20 +144,32 @@ equation
   /* ---------------------------------------------
   Eqns describing physics   
   --------------------------------------------- */  
+  PR = fluid_2.p / fluid_1.p;
+  deltap= port_2.p - port_1.p;
+  dht_is = h_2is - fluid_1.h;
+  dht = fluid_2.h - fluid_1.h;
+  //omega * trq = pwr/effMech;
+  omega * trq = pwr;
+  fluid_2.h= h_2is;
+  /*
   if(fluid_2.p>=fluid_1.p)then
+    // operating as pump
     PR = fluid_2.p / fluid_1.p;
     deltap= port_2.p - port_1.p;
     dht_is = h_2is - fluid_1.h;
-    eff = dht_is / dht;
-    dht = fluid_2.h - fluid_1.h;
+    dht = pwr/port_1.m_flow;
+    omega * trq = pwr/effMech;
   else
+    // operating as motor
     PR = fluid_1.p / fluid_2.p;
     deltap= port_1.p - port_2.p;
     dht_is = fluid_1.h - h_2is;
-    eff = dht / dht_is;
-    dht = fluid_1.h - fluid_2.h;
+    dht= pwr/port_1.m_flow;
+    omega * trq = pwr*effMech;
   end if;
+  */
   
+  port_1.m_flow= fluid_1.d*V_flow;
   h_2is= Medium.isentropicEnthalpy(fluid_2.p, fluid_1.state);
   
   
@@ -160,7 +179,6 @@ equation
   trq = flange_1.tau;
   pwr = -1.0 * (port_1.m_flow * fluid_1.h + port_2.m_flow * fluid_2.h);
   der(phi) = omega;
-  omega * trq = pwr;
   Nmech = Modelica.SIunits.Conversions.NonSIunits.to_rpm(omega);
   
   pwr_inv= -1*pwr;
@@ -171,8 +189,13 @@ equation
   
   
   NqNdes = Nmech / NmechDes;
-  disp= V_flow_des/(NmechDes/60.0);
+  //V_flow_ideal_des= V_flow_des/effVolDes;
+  V_flow_ideal_des= V_flow_des;
+  disp= V_flow_ideal_des/(NmechDes/60.0);
   
+  //V_flow= V_flow_ideal*effVol;
+  V_flow= V_flow_ideal;
+  V_flow_ideal= V_flow_ideal_des*NqNdes;
   
   
   

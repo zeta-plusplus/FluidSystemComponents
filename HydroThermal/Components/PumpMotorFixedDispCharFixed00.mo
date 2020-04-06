@@ -23,7 +23,11 @@ model PumpMotorFixedDispCharFixed00
     Evaluate = true,
     HideResult = true,
     choices(checkBox = true), Dialog(group = "switch"));
-  parameter Boolean use_u_eff = false "get eff from the real input connector" annotation(
+  parameter Boolean use_u_effVol = false "get effVol from the real input connector" annotation(
+    Evaluate = true,
+    HideResult = true,
+    choices(checkBox = true), Dialog(group = "switch"));
+  parameter Boolean use_u_effMech = false "get effMech from the real input connector" annotation(
     Evaluate = true,
     HideResult = true,
     choices(checkBox = true), Dialog(group = "switch"));
@@ -34,12 +38,16 @@ model PumpMotorFixedDispCharFixed00
   /* ---------------------------------------------
         parameters    
   --------------------------------------------- */
-  parameter Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm NmechDes_paramInput = 1000.0 "adiabatic efficiency, valid only when use_u_eff==false, value fixed through simulation" annotation(
+  parameter Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm NmechDes_paramInput = 5000.0 "mechanical rotational speed, design point, valid only when use_u_NmechDes==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
-  parameter Real V_flow_des_paramInput = 0.001 "adiabatic efficiency, valid only when use_u_eff==false, value fixed through simulation" annotation(
+  parameter Modelica.SIunits.VolumeFlowRate V_flow_des_paramInput = 0.001 "volume flow rate, design point, referring to fluid_1.T , valid only when use_u_V_flow_des==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
-  parameter Real effDes_paramInput = 0.80 "adiabatic efficiency, valid only when use_u_eff==false, value fixed through simulation" annotation(
+  parameter Real effVolDes_paramInput = 0.90 "volumetric efficiency, valid only when use_u_effVol==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
+  parameter Real effMechDes_paramInput = 0.90 "mechanical efficiency, valid only when use_u_effMech==false, value fixed through simulation" annotation(
+    Dialog(group = "Component characteristics"));
+  
+  
   
   
   
@@ -48,17 +56,59 @@ model PumpMotorFixedDispCharFixed00
   /* ---------------------------------------------
       Interface   
   --------------------------------------------- */
-  Modelica.Blocks.Interfaces.RealInput u_eff annotation(
-    Placement(visible = true, transformation(origin = {-60, -120}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {-60, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.RealInput u_NmechDes annotation(
-    Placement(visible = true, transformation(origin = {40, -120}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {40, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.RealInput u_V_flow_des annotation(
-    Placement(visible = true, transformation(origin = {80, -120}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {80, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Blocks.Interfaces.RealInput u_effVol if use_u_effVol "" annotation(
+    Placement(visible = true, transformation(origin = {-80, 120}, extent = {{20, -20}, {-20, 20}}, rotation = 90), iconTransformation(origin = {-80, 110}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
+  Modelica.Blocks.Interfaces.RealInput u_effMech if use_u_effMech "" annotation(
+    Placement(visible = true, transformation(origin = {-40, 120}, extent = {{20, -20}, {-20, 20}}, rotation = 90), iconTransformation(origin = {-40, 110}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
+  Modelica.Blocks.Interfaces.RealInput u_NmechDes if use_u_NmechDes "" annotation(
+    Placement(visible = true, transformation(origin = {40, 120}, extent = {{20, -20}, {-20, 20}}, rotation = 90), iconTransformation(origin = {40, 110}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
+  Modelica.Blocks.Interfaces.RealInput u_V_flow_des if use_u_V_flow_des "" annotation(
+    Placement(visible = true, transformation(origin = {80, 120}, extent = {{20, -20}, {-20, 20}}, rotation = 90), iconTransformation(origin = {80, 110}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
 equation
+  
+  
+  /* ---------------------------------------------
+  Connections, interface <-> internal variables   
+  --------------------------------------------- */  
+  //--------------------
+  if (use_u_effVol == false) then
+    effVolDes = effVolDes_paramInput;
+  elseif (use_u_effVol==true) then
+    effVolDes = u_effVol;
+  end if; 
+  //--------------------
+  if (use_u_effMech == false) then
+    effMechDes = effMechDes_paramInput;
+  elseif (use_u_effMech==true) then
+    effMechDes = u_effMech;
+  end if; 
+  //--------------------
+  if (use_u_NmechDes== false) then
+    NmechDes = NmechDes_paramInput;
+  elseif (use_u_NmechDes==true) then
+    NmechDes = u_NmechDes;
+  end if; 
+  //--------------------
+  if (use_u_V_flow_des == false) then
+    V_flow_des = V_flow_des_paramInput;
+  elseif (use_u_V_flow_des==true) then
+    V_flow_des = u_V_flow_des;
+  end if; 
+  //--------------------
+  
+  //effVol= effVolDes;
+  //effMech= effMechDes;
+  
+  
+  
+  
+  
+  
+  
 /******************************
   Graphics
 ******************************/
   annotation(
-    defaultComponentName = "pump",
+    defaultComponentName = "PumpMotor",
     Icon(coordinateSystem(initialScale = 0.1), graphics = {Text(origin = {2, 80}, extent = {{-102, 20}, {98, 0}}, textString = "%name")}));
 end PumpMotorFixedDispCharFixed00;
