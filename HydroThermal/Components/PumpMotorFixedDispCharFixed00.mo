@@ -40,7 +40,7 @@ model PumpMotorFixedDispCharFixed00
   --------------------------------------------- */
   parameter Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm NmechDes_paramInput = 5000.0 "mechanical rotational speed, design point, valid only when use_u_NmechDes==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
-  parameter Modelica.SIunits.VolumeFlowRate V_flow_des_paramInput = 0.001 "volume flow rate, design point, referring to fluid_1.T , valid only when use_u_V_flow_des==false, value fixed through simulation" annotation(
+  parameter Modelica.SIunits.VolumeFlowRate V_flow_des_paramInput = 0.001 "volume flow rate, design point, value under effVol=1,  referring to fluid_1.T , valid only when use_u_V_flow_des==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
   parameter Real effVolDes_paramInput = 0.90 "volumetric efficiency, valid only when use_u_effVol==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
@@ -97,7 +97,7 @@ equation
   //--------------------
   
   effVol= effVolDes;
-  //effMech= effMechDes;
+  effMech= effMechDes;
   
   
   
