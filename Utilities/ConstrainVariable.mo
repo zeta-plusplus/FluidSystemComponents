@@ -3,23 +3,27 @@ within FluidSystemComponents.Utilities;
 model ConstrainVariable
 
   //********** Parameters **********
-  parameter Real tgtValue_paramInput=1.0 "target value ot constraint, valid only when switchDetermine_targetVal==param" annotation(
+  parameter Real tgtValue_paramInput=1.0 "target value ot constraint, valid only when use_u_targetVal==false" annotation(
     Dialog(group = "Characteristics"));
+  
+  
   //----- switches -----
-  parameter PropulsionSystem.Types.switches.switchHowToDetVar switchDetermine_targetVal = PropulsionSystem.Types.switches.switchHowToDetVar.viaRealInput "switch how to determine target value" annotation(
-    Dialog(group = "switch"),
-    choicesAllMatching = true,
+  parameter Boolean use_u_targetVal = true "get targetValue from the real input connector" annotation(
     Evaluate = true,
-    HideResult = true);
+    HideResult = true,
+    choices(checkBox = true), Dialog(group = "switch"));
+  
+  
+  
   //********** Interfaces **********
   Modelica.Blocks.Interfaces.RealInput u_variable annotation(
     Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  Modelica.Blocks.Interfaces.RealInput u_targetValue if (switchDetermine_targetVal == PropulsionSystem.Types.switches.switchHowToDetVar.viaRealInput) "" annotation(
+  Modelica.Blocks.Interfaces.RealInput u_targetValue if use_u_targetVal "" annotation(
     Placement(visible = true, transformation(origin = {120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
 equation
-  if switchDetermine_targetVal == PropulsionSystem.Types.switches.switchHowToDetVar.param then
+  if (use_u_targetVal==false) then
     tgtValue_paramInput = u_variable;
-  elseif switchDetermine_targetVal == PropulsionSystem.Types.switches.switchHowToDetVar.viaRealInput then
+  elseif (use_u_targetVal==true) then
     u_targetValue = u_variable;
   end if;
 /********************************************************
