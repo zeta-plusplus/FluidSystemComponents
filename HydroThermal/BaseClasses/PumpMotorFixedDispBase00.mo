@@ -52,10 +52,10 @@ partial model PumpMotorFixedDispBase00
   Modelica.SIunits.SpecificEntropy s_fluid_2 "specific entropy, fluid_2";
   
   Modelica.SIunits.Power pwr "power via shaft, positive if fluid generates power";
-  Modelica.SIunits.Power pwr_PQ "deltap*V_flow";
+  Modelica.SIunits.Power deltapXV_flow "deltap*V_flow";
   Modelica.SIunits.Torque trq "trq via shaft";
-  Modelica.SIunits.Power pwr_inv "power via shaft";
-  Modelica.SIunits.Torque trq_inv "trq via shaft";
+  Modelica.SIunits.Power pwr_inv "power via shaft, sign inveterd";
+  Modelica.SIunits.Torque trq_inv "trq via shaft, sign inverted";
   
   Modelica.SIunits.AngularVelocity omega "mechanical rotation speed, rad/sec";
   Modelica.SIunits.Angle phi "mechanical rotation displacement, rad";
@@ -63,6 +63,7 @@ partial model PumpMotorFixedDispBase00
   
   Real PR "pressure ratio";
   Modelica.SIunits.PressureDifference deltap "pressure difference";
+  Modelica.SIunits.PressureDifference deltap_inv "pressure difference, sign inverted";
   Real effVol "volumetric efficiency";
   Real effMech "mechanical efficiency";
   Modelica.SIunits.SpecificEnthalpy dht_is "specific enthalpy change in isentropic compression";
@@ -162,6 +163,7 @@ equation
   end if;
   
   deltap= port_2.p - port_1.p;
+  deltap_inv= -1.0*deltap;
   port_1.m_flow= fluid_1.d*V_flow;
   h_2is= Medium.isentropicEnthalpy(fluid_2.p, fluid_1.state);
   
@@ -188,7 +190,7 @@ equation
   V_flow= V_flow_ideal*effVol;
   V_flow_ideal= V_flow_des*NqNdes;
   
-  pwr_PQ= deltap*V_flow;
+  deltapXV_flow= deltap*V_flow;
   
   
   
@@ -196,5 +198,5 @@ equation
   Graphics
 ********************************************************/
   annotation(
-    Icon(graphics = {Ellipse(origin = {28, -22}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-88, 82}, {32, -38}}, endAngle = 360), Polygon(origin = {46, 4}, fillPattern = FillPattern.Solid, points = {{-16, 16}, {-16, -24}, {14, -4}, {-16, 16}}), Rectangle(origin = {0, -75}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-8, 15}, {8, -23}}), Line(origin = {51.74, -0.52}, points = {{9, 0}, {47, 0}}, thickness = 2), Line(origin = {-90.38, -0.1}, points = {{-11, 0}, {29, 0}}, thickness = 2), Polygon(origin = {-46, -4}, rotation = 180, fillPattern = FillPattern.Solid, points = {{-16, 16}, {-16, -24}, {14, -4}, {-16, 16}})}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Ellipse(origin = {28, -22}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-88, 82}, {32, -38}}, endAngle = 360), Polygon(origin = {56, -7}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-16, 16}, {-16, -4}, {4, 6}, {-16, 16}}), Rectangle(origin = {0, -75}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-8, 15}, {8, -23}}), Line(origin = {51.74, -0.52}, points = {{9, 0}, {47, 0}}, thickness = 2), Line(origin = {-90.38, -0.1}, points = {{-11, 0}, {29, 0}}, thickness = 2), Polygon(origin = {-56, -14}, rotation = 180, pattern = LinePattern.Dot, lineThickness = 0.5, points = {{-16, -4}, {-16, -24}, {4, -14}, {-16, -4}}), Polygon(origin = {-23, -6}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-16, 16}, {-16, -4}, {4, 6}, {-16, 16}}), Polygon(origin = {23, -15}, rotation = 180, pattern = LinePattern.Dot, lineThickness = 0.5, points = {{-16, -4}, {-16, -24}, {4, -14}, {-16, -4}})}, coordinateSystem(initialScale = 0.1)));
 end PumpMotorFixedDispBase00;
