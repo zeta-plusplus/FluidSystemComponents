@@ -14,7 +14,7 @@ model VariableBySolver
   /* ---------------------------------------------
       Internal variables
   --------------------------------------------- */
-  Real independent(start= independent_init);
+  Real independent(start= independent_init, fixed=false);
   
   
   /* ---------------------------------------------
