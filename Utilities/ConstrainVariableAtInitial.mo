@@ -11,21 +11,33 @@ model ConstrainVariableAtInitial
     choices(checkBox = true),
     Dialog(group = "switch"));
   //********** Interfaces **********
+  
   Modelica.Blocks.Interfaces.RealInput u_variable annotation(
     Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  
   Modelica.Blocks.Interfaces.RealInput u_targetValue if use_u_targetVal "" annotation(
     Placement(visible = true, transformation(origin = {120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
-
+  
+  
+protected
+ 
+  
+  
+  
+  
+  
 initial equation
   if use_u_targetVal == false then
     tgtValue_paramInput = u_variable;
   elseif use_u_targetVal == true then
     u_targetValue = u_variable;
   end if;
-
+  
 equation
-//##### NONE #####
-
+  //##### NONE #####
+  
+  
+  
 /********************************************************
   Graphics
 ********************************************************/
