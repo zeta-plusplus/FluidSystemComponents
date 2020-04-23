@@ -14,7 +14,9 @@ model VariableBySolver
   /* ---------------------------------------------
       Internal variables
   --------------------------------------------- */
-  Real independent(start= independent_init, fixed=false);
+  Real independent(start= independent_init, fixed=false) annotation(
+    Dialog(tab="Variables", group="start attribute" ,enable=false, showStartAttribute=true)
+  );
   
   
   /* ---------------------------------------------
@@ -23,7 +25,10 @@ model VariableBySolver
   Modelica.Blocks.Interfaces.RealOutput y_independent "" annotation(
     Placement(visible = true, transformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   
-      
+algorithm
+  //y_independent:= independent;
+
+  
 equation
   independent = y_independent;
 

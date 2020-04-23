@@ -5,6 +5,8 @@ model ConstrainVariable
 //********** Parameters **********
   parameter Real tgtValue_paramInput=1.0 "target value ot constraint, valid only when use_u_targetVal==false" annotation(
     Dialog(group = "Characteristics"));
+  
+  
   //----- switches -----
   parameter Boolean use_u_targetVal = true "get targetValue from the real input connector" annotation(
     Evaluate = true,
