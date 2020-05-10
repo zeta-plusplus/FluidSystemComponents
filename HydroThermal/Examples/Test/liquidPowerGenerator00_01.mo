@@ -31,13 +31,13 @@ model LiquidPowerGenerator00_01
     Placement(visible = true, transformation(origin = {190, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.Utilities.ConstrainVariable Constraint annotation(
     Placement(visible = true, transformation(origin = {182, -68}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Blocks.Sources.Ramp ramp_pwr(duration = 10, height = 4000, offset = 1000, startTime = 10) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_pwr(duration = 10, height = 0, offset = 5000, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {182, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Fluid.Sensors.Temperature temperature(redeclare package Medium = liquid1) annotation(
     Placement(visible = true, transformation(origin = {90, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 annotation(
     Placement(visible = true, transformation(origin = {70, 50}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Blocks.Sources.Ramp ramp_T_heaterOut(duration = 10, height = 45, offset = 50 + 273.15, startTime = 30) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_T_heaterOut(duration = 30, height = 70, offset = 50 + 273.15, startTime = 30) annotation(
     Placement(visible = true, transformation(origin = {100, 80}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   FluidSystemComponents.HeatTransfer.Components.HeatInjector00 HeatInjector(redeclare package Medium = liquid1) annotation(
     Placement(visible = true, transformation(origin = {70, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -81,7 +81,7 @@ equation
   connect(boundary.ports[1], Pump.port_1) annotation(
     Line(points = {{20, -90}, {20, -90}, {20, -70}, {20, -70}}, color = {0, 127, 255}));
   annotation(
-    experiment(StartTime = 0, StopTime = 70, Tolerance = 1e-06, Interval = 0.0233333),
+    experiment(StartTime = 0, StopTime = 80, Tolerance = 1e-06, Interval = 0.0266667),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"),
   Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -140}, {280, 100}})),
   __OpenModelica_commandLineOptions = "");
