@@ -2,3 +2,5 @@ VariableBySolver
 ConstrainVariable
 ConstrainVariableAtInitial
 ConstrainVariableExceptInitial
+ConstrainVariableBeforeTimer
+ConstrainVariableAfterTimer
