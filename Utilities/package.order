@@ -1,7 +1,7 @@
 VariableBySolver
 ConstrainVariable
+ConstrainVariableUntilTimer
+Switch_2_2
+ConstrainVariableAfterTimer
 ConstrainVariableAtInitial
 ConstrainVariableExceptInitial
-ConstrainVariableBeforeTimer
-ConstrainVariableAfterTimer
-Switch_2_2
