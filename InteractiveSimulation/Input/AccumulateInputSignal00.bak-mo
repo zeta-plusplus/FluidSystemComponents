@@ -1,0 +1,41 @@
+within FluidSystemComponents.InteractiveSimulation.Input;
+
+block AccumulateInputSignal00
+  /********************************************************
+              Declaration   
+  ********************************************************/
+  /* ---------------------------------------------
+              parameter   
+    --------------------------------------------- */
+  parameter Real varInit=0.0;
+  
+  
+  /* ---------------------------------------------
+              internal variable   
+    --------------------------------------------- */
+  discrete Real varAcmltd(fixed=true, start=varInit) annotation(
+    Dialog(tab="Variables", group="start attribute" ,enable=true, showStartAttribute=false)
+  );
+  
+  
+  /* ---------------------------------------------
+              Interface   
+    --------------------------------------------- */
+  input Modelica.Blocks.Interfaces.RealInput u annotation(
+    Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  output Modelica.Blocks.Interfaces.RealOutput y annotation(
+    Placement(visible = true, transformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  
+  
+//********************************************************************************
+algorithm
+  
+  
+  y:= varInit;
+  
+  
+  annotation(
+    Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-100, 100}, {100, -100}})}));
+  
+  
+end AccumulateInputSignal00;

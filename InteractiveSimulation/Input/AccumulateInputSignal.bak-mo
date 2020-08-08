@@ -1,0 +1,4 @@
+within FluidSystemComponents.InteractiveSimulation.Input;
+
+block AccumulateInputSignal
+end AccumulateInputSignal;
