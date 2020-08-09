@@ -37,7 +37,7 @@ initial algorithm
 algorithm
   uReal := if u then 1.0 else 0.0;
   
-  when(sample(0, dt)==true) then
+  when(time<>0)and(sample(0, dt)==true) then
     varAcmltd := varAcmltd + (uReal * scl) * (kTimeInterval*dt);
   end when;
   
