@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""------------------------------------------------------------
+"""--------------------------------------------------------------------------------
 description:
     
-------------------------------------------------------------"""
+--------------------------------------------------------------------------------"""
 import csv
 import os
 import time
-import sys
-import pygame
+#import sys
+#import pygame
 import tkinter as tk
 import tkinter.ttk as ttk
 
@@ -54,22 +54,25 @@ def readcsv():
 
 
 '''---------------------------------------------------------'''
-def main():
+def mainroutine():
     global rootframe
     
     [dataMatrix, nRow, nCol]= readcsv()
     x = treeview.get_children()
     
-    for item in x: ## Changing all children from root item
+    for item in x:
         treeview.delete(item)
     #----- end for -----
+    
+    timeRunning= time.time() - timeBegin
+    treeview.insert("","end",values=("time (in python script)", timeRunning))
     
     i=0
     for i in range(nRow):
         treeview.insert("","end",values=(dataMatrix[i][0],dataMatrix[i][1]))
     #***** end for *****
     
-    rootframe.after(tInterval, main)
+    rootframe.after(tInterval, mainroutine)
 #***** end def *****
 
 
@@ -79,13 +82,15 @@ main script
 ----------------------------------------------------------------------"""
 [dataMatrix, nRow, nCol]= readcsv()
 
+timeRunning= time.time() - timeBegin
+treeview.insert("","end",values=("time(in python script)", timeRunning))
 i=0
 for i in range(nRow):
-    treeview.insert("","end",values=(dataMatrix[i][0],dataMatrix[i][1]))
+    treeview.insert( "","end",values=(dataMatrix[i][0],dataMatrix[i][1]) )
 #***** end for *****
 
 
-rootframe.after(tInterval, main)
+rootframe.after(tInterval, mainroutine)
 rootframe.mainloop()
 
     
