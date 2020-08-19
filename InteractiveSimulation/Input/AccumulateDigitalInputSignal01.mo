@@ -26,13 +26,9 @@ block AccumulateDigitalInputSignal01
   input Modelica.Blocks.Interfaces.BooleanInput u(fixed=true, start=false) annotation(
     Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)),
     Dialog(tab = "Variables", group = "start attribute", enable = true, showStartAttribute = true));
-  
-  
-//********************************************************************************
+  //********************************************************************************
 initial algorithm
   varAcmltd := varInit;
-  
-  
 //********************************************************************************
 algorithm
   uReal := if u then 1.0 else 0.0;
@@ -46,7 +42,7 @@ algorithm
   
   annotation(
     defaultComponentName = "Accumulate",
-    Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-100, 100}, {100, -100}}), Text(origin = {2, -72}, extent = {{-100, 0}, {96, -20}}, textString = "%name")}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-100, 100}, {100, -100}}), Text(origin = {2, -72}, extent = {{-100, 0}, {96, -20}}, textString = "%name"), Text(origin = {1, 44}, extent = {{-89, 26}, {89, -26}}, textString = "Accumulate"), Text(origin = {1, 4}, extent = {{-89, 26}, {89, -26}}, textString = "Digital Signal"), Text(origin = {39, -54}, extent = {{-89, 26}, {7, 2}}, textString = "type 01")}, coordinateSystem(initialScale = 0.1)));
   
   
 end AccumulateDigitalInputSignal01;
