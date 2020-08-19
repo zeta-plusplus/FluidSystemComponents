@@ -30,7 +30,8 @@ algorithm
     dtSincePrevPrint:= 0.0;
     tPrevPrint:= time;
     
-    Streams.print(String(time), nameFullFilePath);
+    Files.removeFile(nameFullFilePath);
+    Streams.print("time,"+String(time), nameFullFilePath);
     Streams.close(nameFullFilePath);
   end if;
   

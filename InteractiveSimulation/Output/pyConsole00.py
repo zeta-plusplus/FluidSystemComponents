@@ -22,7 +22,7 @@ setting about time handling
 --------------------'''
 timeBegin=time.time()
 timeLim=10000
-tInterval=10
+tInterval=0.05*1000    #[ms]
 
 
 '''--------------------
@@ -57,6 +57,8 @@ def readcsv():
             nCol= len(row)
         #***** end for *****
     #***** end with *****
+    dataFile.close()
+    
     nRow=i
     
     return dataMatrix, nRow, nCol
@@ -66,25 +68,28 @@ def readcsv():
 '''---------------------------------------------------------'''
 def mainroutine():
     global rootframe
+    curDir=os.getcwd()  # get directory of this script
     
-    # read data csv
-    [dataMatrix, nRow, nCol]= readcsv()
-    
-    x = treeview.get_children()
-    
-    # delete table displayed on window
-    for item in x:
-        treeview.delete(item)
-    #----- end for -----
-    
-    # re-display info of scv data
-    timeRunning= time.time() - timeBegin
-    treeview.insert("","end",values=("time (in python script)", timeRunning))
-    
-    i=0
-    for i in range(nRow):
-        treeview.insert("","end",values=(dataMatrix[i][0],dataMatrix[i][1]))
-    #***** end for *****
+    if(os.path.exists(curDir+'\pyConsole00_data.csv')==True):
+        # read data csv
+        [dataMatrix, nRow, nCol]= readcsv()
+        
+        x = treeview.get_children()
+        
+        # delete table displayed on window
+        for item in x:
+            treeview.delete(item)
+        #----- end for -----
+        
+        # re-display info of scv data
+        timeRunning= time.time() - timeBegin
+        treeview.insert("","end",values=("time (after python script began)", timeRunning))
+        
+        i=0
+        for i in range(nRow):
+            treeview.insert("","end",values=(dataMatrix[i][0],dataMatrix[i][1]))
+        #***** end for *****
+    #***** end if *****
     
     # command of recursive call, with specific time interval
     rootframe.after(tInterval, mainroutine)
