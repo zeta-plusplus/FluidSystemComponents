@@ -1,4 +1,4 @@
-within FluidSystemComponents.InteractiveSimulation.Examples.Temp;
+within FluidSystemComponents.InteractiveSimulation.Examples;
 
 model PrintCSV_overwriting00_ex01
   extends Modelica.Icons.Example;

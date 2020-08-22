@@ -22,7 +22,7 @@ setting about time handling
 --------------------'''
 timeBegin=time.time()
 timeLim=10000
-tInterval=0.05*1000    #[ms]
+tInterval=100    #[ms]
 
 
 '''--------------------
