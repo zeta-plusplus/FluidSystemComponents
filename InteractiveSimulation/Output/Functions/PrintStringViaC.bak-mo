@@ -1,0 +1,8 @@
+within FluidSystemComponents.InteractiveSimulation.Output.Functions;
+
+function PrintStringViaC
+
+  external "C" printStr00() annotation(
+    Include = "#include \"printStr00.c\"",
+    IncludeDirectory = "modelica://FluidSystemComponents/InteractiveSimulation/Output/Functions");
+end PrintStringViaC;

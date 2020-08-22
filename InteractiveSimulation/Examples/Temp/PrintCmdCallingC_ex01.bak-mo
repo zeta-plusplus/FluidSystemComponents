@@ -1,0 +1,12 @@
+within FluidSystemComponents.InteractiveSimulation.Examples.Temp;
+
+model PrintCmdCallingC_ex01
+  import FluidSystemComponents.InteractiveSimulation.Output.Functions;
+  
+  extends Modelica.Icons.Example;
+  
+algorithm
+  Functions.call_C_printHelloWorld();
+equation
+
+end PrintCmdCallingC_ex01;
