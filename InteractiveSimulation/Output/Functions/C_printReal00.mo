@@ -1,8 +1,10 @@
 within FluidSystemComponents.InteractiveSimulation.Output.Functions;
 
-function C_printStr00
-  input String str;
-  external "C" printStr00(str) annotation(
-    Include = "#include \"printStr00.c\"",
+function C_printReal00
+  input Real variable;
+  
+  external "C" printReal00(variable) annotation(
+    Include = "#include \"printReal00.c\"",
     IncludeDirectory = "modelica://FluidSystemComponents/InteractiveSimulation/Output/Functions");
-end C_printStr00;
+    
+end C_printReal00;
