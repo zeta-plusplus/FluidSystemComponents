@@ -2,7 +2,7 @@ within FluidSystemComponents.InteractiveSimulation.Examples;
 
 model AccumulateDigitalInputSignal00_ex01
   extends Modelica.Icons.Example;
-  FluidSystemComponents.InteractiveSimulation.Input.AccumulateDigitalInputSignal00 Accumulate(scl = 10)  annotation(
+  FluidSystemComponents.InteractiveSimulation.Input.AccumulateDigitalInputSignal00 Accumulate(scl = 10, varInit = 2.0)  annotation(
     Placement(visible = true, transformation(origin = {-20, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica_DeviceDrivers.Blocks.OperatingSystem.SynchronizeRealtime synchronizeRealtime1 annotation(
     Placement(visible = true, transformation(origin = {-90, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

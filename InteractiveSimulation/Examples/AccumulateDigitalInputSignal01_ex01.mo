@@ -6,7 +6,7 @@ model AccumulateDigitalInputSignal01_ex01
     Placement(visible = true, transformation(origin = {-90, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica_DeviceDrivers.Blocks.InputDevices.KeyboardInput keyboardInput1 annotation(
     Placement(visible = true, transformation(origin = {-50, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  FluidSystemComponents.InteractiveSimulation.Input.AccumulateDigitalInputSignal01 Accumulate(scl = 10)  annotation(
+  FluidSystemComponents.InteractiveSimulation.Input.AccumulateDigitalInputSignal01 Accumulate(scl = 10, varInit = 2.0)  annotation(
     Placement(visible = true, transformation(origin = {-10, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(keyboardInput1.keyDown, Accumulate.u) annotation(
