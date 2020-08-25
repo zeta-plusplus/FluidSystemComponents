@@ -14,4 +14,5 @@ equation
   annotation(
     experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-06, Interval = 0.02),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
+  
 end AccumulateDigitalInputSignal01_ex01;

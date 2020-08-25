@@ -35,4 +35,6 @@ equation
 
 annotation(
     experiment(StartTime = 0, StopTime = 30, Tolerance = 1e-6, Interval = 0.06),
-    __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));end DisplayOnCommand00_ex01;
+    __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
+    
+end DisplayOnCommand00_ex01;
