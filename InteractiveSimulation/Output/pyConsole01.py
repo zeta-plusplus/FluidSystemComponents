@@ -11,23 +11,37 @@ import os
 import time
 import tkinter as tk
 import tkinter.ttk as ttk
+import pathlib
 
 
 
 '''----------------------------------------------------------------------
 main script (define script-global objects)
 ----------------------------------------------------------------------'''
+curDir=os.getcwd()  # get directory of this script
+pathParent1= pathlib.Path('../')
+absPathParent1= pathParent1.resolve()
+print('pathParent1: '+str(absPathParent1))
+dataFileDir= str(absPathParent1) + '\dataTemp'
+print('dataFileDir: ' + str(dataFileDir))
+fileName="dataOut00.csv"
+fullPathDataFile= str(dataFileDir) + "\\" + fileName
+print(str(fullPathDataFile))
+print(str( os.path.exists(fullPathDataFile) ))
+
 '''--------------------
 setting about time handling
 --------------------'''
+'''
 timeBegin=time.time()
 timeLim=10000
 tInterval=100    #[ms]
-
+'''
 
 '''--------------------
 setting about gui
 --------------------'''
+'''
 rootframe= tk.Tk()  # main gui window
 
 # table display gui
@@ -37,17 +51,17 @@ treeview["columns"]=(1,2)
 treeview.heading(1, text="variable")
 treeview.heading(2, text="value")
 treeview.pack()
-
+'''
 
 
 '''----------------------------------------------------------------------
 define sub-routines
 ----------------------------------------------------------------------'''
-def readcsv():
-    curDir=os.getcwd()  # get directory of this script
+'''
+def readcsv(fileFullPath):
     
     # open and read simulation data csv
-    with open(curDir+'\pyConsole00_data.csv') as dataFile:
+    with open(fileFullPath) as dataFile:
         reader = csv.reader(dataFile)
         i=0
         dataMatrix=[]
@@ -63,16 +77,15 @@ def readcsv():
     
     return dataMatrix, nRow, nCol
 #***** end def *****
-
+'''
 
 '''---------------------------------------------------------'''
+'''
 def mainroutine():
-    global rootframe
-    curDir=os.getcwd()  # get directory of this script
     
-    if(os.path.exists(curDir+'\pyConsole00_data.csv')==True):
+    if(os.path.exists(fullPathDataFile)==True):
         # read data csv
-        [dataMatrix, nRow, nCol]= readcsv()
+        [dataMatrix, nRow, nCol]= readcsv(fileFullPath=fullPathDataFile)
         
         x = treeview.get_children()
         
@@ -89,19 +102,22 @@ def mainroutine():
         for i in range(nRow):
             treeview.insert("","end",values=(dataMatrix[i][0],dataMatrix[i][1]))
         #***** end for *****
+    else:
+        print("failed to open file")
     #***** end if *****
     
     # command of recursive call, with specific time interval
     rootframe.after(tInterval, mainroutine)
 #***** end def *****
-
+'''
 
 
 '''----------------------------------------------------------------------
 main script
 ----------------------------------------------------------------------'''
+'''
 # read data csv
-[dataMatrix, nRow, nCol]= readcsv()
+[dataMatrix, nRow, nCol]= readcsv(fileFullPath=fullPathDataFile)
 
 # display info of scv data
 timeRunning= time.time() - timeBegin
@@ -117,4 +133,4 @@ rootframe.after(tInterval, mainroutine)
 
 # continue display & update of csv data until window is closed
 rootframe.mainloop()
-
+'''
