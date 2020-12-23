@@ -205,6 +205,9 @@ equation
   //-- mass conservation --
   port_1.m_flow + port_2.m_flow = 0;
   fluid_2.Xi = fluid_1.Xi;
+  port_1.C_outflow = inStream(port_2.C_outflow);
+  port_2.C_outflow = inStream(port_1.C_outflow);
+  
   
   fluid_2Tot.Xi= fluid_1.Xi;
   fluid_2Tot.p = fluid_1.p;
