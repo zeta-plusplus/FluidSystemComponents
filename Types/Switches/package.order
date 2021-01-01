@@ -1,2 +1,4 @@
 switch_input_ThermodynamicState
 switch_input_AdiabaticProcess
+switch_sysType_ThermodynamicProcess
+switch_input_HeatChangeProcess
