@@ -1,6 +1,6 @@
 within FluidSystemComponents.CommonAnyFluid.Examples.Components;
 
-model VariableZetaOrifice00_ex01
+model VariableZetaOrifice00_ex02
   extends Modelica.Icons.Example;
   //-----
   //package fluid1 = Modelica.Media.Air.DryAirNasa;
@@ -10,15 +10,15 @@ model VariableZetaOrifice00_ex01
     Placement(visible = true, transformation(origin = {-50, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   inner Modelica.Fluid.System system annotation(
     Placement(visible = true, transformation(origin = {-90, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.Ramp ramp_p1(duration = 10, height = 0, offset = 2 * 101.325 * 1000, startTime = 10) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p1(duration = 10, height = 0, offset = 10 * 101.325 * 1000, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-90, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.Ramp ramp_T1(duration = 10, height = 0, offset = 500, startTime = 30) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_T1(duration = 10, height = 0, offset = 288.15, startTime = 30) annotation(
     Placement(visible = true, transformation(origin = {-90, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.CommonAnyFluid.Components.VariableZetaOrifice00 Orifice(redeclare package Medium = fluid1) annotation(
     Placement(visible = true, transformation(origin = {-10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_zeta(duration = 10, height = 1, offset = 1, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.MassFlowSource_T boundary1(redeclare package Medium = fluid1, m_flow = 0.01, nPorts = 1)  annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = fluid1, nPorts = 1, p = 101.325 * 1000)  annotation(
     Placement(visible = true, transformation(origin = {30, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
 equation
   connect(Orifice.port_2, boundary1.ports[1]) annotation(
@@ -34,4 +34,4 @@ equation
   annotation(
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-6, Interval = 0.1),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
-end VariableZetaOrifice00_ex01;
+end VariableZetaOrifice00_ex02;

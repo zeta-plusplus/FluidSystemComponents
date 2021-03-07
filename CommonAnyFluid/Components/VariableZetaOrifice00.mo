@@ -65,7 +65,6 @@ model VariableZetaOrifice00
   parameter Modelica.SIunits.SpecificEntropy s_fluid_2_init=7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others")
   );
-  
   //********** Design Parameters **********
   parameter Modelica.SIunits.Area AmechTh_paramInput = Modelica.Constants.pi/4.0*(0.01^2) "mechanical area of 'throat'" annotation(
     Dialog(group = "Geometory"));
@@ -85,15 +84,14 @@ model VariableZetaOrifice00
     Dialog(tab="Variables", group="start attribute" ,enable=false, showStartAttribute=true)
   );
   Real PR(
-    start=PR_init,
-    min=if (allowFlowReversal) then -Constants.inf else (0.0+1.0e-10)
-  ) "pressure ratio, p1/p2" annotation(
+    start=PR_init
+  ) "pressure ratio" annotation(
     Dialog(tab="Variables", group="start attribute" ,enable=false, showStartAttribute=true)
   );
   Modelica.SIunits.Pressure dp(
     start=dp_init
   )
-     "pressure difference, p2 - p1" annotation(
+     "pressure difference" annotation(
     Dialog(tab="Variables", group="start attribute" ,enable=false, showStartAttribute=true)
   );
   Modelica.SIunits.Velocity Vth(start=Vth_init) "" annotation(
@@ -152,7 +150,7 @@ model VariableZetaOrifice00
   FluidSystemComponents.Types.InfoBus infoBus1 annotation(
     Placement(visible = true, transformation(origin = {100, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {70, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u_zeta annotation(
-    Placement(visible = true, transformation(origin = {-50, -120}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {-40, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+    Placement(visible = true, transformation(origin = {-50, -120}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {-40, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   //********************************************************************************
 equation
 /* ---------------------------------------------
@@ -187,7 +185,6 @@ equation
   end if;
   
   zeta= u_zeta;
-  
 /* ---------------------------------------------
   Eqns describing physics
   --------------------------------------------- */
@@ -198,18 +195,24 @@ equation
   port_2.C_outflow = inStream(port_1.C_outflow);
 //-- energy conservation --
   port_1.m_flow * fluid_1.h + port_2.m_flow * fluid_2.h = 0;
+//-- flow at throat --
+  AmechTh = AmechTh_paramInput;
   
-  //-- flow at throat --
-  AmechTh=AmechTh_paramInput;
-  abs(port_1.m_flow)=fluid_1.d*Vth*AmechTh; 
-  
-  //-- pressure loss --
-  PR= fluid_1.p/fluid_2.p;
-  dp= fluid_2.p - fluid_1.p;
-  dp= (-1.0)*zeta*1.0/2.0*fluid_1.d*Vth^2.0;
-  
-  //-- others --
-  s_fluid_1= Medium.specificEntropy(fluid_1.state);
+  if(m_flow_max==port_2.m_flow)then
+    port_2.m_flow=fluid_2.d*Vth*AmechTh;
+    //-- pressure loss --
+    PR = fluid_2.p / fluid_1.p;
+    dp= fluid_2.p - fluid_1.p;
+    dp= zeta*1.0/2.0*fluid_2.d*(Vth)^2.0;
+  else
+    port_1.m_flow=fluid_1.d*Vth*AmechTh;
+    //-- pressure loss --
+    PR = fluid_1.p / fluid_2.p;
+    dp= fluid_1.p - fluid_2.p;
+    dp= zeta*1.0/2.0*fluid_1.d*(Vth)^2.0;
+  end if;  
+//-- others --
+  s_fluid_1 = Medium.specificEntropy(fluid_1.state);
   s_fluid_2= Medium.specificEntropy(fluid_2.state);
   
 /********************************************************
@@ -217,6 +220,6 @@ equation
 ********************************************************/
 annotation(
     defaultComponentName = "Orifice",
-    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 3), Line(origin = {-2.45, 32.76}, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {36.7182, -15.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {-3.59, -32.35}, rotation = 180, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {38.7182, -13.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {2.67, -20.6}, points = {{56.7936, 91.7936}, {-43.2064, -20.2064}, {-43.2064, -70.2064}}, thickness = 2, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 9), Text(origin = {-7, -48}, extent = {{-23, 8}, {47, -22}}, textString = "zeta"), Text(origin = {0, 90}, extent = {{-80, 10}, {80, -10}}, textString = "%name")}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {-2.45, 32.76}, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {36.7182, -15.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {-3.59, -32.35}, rotation = 180, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {38.7182, -13.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {2.67, -20.6}, points = {{56.7936, 91.7936}, {-43.2064, -20.2064}, {-43.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {-7, -48}, extent = {{-23, 8}, {47, -22}}, textString = "zeta"), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name")}, coordinateSystem(initialScale = 0.1)));
   
 end VariableZetaOrifice00;
