@@ -19,6 +19,9 @@ model VariableZetaOrifice00
     "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)"
     annotation(
       Dialog(tab="Assumptions"), Evaluate=true);
+  parameter Boolean isCircular=true
+    "= true if cross sectional area is circular"
+    annotation (Evaluate, Dialog(tab="General", group="Geometry"));
   
   /* ---------------------------------------------
       Package
@@ -66,9 +69,10 @@ model VariableZetaOrifice00
     Dialog(tab = "Initialization", group = "others")
   );
   //********** Design Parameters **********
-  parameter Modelica.SIunits.Area AmechTh_paramInput = Modelica.Constants.pi/4.0*(0.01^2) "mechanical area of 'throat'" annotation(
+  parameter Modelica.SIunits.Length diam_paramInput=0.01 "diameter, valid if isCircular==true" annotation(
     Dialog(group = "Geometory"));
-  
+  parameter Modelica.SIunits.Area AmechTh_paramInput = Modelica.Constants.pi/4.0*diam_paramInput^2 "mechanical area of 'throat', valid if isCircular==false" annotation(
+    Dialog(group = "Geometory"));
   
   
   /* ---------------------------------------------
@@ -196,7 +200,11 @@ equation
 //-- energy conservation --
   port_1.m_flow * fluid_1.h + port_2.m_flow * fluid_2.h = 0;
 //-- flow at throat --
-  AmechTh = AmechTh_paramInput;
+  if(isCircular==true)then
+    AmechTh= Modelica.Constants.pi/4.0*diam_paramInput^2.0;
+  else
+    AmechTh = AmechTh_paramInput;
+  end if;
   
   if(m_flow_max==port_2.m_flow)then
     port_2.m_flow=fluid_2.d*Vth*AmechTh;
@@ -220,6 +228,6 @@ equation
 ********************************************************/
 annotation(
     defaultComponentName = "Orifice",
-    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {-2.45, 32.76}, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {36.7182, -15.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {-3.59, -32.35}, rotation = 180, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {38.7182, -13.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {2.67, -20.6}, points = {{56.7936, 91.7936}, {-43.2064, -20.2064}, {-43.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {-7, -48}, extent = {{-23, 8}, {47, -22}}, textString = "zeta"), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name")}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {-2.45, 32.76}, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {36.7182, -15.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {-3.59, -32.35}, rotation = 180, points = {{-77.2818, 18.4933}, {-69.2818, 4.49327}, {-57.2818, -7.50673}, {-47.2818, -13.5067}, {-27.2818, -17.5067}, {-9.2818, -19.5067}, {2.7182, -19.5067}, {16.7182, -19.5067}, {26.7182, -17.5067}, {38.7182, -13.5067}, {48.7182, -9.50673}, {58.7182, -3.50673}, {66.7182, 2.4933}, {72.7182, 8.4933}, {76.7182, 16.4933}}, thickness = 2), Line(origin = {2.67, -20.6}, points = {{26.7936, 59.7936}, {-43.2064, -20.2064}, {-43.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {-7, -48}, extent = {{-23, 8}, {47, -22}}, textString = "zeta"), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {4.83, 72.54}, points = {{-41, 0}, {41, 0}}, thickness = 0.5, arrow = {Arrow.None, Arrow.Half}, arrowSize = 5)}, coordinateSystem(initialScale = 0.1)));
   
 end VariableZetaOrifice00;

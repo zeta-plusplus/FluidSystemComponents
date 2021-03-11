@@ -16,6 +16,10 @@ model OrificeVariableAreaCd00
   parameter Boolean allowFlowReversal = false "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)" annotation(
     Dialog(tab = "Assumptions"),
     Evaluate = true);
+  parameter Boolean isCircular=true
+    "= true if cross sectional area is circular"
+    annotation (Evaluate, Dialog(tab="General", group="Geometry"));
+  
   /* ---------------------------------------------
           Package
       --------------------------------------------- */
@@ -59,7 +63,9 @@ model OrificeVariableAreaCd00
   parameter Modelica.SIunits.SpecificEntropy s_fluid_2_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //********** Design Parameters **********
-  parameter Modelica.SIunits.Area AmechTh_paramInput = Modelica.Constants.pi / 4.0 * 0.01 ^ 2 "mechanical area of 'throat'" annotation(
+  parameter Modelica.SIunits.Length diam_paramInput=0.01 "diameter, valid if isCircular==true" annotation(
+    Dialog(group = "Geometory"));
+  parameter Modelica.SIunits.Area AmechTh_paramInput = Modelica.Constants.pi / 4.0 * diam_paramInput ^ 2 "mechanical area of 'throat', valid if isCircular==false" annotation(
     Dialog(group = "Geometory"));
   /* ---------------------------------------------
           Internal variables
@@ -147,7 +153,11 @@ equation
 //-- energy conservation --
   port_1.m_flow * fluid_1.h + port_2.m_flow * fluid_2.h = 0;
 //-- flow at throat --
-  AmechTh = u_kArea * AmechTh_paramInput;
+  if(isCircular==true)then
+    AmechTh= u_kArea* Modelica.Constants.pi/4.0*diam_paramInput^2.0;
+  else
+    AmechTh = u_kArea * AmechTh_paramInput;
+  end if;
   AactualTh= AmechTh*Cd;
   if m_flow_max == port_2.m_flow then
     port_2.m_flow = fluid_2.d * Vth * AactualTh;
@@ -172,5 +182,5 @@ equation
 ********************************************************/
   annotation(
     defaultComponentName = "Orifice",
-    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {7.21475, -33.3026}, rotation = 180, points = {{-71.2818, -1.5067}, {-63.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {60.7182, -13.5067}, {70.7182, -9.5067}, {80.7182, -5.5067}, {86.7182, -1.5067}}, thickness = 2), Line(origin = {3.22, -22.26}, points = {{4.7936, 89.7936}, {-83.2064, -50.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {-77, -80}, extent = {{1, 8}, {35, -12}}, textString = "Cd"), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {63.37, -22.24}, points = {{-3.2064, 79.7936}, {-83.2064, -56.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {19, -68}, extent = {{-23, 8}, {35, -12}}, textString = "kArea"), Line(origin = {-8.7853, 36.4204}, points = {{-71.2818, -1.5067}, {-61.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {58.7182, -15.5067}, {68.7182, -11.5067}, {78.7182, -7.5067}, {88.7182, -1.5067}}, thickness = 2)}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {7.21475, -33.3026}, rotation = 180, points = {{-71.2818, -1.5067}, {-63.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {60.7182, -13.5067}, {70.7182, -9.5067}, {80.7182, -5.5067}, {86.7182, -1.5067}}, thickness = 2), Line(origin = {3.22, -22.26}, points = {{-11.2064, 61.7936}, {-83.2064, -50.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {-77, -80}, extent = {{1, 8}, {35, -12}}, textString = "Cd"), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {63.37, -22.24}, points = {{-11.2064, 61.7936}, {-83.2064, -56.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {19, -68}, extent = {{-23, 8}, {35, -12}}, textString = "kArea"), Line(origin = {-8.7853, 36.4204}, points = {{-71.2818, -1.5067}, {-61.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {58.7182, -15.5067}, {68.7182, -11.5067}, {78.7182, -7.5067}, {88.7182, -1.5067}}, thickness = 2), Line(origin = {-1, 68.92}, points = {{-39, 0}, {39, 0}}, thickness = 0.5, arrow = {Arrow.None, Arrow.Half}, arrowSize = 5)}, coordinateSystem(initialScale = 0.1)));
 end OrificeVariableAreaCd00;

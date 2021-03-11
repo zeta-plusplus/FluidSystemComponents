@@ -4,7 +4,7 @@ model VariableZetaOrifice00_ex02
   extends Modelica.Icons.Example;
   //-----
   //package fluid1 = Modelica.Media.Air.DryAirNasa;
-  package fluid1= FluidSystemComponents.Media.Mixture_N2O2;
+  package fluid1 = FluidSystemComponents.Media.Mixture_N2O2;
   //-----
   Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = fluid1, T = 500, nPorts = 1, p = 5 * 101.325 * 1000, use_T_in = true, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-50, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -18,7 +18,7 @@ model VariableZetaOrifice00_ex02
     Placement(visible = true, transformation(origin = {-10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_zeta(duration = 10, height = 1, offset = 1, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = fluid1, nPorts = 1, p = 101.325 * 1000)  annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = fluid1, nPorts = 1, p = 101.325 * 1000) annotation(
     Placement(visible = true, transformation(origin = {30, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
 equation
   connect(Orifice.port_2, boundary1.ports[1]) annotation(
@@ -32,6 +32,6 @@ equation
   connect(ramp_p1.y, boundary.p_in) annotation(
     Line(points = {{-78, 50}, {-72, 50}, {-72, 28}, {-62, 28}, {-62, 28}}, color = {0, 0, 127}));
   annotation(
-    experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-6, Interval = 0.1),
+    experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.1),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
 end VariableZetaOrifice00_ex02;
