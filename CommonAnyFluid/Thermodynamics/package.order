@@ -3,3 +3,4 @@ IsentropicExpansion00
 ConstVolumeHeatAddition00
 ConstVolumeHeatRejection00
 OttoCycleIdeal00
+LenoirCycleIdeal00
