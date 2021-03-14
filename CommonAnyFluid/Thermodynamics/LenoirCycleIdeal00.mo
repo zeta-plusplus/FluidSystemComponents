@@ -141,7 +141,7 @@ equation
   
   //--- par ---
   if switch_u_fluidQuantity == Switches.switch_input_fluidQuantity.use_Volume then
-    Vol1 = par_Vol1;
+    Vol[1] = par_Vol1;
   elseif switch_u_fluidQuantity == Switches.switch_input_fluidQuantity.use_mass then
     massFluidCycle = par_massFluid;
   end if;
