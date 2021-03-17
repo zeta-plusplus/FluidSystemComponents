@@ -32,4 +32,7 @@ equation
     Line(points = {{-58, -70}, {-14, -70}, {-14, -40}, {-3, -40}}, color = {0, 0, 127}, thickness = 0.5));
 annotation(
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-6, Interval = 0.1),
-    __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));end LenoirCycleIdeal00_ex01;
+    __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
+    
+    
+end LenoirCycleIdeal00_ex01;
