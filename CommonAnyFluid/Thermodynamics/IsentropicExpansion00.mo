@@ -87,7 +87,7 @@ block IsentropicExpansion00
   Modelica.Blocks.Interfaces.RealInput u_Xi_fluidState_1[Medium.nXi] annotation(
     Placement(visible = true, transformation(origin = {-120, -90}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u_ER if switch_u_ExpProcess==Switches.switch_input_AdiabaticProcess.use_CR_for_AdiabaticProcess "Expansion ratio" annotation(
-    Placement(visible = true, transformation(origin = {-90, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-90, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+    Placement(visible = true, transformation(origin = {-90, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-80, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealOutput y_p_fluidState_2(unit = "Pa", displayUnit = "Pa") annotation(
     Placement(visible = true, transformation(origin = {110, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput y_T_fluidState_2(unit = "K", displayUnit = "K") annotation(
@@ -99,15 +99,13 @@ block IsentropicExpansion00
   Modelica.Blocks.Interfaces.RealOutput y_u_fluidState_2(unit = "J/kg", displayUnit = "J/kg") annotation(
     Placement(visible = true, transformation(origin = {110, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u_PR if switch_u_ExpProcess==Switches.switch_input_AdiabaticProcess.use_PR_for_AdiabaticProcess "Pressure ratio" annotation(
-    Placement(visible = true, transformation(origin = {-50, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-60, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+    Placement(visible = true, transformation(origin = {-50, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-40, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Types.InfoBus infoBus1 annotation(
     Placement(visible = true, transformation(origin = {40, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {40, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Blocks.Interfaces.RealOutput y_du(unit = "J/kg", displayUnit = "J/kg") annotation(
     Placement(visible = true, transformation(origin = {80, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {80, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealOutput y_dh(unit = "J/kg", displayUnit = "J/kg") annotation(
     Placement(visible = true, transformation(origin = {50, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {50, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  
-  
   //******************************************************************************************
 equation
 /* ---------------------------------------------
@@ -123,14 +121,12 @@ equation
   elseif (switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_u_for_ThermodynamicState) then
     fluidState_1.u = u_u_fluidState_1;
   end if;
-  
 //--- par ---
-  if (switch_u_ExpProcess == Switches.switch_input_AdiabaticProcess.use_CR_for_AdiabaticProcess) then
+  if switch_u_ExpProcess == Switches.switch_input_AdiabaticProcess.use_CR_for_AdiabaticProcess then
     ER = u_ER;
-  elseif (switch_u_ExpProcess== Switches.switch_input_AdiabaticProcess.use_PR_for_AdiabaticProcess) then
-    PR= u_PR;
+  elseif switch_u_ExpProcess == Switches.switch_input_AdiabaticProcess.use_PR_for_AdiabaticProcess then
+    PR = u_PR;
   end if;
-  
 //--- y ---
   y_p_fluidState_2 = fluidState_2.p;
   y_T_fluidState_2 = fluidState_2.T;
@@ -146,8 +142,7 @@ equation
   --------------------------------------------- */
   fluidState_1.d = 1.0 / v1;
   fluidState_2.d = 1.0 / v2;
-  
-  //--- state1 <-> state2 ---
+//--- state1 <-> state2 ---
   ER = v2 / v1;
   PR= fluidState_1.p/fluidState_2.p;
   s_state_1 = Medium.specificEntropy(fluidState_1.state);

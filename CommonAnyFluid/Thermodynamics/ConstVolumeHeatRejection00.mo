@@ -102,7 +102,7 @@ block ConstVolumeHeatRejection00
   Modelica.Blocks.Interfaces.RealInput u_Qqm(unit = "J/kg", displayUnit = "J/kg") if switch_u_Process == Switches.switch_input_HeatChangeProcess.use_Q "heat per unit mass, negative: heat rejected" annotation(
     Placement(visible = true, transformation(origin = {-80, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-80, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealInput u_T_state2(unit = "K", displayUnit = "K") if switch_u_Process == Switches.switch_input_HeatChangeProcess.use_T_state2 "temperature at state 2" annotation(
-    Placement(visible = true, transformation(origin = {-50, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-50, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+    Placement(visible = true, transformation(origin = {-50, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-40, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   //******************************************************************************************
 equation
 /* ---------------------------------------------

@@ -2,5 +2,7 @@ IsentropicCompression00
 IsentropicExpansion00
 ConstVolumeHeatAddition00
 ConstVolumeHeatRejection00
+ConstPressureHeatAddition00
+ConstPressureHeatRejection00
 OttoCycleIdeal00
 LenoirCycleIdeal00
