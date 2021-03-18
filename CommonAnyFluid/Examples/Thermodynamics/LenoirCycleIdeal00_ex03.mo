@@ -3,14 +3,10 @@ within FluidSystemComponents.CommonAnyFluid.Examples.Thermodynamics;
 model LenoirCycleIdeal00_ex03
   extends Modelica.Icons.Example;
   //-----
-  //replaceable package cycleFluid = Modelica.Media.Water.StandardWaterOnePhase;
-  //package cycleFluid = Modelica.Media.Water.StandardWater;
   package cycleFluid = Modelica.Media.CompressibleLiquids.LinearColdWater;
-  //replaceable package cycleFluid= Modelica.Media.Incompressible.Examples.Glycol47;
-  //package cycleFluid = FluidSystemComponents.Media.Mixture_N2O2;
   //redeclare package Medium = cycleFluid
   //-----
-  Modelica.Blocks.Sources.Ramp ramp_Q(duration = 10, height = 0, offset = 10 * 1000, startTime = 10) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_Q(duration = 10, height = 100 * 1000, offset = 100 * 1000, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-90, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_VolFluid(duration = 10, height = 0, offset = 0.001, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

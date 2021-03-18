@@ -76,6 +76,7 @@ block LenoirCycleIdeal00
   Modelica.SIunits.Work W_2_3 "work, expansion, state 2 -> 3";
   Real PR_2_1 "Pressure Ratio, P2/P1";
   Real ER_3_2 "Expansion Ratio, Vol3/Vol2";
+  Real effThermal "Thermal efficiency";
   //---
   Modelica.SIunits.SpecificEnthalpy arr_h[4];
   Modelica.SIunits.SpecificEnergy arr_u[4];
@@ -89,17 +90,18 @@ block LenoirCycleIdeal00
   /* ---------------------------------------------
                 Internal objects
     --------------------------------------------- */
-  /*
   Medium.BaseProperties fluidState[3](
-    p(each start = {p_state1_init, p_state2_init, p_state3_init}, min = {0.0 + 1.0e-10,0.0 + 1.0e-10,0.0 + 1.0e-10}),
+    p(start = {p_state1_init, p_state2_init, p_state3_init}, min = {0.0 + 1.0e-10,0.0 + 1.0e-10,0.0 + 1.0e-10}),
     T(start = {T_state1_init, T_state2_init, T_state3_init}, min = {0.0 + 1.0e-10, 0.0 + 1.0e-10, 0.0 + 1.0e-10}),
-    h(start = {h_state1_init, h_state2_init, h_state3_init}, min = {0.0 + 1.0e-10, 0.0 + 1.0e-10, 0.0 + 1.0e-10})
-  ) "fluid state";
-  */
+    h(start = {h_state1_init, h_state2_init, h_state3_init}, min = {0.0 + 1.0e-10, 0.0 + 1.0e-10, 0.0 + 1.0e-10}),
+    state(p(start= {p_state1_init, p_state2_init, p_state3_init})),
+    state(T(start= {T_state1_init, T_state2_init, T_state3_init}))
+  ) "fluid states";
+  /*
   Medium.BaseProperties fluidState_1(p(start = p_state1_init, min = 0.0 + 1.0e-10), T(start = T_state1_init, min = 0.0 + 1.0e-10), state.p(start = p_state1_init, min = 0.0 + 1.0e-10), state.T(start = T_state1_init, min = 0.0 + 1.0e-10), h(start = h_state1_init, min = 0.0 + 1.0e-10)) "fluid state 1";
   Medium.BaseProperties fluidState_2(p(start = p_state2_init, min = 0.0 + 1.0e-10), T(start = T_state2_init, min = 0.0 + 1.0e-10), state.p(start = p_state2_init, min = 0.0 + 1.0e-10), state.T(start = T_state2_init, min = 0.0 + 1.0e-10), h(start = h_state2_init, min = 0.0 + 1.0e-10)) "fluid state 2";
   Medium.BaseProperties fluidState_3(p(start = p_state3_init, min = 0.0 + 1.0e-10), T(start = T_state3_init, min = 0.0 + 1.0e-10), state.p(start = p_state3_init, min = 0.0 + 1.0e-10), state.T(start = T_state3_init, min = 0.0 + 1.0e-10), h(start = h_state3_init, min = 0.0 + 1.0e-10)) "fluid state 1";
-  
+  */
   
   
   /* ---------------------------------------------
@@ -148,7 +150,6 @@ equation
   Connections, interface <-> internal variables
   --------------------------------------------- */
   //--- u ---
-  /*
   fluidState[1].p = u_p_fluidState_1;
   fluidState[1].Xi = u_Xi_fluidState_1[1:Medium.nXi];
   if switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_T_for_ThermodynamicState then
@@ -158,7 +159,7 @@ equation
   elseif switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_u_for_ThermodynamicState then
     fluidState[1].u = u_u_fluidState_1;
   end if;
-  */
+  /*
   fluidState_1.p = u_p_fluidState_1;
   fluidState_1.Xi = u_Xi_fluidState_1[1:Medium.nXi];
   if switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_T_for_ThermodynamicState then
@@ -168,7 +169,7 @@ equation
   elseif switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_u_for_ThermodynamicState then
     fluidState_1.u = u_u_fluidState_1;
   end if;
-  
+  */
   Q_1_2 = u_Qin;
   
   //--- par ---
@@ -179,36 +180,35 @@ equation
   end if;
   
   //--- y ---
-  /*
   y_p_fluidState_3 = fluidState[3].p;
   y_T_fluidState_3 = fluidState[3].T;
   y_h_fluidState_3 = fluidState[3].h;
   y_u_fluidState_3 = fluidState[3].u;
   y_Xi_fluidState_3[1:Medium.nXi] = fluidState[3].Xi;
-  */
+  
+  /*
   y_p_fluidState_3 = fluidState_3.p;
   y_T_fluidState_3 = fluidState_3.T;
   y_h_fluidState_3 = fluidState_3.h;
   y_u_fluidState_3 = fluidState_3.u;
   y_Xi_fluidState_3[1:Medium.nXi] = fluidState_3.Xi;
-  
+  */
   y_WoutCycle = WoutCycle;
   
   /* ---------------------------------------------
   Eqns describing physics
   --------------------------------------------- */
-  /*
   massFluidCycle = Vol[1] * fluidState[1].d;
   v[1] = 1.0 / fluidState[1].d;
   s_state[1] = Medium.specificEntropy(fluidState[1].state);
-  */
+  /*
   massFluidCycle = Vol[1] * fluidState_1.d;
   v[1] = 1.0 / fluidState_1.d;
   s_state[1] = Medium.specificEntropy(fluidState_1.state);
+  */
   
   //--- state1 <-> state2 ---
   // const. vol.  heat addition
-  /*
   Vol[2] = Vol[1];
   fluidState[2].d = massFluidCycle / Vol[2];
   v[2] = 1.0 / fluidState[2].d;
@@ -216,7 +216,7 @@ equation
   Q_1_2 = massFluidCycle * (fluidState[2].u - fluidState[1].u);
   s_state[2] = Medium.specificEntropy(fluidState[2].state);
   PR_2_1 = fluidState[2].p / fluidState[1].p;
-  */
+  /*
   Vol[2] = Vol[1];
   fluidState_2.d = massFluidCycle / Vol[2];
   v[2] = 1.0 / fluidState_2.d;
@@ -224,11 +224,10 @@ equation
   Q_1_2 = massFluidCycle * (fluidState_2.u - fluidState_1.u);
   s_state[2] = Medium.specificEntropy(fluidState_2.state);
   PR_2_1 = fluidState_2.p / fluidState_1.p;
-  
+  */
   
   //--- state2 <-> state3 ---
   // isentropic expansion
-  /*
   fluidState[3].d = massFluidCycle / Vol[3];
   v[3] = 1.0 / fluidState[3].d;
   s_state[3] = Medium.specificEntropy(fluidState[3].state);
@@ -236,8 +235,8 @@ equation
   s_state[3] = s_state[2];
   W_2_3 = massFluidCycle * (fluidState[3].h - fluidState[2].h);
   Vol[3] / Vol[2] = ER_3_2;
-  */
   
+  /*
   fluidState_3.d = massFluidCycle / Vol[3];
   v[3] = 1.0 / fluidState_3.d;
   s_state[3] = Medium.specificEntropy(fluidState_3.state);
@@ -245,33 +244,42 @@ equation
   s_state[3] = s_state[2];
   W_2_3 = massFluidCycle * (fluidState_3.h - fluidState_2.h);
   Vol[3] / Vol[2] = ER_3_2;
+  */
   
   //--- state3 <-> state1 ---
   // const. pressrue heat rejection
-  /*
   fluidState[1].p = fluidState[3].p;
   Q_3_1 = massFluidCycle * (fluidState[1].h - fluidState[3].h);
-  */
   
+  /*
   fluidState_1.p = fluidState_3.p;
   Q_3_1 = massFluidCycle * (fluidState_1.h - fluidState_3.h);
+  */
   
   //---
   WoutCycle = (-1.0) * W_2_3;
   
+  //---
+  if 0.0 <= u_Qin then
+    effThermal = WoutCycle / Q_1_2;
+  else
+    effThermal = 0.0;
+  end if;
+  
   //----------
   for i in 1:3 loop
-    /*
+    
     arr_p[i]= fluidState[i].p;
     arr_h[i]= fluidState[i].h;
     arr_u[i]= fluidState[i].u;
     arr_T[i]= fluidState[i].T;
-    */
+    
     arr_s[i]= s_state[i];
     arr_V[i]= Vol[i];
     arr_v[i]= v[i];
   end for;
   
+  /*
   arr_p[1]= fluidState_1.p;
   arr_h[1]= fluidState_1.h;
   arr_u[1]= fluidState_1.u;
@@ -286,17 +294,19 @@ equation
   arr_h[3]= fluidState_3.h;
   arr_u[3]= fluidState_3.u;
   arr_T[3]= fluidState_3.T;
+  */
   
-  /*
   arr_p[4]= fluidState[1].p;
   arr_h[4]= fluidState[1].h;
   arr_u[4]= fluidState[1].u;
   arr_T[4]= fluidState[1].T;
-  */
+  
+  /*
   arr_p[4]= fluidState_1.p;
   arr_h[4]= fluidState_1.h;
   arr_u[4]= fluidState_1.u;
   arr_T[4]= fluidState_1.T;
+  */
   
   arr_s[4]= s_state[1];
   arr_V[4]= Vol[1];

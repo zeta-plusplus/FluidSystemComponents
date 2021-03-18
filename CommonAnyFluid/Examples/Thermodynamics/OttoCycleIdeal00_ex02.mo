@@ -3,10 +3,7 @@ within FluidSystemComponents.CommonAnyFluid.Examples.Thermodynamics;
 model OttoCycleIdeal00_ex02
   extends Modelica.Icons.Example;
   //-----
-  package cycleFluid = Modelica.Media.Water.StandardWaterOnePhase;
-  //package cycleFluid= Modelica.Media.Incompressible.Examples.Glycol47;
-  //package cycleFluid = FluidSystemComponents.Media.Mixture_N2O2;
-  //package cycleFluid = PropulsionSystem.Media.EngineBreathingAir.DryAirMethaneMixture00;
+  package cycleFluid = Modelica.Media.CompressibleLiquids.LinearColdWater;
   //redeclare package Medium = cycleFluid
   //-----
   FluidSystemComponents.CommonAnyFluid.Thermodynamics.OttoCycleIdeal00 OttoCycle(redeclare package Medium = cycleFluid) annotation(

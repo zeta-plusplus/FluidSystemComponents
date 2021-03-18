@@ -4,7 +4,6 @@ model LenoirCycleIdeal00_ex01
   extends Modelica.Icons.Example;
   //-----
   package cycleFluid = FluidSystemComponents.Media.Mixture_N2O2;
-  //package cycleFluid = PropulsionSystem.Media.EngineBreathingAir.DryAirMethaneMixture00;
   //redeclare package Medium = cycleFluid
   //-----
   FluidSystemComponents.CommonAnyFluid.Thermodynamics.LenoirCycleIdeal00 LenoirCycle(redeclare package Medium = cycleFluid) annotation(
