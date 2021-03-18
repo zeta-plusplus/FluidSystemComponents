@@ -6,6 +6,8 @@ block LenoirCycleIdeal00
     ********************************************************/
   import Modelica.Constants;
   import FluidSystemComponents.Types.Switches;
+  import FluidSystemComponents.Utilities;
+  
   /********************************************************
             Declaration
     ********************************************************/
@@ -31,7 +33,34 @@ block LenoirCycleIdeal00
   
   /* ---------------------------------------------
                 parameters
-    --------------------------------------------- */
+  --------------------------------------------- */
+  //********** Others **********
+  parameter Integer nPts_hs_par[3] = {10, 10, 10} "" annotation(
+    Dialog(group = "Others"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = false);
+  parameter Integer nPts_Ts_par[3] = {10, 10, 10} "" annotation(
+    Dialog(group = "Others"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = false);
+  parameter Integer nPts_pv_par[3] = {10, 10, 10} "" annotation(
+    Dialog(group = "Others"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = false);
+  parameter Integer nPts_us_par[3] = {10, 10, 10} "" annotation(
+    Dialog(group = "Others"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = false);
+  parameter Integer nPts_pVol_par[3] = {10, 10, 10} "" annotation(
+    Dialog(group = "Others"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = false);
+  
   //********** Initialization Parameters **********
   //--- fluidState_1 ---
   parameter Modelica.SIunits.Pressure p_state1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
@@ -97,11 +126,17 @@ block LenoirCycleIdeal00
     state(p(start= {p_state1_init, p_state2_init, p_state3_init})),
     state(T(start= {T_state1_init, T_state2_init, T_state3_init}))
   ) "fluid states";
-  /*
-  Medium.BaseProperties fluidState_1(p(start = p_state1_init, min = 0.0 + 1.0e-10), T(start = T_state1_init, min = 0.0 + 1.0e-10), state.p(start = p_state1_init, min = 0.0 + 1.0e-10), state.T(start = T_state1_init, min = 0.0 + 1.0e-10), h(start = h_state1_init, min = 0.0 + 1.0e-10)) "fluid state 1";
-  Medium.BaseProperties fluidState_2(p(start = p_state2_init, min = 0.0 + 1.0e-10), T(start = T_state2_init, min = 0.0 + 1.0e-10), state.p(start = p_state2_init, min = 0.0 + 1.0e-10), state.T(start = T_state2_init, min = 0.0 + 1.0e-10), h(start = h_state2_init, min = 0.0 + 1.0e-10)) "fluid state 2";
-  Medium.BaseProperties fluidState_3(p(start = p_state3_init, min = 0.0 + 1.0e-10), T(start = T_state3_init, min = 0.0 + 1.0e-10), state.p(start = p_state3_init, min = 0.0 + 1.0e-10), state.T(start = T_state3_init, min = 0.0 + 1.0e-10), h(start = h_state3_init, min = 0.0 + 1.0e-10)) "fluid state 1";
-  */
+  
+  Utilities.arr_hs_const_p_00 curve_hs[3](redeclare package Medium = Medium, nPts_par = nPts_hs_par) annotation(
+    Placement(visible = true, transformation(origin = {-30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Utilities.arr_Ts_const_p_00 curve_Ts[3](redeclare package Medium = Medium, nPts_par = nPts_Ts_par) annotation(
+    Placement(visible = true, transformation(origin = {-30, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Utilities.arr_us_const_p_00 curve_us[3](redeclare package Medium = Medium, nPts_par = nPts_us_par) annotation(
+    Placement(visible = true, transformation(origin = {-30, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Utilities.arr_pv_const_s_00 curve_pv[3](redeclare package Medium = Medium, nPts_par = nPts_pv_par) annotation(
+    Placement(visible = true, transformation(origin = {-30, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Utilities.arr_pVol_const_s_00 curve_pVol[3](redeclare package Medium = Medium, nPts_par = nPts_pVol_par) annotation(
+    Placement(visible = true, transformation(origin = {-30, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   
   
   /* ---------------------------------------------
@@ -141,14 +176,79 @@ block LenoirCycleIdeal00
     Placement(visible = true, transformation(origin = {110, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   
   //********************************************************************************
-initial equation
-  //fluidState[1].p.start = p_state1_init;
-  
-  //********************************************************************************
 equation
   /* ---------------------------------------------
   Connections, interface <-> internal variables
   --------------------------------------------- */
+  connect(curve_pVol[3].u_m, massFluidCycle);
+  connect(curve_pVol[3].u_Xi, fluidState[3].Xi);
+  connect(curve_pVol[3].u_s, s_state[3]);
+  connect(curve_pVol[3].u_pLower, fluidState[1].p);
+  connect(curve_pVol[3].u_pUpper, fluidState[3].p);
+  connect(curve_pVol[2].u_m, massFluidCycle);
+  connect(curve_pVol[2].u_Xi, fluidState[2].Xi);
+  connect(curve_pVol[2].u_s, s_state[2]);
+  connect(curve_pVol[2].u_pLower, fluidState[1].p);
+  connect(curve_pVol[2].u_pUpper, fluidState[2].p);
+  connect(curve_pVol[1].u_m, massFluidCycle);
+  connect(curve_pVol[1].u_Xi, fluidState[1].Xi);
+  connect(curve_pVol[1].u_s, s_state[1]);
+  connect(curve_pVol[1].u_pLower, fluidState[1].p);
+  connect(curve_pVol[1].u_pUpper, fluidState[2].p);
+  //---
+  connect(curve_hs[3].u_Xi, fluidState[3].Xi);
+  connect(curve_hs[3].u_p, fluidState[3].p);
+  connect(curve_hs[3].u_sUpper, s_state[3]);
+  connect(curve_hs[3].u_sLower, s_state[2]);
+  connect(curve_hs[2].u_Xi, fluidState[2].Xi);
+  connect(curve_hs[2].u_p, fluidState[2].p);
+  connect(curve_hs[2].u_sUpper, s_state[3]);
+  connect(curve_hs[2].u_sLower, s_state[2]);
+  connect(curve_hs[1].u_Xi, fluidState[1].Xi);
+  connect(curve_hs[1].u_p, fluidState[1].p);
+  connect(curve_hs[1].u_sUpper, s_state[3]);
+  connect(curve_hs[1].u_sLower, s_state[1]);
+  //---
+  connect(curve_pv[1].u_pUpper, fluidState[2].p);
+  connect(curve_pv[1].u_pLower, fluidState[1].p);
+  connect(curve_pv[1].u_s, s_state[1]);
+  connect(curve_pv[1].u_Xi, fluidState[1].Xi);
+  connect(curve_pv[2].u_pUpper, fluidState[2].p);
+  connect(curve_pv[2].u_pLower, fluidState[1].p);
+  connect(curve_pv[2].u_s, s_state[2]);
+  connect(curve_pv[2].u_Xi, fluidState[2].Xi);
+  connect(curve_pv[3].u_pUpper, fluidState[3].p);
+  connect(curve_pv[3].u_pLower, fluidState[1].p);
+  connect(curve_pv[3].u_s, s_state[3]);
+  connect(curve_pv[3].u_Xi, fluidState[3].Xi);
+  //---
+  connect(curve_Ts[3].u_Xi, fluidState[3].Xi);
+  connect(curve_Ts[3].u_p, fluidState[3].p);
+  connect(curve_Ts[3].u_sUpper, s_state[3]);
+  connect(curve_Ts[3].u_sLower, s_state[2]);
+  connect(curve_Ts[2].u_Xi, fluidState[2].Xi);
+  connect(curve_Ts[2].u_p, fluidState[2].p);
+  connect(curve_Ts[2].u_sUpper, s_state[3]);
+  connect(curve_Ts[2].u_sLower, s_state[2]);
+  connect(curve_Ts[1].u_Xi, fluidState[1].Xi);
+  connect(curve_Ts[1].u_p, fluidState[1].p);
+  connect(curve_Ts[1].u_sUpper, s_state[3]);
+  connect(curve_Ts[1].u_sLower, s_state[1]);
+  //---
+  connect(curve_us[3].u_Xi, fluidState[3].Xi);
+  connect(curve_us[3].u_p, fluidState[3].p);
+  connect(curve_us[3].u_sUpper, s_state[3]);
+  connect(curve_us[3].u_sLower, s_state[2]);
+  connect(curve_us[2].u_Xi, fluidState[2].Xi);
+  connect(curve_us[2].u_p, fluidState[2].p);
+  connect(curve_us[2].u_sUpper, s_state[3]);
+  connect(curve_us[2].u_sLower, s_state[2]);
+  connect(curve_us[1].u_Xi, fluidState[1].Xi);
+  connect(curve_us[1].u_p, fluidState[1].p);
+  connect(curve_us[1].u_sUpper, s_state[3]);
+  connect(curve_us[1].u_sLower, s_state[1]);
+  
+  
   //--- u ---
   fluidState[1].p = u_p_fluidState_1;
   fluidState[1].Xi = u_Xi_fluidState_1[1:Medium.nXi];
@@ -159,17 +259,7 @@ equation
   elseif switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_u_for_ThermodynamicState then
     fluidState[1].u = u_u_fluidState_1;
   end if;
-  /*
-  fluidState_1.p = u_p_fluidState_1;
-  fluidState_1.Xi = u_Xi_fluidState_1[1:Medium.nXi];
-  if switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_T_for_ThermodynamicState then
-    fluidState_1.T = u_T_fluidState_1;
-  elseif switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_h_for_ThermodynamicState then
-    fluidState_1.h = u_h_fluidState_1;
-  elseif switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_u_for_ThermodynamicState then
-    fluidState_1.u = u_u_fluidState_1;
-  end if;
-  */
+  
   Q_1_2 = u_Qin;
   
   //--- par ---
@@ -186,13 +276,6 @@ equation
   y_u_fluidState_3 = fluidState[3].u;
   y_Xi_fluidState_3[1:Medium.nXi] = fluidState[3].Xi;
   
-  /*
-  y_p_fluidState_3 = fluidState_3.p;
-  y_T_fluidState_3 = fluidState_3.T;
-  y_h_fluidState_3 = fluidState_3.h;
-  y_u_fluidState_3 = fluidState_3.u;
-  y_Xi_fluidState_3[1:Medium.nXi] = fluidState_3.Xi;
-  */
   y_WoutCycle = WoutCycle;
   
   /* ---------------------------------------------
@@ -201,14 +284,9 @@ equation
   massFluidCycle = Vol[1] * fluidState[1].d;
   v[1] = 1.0 / fluidState[1].d;
   s_state[1] = Medium.specificEntropy(fluidState[1].state);
-  /*
-  massFluidCycle = Vol[1] * fluidState_1.d;
-  v[1] = 1.0 / fluidState_1.d;
-  s_state[1] = Medium.specificEntropy(fluidState_1.state);
-  */
   
   //--- state1 <-> state2 ---
-  // const. vol.  heat addition
+  // const. vol.  heat addition, closed system
   Vol[2] = Vol[1];
   fluidState[2].d = massFluidCycle / Vol[2];
   v[2] = 1.0 / fluidState[2].d;
@@ -216,18 +294,10 @@ equation
   Q_1_2 = massFluidCycle * (fluidState[2].u - fluidState[1].u);
   s_state[2] = Medium.specificEntropy(fluidState[2].state);
   PR_2_1 = fluidState[2].p / fluidState[1].p;
-  /*
-  Vol[2] = Vol[1];
-  fluidState_2.d = massFluidCycle / Vol[2];
-  v[2] = 1.0 / fluidState_2.d;
-  fluidState_2.Xi = fluidState_1.Xi;
-  Q_1_2 = massFluidCycle * (fluidState_2.u - fluidState_1.u);
-  s_state[2] = Medium.specificEntropy(fluidState_2.state);
-  PR_2_1 = fluidState_2.p / fluidState_1.p;
-  */
+  
   
   //--- state2 <-> state3 ---
-  // isentropic expansion
+  // isentropic expansion, pressrue of after-expansion fixed, open system
   fluidState[3].d = massFluidCycle / Vol[3];
   v[3] = 1.0 / fluidState[3].d;
   s_state[3] = Medium.specificEntropy(fluidState[3].state);
@@ -236,25 +306,12 @@ equation
   W_2_3 = massFluidCycle * (fluidState[3].h - fluidState[2].h);
   Vol[3] / Vol[2] = ER_3_2;
   
-  /*
-  fluidState_3.d = massFluidCycle / Vol[3];
-  v[3] = 1.0 / fluidState_3.d;
-  s_state[3] = Medium.specificEntropy(fluidState_3.state);
-  fluidState_3.Xi = fluidState_2.Xi;
-  s_state[3] = s_state[2];
-  W_2_3 = massFluidCycle * (fluidState_3.h - fluidState_2.h);
-  Vol[3] / Vol[2] = ER_3_2;
-  */
   
   //--- state3 <-> state1 ---
-  // const. pressrue heat rejection
+  // const. pressrue heat rejection, open system
   fluidState[1].p = fluidState[3].p;
   Q_3_1 = massFluidCycle * (fluidState[1].h - fluidState[3].h);
   
-  /*
-  fluidState_1.p = fluidState_3.p;
-  Q_3_1 = massFluidCycle * (fluidState_1.h - fluidState_3.h);
-  */
   
   //---
   WoutCycle = (-1.0) * W_2_3;
@@ -279,34 +336,10 @@ equation
     arr_v[i]= v[i];
   end for;
   
-  /*
-  arr_p[1]= fluidState_1.p;
-  arr_h[1]= fluidState_1.h;
-  arr_u[1]= fluidState_1.u;
-  arr_T[1]= fluidState_1.T;
-  
-  arr_p[2]= fluidState_2.p;
-  arr_h[2]= fluidState_2.h;
-  arr_u[2]= fluidState_2.u;
-  arr_T[2]= fluidState_2.T;
-  
-  arr_p[3]= fluidState_3.p;
-  arr_h[3]= fluidState_3.h;
-  arr_u[3]= fluidState_3.u;
-  arr_T[3]= fluidState_3.T;
-  */
-  
   arr_p[4]= fluidState[1].p;
   arr_h[4]= fluidState[1].h;
   arr_u[4]= fluidState[1].u;
   arr_T[4]= fluidState[1].T;
-  
-  /*
-  arr_p[4]= fluidState_1.p;
-  arr_h[4]= fluidState_1.h;
-  arr_u[4]= fluidState_1.u;
-  arr_T[4]= fluidState_1.T;
-  */
   
   arr_s[4]= s_state[1];
   arr_V[4]= Vol[1];
