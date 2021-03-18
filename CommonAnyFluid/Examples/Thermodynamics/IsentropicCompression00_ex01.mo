@@ -18,14 +18,14 @@ model IsentropicCompression00_ex01
   Modelica.Blocks.Sources.Ramp ramp_PR(duration = 10, height = 5, offset = 5, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-50, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
-  connect(const_Xi.y, IsenComp.u_Xi_fluidState_1) annotation(
-    Line(points = {{-58, -30}, {-34, -30}, {-34, -17}, {-23, -17}}, color = {0, 0, 127}, thickness = 0.5));
-  connect(const_p.y, IsenComp.u_p_fluidState_1) annotation(
-    Line(points = {{-59, 30}, {-34, 30}, {-34, 19}, {-23, 19}}, color = {0, 0, 127}));
-  connect(const_T.y, IsenComp.u_T_fluidState_1) annotation(
-    Line(points = {{-59, 0}, {-44, 0}, {-44, 10}, {-23, 10}}, color = {0, 0, 127}));
   connect(ramp_PR.y, IsenComp.u_PR) annotation(
-    Line(points = {{-38, 60}, {-8, 60}, {-8, 43}}, color = {0, 0, 127}));
+    Line(points = {{-38, 60}, {-2, 60}, {-2, 43}}, color = {0, 0, 127}));
+  connect(const_T.y, IsenComp.u_T_fluidState_1) annotation(
+    Line(points = {{-59, 0}, {-44, 0}, {-44, 7}, {-23, 7}}, color = {0, 0, 127}));
+  connect(const_p.y, IsenComp.u_p_fluidState_1) annotation(
+    Line(points = {{-59, 30}, {-34, 30}, {-34, 16}, {-23, 16}}, color = {0, 0, 127}));
+  connect(const_Xi.y, IsenComp.u_Xi_fluidState_1) annotation(
+    Line(points = {{-58, -30}, {-34, -30}, {-34, -20}, {-23, -20}}, color = {0, 0, 127}, thickness = 0.5));
   annotation(
     experiment(StartTime = 0, StopTime = 30, Tolerance = 1e-06, Interval = 0.06),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));

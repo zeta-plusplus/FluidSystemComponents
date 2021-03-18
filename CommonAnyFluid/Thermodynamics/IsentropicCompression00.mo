@@ -86,7 +86,7 @@ block IsentropicCompression00
     Placement(visible = true, transformation(origin = {-120, -60}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u_Xi_fluidState_1[Medium.nXi] annotation(
     Placement(visible = true, transformation(origin = {-120, -90}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Interfaces.RealInput u_CR if switch_u_CompProcess==Switches.switch_input_AdiabaticProcess.use_CR_for_AdiabaticProcess "Compression ratio" annotation(
+  Modelica.Blocks.Interfaces.RealInput u_CR if switch_u_CompProcess==Switches.switch_input_AdiabaticProcess.use_VolRatio_for_AdiabaticProcess "Compression ratio" annotation(
     Placement(visible = true, transformation(origin = {-90, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-80, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealOutput y_p_fluidState_2(unit = "Pa", displayUnit = "Pa") annotation(
     Placement(visible = true, transformation(origin = {110, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -106,6 +106,8 @@ block IsentropicCompression00
     Placement(visible = true, transformation(origin = {80, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {60, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealOutput y_dh(unit = "J/kg", displayUnit = "J/kg") annotation(
     Placement(visible = true, transformation(origin = {50, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {20, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+    Modelica.Blocks.Interfaces.RealInput u_p_state2(unit="Pa", displayUnit="Pa") if switch_u_CompProcess==Switches.switch_input_AdiabaticProcess.use_p_state2_for_AdiabaticProcess "" annotation(
+    Placement(visible = true, transformation(origin = {0, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   //******************************************************************************************
 equation
 /* ---------------------------------------------
@@ -122,10 +124,12 @@ equation
     fluidState_1.u = u_u_fluidState_1;
   end if;
 //--- par ---
-  if switch_u_CompProcess == Switches.switch_input_AdiabaticProcess.use_CR_for_AdiabaticProcess then
+  if switch_u_CompProcess == Switches.switch_input_AdiabaticProcess.use_VolRatio_for_AdiabaticProcess then
     CR = u_CR;
   elseif switch_u_CompProcess == Switches.switch_input_AdiabaticProcess.use_PR_for_AdiabaticProcess then
     PR = u_PR;
+  elseif switch_u_CompProcess == Switches.switch_input_AdiabaticProcess.use_p_state2_for_AdiabaticProcess then
+    fluidState_2.p= u_p_state2;
   end if;
 //--- y ---
   y_p_fluidState_2 = fluidState_2.p;

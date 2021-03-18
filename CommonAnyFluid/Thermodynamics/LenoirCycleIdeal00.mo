@@ -234,7 +234,7 @@ equation
   s_state[3] = Medium.specificEntropy(fluidState[3].state);
   fluidState[3].Xi = fluidState[2].Xi;
   s_state[3] = s_state[2];
-  W_2_3 = massFluidCycle * (fluidState[3].u - fluidState[2].u);
+  W_2_3 = massFluidCycle * (fluidState[3].h - fluidState[2].h);
   Vol[3] / Vol[2] = ER_3_2;
   */
   
@@ -243,18 +243,18 @@ equation
   s_state[3] = Medium.specificEntropy(fluidState_3.state);
   fluidState_3.Xi = fluidState_2.Xi;
   s_state[3] = s_state[2];
-  W_2_3 = massFluidCycle * (fluidState_3.u - fluidState_3.u);
+  W_2_3 = massFluidCycle * (fluidState_3.h - fluidState_2.h);
   Vol[3] / Vol[2] = ER_3_2;
   
   //--- state3 <-> state1 ---
   // const. pressrue heat rejection
   /*
   fluidState[1].p = fluidState[3].p;
-  Q_3_1 = massFluidCycle * (fluidState[1].u - fluidState[3].u);
+  Q_3_1 = massFluidCycle * (fluidState[1].h - fluidState[3].h);
   */
   
   fluidState_1.p = fluidState_3.p;
-  Q_3_1 = massFluidCycle * (fluidState_1.u - fluidState_3.u);
+  Q_3_1 = massFluidCycle * (fluidState_1.h - fluidState_3.h);
   
   //---
   WoutCycle = (-1.0) * W_2_3;

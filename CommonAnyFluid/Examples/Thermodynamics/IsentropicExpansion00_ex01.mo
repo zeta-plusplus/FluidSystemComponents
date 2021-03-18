@@ -18,14 +18,14 @@ model IsentropicExpansion00_ex01
   FluidSystemComponents.CommonAnyFluid.Thermodynamics.IsentropicExpansion00 IsenExp(redeclare package Medium = engineAir) annotation(
     Placement(visible = true, transformation(origin = {10, 10}, extent = {{-30, -30}, {30, 30}}, rotation = 0)));
 equation
-  connect(const_Xi.y, IsenExp.u_Xi_fluidState_1) annotation(
-    Line(points = {{-58, -30}, {-34, -30}, {-34, -18}, {-24, -18}, {-24, -18}}, color = {0, 0, 127}, thickness = 0.5));
-  connect(const_T.y, IsenExp.u_T_fluidState_1) annotation(
-    Line(points = {{-58, 0}, {-50, 0}, {-50, 10}, {-24, 10}, {-24, 10}}, color = {0, 0, 127}));
-  connect(const_p.y, IsenExp.u_p_fluidState_1) annotation(
-    Line(points = {{-58, 30}, {-42, 30}, {-42, 19}, {-23, 19}}, color = {0, 0, 127}));
   connect(ramp_PR.y, IsenExp.u_PR) annotation(
-    Line(points = {{-38, 60}, {-8, 60}, {-8, 43}}, color = {0, 0, 127}));
+    Line(points = {{-38, 60}, {-2, 60}, {-2, 43}}, color = {0, 0, 127}));
+  connect(const_p.y, IsenExp.u_p_fluidState_1) annotation(
+    Line(points = {{-58, 30}, {-42, 30}, {-42, 16}, {-23, 16}}, color = {0, 0, 127}));
+  connect(const_T.y, IsenExp.u_T_fluidState_1) annotation(
+    Line(points = {{-58, 0}, {-50, 0}, {-50, 7}, {-23, 7}}, color = {0, 0, 127}));
+  connect(const_Xi.y, IsenExp.u_Xi_fluidState_1) annotation(
+    Line(points = {{-58, -30}, {-34, -30}, {-34, -20}, {-23, -20}}, color = {0, 0, 127}, thickness = 0.5));
   annotation(
     experiment(StartTime = 0, StopTime = 30, Tolerance = 1e-06, Interval = 0.06),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
