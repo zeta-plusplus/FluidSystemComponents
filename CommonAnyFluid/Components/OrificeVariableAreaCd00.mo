@@ -1,9 +1,9 @@
 within FluidSystemComponents.CommonAnyFluid.Components;
 
-model OrificeVariableAreaCd00
+model OrificeVariableAreaCd00 "orifice with external input of Cd and area multiplier, incompressible equation"
   /********************************************************
             imports
-      ********************************************************/
+  ********************************************************/
   import Modelica.Constants;
   import Modelica.Utilities.Streams;
   import PropulsionSystem.Types.switches;

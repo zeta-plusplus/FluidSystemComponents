@@ -1,6 +1,6 @@
 within FluidSystemComponents.CommonAnyFluid.Components;
 
-model VariableZetaOrifice00
+model VariableZetaOrifice00 "orifice with external zeta input, incompressible equation"
   /********************************************************
         imports
   ********************************************************/
