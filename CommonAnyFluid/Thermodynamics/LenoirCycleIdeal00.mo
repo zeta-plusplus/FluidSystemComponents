@@ -198,12 +198,14 @@ equation
   //---
   connect(curve_hs[3].u_Xi, fluidState[3].Xi);
   connect(curve_hs[3].u_p, fluidState[3].p);
-  connect(curve_hs[3].u_sUpper, s_state[3]);
-  connect(curve_hs[3].u_sLower, s_state[2]);
+  connect(curve_hs[3].u_sUpper, s_state[2]);
+  connect(curve_hs[3].u_sLower, s_state[1]);
+  
   connect(curve_hs[2].u_Xi, fluidState[2].Xi);
   connect(curve_hs[2].u_p, fluidState[2].p);
-  connect(curve_hs[2].u_sUpper, s_state[3]);
-  connect(curve_hs[2].u_sLower, s_state[2]);
+  connect(curve_hs[2].u_sUpper, s_state[2]);
+  connect(curve_hs[2].u_sLower, s_state[1]);
+  
   connect(curve_hs[1].u_Xi, fluidState[1].Xi);
   connect(curve_hs[1].u_p, fluidState[1].p);
   connect(curve_hs[1].u_sUpper, s_state[3]);

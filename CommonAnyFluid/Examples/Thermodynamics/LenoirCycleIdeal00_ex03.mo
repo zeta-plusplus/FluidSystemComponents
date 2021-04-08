@@ -17,18 +17,18 @@ model LenoirCycleIdeal00_ex03
   Modelica.Blocks.Sources.Constant const_Xi[cycleFluid.nXi] annotation(
     Placement(visible = true, transformation(origin = {-70, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.CommonAnyFluid.Thermodynamics.LenoirCycleIdeal00 LenoirCycle(redeclare package Medium = cycleFluid, switch_u_fluidQuantity = FluidSystemComponents.Types.Switches.switch_input_fluidQuantity.use_Volume)  annotation(
-    Placement(visible = true, transformation(origin = { 10,-10}, extent = {{-30, -30}, {30, 30}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {20, -20}, extent = {{-40, -40}, {40, 40}}, rotation = 0)));
 equation
-  connect(const_Xi.y, LenoirCycle.u_Xi_fluidState_1) annotation(
-    Line(points = {{-58, -70}, {-34, -70}, {-34, -40}, {-24, -40}, {-24, -40}}, color = {0, 0, 127}, thickness = 0.5));
-  connect(ramp_T_in.y, LenoirCycle.u_T_fluidState_1) annotation(
-    Line(points = {{-58, -40}, {-46, -40}, {-46, -12}, {-24, -12}, {-24, -14}}, color = {0, 0, 127}));
-  connect(ramp_p_in.y, LenoirCycle.u_p_fluidState_1) annotation(
-    Line(points = {{-58, -10}, {-48, -10}, {-48, -4}, {-24, -4}, {-24, -4}}, color = {0, 0, 127}));
-  connect(ramp_Q.y, LenoirCycle.u_Qin) annotation(
-    Line(points = {{-78, 30}, {-50, 30}, {-50, 14}, {-24, 14}, {-24, 14}}, color = {0, 0, 127}));
   connect(ramp_VolFluid.y, LenoirCycle.par_Vol1) annotation(
-    Line(points = {{-18, 70}, {-8, 70}, {-8, 24}, {-8, 24}}, color = {0, 0, 127}));
+    Line(points = {{-18, 70}, {-4, 70}, {-4, 24}}, color = {0, 0, 127}));
+  connect(ramp_Q.y, LenoirCycle.u_Qin) annotation(
+    Line(points = {{-78, 30}, {-50, 30}, {-50, 12}, {-24, 12}}, color = {0, 0, 127}));
+  connect(ramp_p_in.y, LenoirCycle.u_p_fluidState_1) annotation(
+    Line(points = {{-58, -10}, {-41, -10}, {-41, -12}, {-24, -12}}, color = {0, 0, 127}));
+  connect(ramp_T_in.y, LenoirCycle.u_T_fluidState_1) annotation(
+    Line(points = {{-58, -40}, {-46, -40}, {-46, -12}, {-24, -12}, {-24, -24}}, color = {0, 0, 127}));
+  connect(const_Xi.y, LenoirCycle.u_Xi_fluidState_1) annotation(
+    Line(points = {{-58, -70}, {-34, -70}, {-34, -60}, {-24, -60}}, color = {0, 0, 127}, thickness = 0.5));
   annotation(
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.1),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
