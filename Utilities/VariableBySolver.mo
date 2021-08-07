@@ -22,7 +22,8 @@ model VariableBySolver
   /* ---------------------------------------------
       Interface
   --------------------------------------------- */
-  Modelica.Blocks.Interfaces.RealOutput y_independent "" annotation(
+  Modelica.Blocks.Interfaces.RealOutput y_independent(start=independent_init, fixed=false) "" annotation(
+    Dialog(tab="Variables", group="start attribute" ,enable=false, showStartAttribute=true),
     Placement(visible = true, transformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   
 algorithm
