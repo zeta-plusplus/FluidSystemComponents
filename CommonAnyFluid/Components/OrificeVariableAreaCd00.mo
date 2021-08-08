@@ -62,14 +62,19 @@ model OrificeVariableAreaCd00 "orifice with external input of Cd and area multip
     Dialog(tab = "Initialization", group = "others"));
   parameter Modelica.SIunits.SpecificEntropy s_fluid_2_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
+  parameter Modelica.SIunits.VolumeFlowRate V_flow_init(displayUnit = "m3/s") = 1.0 "" annotation(
+    Dialog(tab = "Initialization", group = "others"));
+  
   //********** Design Parameters **********
   parameter Modelica.SIunits.Length diam_paramInput=0.01 "diameter, valid if isCircular==true" annotation(
     Dialog(group = "Geometory"));
   parameter Modelica.SIunits.Area AmechTh_paramInput = Modelica.Constants.pi / 4.0 * diam_paramInput ^ 2 "mechanical area of 'throat', valid if isCircular==false" annotation(
     Dialog(group = "Geometory"));
+  
+  
   /* ---------------------------------------------
           Internal variables
-      --------------------------------------------- */
+  --------------------------------------------- */
   Modelica.SIunits.MassFlowRate m_flow_max(start = m_flow1_init) "" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
   Modelica.SIunits.MassFlowRate m_flow_min(start = m_flow2_init) "" annotation(
@@ -92,14 +97,28 @@ model OrificeVariableAreaCd00 "orifice with external input of Cd and area multip
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
   Modelica.SIunits.SpecificEntropy s_fluid_2(start = s_fluid_2_init) "specific entropy, fluid_2" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  
+  Modelica.SIunits.SpecificEntropy s_fluid_th(start = s_fluid_1_init) "specific entropy, fluid_path" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  Modelica.SIunits.MassFlowRate m_flow(start = m_flow1_init) "" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  Modelica.SIunits.VolumeFlowRate V_flow(start = V_flow_init) "" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  
+  
   /* ---------------------------------------------
           Internal objects
-      --------------------------------------------- */
+  --------------------------------------------- */
   Medium.BaseProperties fluid_1(p(start = p1_init, min = 0.0 + 1.0e-10), T(start = T1_init, min = 0.0 + 1.0e-10), state.p(start = p1_init, min = 0.0 + 1.0e-10), state.T(start = T1_init, min = 0.0 + 1.0e-10), h(start = h1_init, min = 0.0 + 1.0e-10)) "flow station of inlet";
   Medium.BaseProperties fluid_2(p(start = p2_init, min = 0.0 + 1.0e-10), T(start = T2_init, min = 0.0 + 1.0e-10), state.p(start = p2_init, min = 0.0 + 1.0e-10), state.T(start = T2_init, min = 0.0 + 1.0e-10), h(start = h2_init, min = 0.0 + 1.0e-10)) "flow station of outlet (ambient)";
+  
+  Medium.BaseProperties fluid_th(p(start = p1_init, min = 0.0 + 1.0e-10), T(start = T1_init, min = 0.0 + 1.0e-10), state.p(start = p1_init, min = 0.0 + 1.0e-10), state.T(start = T1_init, min = 0.0 + 1.0e-10), h(start = h1_init, min = 0.0 + 1.0e-10)) "flow station of 1D path";
+  Medium.BaseProperties fluidStat_th(p(start = p1_init, min = 0.0 + 1.0e-10), T(start = T1_init, min = 0.0 + 1.0e-10), state.p(start = p1_init, min = 0.0 + 1.0e-10), state.T(start = T1_init, min = 0.0 + 1.0e-10), h(start = h1_init, min = 0.0 + 1.0e-10)) "flow station of 1D path, static";
+  
+  
   /* ---------------------------------------------
           Interface
-      --------------------------------------------- */
+  --------------------------------------------- */
   Modelica.Fluid.Interfaces.FluidPort_a port_1(redeclare package Medium = Medium, m_flow(start = m_flow1_init, min = if allowFlowReversal then -Constants.inf else 0.0), h_outflow(start = h1_init, min = 0.0 + 1.0e-10), p(start = p1_init, min = 0.0 + 1.0e-10)) "Exit of nozzle, pipe, etc, total state" annotation(
     Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Interfaces.FluidPort_b port_2(redeclare package Medium = Medium, m_flow(start = m_flow2_init, max = if allowFlowReversal then +Constants.inf else 0.0), h_outflow(start = h2_init, min = 0.0 + 1.0e-10), p(start = p2_init, min = 0.0 + 1.0e-10)) "ambient, static state" annotation(
@@ -177,6 +196,30 @@ equation
 //-- others --
   s_fluid_1 = Medium.specificEntropy(fluid_1.state);
   s_fluid_2 = Medium.specificEntropy(fluid_2.state);
+  
+  //---
+  if m_flow_max == port_2.m_flow then
+    m_flow = port_2.m_flow;
+    fluid_th.Xi = fluid_2.Xi;
+    fluid_th.h = fluid_2.h;
+    s_fluid_th= s_fluid_2;
+    fluidStat_th.Xi = fluid_2.Xi;
+  else
+    m_flow = port_1.m_flow;
+    fluid_th.Xi = fluid_1.Xi;
+    fluid_th.h = fluid_1.h;
+    s_fluid_th= s_fluid_1;
+    fluidStat_th.Xi = fluid_1.Xi;
+  end if;
+  
+  s_fluid_th = Medium.specificEntropy(fluid_th.state);
+  V_flow= AactualTh*Vth;
+  
+  // -- total <-> static --
+  fluidStat_th.h = fluid_th.h - 1.0 / 2.0 * (sign(Vth) * abs(Vth) ^ 2.0);
+  fluid_th.h = Medium.isentropicEnthalpy(fluid_th.p, fluidStat_th.state);
+  
+  
 /********************************************************
   Graphics
 ********************************************************/

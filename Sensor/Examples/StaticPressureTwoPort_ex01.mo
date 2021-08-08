@@ -1,6 +1,6 @@
-within FluidSystemComponents.CommonAnyFluid.Examples.Components;
+within FluidSystemComponents.Sensor.Examples;
 
-model VariableZetaOrifice00_ex01
+model StaticPressureTwoPort_ex01
   extends Modelica.Icons.Example;
   //-----
   //package fluid1 = Modelica.Media.Air.DryAirNasa;
@@ -18,11 +18,15 @@ model VariableZetaOrifice00_ex01
     Placement(visible = true, transformation(origin = {-10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_zeta(duration = 10, height = 1, offset = 1, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.MassFlowSource_T boundary1(redeclare package Medium = fluid1, m_flow = -0.01, nPorts = 1) annotation(
-    Placement(visible = true, transformation(origin = {30, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Modelica.Fluid.Sources.MassFlowSource_T boundary1(redeclare package Medium = fluid1, m_flow = 0.01, nPorts = 1) annotation(
+    Placement(visible = true, transformation(origin = {70, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  FluidSystemComponents.Sensor.StaticPressureTwoPort StaticPressure(redeclare package Medium = fluid1, diam_paramInput = Orifice.diam_paramInput) annotation(
+    Placement(visible = true, transformation(origin = {30, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
-  connect(Orifice.port_2, boundary1.ports[1]) annotation(
-    Line(points = {{0, 20}, {20, 20}, {20, 20}, {20, 20}}, color = {0, 127, 255}));
+  connect(Orifice.port_2, StaticPressure.port_1) annotation(
+    Line(points = {{0, 20}, {20, 20}}, color = {0, 127, 255}));
+  connect(StaticPressure.port_2, boundary1.ports[1]) annotation(
+    Line(points = {{40, 20}, {60, 20}}, color = {0, 127, 255}));
   connect(ramp_zeta.y, Orifice.u_zeta) annotation(
     Line(points = {{-18, -10}, {-14, -10}, {-14, 11}}, color = {0, 0, 127}));
   connect(boundary.ports[1], Orifice.port_1) annotation(
@@ -34,4 +38,4 @@ equation
   annotation(
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.1),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"));
-end VariableZetaOrifice00_ex01;
+end StaticPressureTwoPort_ex01;

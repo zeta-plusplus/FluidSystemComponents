@@ -14,7 +14,7 @@ model OrificeVariableAreaCd00_ex01
     Placement(visible = true, transformation(origin = {-90, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_T1(duration = 10, height = 0, offset = 288.15, startTime = 30) annotation(
     Placement(visible = true, transformation(origin = {-90, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.Ramp ramp_Cd(duration = 10, height = -0.05, offset = 0.65, startTime = 10) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_Cd(duration = 10, height = -0.05, offset = 0.65, startTime = 30) annotation(
     Placement(visible = true, transformation(origin = {-40, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.CommonAnyFluid.Components.OrificeVariableAreaCd00 Orifice(redeclare package Medium = fluid1, diam_paramInput = 0.1) annotation(
     Placement(visible = true, transformation(origin = {-10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
