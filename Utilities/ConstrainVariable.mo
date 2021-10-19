@@ -11,9 +11,11 @@ model ConstrainVariable
     HideResult = true,
     choices(checkBox = true), Dialog(group = "switch"));
   //********** Interfaces **********
-  Modelica.Blocks.Interfaces.RealInput u_variable annotation(
+  Modelica.Blocks.Interfaces.RealInput u_variable(start=1.0) annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true),
     Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Interfaces.RealInput u_targetValue if use_u_targetVal "" annotation(
+  Modelica.Blocks.Interfaces.RealInput u_targetValue(start=1.0) if use_u_targetVal "" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true),
     Placement(visible = true, transformation(origin = {120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
 equation
   if (use_u_targetVal==false) then
