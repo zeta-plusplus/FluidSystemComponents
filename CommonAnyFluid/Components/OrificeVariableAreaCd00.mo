@@ -17,7 +17,10 @@ model OrificeVariableAreaCd00 "orifice with external input of Cd and area multip
     Dialog(tab = "Assumptions"),
     Evaluate = true);
   parameter Boolean isCircular=true
-    "= true if cross sectional area is circular"
+    "= true if cross sectional area of throat is circular"
+    annotation (Evaluate, Dialog(tab="General", group="Geometry"));
+  parameter Boolean isPortCircular=true
+    "= true if cross sectional area of port is circular"
     annotation (Evaluate, Dialog(tab="General", group="Geometry"));
   
   /* ---------------------------------------------
@@ -65,9 +68,13 @@ model OrificeVariableAreaCd00 "orifice with external input of Cd and area multip
   parameter Modelica.SIunits.VolumeFlowRate V_flow_init(displayUnit = "m3/s") = 1.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //********** Design Parameters **********
-  parameter Modelica.SIunits.Length diam_paramInput=0.01 "diameter, valid if isCircular==true" annotation(
+  parameter Modelica.SIunits.Length diam_paramInput=0.01 "throat diameter, valid if isCircular==true" annotation(
+    Dialog(group = "Geometory"));
+  parameter Modelica.SIunits.Length diamPort_paramInput=2*diam_paramInput "diameter of inlet&outlet, valid if isPortCircular==true" annotation(
     Dialog(group = "Geometory"));
   parameter Modelica.SIunits.Area AmechTh_paramInput = Modelica.Constants.pi / 4.0 * diam_paramInput ^ 2 "mechanical area of 'throat', valid if isCircular==false" annotation(
+    Dialog(group = "Geometory"));
+  parameter Modelica.SIunits.Area AmechPort_paramInput = Modelica.Constants.pi / 4.0 * diamPort_paramInput ^ 2 "mechanical area of 'throat', valid if isCircular==false" annotation(
     Dialog(group = "Geometory"));
   
   
@@ -88,10 +95,18 @@ model OrificeVariableAreaCd00 "orifice with external input of Cd and area multip
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
   Modelica.SIunits.Velocity Vth(start = Vth_init) "" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  Modelica.SIunits.Velocity Vport1(start = Vth_init) "" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  Modelica.SIunits.Velocity Vport2(start = Vth_init) "" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  
   Modelica.SIunits.Area AmechTh(start = AmechTh_paramInput) "" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
   Modelica.SIunits.Area AactualTh(start = AmechTh_paramInput) "" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  Modelica.SIunits.Area AmechPort(start = AmechPort_paramInput) "" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  
   Modelica.SIunits.SpecificEntropy s_fluid_1(start = s_fluid_1_init) "specific entropy, fluid_1" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
   Modelica.SIunits.SpecificEntropy s_fluid_2(start = s_fluid_2_init) "specific entropy, fluid_2" annotation(
@@ -114,6 +129,9 @@ model OrificeVariableAreaCd00 "orifice with external input of Cd and area multip
   Medium.BaseProperties fluid_th(p(start = p1_init, min = 0.0 + 1.0e-10), T(start = T1_init, min = 0.0 + 1.0e-10), state.p(start = p1_init, min = 0.0 + 1.0e-10), state.T(start = T1_init, min = 0.0 + 1.0e-10), h(start = h1_init, min = 0.0 + 1.0e-10)) "flow station of 1D path";
   Medium.BaseProperties fluidStat_th(p(start = p1_init, min = 0.0 + 1.0e-10), T(start = T1_init, min = 0.0 + 1.0e-10), state.p(start = p1_init, min = 0.0 + 1.0e-10), state.T(start = T1_init, min = 0.0 + 1.0e-10), h(start = h1_init, min = 0.0 + 1.0e-10)) "flow station of 1D path, static";
   
+  Medium.BaseProperties fluidStat_1(p(start = p1_init, min = 0.0 + 1.0e-10), T(start = T1_init, min = 0.0 + 1.0e-10), state.p(start = p1_init, min = 0.0 + 1.0e-10), state.T(start = T1_init, min = 0.0 + 1.0e-10), h(start = h1_init, min = 0.0 + 1.0e-10)) "flow station of inlet";
+  Medium.BaseProperties fluidStat_2(p(start = p2_init, min = 0.0 + 1.0e-10), T(start = T2_init, min = 0.0 + 1.0e-10), state.p(start = p2_init, min = 0.0 + 1.0e-10), state.T(start = T2_init, min = 0.0 + 1.0e-10), h(start = h2_init, min = 0.0 + 1.0e-10)) "flow station of outlet (ambient)";
+  
   
   /* ---------------------------------------------
           Interface
@@ -130,7 +148,11 @@ model OrificeVariableAreaCd00 "orifice with external input of Cd and area multip
     Placement(visible = true, transformation(origin = {0, -120}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {-20, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   
   Modelica.Blocks.Interfaces.RealOutput y_ps_th(quantity = "Pressure", unit = "Pa", displayUnit = "Pa") annotation(
-    Placement(visible = true, transformation(origin = {110, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {105, 60}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {110, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {105, 80}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealOutput y_ps_2(displayUnit = "Pa", quantity = "Pressure", unit = "Pa") annotation(
+    Placement(visible = true, transformation(origin = {110, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {105, 40}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealOutput y_ps_1(displayUnit = "Pa", quantity = "Pressure", unit = "Pa") annotation(
+    Placement(visible = true, transformation(origin = {-110, 40}, extent = {{10, -10}, {-10, 10}}, rotation = 0), iconTransformation(origin = {-105, 40}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
   //********************************************************************************
 equation
 /* ---------------------------------------------
@@ -166,6 +188,8 @@ equation
   Cd = u_Cd;
   //---
   y_ps_th= fluidStat_th.p;
+  y_ps_1= fluidStat_1.p;
+  y_ps_2= fluidStat_2.p;
   
 /* ---------------------------------------------
   Eqns describing physics
@@ -173,6 +197,8 @@ equation
 //-- mass conservation --
   port_1.m_flow + port_2.m_flow = 0;
   fluid_2.Xi = fluid_1.Xi;
+  fluidStat_1.Xi =fluid_1.Xi;
+  fluidStat_2.Xi= fluid_2.Xi;
   port_1.C_outflow = inStream(port_2.C_outflow);
   port_2.C_outflow = inStream(port_1.C_outflow);
 //-- energy conservation --
@@ -184,6 +210,13 @@ equation
     AmechTh = u_kArea * AmechTh_paramInput;
   end if;
   AactualTh= AmechTh*Cd;
+  
+  if isPortCircular == true then
+    AmechPort = Modelica.Constants.pi / 4.0 * diamPort_paramInput ^ 2.0;
+  else
+    AmechPort = AmechPort_paramInput;
+  end if;
+  
   if m_flow_max == port_2.m_flow then
     port_2.m_flow = fluid_2.d * Vth * AactualTh;
 //-- pressure loss --
@@ -219,9 +252,19 @@ equation
   
   s_fluid_th = Medium.specificEntropy(fluid_th.state);
   V_flow= AactualTh*Vth;
+  //--
+  m_flow= AmechPort*fluid_1.d*Vport1;
+  m_flow= AmechPort*fluid_2.d*Vport2;
 // -- total <-> static --
   fluidStat_th.h = fluid_th.h - 1.0 / 2.0 * (sign(Vth) * abs(Vth) ^ 2.0);
   fluid_th.h = Medium.isentropicEnthalpy(fluid_th.p, fluidStat_th.state);
+  //--
+  fluidStat_1.h = fluid_1.h - 1.0 / 2.0 * (sign(Vport1) * abs(Vport1) ^ 2.0);
+  fluid_1.h = Medium.isentropicEnthalpy(fluid_1.p, fluidStat_1.state);
+  //--
+  fluidStat_2.h = fluid_2.h - 1.0 / 2.0 * (sign(Vport2) * abs(Vport2) ^ 2.0);
+  fluid_2.h = Medium.isentropicEnthalpy(fluid_2.p, fluidStat_2.state);
+  
   
   
 /********************************************************
