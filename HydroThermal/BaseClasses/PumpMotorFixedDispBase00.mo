@@ -112,20 +112,18 @@ partial model PumpMotorFixedDispBase00
 algorithm
 
 equation
-    
-    
-  /* ---------------------------------------------
+/* ---------------------------------------------
   Connections, interface <-> internal variables   
-  --------------------------------------------- */  
-  //-- fluidPort_1 --
+  --------------------------------------------- */
+//-- fluidPort_1 --
   fluid_1.p = port_1.p;
   fluid_1.h = actualStream(port_1.h_outflow);
-  fluid_1.Xi = actualStream(port_1.Xi_outflow); 
-  //-- fluidPort_2 --
+  fluid_1.Xi = actualStream(port_1.Xi_outflow);
+//-- fluidPort_2 --
   fluid_2.p = port_2.p;
   fluid_2.h = actualStream(port_2.h_outflow);
-  fluid_2.Xi = actualStream(port_2.Xi_outflow); 
-  // distinguish inlet side
+  fluid_2.Xi = actualStream(port_2.Xi_outflow);
+// distinguish inlet side
   m_flow_max = max(port_1.m_flow, port_2.m_flow);
   m_flow_min= min(port_1.m_flow, port_2.m_flow);
   
@@ -136,30 +134,23 @@ equation
   else
     port_1.h_outflow= fluid_1.h;
   end if;
-  
-    
-  //-- shaft --
+//-- shaft --
   flange_1.phi = phi;
-  
-  
-  
-  /* ---------------------------------------------
+/* ---------------------------------------------
   Eqns describing physics   
-  --------------------------------------------- */  
-  
-  
-  if(trq>=0)then
-    // operating as pump
+  --------------------------------------------- */
+  if trq >= 0 then
+// operating as pump
     PR = fluid_2.p / fluid_1.p;
     dht_is = h_2is - fluid_1.h;
     dht = fluid_2.h - fluid_1.h;
-    effMech= (dht_is*port_1.m_flow)/(omega*trq);
+    effMech = dht_is * port_1.m_flow / (omega * trq);
   else
-    // operating as motor
+// operating as motor
     PR = fluid_1.p / fluid_2.p;
     dht_is = fluid_1.h - h_2is;
     dht = fluid_1.h - fluid_2.h;
-    effMech= -1.0*(omega*trq)/(dht_is*port_1.m_flow);
+    effMech = -1.0 * (omega * trq) / (dht_is * port_1.m_flow);
   end if;
   
   deltap= port_2.p - port_1.p;
@@ -198,5 +189,5 @@ equation
   Graphics
 ********************************************************/
   annotation(
-    Icon(graphics = {Ellipse(origin = {28, -22}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-88, 82}, {32, -38}}, endAngle = 360), Polygon(origin = {56, -7}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-16, 16}, {-16, -4}, {4, 6}, {-16, 16}}), Rectangle(origin = {0, -75}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-8, 15}, {8, -23}}), Line(origin = {51.74, -0.52}, points = {{9, 0}, {47, 0}}, thickness = 2), Line(origin = {-90.38, -0.1}, points = {{-11, 0}, {29, 0}}, thickness = 2), Polygon(origin = {-56, -14}, rotation = 180, pattern = LinePattern.Dot, lineThickness = 0.5, points = {{-16, -4}, {-16, -24}, {4, -14}, {-16, -4}}), Polygon(origin = {-23, -6}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-16, 16}, {-16, -4}, {4, 6}, {-16, 16}}), Polygon(origin = {23, -15}, rotation = 180, pattern = LinePattern.Dot, lineThickness = 0.5, points = {{-16, -4}, {-16, -24}, {4, -14}, {-16, -4}})}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Ellipse(origin = {28, -22}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-88, 82}, {32, -38}}), Polygon(origin = {56, -7}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-16, 16}, {-16, -4}, {4, 6}, {-16, 16}}), Rectangle(origin = {0, -75}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-8, 15}, {8, -23}}), Line(origin = {51.74, -0.52}, points = {{9, 0}, {47, 0}}, thickness = 2), Line(origin = {-90.38, -0.1}, points = {{-11, 0}, {29, 0}}, thickness = 2), Polygon(origin = {-56, -14}, rotation = 180, pattern = LinePattern.Dot, lineThickness = 0.5, points = {{-16, -4}, {-16, -24}, {4, -14}, {-16, -4}}), Polygon(origin = {-23, -6}, fillPattern = FillPattern.Solid, lineThickness = 0.5, points = {{-16, 16}, {-16, -4}, {4, 6}, {-16, 16}}), Polygon(origin = {23, -15}, rotation = 180, pattern = LinePattern.Dot, lineThickness = 0.5, points = {{-16, -4}, {-16, -24}, {4, -14}, {-16, -4}})}, coordinateSystem(initialScale = 0.1)));
 end PumpMotorFixedDispBase00;

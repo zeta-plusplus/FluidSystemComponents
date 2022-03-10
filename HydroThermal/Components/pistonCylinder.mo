@@ -7,13 +7,9 @@ model pistonCylinder
   ********************************************************/
   import Modelica.Constants;
   import Modelica.SIunits;
-  
-  
   //********** Package **********
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);
-  
-  
   //********** Parameters **********
   parameter Modelica.SIunits.Length lengthCylinder=0.5
     ""
@@ -53,13 +49,11 @@ model pistonCylinder
     "" 
     annotation(
       Dialog(group = "Characteristics"));
-  
   //*********** initialization parameters **********
   parameter Modelica.SIunits.Length sInit_head= 0.1+lengthHead/2
     ""
     annotation(
       Dialog(group = "Initialization"));
-  
   //********** internal components **********
   Modelica.Fluid.Machines.SweptVolume volume_headSide(redeclare package Medium = Medium, clearance = volDeadHeadSide, nPorts = 1, pistonCrossArea = areaHeadSide, use_portsData = false)  annotation(
     Placement(visible = true, transformation(origin = {-80, 60}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -81,7 +75,6 @@ model pistonCylinder
     Placement(visible = true, transformation(origin = {-20, 40}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
   Modelica.Mechanics.Translational.Components.Rod rod1(L = lengthRod)  annotation(
     Placement(visible = true, transformation(origin = {26, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  
   //********** Interfaces **********
   Modelica.Fluid.Interfaces.FluidPort_a port_1(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(origin = {-80, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -117,7 +110,7 @@ equation
   connect(volume_headSide.flange, head.flange_a) annotation(
     Line(points = {{-70, 60}, {-60, 60}}, color = {0, 127, 0}));
   annotation(
-    Icon(graphics = {Rectangle(origin = {-5, 5}, lineThickness = 1.5, extent = {{-95, 35}, {85, -45}}), Rectangle(origin = {-27, 0}, fillPattern = FillPattern.Solid, extent = {{-13, 38}, {7, -38}}), Rectangle(origin = {35, 0}, fillPattern = FillPattern.Solid, extent = {{-57, 11}, {55, -11}}), Polygon(origin = {-69, -42}, fillPattern = FillPattern.Solid, points = {{-1, 4}, {-11, -6}, {9, -6}, {-1, 4}}), Polygon(origin = {67, -42}, fillPattern = FillPattern.Solid, points = {{-1, 4}, {-11, -6}, {9, -6}, {-1, 4}}), Line(origin = {-75, -61.7758}, points = {{-5, -38}, {-5, -18}, {5, -18}, {5, 20}}, thickness = 0.75), Line(origin = {65.1482, -61.7582}, points = {{15, -38}, {15, -18}, {1, -18}, {1, 22}}, thickness = 0.75)}, coordinateSystem(initialScale = 0.1)),
+    Icon(graphics = {Rectangle(origin = {-5, 5}, lineThickness = 0.75, extent = {{-95, 35}, {85, -45}}), Rectangle(origin = {-27, 0}, fillPattern = FillPattern.Solid, extent = {{-13, 38}, {7, -38}}), Rectangle(origin = {35, 0}, fillPattern = FillPattern.Solid, extent = {{-57, 11}, {55, -11}}), Polygon(origin = {-69, -44}, fillPattern = FillPattern.Solid, points = {{-1, 4}, {-11, -6}, {9, -6}, {-1, 4}}), Polygon(origin = {67, -44}, fillPattern = FillPattern.Solid, points = {{-1, 4}, {-11, -6}, {9, -6}, {-1, 4}}), Line(origin = {-75, -61.78}, points = {{-5, -38}, {-5, -18}, {5, -18}, {5, 20}}, thickness = 0.5), Line(origin = {65.15, -61.76}, points = {{15, -38}, {15, -18}, {1, -18}, {1, 22}}, thickness = 0.5)}, coordinateSystem(initialScale = 0.1)),
     Diagram(graphics = {Text(origin = {0, -23}, extent = {{-20, 3}, {20, -3}}, textString = "cylinder body"), Text(origin = {26, 91}, extent = {{-6, 3}, {20, -3}}, textString = "rod"), Text(origin = {-58, 75}, extent = {{-6, 3}, {40, -11}}, textString = "replesent mass of head and rod"), Text(origin = {-90, 77}, extent = {{-6, 3}, {20, -3}}, textString = "head side")}, coordinateSystem(initialScale = 0.1)));
     
 end pistonCylinder;
