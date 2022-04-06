@@ -18,13 +18,13 @@ model SteamCondenser_002
     Placement(transformation(extent = {{50, -10}, {70, -30}})));
   inner Modelica.Fluid.System system annotation(
     Placement(transformation(extent = {{-90, 70}, {-70, 90}})));
-  Modelica.Blocks.Sources.Ramp ramp_Q_flow_in(duration = 100, height = 1e6, offset = -1e6, startTime = 100) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_Q_flow_in(duration = 100, height = -1e6, offset = -1e6, startTime = 100) annotation(
     Placement(visible = true, transformation(origin = {-70, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_valveopen(duration = 100, height = 0, offset = 1, startTime = 300) annotation(
     Placement(visible = true, transformation(origin = {40, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Sources.MassFlowSource_T pump(redeclare package Medium = Modelica.Media.Water.StandardWater, T = 15 + 273.15, m_flow = 1, nPorts = 1, use_m_flow_in = true) annotation(
     Placement(visible = true, transformation(origin = {-110, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT exitBoundary(redeclare package Medium = Modelica.Media.Water.StandardWater, T = 120 + 273.15, nPorts = 1, p = 1.1 * 101.325 * 1000) annotation(
+  Modelica.Fluid.Sources.Boundary_pT exitBoundary(redeclare package Medium = Modelica.Media.Water.StandardWater, T = 120 + 273.15, nPorts = 1, p = 1.5 * 101.325 * 1000) annotation(
     Placement(visible = true, transformation(origin = {90, -20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.Gain fracLiquid(k = 1 / condenser.V_t) annotation(
     Placement(visible = true, transformation(origin = {-32, 15}, extent = {{-5, -5}, {5, 5}}, rotation = 90)));
