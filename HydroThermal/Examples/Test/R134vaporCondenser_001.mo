@@ -1,6 +1,6 @@
 within FluidSystemComponents.HydroThermal.Examples.Test;
 
-model R134vaporGenerator_001
+model R134vaporCondenser_001
   "Complete drum boiler model, including evaporator and supplementary components"
   extends Modelica.Icons.Example;
   parameter Boolean use_inputs = false "use external inputs instead of test data contained internally";
@@ -16,21 +16,21 @@ model R134vaporGenerator_001
     Placement(transformation(extent = {{10, 18}, {30, 38}})));
   Modelica.Fluid.Valves.ValveLinear VaporValve(redeclare package Medium = Modelica.Media.R134a.R134a_ph, dp_nominal = 100 * 1000, m_flow_nominal = 1) annotation(
     Placement(transformation(extent = {{50, -10}, {70, -30}})));
-  inner Modelica.Fluid.System system(T_ambient = 0 + 273.15)  annotation(
+  inner Modelica.Fluid.System system(T_ambient = 0 + 273.15) annotation(
     Placement(transformation(extent = {{-90, 70}, {-70, 90}})));
-  Modelica.Blocks.Sources.Ramp ramp_Q_flow_in(duration = 5, height = 50000.0, offset = 500000.0, startTime = 200) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_Q_flow_in(duration = 5, height = -5000.0, offset = -50000.0, startTime = 200) annotation(
     Placement(visible = true, transformation(origin = {-70, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_valveopen(duration = 100, height = 0, offset = 1, startTime = 300) annotation(
     Placement(visible = true, transformation(origin = {40, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.MassFlowSource_T pump(redeclare package Medium = Modelica.Media.R134a.R134a_ph, T = (-40) + 273.15, m_flow = 1, nPorts = 2, use_m_flow_in = true) annotation(
+  Modelica.Fluid.Sources.MassFlowSource_T scavengePump(redeclare package Medium = Modelica.Media.R134a.R134a_ph, T = (-40) + 273.15, m_flow = 1, nPorts = 2, use_m_flow_in = true) annotation(
     Placement(visible = true, transformation(origin = {-110, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT exitBoundary(redeclare package Medium = Modelica.Media.R134a.R134a_ph, T = (-30) + 273.15, nPorts = 1, p = 1 * 101.325 * 1000) annotation(
+  Modelica.Fluid.Sources.Boundary_pT boudaryVaporSupply(redeclare package Medium = Modelica.Media.R134a.R134a_ph, T = 0 + 273.15, nPorts = 1, p = 3 * 101.325 * 1000) annotation(
     Placement(visible = true, transformation(origin = {90, -20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.Gain fracLiquid(k = 1 / evaporator.V_t) annotation(
     Placement(visible = true, transformation(origin = {-32, 15}, extent = {{-5, -5}, {5, 5}}, rotation = 90)));
   Modelica.Blocks.Sources.Ramp ramp_r_liquidLevel(duration = 100, height = 0, offset = 0.5, startTime = 100) annotation(
     Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Blocks.Continuous.PI pi(T = 2, k = 400) annotation(
+  Modelica.Blocks.Continuous.PI pi(T = 2, k = 100) annotation(
     Placement(visible = true, transformation(origin = {-110, 40}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.Feedback feedback annotation(
     Placement(visible = true, transformation(origin = {-32, 40}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
@@ -53,7 +53,7 @@ equation
     Line(points = {{-58, -70}, {-36, -70}, {-36, -62}}, color = {0, 0, 127}));
   connect(ramp_valveopen.y, VaporValve.opening) annotation(
     Line(points = {{52, -60}, {60, -60}, {60, -28}}, color = {0, 0, 127}));
-  connect(VaporValve.port_b, exitBoundary.ports[1]) annotation(
+  connect(VaporValve.port_b, boudaryVaporSupply.ports[1]) annotation(
     Line(points = {{70, -20}, {80, -20}}, color = {0, 127, 255}));
   connect(evaporator.V, fracLiquid.u) annotation(
     Line(points = {{-32, -8}, {-32, 10}}, color = {0, 0, 127}));
@@ -63,11 +63,11 @@ equation
     Line(points = {{-10, 60}, {-10, 40}, {-24, 40}}, color = {0, 0, 127}));
   connect(pi.u, feedback.y) annotation(
     Line(points = {{-98, 40}, {-40, 40}}, color = {0, 0, 127}));
-  connect(pi.y, pump.m_flow_in) annotation(
+  connect(pi.y, scavengePump.m_flow_in) annotation(
     Line(points = {{-121, 40}, {-137, 40}, {-137, -12}, {-121, -12}}, color = {0, 0, 127}));
-  connect(pump.ports[1], temperatureWater.port) annotation(
+  connect(scavengePump.ports[1], temperatureWater.port) annotation(
     Line(points = {{-100, -20}, {-85, -20}, {-85, -13}}, color = {0, 127, 255}));
-  connect(pump.ports[2], massFlowRate.port_a) annotation(
+  connect(scavengePump.ports[2], massFlowRate.port_a) annotation(
     Line(points = {{-100, -20}, {-78, -20}}, color = {0, 127, 255}));
   connect(massFlowRate.port_b, evaporator.port_a) annotation(
     Line(points = {{-58, -20}, {-46, -20}}, color = {0, 127, 255}));
@@ -80,4 +80,4 @@ equation
     __OpenModelica_commandLineOptions = "--matchingAlgorithm=PFPlusExt --indexReductionMethod=dynamicStateSelection -d=initialization,NLSanalyticJacobian,nonewInst -d=initialization, --maxMixedDeterminedIndex=1000, --maxSizeLinearTearing=400, --maxSizeNonlinearTearing=600 -d=nonewInst -d= --maxMixedDeterminedIndex=1000, --maxSizeLinearTearing=400, --maxSizeNonlinearTearing=600 -d=nonewInst -d= --maxMixedDeterminedIndex=1000, --maxSizeLinearTearing=400, --maxSizeNonlinearTearing=600 -d=nonewInst -d= --maxMixedDeterminedIndex=1000, --maxSizeLinearTearing=400, --maxSizeNonlinearTearing=600 -d=nonewInst -d= --maxMixedDeterminedIndex=1000, --maxSizeLinearTearing=400, --maxSizeNonlinearTearing=600 ",
     __OpenModelica_simulationFlags(lv = "LOG_STATS", s = "dassl"),
     Diagram(coordinateSystem(extent = {{-140, -100}, {100, 100}})));
-end R134vaporGenerator_001;
+end R134vaporCondenser_001;
