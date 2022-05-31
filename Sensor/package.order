@@ -1,5 +1,6 @@
 SpecificHeatCapacity
+MassFractionsArray
 StaticPressureTwoPort
+PressureRatio
 Examples
 icons
-PressureRatio
