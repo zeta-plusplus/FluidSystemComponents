@@ -10,13 +10,13 @@ model HX_ShellTube_parallel_discrete005_ex01
   replaceable package liquidCside = Modelica.Media.Water.StandardWater;
   //redeclare package Medium = liquidCside
   //--------------------
-  parameter units.CoefficientOfHeatTransfer hConvHot(start = 500.0) "heat transfer coefficient, hot side";
-  parameter units.CoefficientOfHeatTransfer hConvCold(start = 500.0) "heat transfer coefficient, cold side";
-  parameter units.Area areaH(start = 5.0);
-  parameter units.Area areaC(start = 5.0);
+  parameter units.CoefficientOfHeatTransfer hConvHot(start = 500.0)=500.0 "heat transfer coefficient, hot side";
+  parameter units.CoefficientOfHeatTransfer hConvCold(start = 500.0)=500.0 "heat transfer coefficient, cold side";
+  parameter units.Area areaH(start = 1.0)=1.0;
+  parameter units.Area areaC(start = 1.0)=1.0;
   parameter Real nHot = 5;
   parameter Real nCold = nHot;
-  parameter Real kSize(start=1.0);
+  parameter Real kSize(start=1.0)=1.0;
   
   //--------------------
   units.ThermalConductance hAhot_discrete;
