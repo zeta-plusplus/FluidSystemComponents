@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+ <semantics>
+  <mtable>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi>ε</mi>
+      <mo stretchy="false">=</mo>
+      <mfrac>
+       <mrow>
+        <mrow>
+         <mn>1</mn>
+         <mo stretchy="false">−</mo>
+         <mi>exp</mi>
+        </mrow>
+        <mrow>
+         <mo fence="true" form="prefix" stretchy="false">[</mo>
+         <mrow>
+          <mrow>
+           <mrow>
+            <mo stretchy="false">−</mo>
+            <mi mathvariant="italic">NTU</mi>
+           </mrow>
+           <mo stretchy="false">∗</mo>
+           <mrow>
+            <mo fence="true" form="prefix" stretchy="false">(</mo>
+            <mrow>
+             <mrow>
+              <mn>1</mn>
+              <mo stretchy="false">+</mo>
+              <mi mathvariant="italic">Cr</mi>
+             </mrow>
+            </mrow>
+            <mo fence="true" form="postfix" stretchy="false">)</mo>
+           </mrow>
+          </mrow>
+         </mrow>
+         <mo fence="true" form="postfix" stretchy="false">]</mo>
+        </mrow>
+       </mrow>
+       <mrow>
+        <mn>1</mn>
+        <mo stretchy="false">+</mo>
+        <mi mathvariant="italic">Cr</mi>
+       </mrow>
+      </mfrac>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi mathvariant="italic">Cr</mi>
+      <mo stretchy="false">=</mo>
+      <mfrac>
+       <msub>
+        <mi>C</mi>
+        <mi mathvariant="italic">min</mi>
+       </msub>
+       <msub>
+        <mi>C</mi>
+        <mi mathvariant="italic">max</mi>
+       </msub>
+      </mfrac>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi mathvariant="italic">NTU</mi>
+      <mo stretchy="false">=</mo>
+      <mfrac>
+       <mrow>
+        <mo fence="true" form="prefix" stretchy="false">(</mo>
+        <mrow>
+         <mi mathvariant="italic">UA</mi>
+        </mrow>
+        <mo fence="true" form="postfix" stretchy="false">)</mo>
+       </mrow>
+       <msub>
+        <mi>C</mi>
+        <mi mathvariant="italic">min</mi>
+       </msub>
+      </mfrac>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mrow>
+       <msub>
+        <mi>C</mi>
+        <mi mathvariant="italic">min</mi>
+       </msub>
+       <mo stretchy="false">=</mo>
+       <mi mathvariant="italic">min</mi>
+      </mrow>
+      <mrow>
+       <mo fence="true" form="prefix" stretchy="false">(</mo>
+       <mrow>
+        <mrow>
+         <msub>
+          <mrow>
+           <mo fence="true" form="prefix" stretchy="false">{</mo>
+           <mrow>
+            <mrow>
+             <mi mathvariant="italic">dm</mi>
+             <mo stretchy="false">∗</mo>
+             <mi mathvariant="italic">Cp</mi>
+            </mrow>
+           </mrow>
+           <mo fence="true" form="postfix" stretchy="false">}</mo>
+          </mrow>
+          <mrow>
+           <mi mathvariant="italic">hot</mi>
+           <mi>,</mi>
+           <mi mathvariant="italic">inlet</mi>
+          </mrow>
+         </msub>
+         <mi>,</mi>
+         <msub>
+          <mrow>
+           <mo fence="true" form="prefix" stretchy="false">{</mo>
+           <mrow>
+            <mrow>
+             <mi mathvariant="italic">dm</mi>
+             <mo stretchy="false">∗</mo>
+             <mi mathvariant="italic">Cp</mi>
+            </mrow>
+           </mrow>
+           <mo fence="true" form="postfix" stretchy="false">}</mo>
+          </mrow>
+          <mrow>
+           <mi mathvariant="italic">cold</mi>
+           <mi>,</mi>
+           <mi mathvariant="italic">inlet</mi>
+          </mrow>
+         </msub>
+        </mrow>
+       </mrow>
+       <mo fence="true" form="postfix" stretchy="false">)</mo>
+      </mrow>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mrow>
+       <msub>
+        <mi>C</mi>
+        <mi mathvariant="italic">max</mi>
+       </msub>
+       <mo stretchy="false">=</mo>
+       <mi mathvariant="italic">max</mi>
+      </mrow>
+      <mrow>
+       <mo fence="true" form="prefix" stretchy="false">(</mo>
+       <mrow>
+        <mrow>
+         <msub>
+          <mrow>
+           <mo fence="true" form="prefix" stretchy="false">{</mo>
+           <mrow>
+            <mrow>
+             <mi mathvariant="italic">dm</mi>
+             <mo stretchy="false">∗</mo>
+             <mi mathvariant="italic">Cp</mi>
+            </mrow>
+           </mrow>
+           <mo fence="true" form="postfix" stretchy="false">}</mo>
+          </mrow>
+          <mrow>
+           <mi mathvariant="italic">hot</mi>
+           <mi>,</mi>
+           <mi mathvariant="italic">inlet</mi>
+          </mrow>
+         </msub>
+         <mi>,</mi>
+         <msub>
+          <mrow>
+           <mo fence="true" form="prefix" stretchy="false">{</mo>
+           <mrow>
+            <mrow>
+             <mi mathvariant="italic">dm</mi>
+             <mo stretchy="false">∗</mo>
+             <mi mathvariant="italic">Cp</mi>
+            </mrow>
+           </mrow>
+           <mo fence="true" form="postfix" stretchy="false">}</mo>
+          </mrow>
+          <mrow>
+           <mi mathvariant="italic">cold</mi>
+           <mi>,</mi>
+           <mi mathvariant="italic">inlet</mi>
+          </mrow>
+         </msub>
+        </mrow>
+       </mrow>
+       <mo fence="true" form="postfix" stretchy="false">)</mo>
+      </mrow>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mfrac>
+       <mn>1</mn>
+       <mrow>
+        <mo fence="true" form="prefix" stretchy="false">(</mo>
+        <mrow>
+         <mi mathvariant="italic">UA</mi>
+        </mrow>
+        <mo fence="true" form="postfix" stretchy="false">)</mo>
+       </mrow>
+      </mfrac>
+      <mo stretchy="false">=</mo>
+      <mrow>
+       <mfrac>
+        <mn>1</mn>
+        <mrow>
+         <msub>
+          <mi>h</mi>
+          <mi>h</mi>
+         </msub>
+         <mo stretchy="false">∗</mo>
+         <msub>
+          <mi>A</mi>
+          <mi>h</mi>
+         </msub>
+        </mrow>
+       </mfrac>
+       <mo stretchy="false">+</mo>
+       <mfrac>
+        <mn>1</mn>
+        <mrow>
+         <msub>
+          <mi>h</mi>
+          <mi>c</mi>
+         </msub>
+         <mo stretchy="false">∗</mo>
+         <msub>
+          <mi>A</mi>
+          <mi>c</mi>
+         </msub>
+        </mrow>
+       </mfrac>
+      </mrow>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mtext>* heat conduction of wall is ignored in this equation above</mtext>
+    </mtd>
+   </mtr>
+  </mtable>
+  <annotation encoding="StarMath 5.0">ε= {1-exp [-NTU* (1+Cr)]  } over {1+Cr} 		newline
+Cr= {C_min} over {C_max} 	newline
+NTU= { (UA) } over {C_min}  	newline
+C_min=min ( lbrace dm*Cp rbrace_{hot,inlet},lbrace dm*Cp rbrace_{cold,inlet} ) 	newline
+C_max=max ( lbrace dm*Cp rbrace_{hot,inlet},lbrace dm*Cp rbrace_{cold,inlet} ) 	newline
+{1} over {(UA)}= {1} over {h_h *A_h} + {1} over {h_c * A_c} 	newline
+&quot;* heat conduction of wall is ignored in this equation above&quot;		
+</annotation>
+ </semantics>
+</math>

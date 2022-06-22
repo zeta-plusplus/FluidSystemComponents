@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+ <semantics>
+  <mtable>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi>ε</mi>
+      <mo stretchy="false">=</mo>
+      <mfrac>
+       <msub>
+        <mi>Q</mi>
+        <mi mathvariant="italic">actual</mi>
+       </msub>
+       <msub>
+        <mi>Q</mi>
+        <mrow>
+         <mi mathvariant="italic">max</mi>
+         <mi>,</mi>
+         <mi mathvariant="italic">potential</mi>
+        </mrow>
+       </msub>
+      </mfrac>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>Q</mi>
+       <mi mathvariant="italic">max</mi>
+      </msub>
+      <mo stretchy="false">=</mo>
+      <mrow>
+       <msub>
+        <mi>C</mi>
+        <mi mathvariant="italic">min</mi>
+       </msub>
+       <mo stretchy="false">∗</mo>
+       <mrow>
+        <mo fence="true" form="prefix" stretchy="false">(</mo>
+        <mrow>
+         <mrow>
+          <msub>
+           <mi>T</mi>
+           <mi mathvariant="italic">hi</mi>
+          </msub>
+          <mo stretchy="false">−</mo>
+          <msub>
+           <mi>T</mi>
+           <mi mathvariant="italic">ci</mi>
+          </msub>
+         </mrow>
+        </mrow>
+        <mo fence="true" form="postfix" stretchy="false">)</mo>
+       </mrow>
+      </mrow>
+     </mrow>
+    </mtd>
+   </mtr>
+  </mtable>
+  <annotation encoding="StarMath 5.0">{ ε} = {Q_actual} over { Q_{max,potential} }		newline
+Q_max= C_min * ( T_hi - T_ci )		
+</annotation>
+ </semantics>
+</math>
