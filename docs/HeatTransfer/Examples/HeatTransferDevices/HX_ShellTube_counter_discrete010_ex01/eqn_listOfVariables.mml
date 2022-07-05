@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+ <semantics>
+  <mtable>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi>ε</mi>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">exchanger</mi>
+      <mi mathvariant="italic">effectiveness</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>Q</mi>
+       <mrow>
+        <mi mathvariant="italic">max</mi>
+        <mi>,</mi>
+        <mi mathvariant="italic">theoretical</mi>
+       </mrow>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">exchanged</mi>
+      <mi>,</mi>
+      <mi mathvariant="italic">theoretically</mi>
+      <mi mathvariant="italic">max</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi mathvariant="italic">dm</mi>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">mass</mi>
+      <mi mathvariant="italic">flow</mi>
+      <mi mathvariant="italic">rate</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi mathvariant="italic">Cp</mi>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">specific</mi>
+      <mi mathvariant="italic">heat</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>C</mi>
+       <mi mathvariant="italic">min</mi>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">capacity</mi>
+      <mi mathvariant="italic">flow</mi>
+      <mi>,</mi>
+      <mi mathvariant="italic">minimum</mi>
+      <mi mathvariant="italic">side</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>C</mi>
+       <mi mathvariant="italic">max</mi>
+      </msub>
+      <mi mathvariant="italic">max</mi>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">capacity</mi>
+      <mi mathvariant="italic">flow</mi>
+      <mi>,</mi>
+      <mi mathvariant="italic">max</mi>
+      <mi mathvariant="italic">side</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi mathvariant="italic">Cr</mi>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">capacity</mi>
+      <mi mathvariant="italic">ratio</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi mathvariant="italic">NTU</mi>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">Number</mi>
+      <mi mathvariant="italic">of</mi>
+      <mi mathvariant="italic">thermal</mi>
+      <mi mathvariant="italic">unit</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mrow>
+       <mo fence="true" form="prefix" stretchy="false">(</mo>
+       <mrow>
+        <mi mathvariant="italic">UA</mi>
+       </mrow>
+       <mo fence="true" form="postfix" stretchy="false">)</mo>
+      </mrow>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">overall</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">conductance</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>T</mi>
+       <mi mathvariant="italic">hi</mi>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">hot</mi>
+      <mi mathvariant="italic">side</mi>
+      <mi mathvariant="italic">fluid</mi>
+      <mi mathvariant="italic">temperature</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>T</mi>
+       <mi mathvariant="italic">ci</mi>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">cold</mi>
+      <mi mathvariant="italic">side</mi>
+      <mi mathvariant="italic">fluid</mi>
+      <mi mathvariant="italic">temperature</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>h</mi>
+       <mi>h</mi>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">hot</mi>
+      <mi mathvariant="italic">side</mi>
+      <mi mathvariant="italic">convection</mi>
+      <mi mathvariant="italic">coefficient</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>h</mi>
+       <mi>c</mi>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">cold</mi>
+      <mi mathvariant="italic">side</mi>
+      <mi mathvariant="italic">convectin</mi>
+      <mi mathvariant="italic">coefficient</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>A</mi>
+       <mi>h</mi>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">hot</mi>
+      <mi mathvariant="italic">side</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">transfer</mi>
+      <mi mathvariant="italic">area</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow>
+      <msub>
+       <mi>A</mi>
+       <mi>c</mi>
+      </msub>
+      <mi mathvariant="normal">:</mi>
+      <mi mathvariant="italic">cold</mi>
+      <mi mathvariant="italic">side</mi>
+      <mi mathvariant="italic">heat</mi>
+      <mi mathvariant="italic">transfer</mi>
+      <mi mathvariant="italic">area</mi>
+     </mrow>
+    </mtd>
+   </mtr>
+  </mtable>
+  <annotation encoding="StarMath 5.0">ε: heat exchanger effectiveness	newline
+Q_{max,theoretical}:heat exchanged, theoretically max   newline
+dm: mass flow rate	newline
+Cp: specific heat	newline
+C_{ min }: heat capacity flow, minimum side	newline
+C_max{ max }: heat capacity flow, max side		newline
+Cr: heat capacity ratio	newline
+NTU: Number of thermal unit	newline
+( UA ): overall heat conductance		newline
+T_hi: hot side fluid temperature		newline
+T_ci: cold side fluid temperature	newline
+h_h: hot side convection coefficient	newline
+h_c: cold side convectin coefficient	newline
+A_h: hot side heat transfer area		newline
+A_c: cold side heat transfer area	
+</annotation>
+ </semantics>
+</math>
