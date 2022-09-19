@@ -143,27 +143,27 @@ equation
   dp = fluid_1.p - fluid_2.p;
   dpAbs= pH - pL;
 //---
-  PRcr = ((gamtH + 1.0) / 2.0) ^ (gamtH / (gamtH - 1.0));
+  PRcr = ((gamtH + 1.0) / 2.0) ^ (gamtH / (gamtH - 1.0+ 1e-9));
   pHsmall= pL*PRsmall;
   
-  inSqrtSmall= 2.0 * gamtH / (Th* Rg * (gamtH - 1.0)) * ((pL / pHsmall) ^ (2.0 / gamtH) - (pL / pHsmall) ^ ((gamtH + 1.0) / gamtH));
+  inSqrtSmall= 2.0 * gamtH / (Th* Rg * (gamtH - 1.0+ Modelica.Constants.small)) * ((pL / pHsmall) ^ (2.0 / gamtH) - (pL / pHsmall) ^ ((gamtH + 1.0) / gamtH));
                                                               
   //-----
   if PRabs < PRcr then
     flagChoke = false;
-    m_flow_abs= homotopy( Aeff * pH * Modelica.Fluid.Utilities.regRoot2( x=(  2.0 * gamtH / (Th* Rg * (gamtH - 1.0)) * ((pL / pH) ^ (2.0 / gamtH) - (pL / pH) ^ ((gamtH + 1.0) / gamtH))), 
+    m_flow_abs= homotopy( Aeff * pH * Modelica.Fluid.Utilities.regRoot2( x=(  2.0 * gamtH / (Th* Rg * (gamtH - 1.0+ Modelica.Constants.small)) * ((pL / pH) ^ (2.0 / gamtH) - (pL / pH) ^ ((gamtH + 1.0) / gamtH))), 
                                                               x_small=inSqrtSmall ),
                           dp*m_flow_homotopy_init/dp_homotopy_init );
     
-    m_flow= homotopy( sign(dp)* Aeff * pH * Modelica.Fluid.Utilities.regRoot2( x=(  2.0 * gamtH / (Th* Rg * (gamtH - 1.0)) * ((pL / pH) ^ (2.0 / gamtH) - (pL / pH) ^ ((gamtH + 1.0) / gamtH))), 
+    m_flow= homotopy( sign(dp)* Aeff * pH * Modelica.Fluid.Utilities.regRoot2( x=(  2.0 * gamtH / (Th* Rg * (gamtH - 1.0+ Modelica.Constants.small)) * ((pL / pH) ^ (2.0 / gamtH) - (pL / pH) ^ ((gamtH + 1.0) / gamtH))), 
                                                               x_small=inSqrtSmall ),
                           dp*m_flow_homotopy_init/dp_homotopy_init );
   else
     flagChoke = true;
-    m_flow_abs= homotopy( Aeff * pH / sqrt(Rg * Th) * sqrt(gamtH) * ((gamtH + 1.0) / 2.0) ^ (-1.0 * (gamtH + 1.0) / (2.0 * (gamtH - 1.0))),
+    m_flow_abs= homotopy( Aeff * pH / sqrt(Rg * Th) * sqrt(gamtH) * ((gamtH + 1.0) / 2.0) ^ (-1.0 * (gamtH + 1.0) / (2.0 * (gamtH - 1.0+ Modelica.Constants.small))),
                     dp*m_flow_homotopy_init/dp_homotopy_init );
                     
-    m_flow= homotopy( sign(dp)* Aeff * pH / sqrt(Rg * Th) * sqrt(gamtH) * ((gamtH + 1.0) / 2.0) ^ (-1.0 * (gamtH + 1.0) / (2.0 * (gamtH - 1.0))), 
+    m_flow= homotopy( sign(dp)* Aeff * pH / sqrt(Rg * Th) * sqrt(gamtH) * ((gamtH + 1.0) / 2.0) ^ (-1.0 * (gamtH + 1.0) / (2.0 * (gamtH - 1.0+ Modelica.Constants.small))), 
                     dp*m_flow_homotopy_init/dp_homotopy_init );
   end if;
   
