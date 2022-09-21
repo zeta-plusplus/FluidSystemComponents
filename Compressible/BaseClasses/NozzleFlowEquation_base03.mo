@@ -13,7 +13,7 @@ partial model NozzleFlowEquation_base03
     Dialog(tab = "General", group = "For convergence"));
   parameter units.Pressure dp_homotopy_init=100.0*1000.0 "" annotation(
     Dialog(tab = "General", group = "For convergence"));
-  parameter Real PRsmall=1.0001;
+  parameter Real PRsmall=1.00001;
   
   /*-----------------------------------
   internal objects
@@ -23,10 +23,12 @@ partial model NozzleFlowEquation_base03
   Real Cd;
   //-----
   Real PR;
+  Real PRinv;
   Real PRabs;
   units.PressureDifference dpAbs;
   Boolean flagChoke;
   Real PRcr;
+  Real PRcrInv;
   //Real gams_H "gamma, static, high-p side";
   Real gamtH "";
   Real gamtL "";
@@ -40,6 +42,7 @@ partial model NozzleFlowEquation_base03
   units.SpecificHeatCapacity Rg;
   units.Pressure pHsmall;
   Real inSqrtSmall;
+  units.Velocity Vth;
   
   //-----
   Medium.BaseProperties fluid_a(p(min = 0.0 + 1.0e-10), T(min = 0.0 + 1.0e-10), h(min = 0.0 + 1.0e-10)) "";
@@ -67,6 +70,9 @@ equation
   PR= state_a.p / state_b.p;
   PRabs= pH/pL;
   dpAbs= pH - pL;
+  V_flow=Vth*Aeff;
+  PRinv=1.0/PR;
+  PRcrInv=1.0/PRcr;
   
   // Isenthalpic state transformation (no storage and no loss of energy)
   port_a.h_outflow = inStream(port_b.h_outflow);
