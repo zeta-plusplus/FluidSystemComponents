@@ -38,5 +38,5 @@ equation
   connect(flowPath1.port_2, BC_L_2.ports[1]) annotation(
     Line(points = {{20, -32}, {40, -32}}, color = {0, 127, 255}));
   annotation(
-    experiment(StartTime = 0, StopTime = 5, Tolerance = 1e-06, Interval = 0.01));
+    experiment(StartTime = 0, StopTime = 5, Tolerance = 1e-06, Interval = 0.001));
 end NozzleFlowEquation02_ex01;

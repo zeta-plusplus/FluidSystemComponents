@@ -143,7 +143,8 @@ equation
   dp = fluid_1.p - fluid_2.p;
   dpAbs= pH - pL;
 //---
-  PRcr = ((gamtH + 1.0) / 2.0) ^ (gamtH / (gamtH - 1.0+ 1e-9));
+  //PRcr = ((gamtH + 1.0) / 2.0) ^ (gamtH / (gamtH - 1.0+ 1e-9));
+  PRcr=FluidSystemComponents.Compressible.Function.CriticalPressureRatio(gamma_in=gamtH);
   pHsmall= pL*PRsmall;
   
   inSqrtSmall= 2.0 * gamtH / (Th* Rg * (gamtH - 1.0+ Modelica.Constants.small)) * ((pL / pHsmall) ^ (2.0 / gamtH) - (pL / pHsmall) ^ ((gamtH + 1.0) / gamtH));
