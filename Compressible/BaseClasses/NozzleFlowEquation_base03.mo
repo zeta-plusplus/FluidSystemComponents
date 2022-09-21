@@ -1,7 +1,9 @@
 within FluidSystemComponents.Compressible.BaseClasses;
 
 partial model NozzleFlowEquation_base03
-  extends Modelica.Fluid.Interfaces.PartialTwoPortTransport;
+  extends Modelica.Fluid.Interfaces.PartialTwoPortTransport(
+      allowFlowReversal=true
+  );
   //*****************************************************************
   import units = Modelica.SIunits;
   import consts = Modelica.Constants;
@@ -10,9 +12,9 @@ partial model NozzleFlowEquation_base03
   parameters
   -----------------------------------*/
   parameter units.MassFlowRate m_flow_homotopy_init=1.0 "" annotation(
-    Dialog(tab = "General", group = "For convergence"));
+    Dialog(tab = "General", group = "For initial convergence"));
   parameter units.Pressure dp_homotopy_init=100.0*1000.0 "" annotation(
-    Dialog(tab = "General", group = "For convergence"));
+    Dialog(tab = "General", group = "For initial convergence"));
   parameter Real PRsmall=1.00001;
   
   /*-----------------------------------

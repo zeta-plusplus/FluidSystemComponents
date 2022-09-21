@@ -10,10 +10,6 @@ model ComplexFlowNetwork_v004_temp01
     Placement(visible = true, transformation(origin = {110, 170}, extent = {{-10, 10}, {10, -10}}, rotation = 180)));
   Modelica.Fluid.Fittings.SimpleGenericOrifice orifice1(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.01, zeta = 2.78) annotation(
     Placement(visible = true, transformation(origin = {-210, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.005, zeta = 2.78) annotation(
-    Placement(visible = true, transformation(origin = {-170, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice3(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.01, zeta = 2.78) annotation(
-    Placement(visible = true, transformation(origin = {-190, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice5(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.01, zeta = 2.78) annotation(
     Placement(visible = true, transformation(origin = {-170, -140}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Sensors.Pressure pressure(redeclare package Medium = Modelica.Media.Air.DryAirNasa) annotation(
@@ -104,12 +100,6 @@ model ComplexFlowNetwork_v004_temp01
     Placement(visible = true, transformation(origin = {6, -144}, extent = {{-5, -5}, {5, 5}}, rotation = -90)));
   Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice11(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.01, zeta = 2.78) annotation(
     Placement(visible = true, transformation(origin = {40, -170}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice12(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.01, zeta = 2.78) annotation(
-    Placement(visible = true, transformation(origin = {-80, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice14(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.01, zeta = 2.78) annotation(
-    Placement(visible = true, transformation(origin = {100, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice17(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.006, zeta = 2.78) annotation(
-    Placement(visible = true, transformation(origin = {60, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Fluid.Sensors.MassFlowRate massFlowRate(redeclare package Medium = Modelica.Media.Air.DryAirNasa) annotation(
     Placement(visible = true, transformation(origin = {-210, 132}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interaction.Show.RealValue realValue12(significantDigits = 4, use_numberPort = true) annotation(
@@ -134,8 +124,6 @@ model ComplexFlowNetwork_v004_temp01
     Placement(visible = true, transformation(origin = {220, 140}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Blocks.Interaction.Show.RealValue realValue17(significantDigits = 4, use_numberPort = true) annotation(
     Placement(visible = true, transformation(origin = {220, 120}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice simpleGenericOrifice18(redeclare package Medium = Modelica.Media.Air.DryAirNasa, diameter = 0.005, zeta = 2.78) annotation(
-    Placement(visible = true, transformation(origin = {0, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_p_extract1(duration = 10, height = 2 * 101.325 * 1000, offset = 45 * 101.325 * 1000, startTime = 30) annotation(
     Placement(visible = true, transformation(origin = {-130, 190}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp(duration = 10, height = 1 * 101.325 * 1000, offset = 40 * 101.325 * 1000, startTime = 50) annotation(
@@ -192,21 +180,25 @@ model ComplexFlowNetwork_v004_temp01
     Placement(visible = true, transformation(origin = {190, -6}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction10(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.02 ^ 2) annotation(
     Placement(visible = true, transformation(origin = {150, 56}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction11(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.005 ^ 2) annotation(
+    Placement(visible = true, transformation(origin = {60, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction12(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.01 ^ 2) annotation(
+    Placement(visible = true, transformation(origin = {20, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction13(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.005 ^ 2) annotation(
+    Placement(visible = true, transformation(origin = {100, -38}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction14(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.01 ^ 2)  annotation(
+    Placement(visible = true, transformation(origin = {-80, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction15(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.03 ^ 2) annotation(
+    Placement(visible = true, transformation(origin = {-170, 4}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction16(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.02 ^ 2) annotation(
+    Placement(visible = true, transformation(origin = {-190, -70}, extent = {{-10, 10}, {10, -10}}, rotation = 180)));
 equation
   connect(gain.y, realValue.numberPort) annotation(
     Line(points = {{-194, 13.5}, {-194, 11.5}, {-198.5, 11.5}}, color = {0, 0, 127}));
   connect(pressure.port, orifice1.port_a) annotation(
     Line(points = {{-210, 25}, {-210, 0}}, color = {0, 127, 255}));
-  connect(pressure.port, simpleGenericOrifice.port_a) annotation(
-    Line(points = {{-210, 25}, {-170, 25}, {-170, 4}}, color = {0, 127, 255}));
   connect(orifice1.port_b, pressure1.port) annotation(
     Line(points = {{-210, -20}, {-210, -38}}, color = {0, 127, 255}));
-  connect(simpleGenericOrifice.port_b, pressure2.port) annotation(
-    Line(points = {{-170, -16}, {-170, -38}}, color = {0, 127, 255}));
-  connect(pressure1.port, simpleGenericOrifice3.port_a) annotation(
-    Line(points = {{-210, -38}, {-210, -70}, {-200, -70}}, color = {0, 127, 255}));
-  connect(simpleGenericOrifice3.port_b, pressure2.port) annotation(
-    Line(points = {{-180, -70}, {-170, -70}, {-170, -38}}, color = {0, 127, 255}));
   connect(pressure3.port, simpleGenericOrifice5.port_a) annotation(
     Line(points = {{-210, -140}, {-180, -140}}, color = {0, 127, 255}));
   connect(gain1.y, realValue1.numberPort) annotation(
@@ -269,12 +261,6 @@ equation
     Line(points = {{-4.5, -135}, {6, -135}, {6, -138}}, color = {0, 0, 127}));
   connect(pressure8.port, simpleGenericOrifice11.port_a) annotation(
     Line(points = {{-50, -170}, {30, -170}}, color = {0, 127, 255}));
-  connect(pressure5.port, simpleGenericOrifice12.port_a) annotation(
-    Line(points = {{-100, -38}, {-100, -70}, {-90, -70}}, color = {0, 127, 255}));
-  connect(simpleGenericOrifice12.port_b, pressure7.port) annotation(
-    Line(points = {{-70, -70}, {-50, -70}}, color = {0, 127, 255}));
-  connect(pressure11.port, simpleGenericOrifice14.port_a) annotation(
-    Line(points = {{-10, -140}, {100, -140}, {100, -20}}, color = {0, 127, 255}));
   connect(extract1.ports[1], massFlowRate.port_a) annotation(
     Line(points = {{-210, 160}, {-210, 142}}, color = {0, 127, 255}));
   connect(massFlowRate.m_flow, realValue12.numberPort) annotation(
@@ -289,8 +275,6 @@ equation
     Line(points = {{49, 140}, {45, 140}, {45, 120}, {47, 120}}, color = {0, 0, 127}));
   connect(return1.ports[1], massFlowRate2.port_b) annotation(
     Line(points = {{60, 170}, {60, 150}}, color = {0, 127, 255}));
-  connect(massFlowRate2.port_a, simpleGenericOrifice17.port_b) annotation(
-    Line(points = {{60, 130}, {60, 70}}, color = {0, 127, 255}));
   connect(massFlowRate3.m_flow, realValue15.numberPort) annotation(
     Line(points = {{89, 140}, {85, 140}, {85, 120}, {87, 120}}, color = {0, 0, 127}));
   connect(return2.ports[1], massFlowRate3.port_b) annotation(
@@ -303,12 +287,6 @@ equation
     Line(points = {{209, 140}, {205, 140}, {205, 120}, {207, 120}}, color = {0, 0, 127}));
   connect(massFlowRate5.port_b, return4.ports[1]) annotation(
     Line(points = {{220, 150}, {220, 170}}, color = {0, 127, 255}));
-  connect(pressure7.port, simpleGenericOrifice14.port_a) annotation(
-    Line(points = {{-50, -70}, {92, -70}, {92, -20}, {100, -20}}, color = {0, 127, 255}));
-  connect(pressure7.port, simpleGenericOrifice17.port_a) annotation(
-    Line(points = {{-50, -70}, {60, -70}, {60, 50}}, color = {0, 127, 255}));
-  connect(simpleGenericOrifice18.port_b, massFlowRate2.port_a) annotation(
-    Line(points = {{10, 10}, {38, 10}, {38, 130}, {60, 130}}, color = {0, 127, 255}));
   connect(ramp_p_extract1.y, extract2.p_in) annotation(
     Line(points = {{-130, 179}, {-130, 168}, {-122, 168}}, color = {0, 0, 127}));
   connect(ramp.y, extract1.p_in) annotation(
@@ -335,10 +313,6 @@ equation
     Line(points = {{116, 19.5}, {116, 17.5}, {112, 17.5}}, color = {0, 0, 127}));
   connect(pressure16.p, gain16.u) annotation(
     Line(points = {{105.5, 34}, {116, 34}, {116, 31}}, color = {0, 0, 127}));
-  connect(pressure16.port, simpleGenericOrifice14.port_b) annotation(
-    Line(points = {{100, 30}, {100, 0}}, color = {0, 127, 255}));
-  connect(pressure6.port, simpleGenericOrifice18.port_a) annotation(
-    Line(points = {{-50, -6}, {-22, -6}, {-22, 10}, {-10, 10}}, color = {0, 127, 255}));
   connect(pressure10.port, restriction.port_a) annotation(
     Line(points = {{-140, -140}, {-100, -140}}, color = {0, 127, 255}));
   connect(restriction.port_b, pressure11.port) annotation(
@@ -387,6 +361,32 @@ equation
     Line(points = {{150, 16}, {150, 46}}, color = {0, 127, 255}));
   connect(restriction10.port_b, massFlowRate4.port_a) annotation(
     Line(points = {{150, 66}, {150, 130}}, color = {0, 127, 255}));
+  connect(pressure7.port, restriction11.port_a) annotation(
+    Line(points = {{-50, -70}, {60, -70}, {60, 0}}, color = {0, 127, 255}));
+  connect(restriction11.port_b, massFlowRate2.port_a) annotation(
+    Line(points = {{60, 20}, {60, 130}}, color = {0, 127, 255}));
+  connect(pressure6.port, restriction12.port_a) annotation(
+    Line(points = {{-50, -6}, {-16, -6}, {-16, 30}, {10, 30}}, color = {0, 127, 255}));
+  connect(restriction12.port_b, massFlowRate2.port_a) annotation(
+    Line(points = {{30, 30}, {52, 30}, {52, 130}, {60, 130}}, color = {0, 127, 255}));
+  connect(pressure11.port, restriction13.port_a) annotation(
+    Line(points = {{-10, -140}, {100, -140}, {100, -48}}, color = {0, 127, 255}));
+  connect(pressure7.port, restriction13.port_a) annotation(
+    Line(points = {{-50, -70}, {86, -70}, {86, -48}, {100, -48}}, color = {0, 127, 255}));
+  connect(restriction13.port_b, pressure16.port) annotation(
+    Line(points = {{100, -28}, {100, 30}}, color = {0, 127, 255}));
+  connect(restriction14.port_b, pressure7.port) annotation(
+    Line(points = {{-70, -70}, {-50, -70}}, color = {0, 127, 255}));
+  connect(pressure5.port, restriction14.port_a) annotation(
+    Line(points = {{-100, -38}, {-100, -70}, {-90, -70}}, color = {0, 127, 255}));
+  connect(pressure.port, restriction15.port_a) annotation(
+    Line(points = {{-210, 26}, {-170, 26}, {-170, 14}}, color = {0, 127, 255}));
+  connect(pressure2.port, restriction15.port_b) annotation(
+    Line(points = {{-170, -38}, {-170, -6}}, color = {0, 127, 255}));
+  connect(restriction16.port_a, pressure2.port) annotation(
+    Line(points = {{-180, -70}, {-170, -70}, {-170, -38}}, color = {0, 127, 255}));
+  connect(restriction16.port_b, restriction3.port_a) annotation(
+    Line(points = {{-200, -70}, {-210, -70}, {-210, -90}}, color = {0, 127, 255}));
 protected
   annotation(
     Diagram(coordinateSystem(extent = {{-260, -240}, {260, 220}})),
