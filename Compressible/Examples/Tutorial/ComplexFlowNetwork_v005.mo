@@ -2,7 +2,7 @@ within FluidSystemComponents.Compressible.Examples.Tutorial;
 
 model ComplexFlowNetwork_v005
   extends Modelica.Icons.Example;
-  inner Modelica.Fluid.System system(T_start(displayUnit = "K") = 800, m_flow_start = 0.1, massDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, p_start = 20 * 100 * 1000)  annotation(
+  inner Modelica.Fluid.System system(T_start(displayUnit = "K") = 800, m_flow_start = 0.1, massDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, p_start =  100 * 1000)  annotation(
     Placement(visible = true, transformation(origin = {190, 210}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Sources.Boundary_pT extract1(redeclare package Medium = Modelica.Media.Air.DryAirNasa, T = 700, nPorts = 1, p = 40 * 101.325 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-220, 160}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -192,11 +192,11 @@ model ComplexFlowNetwork_v005
     Placement(visible = true, transformation(origin = {-120, -170}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction6(redeclare package Medium = Modelica.Media.Air.DryAirNasa, AmechTot_par = Modelica.Constants.pi / 4 * 0.01 ^ 2) annotation(
     Placement(visible = true, transformation(origin = {20, -170}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = Modelica.Media.Air.DryAirNasa,V = 0.1, nPorts=2, p_start = 600, use_portsData = false)  annotation(
+  Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = Modelica.Media.Air.DryAirNasa,V = 0.1, nPorts=2, use_portsData = false)  annotation(
     Placement(visible = true, transformation(origin = {-210, -158}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
-  Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = Modelica.Media.Air.DryAirNasa,V = 0.1, nPorts=2, p_start = 500, use_portsData = false)  annotation(
+  Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = Modelica.Media.Air.DryAirNasa,V = 0.1, nPorts=2, use_portsData = false)  annotation(
     Placement(visible = true, transformation(origin = {-84, -170}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
-  Modelica.Fluid.Vessels.ClosedVolume volume2(redeclare package Medium = Modelica.Media.Air.DryAirNasa,V = 0.1, nPorts=2, p_start = 400, use_portsData = false)  annotation(
+  Modelica.Fluid.Vessels.ClosedVolume volume2(redeclare package Medium = Modelica.Media.Air.DryAirNasa,V = 0.1, nPorts=2, use_portsData = false)  annotation(
     Placement(visible = true, transformation(origin = {156, -170}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
 equation
   connect(gain.y, realValue.numberPort) annotation(
