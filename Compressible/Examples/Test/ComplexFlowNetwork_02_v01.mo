@@ -27,33 +27,33 @@ model ComplexFlowNetwork_02_v01
     Placement(visible = true, transformation(origin = {5, 31}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Fluid.Vessels.ClosedVolume volume4(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-64, 63}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, Fxt_full = 1.0, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-164, 130}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-151, 130}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp1(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-151, 48}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible1(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av,dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible1(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, Fxt_full = 1.0,dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-164, 48}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp2(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-104, 30}, extent = {{3, -3}, {-3, 3}}, rotation = 90)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible2(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av,dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible2(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, Fxt_full = 1.0,dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-104, 16}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp3(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-51, 104}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible3(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible3(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, Fxt_full = 1.0, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-64, 104}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible4(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible4(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, Fxt_full = 1.0, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-36, 46}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp4(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-36, 58}, extent = {{3, -3}, {-3, 3}}, rotation = 90)));
   Modelica.Blocks.Sources.Ramp ramp5(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-44, 30}, extent = {{3, -3}, {-3, 3}}, rotation = 90)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible5(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible5(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, Fxt_full = 1.0, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-44, 16}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp6(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {67, 102}, extent = {{-3, -3}, {3, 3}}, rotation = 180)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible6(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible6(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, Fxt_full = 1.0, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {52, 102}, extent = {{-6, 6}, {6, -6}}, rotation = 90)));
   Modelica.Blocks.Sources.Ramp ramp_p_bc(duration = 1, height = 2 * 100 * 1000, offset = 30 * 100 * 1000, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-212, 164}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
