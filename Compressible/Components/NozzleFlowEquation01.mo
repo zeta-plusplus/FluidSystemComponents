@@ -9,7 +9,7 @@ model NozzleFlowEquation01
   /*-----------------------------------
   parameters
   -----------------------------------*/
-  parameter units.Area AmechTot_par = Modelica.Constants.pi/4*0.05 "";
+  parameter units.Area AmechTot_par = Modelica.Constants.pi/4*0.05^2.0 "";
   parameter Real Cd_par = 0.8 "";
   
   /* ******************************************************************************** */

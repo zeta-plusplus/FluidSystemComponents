@@ -11,13 +11,13 @@ model ComplexFlowNetwork_02_v01
   //-------------------------
   inner Modelica.Fluid.System system(T_start(displayUnit = "K") = 500, energyDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, m_flow_start = 0.1, massDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, p_start = 10 * 100 * 1000)  annotation(
     Placement(visible = true, transformation(origin = {58, 186}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = fluid1, T = 500, p = 30 * 100 * 1000, nPorts = 1) annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = fluid1, T = 500, nPorts = 1, p = 30 * 100 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-180, 156}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-164, 101}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = fluid1, T = 550, p = 28 * 100 * 1000, nPorts = 1) annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = fluid1, T = 550, nPorts = 1, p = 28 * 100 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-88, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary2(redeclare package Medium = fluid1, T = 1200, p = 10 * 100 * 1000, nPorts = 1) annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary2(redeclare package Medium = fluid1, T = 1200, nPorts = 1, p = 10 * 100 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {74, 140}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-127, 16}, extent = {{-5, -5}, {5, 5}}, rotation = -90)));
@@ -27,34 +27,40 @@ model ComplexFlowNetwork_02_v01
     Placement(visible = true, transformation(origin = {5, 31}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Fluid.Vessels.ClosedVolume volume4(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-64, 63}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-164, 130}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-151, 130}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp1(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-151, 48}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible1(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible1(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av,dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-164, 48}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp2(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-104, 30}, extent = {{3, -3}, {-3, 3}}, rotation = 90)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible2(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible2(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av,dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-104, 16}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp3(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-51, 104}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible3(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible3(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-64, 104}, extent = {{-6, -6}, {6, 6}}, rotation = -90)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible4(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible4(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-36, 46}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp4(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-36, 58}, extent = {{3, -3}, {-3, 3}}, rotation = 90)));
   Modelica.Blocks.Sources.Ramp ramp5(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {-44, 30}, extent = {{3, -3}, {-3, 3}}, rotation = 90)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible5(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible5(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-44, 16}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp6(duration = 1, height = 0, offset = 1, startTime = 1) annotation(
     Placement(visible = true, transformation(origin = {67, 102}, extent = {{-3, -3}, {3, 3}}, rotation = 180)));
-  Modelica.Fluid.Valves.ValveCompressible valveCompressible6(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av) annotation(
+  Modelica.Fluid.Valves.ValveCompressible valveCompressible6(redeclare package Medium = fluid1, Av = 0.8 * Modelica.Constants.pi / 4 * 0.01 ^ 2, CvData = Modelica.Fluid.Types.CvTypes.Av, dp_nominal = 2 * 100 * 1000, m_flow_nominal = 0.1, p_nominal = 30 * 100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {52, 102}, extent = {{-6, 6}, {6, -6}}, rotation = 90)));
+  Modelica.Blocks.Sources.Ramp ramp_p_bc(duration = 1, height = 2 * 100 * 1000, offset = 30 * 100 * 1000, startTime = 10) annotation(
+    Placement(visible = true, transformation(origin = {-212, 164}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
+  Modelica.Blocks.Sources.Ramp ramp_p_bc1(duration = 1, height = 2 * 100 * 1000, offset = 28 * 100 * 1000, startTime = 13) annotation(
+    Placement(visible = true, transformation(origin = {-120, 138}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
+  Modelica.Blocks.Sources.Ramp ramp_p_bc2(duration = 1, height = -1 * 100 * 1000, offset = 10 * 100 * 1000, startTime = 11) annotation(
+    Placement(visible = true, transformation(origin = {102, 148}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
 equation
   connect(valveCompressible.opening, ramp.y) annotation(
     Line(points = {{-159, 130}, {-154, 130}}, color = {0, 0, 127}));
@@ -98,9 +104,15 @@ equation
     Line(points = {{52, 96}, {52, 26}, {6, 26}}, color = {0, 127, 255}));
   connect(valveCompressible6.port_b, boundary2.ports[1]) annotation(
     Line(points = {{52, 108}, {52, 140}, {64, 140}}, color = {0, 127, 255}));
+  connect(ramp_p_bc.y, boundary.p_in) annotation(
+    Line(points = {{-205, 164}, {-192, 164}}, color = {0, 0, 127}));
+  connect(ramp_p_bc1.y, boundary1.p_in) annotation(
+    Line(points = {{-114, 138}, {-100, 138}}, color = {0, 0, 127}));
+  connect(boundary2.p_in, ramp_p_bc2.y) annotation(
+    Line(points = {{86, 148}, {96, 148}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}})),
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.01),
-    __OpenModelica_commandLineOptions = "--matchingAlgorithm=PFPlusExt --indexReductionMethod=dynamicStateSelection -d=initialization,NLSanalyticJacobian --maxMixedDeterminedIndex=10, --maxSizeLinearTearing=400, --maxSizeNonlinearTearing=600 ",
+    __OpenModelica_commandLineOptions = "--matchingAlgorithm=PFPlusExt --indexReductionMethod=dynamicStateSelection -d=initialization,NLSanalyticJacobian,nonewInst -d=nonewInst",
     __OpenModelica_simulationFlags(lv = "LOG_STATS", s = "dassl"));
 end ComplexFlowNetwork_02_v01;
