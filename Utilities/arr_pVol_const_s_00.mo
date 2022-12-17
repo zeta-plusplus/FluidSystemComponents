@@ -5,6 +5,7 @@ block arr_pVol_const_s_00
               imports
       ********************************************************/
   import Modelica.Constants;
+  import units=Modelica.Units.SI;
   /********************************************************
               Declaration
       ********************************************************/
@@ -21,11 +22,11 @@ block arr_pVol_const_s_00
                   Internal variables
       --------------------------------------------- */
   Integer nPts;
-  Modelica.SIunits.Pressure arr_p[nPts_par];
-  Modelica.SIunits.Volume arr_V[nPts_par];
-  Modelica.SIunits.Pressure dp;
-  Modelica.SIunits.Volume Vupper;
-  Modelica.SIunits.Volume Vlower;
+  units.Pressure arr_p[nPts_par];
+  units.Volume arr_V[nPts_par];
+  units.Pressure dp;
+  units.Volume Vupper;
+  units.Volume Vlower;
   /* ---------------------------------------------
                   Internal objects
       --------------------------------------------- */

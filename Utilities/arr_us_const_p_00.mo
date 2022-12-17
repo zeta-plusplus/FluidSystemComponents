@@ -5,6 +5,8 @@ block arr_us_const_p_00
             imports
     ********************************************************/
   import Modelica.Constants;
+  import units=Modelica.Units.SI;
+  
   /********************************************************
             Declaration
     ********************************************************/
@@ -21,11 +23,11 @@ block arr_us_const_p_00
                 Internal variables
     --------------------------------------------- */
   Integer nPts;
-  Modelica.SIunits.SpecificEnergy arr_u[nPts_par];
-  Modelica.SIunits.SpecificEntropy arr_s[nPts_par];
-  Modelica.SIunits.SpecificEntropy ds;
-  Modelica.SIunits.SpecificEnergy uLower;
-  Modelica.SIunits.SpecificEnergy uUpper;
+  units.SpecificEnergy arr_u[nPts_par];
+  units.SpecificEntropy arr_s[nPts_par];
+  units.SpecificEntropy ds;
+  units.SpecificEnergy uLower;
+  units.SpecificEnergy uUpper;
   /* ---------------------------------------------
                 Internal objects
     --------------------------------------------- */

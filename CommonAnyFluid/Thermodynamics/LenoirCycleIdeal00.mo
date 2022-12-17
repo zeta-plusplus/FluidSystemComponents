@@ -138,13 +138,9 @@ block LenoirCycleIdeal00
     Placement(visible = true, transformation(origin = {-30, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Utilities.arr_pVol_const_s_00 curve_pVol[3](redeclare package Medium = Medium, nPts_par = nPts_pVol_par) annotation(
     Placement(visible = true, transformation(origin = {-30, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  
-  
   /* ---------------------------------------------
-                Interface
-  --------------------------------------------- */
-  PropulsionSystem.Types.SubelementBus subelementBus1 annotation(
-    Placement(visible = true, transformation(origin = {60, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {70, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+                  Interface
+    --------------------------------------------- */
   Modelica.Blocks.Interfaces.RealInput u_p_fluidState_1(unit = "Pa", displayUnit = "Pa") annotation(
     Placement(visible = true, transformation(origin = {-120, 20}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u_T_fluidState_1(unit = "K", displayUnit = "K") if switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_T_for_ThermodynamicState annotation(
@@ -181,7 +177,7 @@ equation
   /* ---------------------------------------------
   Connections, interface - internal variables
   --------------------------------------------- */
-  connect(curve_pVol[3].u_m, massFluidCycle);
+  curve_pVol[3].u_m= massFluidCycle;
   connect(curve_pVol[3].u_Xi, fluidState[3].Xi);
   connect(curve_pVol[3].u_s, s_state[3]);
   connect(curve_pVol[3].u_pLower, fluidState[1].p);
