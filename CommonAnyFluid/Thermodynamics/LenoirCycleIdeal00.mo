@@ -7,6 +7,7 @@ block LenoirCycleIdeal00
   import Modelica.Constants;
   import FluidSystemComponents.Types.Switches;
   import FluidSystemComponents.Utilities;
+  import units=Modelica.Units.SI;
   
   /********************************************************
             Declaration
@@ -63,57 +64,57 @@ block LenoirCycleIdeal00
   
   //********** Initialization Parameters **********
   //--- fluidState_1 ---
-  parameter Modelica.SIunits.Pressure p_state1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.Temperature T_state1_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state1_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state1_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state1_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_1_init = 7000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_1_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //--- fluidState_2 ---
-  parameter Modelica.SIunits.Pressure p_state2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.Temperature T_state2_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state2_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state2_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state2_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_2_init = 7000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_2_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //--- fluidState_3 ---
-  parameter Modelica.SIunits.Pressure p_state3_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state3_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_3"));
-  parameter Modelica.SIunits.Temperature T_state3_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state3_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_3"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state3_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state3_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_3"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_3_init = 8000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_3_init = 8000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   
   
   /* ---------------------------------------------
                 Internal variables
     --------------------------------------------- */
-  Modelica.SIunits.SpecificEntropy s_state[3] "specific entropy, state 1" annotation(
+  units.SpecificEntropy s_state[3] "specific entropy, state 1" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
-  Modelica.SIunits.Mass massFluidCycle "mass of fluid in single cycle";
-  Modelica.SIunits.Volume Vol[3] "volume, state 1 - 3";
-  Modelica.SIunits.SpecificVolume v[3] "specific volume, state 1 - 3";
-  Modelica.SIunits.Heat Q_1_2 "heat injected into fluid, in process of const. vol. heat addition";
-  Modelica.SIunits.Heat Q_3_1 "heat rejected from fluid, in process of const. pressure heat addition";
-  Modelica.SIunits.Work WoutCycle "work output, single cycle";
-  Modelica.SIunits.Work W_2_3 "work, expansion, state 2 -> 3";
+  units.Mass massFluidCycle "mass of fluid in single cycle";
+  units.Volume Vol[3] "volume, state 1 - 3";
+  units.SpecificVolume v[3] "specific volume, state 1 - 3";
+  units.Heat Q_1_2 "heat injected into fluid, in process of const. vol. heat addition";
+  units.Heat Q_3_1 "heat rejected from fluid, in process of const. pressure heat addition";
+  units.Work WoutCycle "work output, single cycle";
+  units.Work W_2_3 "work, expansion, state 2 -> 3";
   Real PR_2_1 "Pressure Ratio, P2/P1";
   Real ER_3_2 "Expansion Ratio, Vol3/Vol2";
   Real effThermal "Thermal efficiency";
   //---
-  Modelica.SIunits.SpecificEnthalpy arr_h[4];
-  Modelica.SIunits.SpecificEnergy arr_u[4];
-  Modelica.SIunits.SpecificEntropy arr_s[4];
-  Modelica.SIunits.Pressure arr_p[4];
-  Modelica.SIunits.Volume arr_V[4];
-  Modelica.SIunits.SpecificVolume arr_v[4];
-  Modelica.SIunits.Temperature arr_T[4];
+  units.SpecificEnthalpy arr_h[4];
+  units.SpecificEnergy arr_u[4];
+  units.SpecificEntropy arr_s[4];
+  units.Pressure arr_p[4];
+  units.Volume arr_V[4];
+  units.SpecificVolume arr_v[4];
+  units.Temperature arr_T[4];
   
   
   /* ---------------------------------------------

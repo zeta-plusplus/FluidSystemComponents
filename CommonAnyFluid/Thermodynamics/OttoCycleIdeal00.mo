@@ -8,6 +8,7 @@ block OttoCycleIdeal00
   import Modelica.Constants;
   import FluidSystemComponents.Types.Switches;
   import FluidSystemComponents.Utilities;
+  import units=Modelica.Units.SI;
   
   /********************************************************
                     Declaration
@@ -64,77 +65,77 @@ block OttoCycleIdeal00
     HideResult = false);
   //********** Initialization Parameters **********
   //--- fluidState_1 ---
-  parameter Modelica.SIunits.Pressure p_state1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.Temperature T_state1_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state1_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state1_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state1_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_1_init = 7000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_1_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //--- fluidState_2 ---
-  parameter Modelica.SIunits.Pressure p_state2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.Temperature T_state2_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state2_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state2_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state2_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_2_init = 7000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_2_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //--- fluidState_3 ---
-  parameter Modelica.SIunits.Pressure p_state3_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state3_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_3"));
-  parameter Modelica.SIunits.Temperature T_state3_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state3_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_3"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state3_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state3_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_3"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_3_init = 8000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_3_init = 8000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //--- fluidState_4 ---
-  parameter Modelica.SIunits.Pressure p_state4_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state4_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_4"));
-  parameter Modelica.SIunits.Temperature T_state4_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state4_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_4"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state4_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state4_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_4"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_4_init = 8000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_4_init = 8000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   /* ---------------------------------------------
           Internal variables
       --------------------------------------------- */
-  Modelica.SIunits.Volume VolDisp "displacement";
-  Modelica.SIunits.Volume Vol1 "volume, state 1";
-  Modelica.SIunits.Volume Vol2 "volume, state 2";
-  Modelica.SIunits.Volume Vol3 "volume, state 3";
-  Modelica.SIunits.Volume Vol4 "volume, state 4";
-  Modelica.SIunits.SpecificVolume v1 "specific volume, state 1";
-  Modelica.SIunits.SpecificVolume v2 "specific volume, state 2";
-  Modelica.SIunits.SpecificVolume v3 "specific volume, state 3";
-  Modelica.SIunits.SpecificVolume v4 "specific volume, state 4";
-  Modelica.SIunits.SpecificEntropy s_state_1(start = s_state_1_init) "specific entropy, state 1" annotation(
+  units.Volume VolDisp "displacement";
+  units.Volume Vol1 "volume, state 1";
+  units.Volume Vol2 "volume, state 2";
+  units.Volume Vol3 "volume, state 3";
+  units.Volume Vol4 "volume, state 4";
+  units.SpecificVolume v1 "specific volume, state 1";
+  units.SpecificVolume v2 "specific volume, state 2";
+  units.SpecificVolume v3 "specific volume, state 3";
+  units.SpecificVolume v4 "specific volume, state 4";
+  units.SpecificEntropy s_state_1(start = s_state_1_init) "specific entropy, state 1" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
-  Modelica.SIunits.SpecificEntropy s_state_2(start = s_state_2_init) "specific entropy, state 2" annotation(
+  units.SpecificEntropy s_state_2(start = s_state_2_init) "specific entropy, state 2" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
-  Modelica.SIunits.SpecificEntropy s_state_3(start = s_state_3_init) "specific entropy, state 3" annotation(
+  units.SpecificEntropy s_state_3(start = s_state_3_init) "specific entropy, state 3" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
-  Modelica.SIunits.SpecificEntropy s_state_4(start = s_state_4_init) "specific entropy, state 4" annotation(
+  units.SpecificEntropy s_state_4(start = s_state_4_init) "specific entropy, state 4" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
-  Modelica.SIunits.Mass massFluidCycle "mass of fluid in single cycle in cylinder";
-  Modelica.SIunits.Heat Q_2_3 "heat injected into fluid by combustion";
-  Modelica.SIunits.Heat Q_4_1 "heat rejected from fluid by exhaust";
-  Modelica.SIunits.Work WoutCycle "work output, single cycle";
-  Modelica.SIunits.Work W_1_2 "work, compression, state 1 -> 2";
-  Modelica.SIunits.Work W_3_4 "work, expansion, state 3 -> 4";
+  units.Mass massFluidCycle "mass of fluid in single cycle in cylinder";
+  units.Heat Q_2_3 "heat injected into fluid by combustion";
+  units.Heat Q_4_1 "heat rejected from fluid by exhaust";
+  units.Work WoutCycle "work output, single cycle";
+  units.Work W_1_2 "work, compression, state 1 -> 2";
+  units.Work W_3_4 "work, expansion, state 3 -> 4";
   Real CR "Compression Ratio";
   Real ER "Expansion Ratio";
   Real effThermal "Thermal efficiency";
-  Modelica.SIunits.SpecificEnthalpy arr_h[5];
-  Modelica.SIunits.SpecificEnergy arr_u[5];
-  Modelica.SIunits.SpecificEntropy arr_s[5];
-  Modelica.SIunits.Pressure arr_p[5];
-  Modelica.SIunits.Volume arr_V[5];
-  Modelica.SIunits.SpecificVolume arr_v[5];
-  Modelica.SIunits.Temperature arr_T[5];
+  units.SpecificEnthalpy arr_h[5];
+  units.SpecificEnergy arr_u[5];
+  units.SpecificEntropy arr_s[5];
+  units.Pressure arr_p[5];
+  units.Volume arr_V[5];
+  units.SpecificVolume arr_v[5];
+  units.Temperature arr_T[5];
   Boolean flag_W34_gt_Q23 "flag, true if |Q_2_3|<|W_3_4|";
   /* ---------------------------------------------
           Internal objects

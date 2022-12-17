@@ -6,6 +6,8 @@ block IsentropicCompression00
     ********************************************************/
   import Modelica.Constants;
   import FluidSystemComponents.Types.Switches;
+  import units=Modelica.Units.SI;
+  
   /********************************************************
         Declaration
     ********************************************************/
@@ -36,38 +38,38 @@ block IsentropicCompression00
     --------------------------------------------- */
   //********** Initialization Parameters **********
   //--- fluidState_1 ---
-  parameter Modelica.SIunits.Pressure p_state1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.Temperature T_state1_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state1_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state1_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state1_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_1"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_1_init = 7000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_1_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   //--- fluidState_2 ---
-  parameter Modelica.SIunits.Pressure p_state2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_state2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.Temperature T_state2_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T_state2_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_state2_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_state2_init(displayUnit = "J/kg") = T_state1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluidState_2"));
-  parameter Modelica.SIunits.SpecificEntropy s_state_2_init = 7000.0 "" annotation(
+  parameter units.SpecificEntropy s_state_2_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   
   
   /* ---------------------------------------------
             Internal variables
     --------------------------------------------- */
-  Modelica.SIunits.SpecificVolume v1 "specific volume, state 1";
-  Modelica.SIunits.SpecificVolume v2 "specific volume, state 2";
+  units.SpecificVolume v1 "specific volume, state 1";
+  units.SpecificVolume v2 "specific volume, state 2";
   Real PR "Pressure ratio";
   Real CR "Compression ratio";
-  Modelica.SIunits.SpecificEntropy s_state_1(start = s_state_1_init) "specific entropy, state 1" annotation(
+  units.SpecificEntropy s_state_1(start = s_state_1_init) "specific entropy, state 1" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
-  Modelica.SIunits.SpecificEntropy s_state_2(start = s_state_2_init) "specific entropy, state 2" annotation(
+  units.SpecificEntropy s_state_2(start = s_state_2_init) "specific entropy, state 2" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
-  Modelica.SIunits.SpecificEnergy du "change in specific internal energy";
-  Modelica.SIunits.SpecificEnthalpy dh "change in specific enthalpy";
+  units.SpecificEnergy du "change in specific internal energy";
+  units.SpecificEnthalpy dh "change in specific enthalpy";
   
   /* ---------------------------------------------
             Internal objects
