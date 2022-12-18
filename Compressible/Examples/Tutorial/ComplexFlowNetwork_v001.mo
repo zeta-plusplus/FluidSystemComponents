@@ -391,6 +391,5 @@ equation
     Diagram(coordinateSystem(extent = {{-260, -240}, {260, 220}})),
     Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}})),
     version = "",
-    uses(Modelica(version = "3.2.3")),
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.01));
 end ComplexFlowNetwork_v001;

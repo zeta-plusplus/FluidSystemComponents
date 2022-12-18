@@ -59,6 +59,5 @@ equation
     Line(points = {{10, -40}, {30, -40}, {30, -68}, {40, -68}}, color = {0, 127, 255}));
   annotation(
     experiment(StartTime = 0, StopTime = 5, Tolerance = 1e-06, Interval = 0.001),
-    __OpenModelica_commandLineOptions = "--matchingAlgorithm=PFPlusExt --indexReductionMethod=dynamicStateSelection -d=initialization,NLSanalyticJacobian,nonewInst -d=nonewInst -d=nonewInst -d=nonewInst -d=nonewInst -d=nonewInst",
     __OpenModelica_simulationFlags(lv = "LOG_STATS", s = "dassl"));
 end NozzleFlowEquation03_ex01;

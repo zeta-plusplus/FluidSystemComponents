@@ -392,8 +392,6 @@ protected
     Diagram(coordinateSystem(extent = {{-260, -240}, {260, 220}})),
     Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}})),
     version = "",
-    uses(Modelica(version = "3.2.3")),
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.01),
-  __OpenModelica_commandLineOptions = "--matchingAlgorithm=PFPlusExt --indexReductionMethod=dynamicStateSelection -d=initialization,NLSanalyticJacobian,nonewInst --maxMixedDeterminedIndex=10, --maxSizeLinearTearing=400, --maxSizeNonlinearTearing=600 -d=nonewInst",
   __OpenModelica_simulationFlags(idaMaxNonLinIters="10" , homTauStart = "0.05", homTauMin="1e-6", homTauMax="2", lv = "LOG_STATS", s = "dassl"));
 end ComplexFlowNetwork_v003;
