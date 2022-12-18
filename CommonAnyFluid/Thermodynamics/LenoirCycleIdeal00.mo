@@ -178,74 +178,74 @@ equation
   Connections, interface - internal variables
   --------------------------------------------- */
   curve_pVol[3].u_m= massFluidCycle;
-  connect(curve_pVol[3].u_Xi, fluidState[3].Xi);
-  connect(curve_pVol[3].u_s, s_state[3]);
+  connect(curve_pVol[3].u_Xi,fluidState[3].Xi);
+  curve_pVol[3].u_s= s_state[3];
   connect(curve_pVol[3].u_pLower, fluidState[1].p);
   connect(curve_pVol[3].u_pUpper, fluidState[3].p);
-  connect(curve_pVol[2].u_m, massFluidCycle);
+  curve_pVol[2].u_m=massFluidCycle;
   connect(curve_pVol[2].u_Xi, fluidState[2].Xi);
-  connect(curve_pVol[2].u_s, s_state[2]);
+  curve_pVol[2].u_s= s_state[2];
   connect(curve_pVol[2].u_pLower, fluidState[1].p);
   connect(curve_pVol[2].u_pUpper, fluidState[2].p);
-  connect(curve_pVol[1].u_m, massFluidCycle);
+  curve_pVol[1].u_m= massFluidCycle;
   connect(curve_pVol[1].u_Xi, fluidState[1].Xi);
-  connect(curve_pVol[1].u_s, s_state[1]);
+  curve_pVol[1].u_s= s_state[1];
   connect(curve_pVol[1].u_pLower, fluidState[1].p);
   connect(curve_pVol[1].u_pUpper, fluidState[2].p);
   //---
   connect(curve_hs[3].u_Xi, fluidState[3].Xi);
   connect(curve_hs[3].u_p, fluidState[3].p);
-  connect(curve_hs[3].u_sUpper, s_state[2]);
-  connect(curve_hs[3].u_sLower, s_state[1]);
+  curve_hs[3].u_sUpper= s_state[2];
+  curve_hs[3].u_sLower= s_state[1];
   
   connect(curve_hs[2].u_Xi, fluidState[2].Xi);
   connect(curve_hs[2].u_p, fluidState[2].p);
-  connect(curve_hs[2].u_sUpper, s_state[2]);
-  connect(curve_hs[2].u_sLower, s_state[1]);
+  curve_hs[2].u_sUpper= s_state[2];
+  curve_hs[2].u_sLower= s_state[1];
   
   connect(curve_hs[1].u_Xi, fluidState[1].Xi);
   connect(curve_hs[1].u_p, fluidState[1].p);
-  connect(curve_hs[1].u_sUpper, s_state[3]);
-  connect(curve_hs[1].u_sLower, s_state[1]);
+  curve_hs[1].u_sUpper= s_state[3];
+  curve_hs[1].u_sLower= s_state[1];
   //---
   connect(curve_pv[1].u_pUpper, fluidState[2].p);
   connect(curve_pv[1].u_pLower, fluidState[1].p);
-  connect(curve_pv[1].u_s, s_state[1]);
+  curve_pv[1].u_s= s_state[1];
   connect(curve_pv[1].u_Xi, fluidState[1].Xi);
   connect(curve_pv[2].u_pUpper, fluidState[2].p);
   connect(curve_pv[2].u_pLower, fluidState[1].p);
-  connect(curve_pv[2].u_s, s_state[2]);
+  curve_pv[2].u_s= s_state[2];
   connect(curve_pv[2].u_Xi, fluidState[2].Xi);
   connect(curve_pv[3].u_pUpper, fluidState[3].p);
   connect(curve_pv[3].u_pLower, fluidState[1].p);
-  connect(curve_pv[3].u_s, s_state[3]);
+  curve_pv[3].u_s= s_state[3];
   connect(curve_pv[3].u_Xi, fluidState[3].Xi);
   //---
   connect(curve_Ts[3].u_Xi, fluidState[3].Xi);
   connect(curve_Ts[3].u_p, fluidState[3].p);
-  connect(curve_Ts[3].u_sUpper, s_state[3]);
-  connect(curve_Ts[3].u_sLower, s_state[2]);
+  curve_Ts[3].u_sUpper= s_state[3];
+  curve_Ts[3].u_sLower= s_state[2];
   connect(curve_Ts[2].u_Xi, fluidState[2].Xi);
   connect(curve_Ts[2].u_p, fluidState[2].p);
-  connect(curve_Ts[2].u_sUpper, s_state[3]);
-  connect(curve_Ts[2].u_sLower, s_state[2]);
+  curve_Ts[2].u_sUpper= s_state[3];
+  curve_Ts[2].u_sLower= s_state[2];
   connect(curve_Ts[1].u_Xi, fluidState[1].Xi);
   connect(curve_Ts[1].u_p, fluidState[1].p);
-  connect(curve_Ts[1].u_sUpper, s_state[3]);
-  connect(curve_Ts[1].u_sLower, s_state[1]);
+  curve_Ts[1].u_sUpper= s_state[3];
+  curve_Ts[1].u_sLower= s_state[1];
   //---
   connect(curve_us[3].u_Xi, fluidState[3].Xi);
   connect(curve_us[3].u_p, fluidState[3].p);
-  connect(curve_us[3].u_sUpper, s_state[3]);
-  connect(curve_us[3].u_sLower, s_state[2]);
+  curve_us[3].u_sUpper= s_state[3];
+  curve_us[3].u_sLower= s_state[2];
   connect(curve_us[2].u_Xi, fluidState[2].Xi);
   connect(curve_us[2].u_p, fluidState[2].p);
-  connect(curve_us[2].u_sUpper, s_state[3]);
-  connect(curve_us[2].u_sLower, s_state[2]);
+  curve_us[2].u_sUpper= s_state[3];
+  curve_us[2].u_sLower= s_state[2];
   connect(curve_us[1].u_Xi, fluidState[1].Xi);
   connect(curve_us[1].u_p, fluidState[1].p);
-  connect(curve_us[1].u_sUpper, s_state[3]);
-  connect(curve_us[1].u_sLower, s_state[1]);
+  curve_us[1].u_sUpper= s_state[3];
+  curve_us[1].u_sLower= s_state[1];
   
   
   //--- u ---

@@ -154,12 +154,9 @@ block OttoCycleIdeal00
     Placement(visible = true, transformation(origin = {-30, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Utilities.arr_pVol_const_s_00 curve_pVol[4](redeclare package Medium = Medium, nPts_par = nPts_pVol_par) annotation(
     Placement(visible = true, transformation(origin = {-30, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  
   /* ---------------------------------------------
-          Interface
-      --------------------------------------------- */
-  PropulsionSystem.Types.SubelementBus subelementBus1 annotation(
-    Placement(visible = true, transformation(origin = {70, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {70, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+            Interface
+        --------------------------------------------- */
   Modelica.Blocks.Interfaces.RealInput u_p_fluidState_1(unit = "Pa", displayUnit = "Pa") annotation(
     Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u_T_fluidState_1(unit = "K", displayUnit = "K") if switch_u_thermoState == Switches.switch_input_ThermodynamicState.use_T_for_ThermodynamicState annotation(
@@ -171,7 +168,7 @@ block OttoCycleIdeal00
   Modelica.Blocks.Interfaces.RealInput u_Xi_fluidState_1[Medium.nXi] annotation(
     Placement(visible = true, transformation(origin = {-120, -120}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   //-----
-  Modelica.Blocks.Interfaces.RealInput par_Vol1Disp(unit = "m3", displayUnit = "m3") if switch_u_fluidQuantity == Switches.switch_input_fluidQuantity.use_Volume "valid if switch_u_fluidQuantity==use_volume" annotation(
+  Modelica.Blocks.Interfaces.RealInput par_VolDisp(unit = "m3", displayUnit = "m3") if switch_u_fluidQuantity == Switches.switch_input_fluidQuantity.use_Volume "valid if switch_u_fluidQuantity==use_volume" annotation(
     Placement(visible = true, transformation(origin = {-80, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-80, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealInput par_massFluid(unit = "kg", displayUnit = "kg") if switch_u_fluidQuantity == Switches.switch_input_fluidQuantity.use_mass "valid if switch_u_fluidQuantity==use_mass" annotation(
     Placement(visible = true, transformation(origin = {-40, 120}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {-40, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -196,42 +193,34 @@ block OttoCycleIdeal00
     Placement(visible = true, transformation(origin = {110, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {114, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   //*************************************************************************************
 equation
-  connect(curve_pVol[4].u_m, massFluidCycle) annotation(
-    Line);
+  curve_pVol[4].u_m=massFluidCycle;
   connect(curve_pVol[4].u_Xi, fluidState_4.Xi) annotation(
     Line);
-  connect(curve_pVol[4].u_s, s_state_4) annotation(
-    Line);
+  curve_pVol[4].u_s= s_state_4;
   connect(curve_pVol[4].u_pLower, fluidState_4.p) annotation(
     Line);
   connect(curve_pVol[4].u_pUpper, fluidState_3.p) annotation(
     Line);
-  connect(curve_pVol[3].u_m, massFluidCycle) annotation(
-    Line);
+  curve_pVol[3].u_m= massFluidCycle;
   connect(curve_pVol[3].u_Xi, fluidState_3.Xi) annotation(
     Line);
-  connect(curve_pVol[3].u_s, s_state_3) annotation(
-    Line);
+  curve_pVol[3].u_s= s_state_3;
   connect(curve_pVol[3].u_pLower, fluidState_4.p) annotation(
     Line);
   connect(curve_pVol[3].u_pUpper, fluidState_3.p) annotation(
     Line);
-  connect(curve_pVol[2].u_m, massFluidCycle) annotation(
-    Line);
+  curve_pVol[2].u_m= massFluidCycle;
   connect(curve_pVol[2].u_Xi, fluidState_2.Xi) annotation(
     Line);
-  connect(curve_pVol[2].u_s, s_state_2) annotation(
-    Line);
+  curve_pVol[2].u_s= s_state_2;
   connect(curve_pVol[2].u_pLower, fluidState_1.p) annotation(
     Line);
   connect(curve_pVol[2].u_pUpper, fluidState_2.p) annotation(
     Line);
-  connect(curve_pVol[1].u_m, massFluidCycle) annotation(
-    Line);
+  curve_pVol[1].u_m= massFluidCycle;
   connect(curve_pVol[1].u_Xi, fluidState_1.Xi) annotation(
     Line);
-  connect(curve_pVol[1].u_s, s_state_1) annotation(
-    Line);
+  curve_pVol[1].u_s= s_state_1;
   connect(curve_pVol[1].u_pLower, fluidState_1.p) annotation(
     Line);
   connect(curve_pVol[1].u_pUpper, fluidState_2.p) annotation(
@@ -241,130 +230,102 @@ equation
     Line);
   connect(curve_hs[4].u_p, fluidState_4.p) annotation(
     Line);
-  connect(curve_hs[4].u_sUpper, s_state_4) annotation(
-    Line);
-  connect(curve_hs[4].u_sLower, s_state_1) annotation(
-    Line);
+  curve_hs[4].u_sUpper= s_state_4;
+  curve_hs[4].u_sLower= s_state_1;
   connect(curve_hs[3].u_Xi, fluidState_3.Xi) annotation(
     Line);
   connect(curve_hs[3].u_p, fluidState_3.p) annotation(
     Line);
-  connect(curve_hs[3].u_sUpper, s_state_3) annotation(
-    Line);
-  connect(curve_hs[3].u_sLower, s_state_2) annotation(
-    Line);
+  curve_hs[3].u_sUpper= s_state_3;
+  curve_hs[3].u_sLower= s_state_2;
   connect(curve_hs[2].u_Xi, fluidState_2.Xi) annotation(
     Line);
   connect(curve_hs[2].u_p, fluidState_2.p) annotation(
     Line);
-  connect(curve_hs[2].u_sUpper, s_state_3) annotation(
-    Line);
-  connect(curve_hs[2].u_sLower, s_state_2) annotation(
-    Line);
+  curve_hs[2].u_sUpper= s_state_3;
+  curve_hs[2].u_sLower= s_state_2;
   connect(curve_hs[1].u_Xi, fluidState_1.Xi) annotation(
     Line);
   connect(curve_hs[1].u_p, fluidState_1.p) annotation(
     Line);
-  connect(curve_hs[1].u_sUpper, s_state_4) annotation(
-    Line);
-  connect(curve_hs[1].u_sLower, s_state_1) annotation(
-    Line);
+  curve_hs[1].u_sUpper= s_state_4;
+  curve_hs[1].u_sLower= s_state_1;
   connect(curve_pv[1].u_pUpper, fluidState_2.p) annotation(
     Line);
   connect(curve_pv[1].u_pLower, fluidState_1.p) annotation(
     Line);
-  connect(curve_pv[1].u_s, s_state_1) annotation(
-    Line);
+  curve_pv[1].u_s= s_state_1;
   connect(curve_pv[1].u_Xi, fluidState_1.Xi) annotation(
     Line);
   connect(curve_pv[2].u_pUpper, fluidState_2.p) annotation(
     Line);
   connect(curve_pv[2].u_pLower, fluidState_1.p) annotation(
     Line);
-  connect(curve_pv[2].u_s, s_state_2) annotation(
-    Line);
+  curve_pv[2].u_s= s_state_2;
   connect(curve_pv[2].u_Xi, fluidState_2.Xi) annotation(
     Line);
   connect(curve_pv[3].u_pUpper, fluidState_3.p) annotation(
     Line);
   connect(curve_pv[3].u_pLower, fluidState_4.p) annotation(
     Line);
-  connect(curve_pv[3].u_s, s_state_3) annotation(
-    Line);
+  curve_pv[3].u_s= s_state_3;
   connect(curve_pv[3].u_Xi, fluidState_3.Xi) annotation(
     Line);
   connect(curve_pv[4].u_pUpper, fluidState_3.p) annotation(
     Line);
   connect(curve_pv[4].u_pLower, fluidState_4.p) annotation(
     Line);
-  connect(curve_pv[4].u_s, s_state_4) annotation(
-    Line);
+  curve_pv[4].u_s= s_state_4;
   connect(curve_pv[4].u_Xi, fluidState_4.Xi) annotation(
     Line);
   connect(curve_Ts[4].u_Xi, fluidState_4.Xi) annotation(
     Line);
   connect(curve_Ts[4].u_p, fluidState_4.p) annotation(
     Line);
-  connect(curve_Ts[4].u_sUpper, s_state_4) annotation(
-    Line);
-  connect(curve_Ts[4].u_sLower, s_state_1) annotation(
-    Line);
+  curve_Ts[4].u_sUpper= s_state_4;
+  curve_Ts[4].u_sLower= s_state_1;
   connect(curve_Ts[3].u_Xi, fluidState_3.Xi) annotation(
     Line);
   connect(curve_Ts[3].u_p, fluidState_3.p) annotation(
     Line);
-  connect(curve_Ts[3].u_sUpper, s_state_3) annotation(
-    Line);
-  connect(curve_Ts[3].u_sLower, s_state_2) annotation(
-    Line);
+  curve_Ts[3].u_sUpper= s_state_3;
+  curve_Ts[3].u_sLower= s_state_2;
   connect(curve_Ts[2].u_Xi, fluidState_2.Xi) annotation(
     Line);
   connect(curve_Ts[2].u_p, fluidState_2.p) annotation(
     Line);
-  connect(curve_Ts[2].u_sUpper, s_state_3) annotation(
-    Line);
-  connect(curve_Ts[2].u_sLower, s_state_2) annotation(
-    Line);
+  curve_Ts[2].u_sUpper= s_state_3;
+  curve_Ts[2].u_sLower=s_state_2;
   connect(curve_Ts[1].u_Xi, fluidState_1.Xi) annotation(
     Line);
   connect(curve_Ts[1].u_p, fluidState_1.p) annotation(
     Line);
-  connect(curve_Ts[1].u_sUpper, s_state_4) annotation(
-    Line);
-  connect(curve_Ts[1].u_sLower, s_state_1) annotation(
-    Line);
+  curve_Ts[1].u_sUpper= s_state_4;
+  curve_Ts[1].u_sLower= s_state_1;
   connect(curve_us[4].u_Xi, fluidState_4.Xi) annotation(
     Line);
   connect(curve_us[4].u_p, fluidState_4.p) annotation(
     Line);
-  connect(curve_us[4].u_sUpper, s_state_4) annotation(
-    Line);
-  connect(curve_us[4].u_sLower, s_state_1) annotation(
-    Line);
+  curve_us[4].u_sUpper= s_state_4;
+  curve_us[4].u_sLower= s_state_1;
   connect(curve_us[3].u_Xi, fluidState_3.Xi) annotation(
     Line);
   connect(curve_us[3].u_p, fluidState_3.p) annotation(
     Line);
-  connect(curve_us[3].u_sUpper, s_state_3) annotation(
-    Line);
-  connect(curve_us[3].u_sLower, s_state_2) annotation(
-    Line);
+  curve_us[3].u_sUpper= s_state_3;
+  curve_us[3].u_sLower= s_state_2;
   connect(curve_us[2].u_Xi, fluidState_2.Xi) annotation(
     Line);
   connect(curve_us[2].u_p, fluidState_2.p) annotation(
     Line);
-  connect(curve_us[2].u_sUpper, s_state_3) annotation(
-    Line);
-  connect(curve_us[2].u_sLower, s_state_2) annotation(
-    Line);
+  curve_us[2].u_sUpper= s_state_3;
+  curve_us[2].u_sLower= s_state_2;
   connect(curve_us[1].u_Xi, fluidState_1.Xi) annotation(
     Line);
   connect(curve_us[1].u_p, fluidState_1.p) annotation(
     Line);
-  connect(curve_us[1].u_sUpper, s_state_4) annotation(
-    Line);
-  connect(curve_us[1].u_sLower, s_state_1) annotation(
-    Line);
+  curve_us[1].u_sUpper= s_state_4;
+  curve_us[1].u_sLower= s_state_1;
 /* ---------------------------------------------
   Connections, interface <-> internal variables
   --------------------------------------------- */
