@@ -5,7 +5,8 @@ partial model Frame_2FluidPorts_1Shaft
         imports
   ********************************************************/
   import Modelica.Constants;
-  import Modelica.SIunits;
+  import units=Modelica.Units.SI;
+  import NonSI=Modelica.Units.NonSI;
   
   
   /********************************************************
@@ -22,70 +23,70 @@ partial model Frame_2FluidPorts_1Shaft
     Evaluate = true);
   //----- inner-connected parameters -----
   //-----
-  inner parameter Modelica.SIunits.MassFlowRate dmDes_1 = 10.0 
+  inner parameter units.MassFlowRate dmDes_1 = 10.0 
     "design point dm at st.1, refered in subelement"
     annotation(
     Dialog(group = "Design Point Definition"));
-  inner parameter Modelica.SIunits.AbsolutePressure pDes_1(displayUnit = "Pa") = 101.3 * 1000 
+  inner parameter units.AbsolutePressure pDes_1(displayUnit = "Pa") = 101.3 * 1000 
     "design point p at st.1, refered in subelement"
     annotation(
     Dialog(group = "Design Point Definition"));
-  inner parameter Modelica.SIunits.Temperature Tdes_1 = 288.15 
+  inner parameter units.Temperature Tdes_1 = 288.15 
     "design point T at st.1, refered in subelement" 
     annotation(
     Dialog(group = "Design Point Definition"));
-  inner parameter Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm NmechDes = 10000.0 
+  inner parameter NonSI.AngularVelocity_rpm NmechDes = 10000.0 
     ""
     annotation(
     Dialog(group = "Characteristics"));
-  parameter Modelica.SIunits.Area Amech_1 = 1.0
+  parameter units.Area Amech_1 = 1.0
     ""
     annotation(
     Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Area Amech_2 = 1.0 
+  parameter units.Area Amech_2 = 1.0 
     ""
     annotation(
     Dialog(group = "Geometry"));
   
   //********** Initialization Parameters **********
   //--- fluid_1, port_1 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 
+  parameter units.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
-  parameter Modelica.SIunits.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 
+  parameter units.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 
     "" 
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
-  parameter Modelica.SIunits.Temperature T1_init(displayUnit = "K") = 288.15 
+  parameter units.Temperature T1_init(displayUnit = "K") = 288.15 
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
-  parameter Modelica.SIunits.SpecificEnthalpy h1_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 
+  parameter units.SpecificEnthalpy h1_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
   
   //--- fluid_2, port_2 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init 
+  parameter units.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init 
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
-  parameter Modelica.SIunits.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 
+  parameter units.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
-  parameter Modelica.SIunits.Temperature T2_init(displayUnit = "K") = 288.15 
+  parameter units.Temperature T2_init(displayUnit = "K") = 288.15 
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
-  parameter Modelica.SIunits.SpecificEnthalpy h2_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 
+  parameter units.SpecificEnthalpy h2_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Fluid states"));
   
   //--- component characteristicsc ---
-  parameter Modelica.SIunits.PressureDifference deltap_init= 500*1000
+  parameter units.PressureDifference deltap_init= 500*1000
     ""
     annotation(
     Dialog(tab = "Initialization", group = "Component characteristics"));
@@ -93,11 +94,11 @@ partial model Frame_2FluidPorts_1Shaft
   //********** Internal variables **********
   Medium.BaseProperties fluid_1(p.start = p1_init, T.start = T1_init, state.p.start = p1_init, state.T.start = T1_init, h.start = h1_init) "flow station of inlet";
   Medium.BaseProperties fluid_2(p.start = p2_init, T.start = T2_init, state.p.start = p2_init, state.T.start = T2_init, h.start = h2_init) "flow station of outlet";
-  Modelica.SIunits.Power pwr "power via shaft, positive if fluid generates power";
-  Modelica.SIunits.Torque trq(start = 1.0) "trq via shaft";
-  Modelica.SIunits.AngularVelocity omega(start = 1.0) "mechanical rotation speed, rad/sec";
-  Modelica.SIunits.Angle phi(start = 0.0) "mechanical rotation displacement, rad";
-  Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm Nmech(start = NmechDes) "mechanical rotation speed, rpm";
+  units.Power pwr "power via shaft, positive if fluid generates power";
+  units.Torque trq(start = 1.0) "trq via shaft";
+  units.AngularVelocity omega(start = 1.0) "mechanical rotation speed, rad/sec";
+  units.Angle phi(start = 0.0) "mechanical rotation displacement, rad";
+  NonSI.AngularVelocity_rpm Nmech(start = NmechDes) "mechanical rotation speed, rpm";
   Real NqNdes(start = 1.0) "ratio of mech. rotational speed with respect to design pt. speed";
   
   //----- inner-connected variables -----

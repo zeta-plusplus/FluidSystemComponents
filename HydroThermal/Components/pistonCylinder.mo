@@ -6,51 +6,53 @@ model pistonCylinder
     imports
   ********************************************************/
   import Modelica.Constants;
-  import Modelica.SIunits;
+  import units=Modelica.Units.SI;
+  
+  
   //********** Package **********
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);
   //********** Parameters **********
-  parameter Modelica.SIunits.Length lengthCylinder=0.5
+  parameter units.Length lengthCylinder=0.5
     ""
     annotation(
       Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Length lengthHead=0.1
+  parameter units.Length lengthHead=0.1
     ""
     annotation(
       Dialog(group = "Geometry"));
   
-  parameter Modelica.SIunits.Length lengthRod=lengthCylinder+0.1
+  parameter units.Length lengthRod=lengthCylinder+0.1
     ""
     annotation(
       Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Area areaHeadSide=Modelica.Constants.pi / 4 * 0.1 ^ 2
+  parameter units.Area areaHeadSide=Modelica.Constants.pi / 4 * 0.1 ^ 2
     ""
     annotation(
       Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Area areaRodSide=Modelica.Constants.pi / 4 * 0.1 ^ 2
+  parameter units.Area areaRodSide=Modelica.Constants.pi / 4 * 0.1 ^ 2
     ""
     annotation(
       Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Volume volDeadHeadSide=1.0e-6
+  parameter units.Volume volDeadHeadSide=1.0e-6
     ""
     annotation(
       Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Volume volDeadRodSide=1.0e-6
+  parameter units.Volume volDeadRodSide=1.0e-6
     ""
     annotation(
       Dialog(group = "Geometry"));
     
-  parameter Modelica.SIunits.Mass massHead=1.0
+  parameter units.Mass massHead=1.0
     "" 
     annotation(
       Dialog(group = "Characteristics"));
-  parameter Modelica.SIunits.Mass massRod=2.0
+  parameter units.Mass massRod=2.0
     "" 
     annotation(
       Dialog(group = "Characteristics"));
   //*********** initialization parameters **********
-  parameter Modelica.SIunits.Length sInit_head= 0.1+lengthHead/2
+  parameter units.Length sInit_head= 0.1+lengthHead/2
     ""
     annotation(
       Dialog(group = "Initialization"));

@@ -20,9 +20,9 @@ model test_hydroCylinder002
     Placement(visible = true, transformation(origin = {-90, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const(k = 10000) annotation(
     Placement(visible = true, transformation(origin = {-120, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Machines.SweptVolume sweptVolume1(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false, start = 0.1), use_portsData = false) annotation(
+  Modelica.Fluid.Machines.SweptVolume sweptVolume1(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(each fixed = false, each start = 0.1), use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {-40, 130}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Fluid.Machines.SweptVolume sweptVolume2(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false, start = 0.4), use_portsData = false) annotation(
+  Modelica.Fluid.Machines.SweptVolume sweptVolume2(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(each fixed = false, each start = 0.4), use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {160, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Mechanics.Translational.Sensors.PositionSensor positionSensor1 annotation(
     Placement(visible = true, transformation(origin = {0, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

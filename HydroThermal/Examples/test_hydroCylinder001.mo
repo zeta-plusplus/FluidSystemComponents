@@ -20,9 +20,9 @@ model test_hydroCylinder001
     Placement(visible = true, transformation(origin = {-150, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const(k = 10000) annotation(
     Placement(visible = true, transformation(origin = {-180, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Machines.SweptVolume sweptVolume1(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false, start = 0.1), use_portsData = false) annotation(
+  Modelica.Fluid.Machines.SweptVolume sweptVolume1(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(each fixed = false, each start = 0.1), use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {-100, 130}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Fluid.Machines.SweptVolume sweptVolume2(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false, start = 0.4), use_portsData = false) annotation(
+  Modelica.Fluid.Machines.SweptVolume sweptVolume2(redeclare package Medium = liquid1, clearance = 1e-6, nPorts = 1, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(each fixed = false, each start = 0.4), use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {100, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Fluid.Fittings.SimpleGenericOrifice orifice(redeclare package Medium = liquid1, diameter = 0.001, zeta = 1) annotation(
     Placement(visible = true, transformation(origin = {-30, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

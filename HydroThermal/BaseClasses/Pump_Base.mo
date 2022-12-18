@@ -6,6 +6,10 @@ partial model Pump_Base
   /********************************************************
     imports
   ********************************************************/
+  import units=Modelica.Units.SI;
+  import unitConversions=Modelica.Units.Conversions;
+  
+  
   //********** Parameters **********
   //##### none #####
   
@@ -16,9 +20,9 @@ partial model Pump_Base
     Dialog(tab = "Initialization", group = "Component characteristics"));
     
   //********** Internal variables ********** 
-  Modelica.SIunits.PressureDifference deltap(start= deltap_init) "";
+  units.PressureDifference deltap(start= deltap_init) "";
   Real PR(start = 1.0) "pressure ratio";
-  Modelica.SIunits.SpecificEnthalpy h_2is(start= h2_init) "";
+  units.SpecificEnthalpy h_2is(start= h2_init) "";
   
   //----- inner-connected variables -----
   
@@ -43,7 +47,7 @@ equation
   pwr= -1*((port_1.m_flow * fluid_1.h) + (port_2.m_flow * fluid_2.h));
   der(phi)= omega;
   omega*trq= pwr;
-  Nmech= Modelica.SIunits.Conversions.NonSIunits.to_rpm(omega);
+  Nmech= unitConversions.to_rpm(omega);
   
   //-- enthalpy & entropy --
   h_2is = Medium.isentropicEnthalpy(fluid_2.p, fluid_1.state);

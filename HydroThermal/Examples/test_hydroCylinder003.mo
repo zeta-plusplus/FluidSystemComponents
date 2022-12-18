@@ -20,13 +20,13 @@ model test_hydroCylinder003
     Placement(visible = true, transformation(origin = {-90, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const(k = 10000) annotation(
     Placement(visible = true, transformation(origin = {-120, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Machines.SweptVolume sweptVolume2(redeclare package Medium = liquid1, clearance = 10e-6, nPorts = 1, p_start = 1 *101.3 * 1000, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false, start = 0.2), use_portsData = false) annotation(
+  Modelica.Fluid.Machines.SweptVolume sweptVolume2(redeclare package Medium = liquid1, clearance = 10e-6, nPorts = 1, p_start = 1 *101.3 * 1000, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(each fixed = false, each start = 0.2), use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {-90, 130}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   FluidSystemComponents.HydroThermal.Components.DirValve_4ports3positions dirValve_4ports3positions1(redeclare package Medium = liquid1, dp_nominal =  10 * 1000, m_flow_nominal = 0.01) annotation(
     Placement(visible = true, transformation(origin = {0, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   Modelica.Blocks.Sources.IntegerStep integerStep1(height = 1, offset = -1, startTime = 5)  annotation(
     Placement(visible = true, transformation(origin = {70, -40}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  Modelica.Fluid.Machines.SweptVolume sweptVolume4(redeclare package Medium = liquid1,clearance = 10e-6, nPorts = 1, p_start = 1 *101.3 * 1000, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(fixed = false), use_portsData = false) annotation(
+  Modelica.Fluid.Machines.SweptVolume sweptVolume4(redeclare package Medium = liquid1,clearance = 10e-6, nPorts = 1, p_start = 1 *101.3 * 1000, pistonCrossArea = Modelica.Constants.pi / 4 * 0.1 ^ 2, s(each fixed = false), use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {170, 130}, extent = {{-10, 10}, {10, -10}}, rotation = -90)));
   Modelica.Mechanics.Translational.Components.Fixed fixed1 annotation(
     Placement(visible = true, transformation(origin = {-90, 50}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));

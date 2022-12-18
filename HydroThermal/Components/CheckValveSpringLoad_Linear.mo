@@ -7,7 +7,9 @@ model CheckValveSpringLoad_Linear
     imports
   ********************************************************/
   import Modelica.Constants;
-  import Modelica.SIunits;
+  import units=Modelica.Units.SI;
+  
+  
   //********** Parameters **********
   parameter Real gradientQP= (0.001*50)/(100.0*1000.0)
     "qFlow_1 vs. deltap after crack, [m**3/PaD]"

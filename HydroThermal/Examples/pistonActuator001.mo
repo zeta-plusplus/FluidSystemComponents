@@ -26,7 +26,7 @@ model pistonActuator001
     Placement(visible = true, transformation(origin = {40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp1(duration = 20, height = 0.9, offset = 0.01, startTime = 40) annotation(
     Placement(visible = true, transformation(origin = {-40, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = liquid1,nPorts=1) annotation(
     Placement(visible = true, transformation(origin = {-10, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(ramp1.y, valveLinear1.opening) annotation(

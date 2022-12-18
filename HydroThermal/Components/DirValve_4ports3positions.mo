@@ -7,13 +7,15 @@ model DirValve_4ports3positions
     imports
   ********************************************************/
   import Modelica.Constants;
-  import Modelica.SIunits;
+  import units=Modelica.Units.SI;
+  
+  
   //********** Parameters **********
-  parameter Modelica.SIunits.Pressure dp_nominal(displayUnit="Pa")=10*1000 
+  parameter units.Pressure dp_nominal(displayUnit="Pa")=10*1000 
     ""
     annotation(
     Dialog(group = "Characteristics"));
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal(displayUnit="kg/s")=0.01 
+  parameter units.MassFlowRate m_flow_nominal(displayUnit="kg/s")=0.01 
     ""
     annotation(
     Dialog(group = "Characteristics"));

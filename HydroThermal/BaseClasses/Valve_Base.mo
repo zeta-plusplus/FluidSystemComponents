@@ -7,10 +7,11 @@ partial model Valve_Base
     imports
   ********************************************************/
   import Modelica.Constants;
-  import Modelica.SIunits;
+  import units=Modelica.Units.SI;
+  
   
   //********** Parameters **********
-  parameter Modelica.SIunits.Pressure deltapCrack(displayUnit="Pa")=500.0*1000.0
+  parameter units.Pressure deltapCrack(displayUnit="Pa")=500.0*1000.0
     ""
     annotation(
     Dialog(group = "Characteristics"));
@@ -20,15 +21,15 @@ partial model Valve_Base
     "" 
     annotation(
     Dialog(tab = "Initialization", group = "Component characteristics"));
-  parameter Modelica.SIunits.Pressure deltap_init(displayUnit="Pa")= 0.0
+  parameter units.Pressure deltap_init(displayUnit="Pa")= 0.0
   "" 
     annotation(
     Dialog(tab = "Initialization", group = "Component characteristics"));
   
   //********** Internal variables ********** 
-  Modelica.SIunits.Pressure deltap(start= deltap_init) "";
+  units.Pressure deltap(start= deltap_init) "";
   Real PR(start = 1.0) "pressure ratio";
-  Modelica.SIunits.VolumeFlowRate qFlow_1(start=0) "";
+  units.VolumeFlowRate qFlow_1(start=0) "";
   
   //----- inner-connected variables -----
   //##### none #####

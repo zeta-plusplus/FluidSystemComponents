@@ -5,6 +5,7 @@ partial model PumpMotorFixedDispBase00
         imports   
   ********************************************************/
   import Modelica.Constants;
+  import units=Modelica.Units.SI;
   
   
   /********************************************************
@@ -23,22 +24,22 @@ partial model PumpMotorFixedDispBase00
   --------------------------------------------- */
   //********** Initialization Parameters **********
   //--- fluid_1, port_1 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 "" annotation(
+  parameter units.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Temperature T1_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T1_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.SpecificEnthalpy h1_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 "" annotation(
+  parameter units.SpecificEnthalpy h1_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
   //--- fluid_2, port_2 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init "" annotation(
+  parameter units.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.Temperature T2_init(displayUnit = "K") = 288.15 "" annotation(
+  parameter units.Temperature T2_init(displayUnit = "K") = 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.SpecificEnthalpy h2_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 "" annotation(
+  parameter units.SpecificEnthalpy h2_init(displayUnit = "J/kg") = 1.004 * 1000 * 288.15 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
   
   
@@ -48,40 +49,40 @@ partial model PumpMotorFixedDispBase00
   --------------------------------------------- */
   Medium.BaseProperties fluid_1(p.start = p1_init, T.start = T1_init, state.p.start = p1_init, state.T.start = T1_init, h.start = h1_init) "flow station of inlet";
   Medium.BaseProperties fluid_2(p.start = p2_init, T.start = T2_init, state.p.start = p2_init, state.T.start = T2_init, h.start = h2_init) "flow station of outlet";
-  Modelica.SIunits.SpecificEntropy s_fluid_1 "specific entropy, fluid_1";
-  Modelica.SIunits.SpecificEntropy s_fluid_2 "specific entropy, fluid_2";
+  units.SpecificEntropy s_fluid_1 "specific entropy, fluid_1";
+  units.SpecificEntropy s_fluid_2 "specific entropy, fluid_2";
   
-  Modelica.SIunits.Power pwr "power via shaft, positive if fluid generates power";
-  Modelica.SIunits.Power deltapXV_flow "deltap*V_flow";
-  Modelica.SIunits.Torque trq "trq via shaft";
-  Modelica.SIunits.Power pwr_inv "power via shaft, sign inveterd";
-  Modelica.SIunits.Torque trq_inv "trq via shaft, sign inverted";
+  units.Power pwr "power via shaft, positive if fluid generates power";
+  units.Power deltapXV_flow "deltap*V_flow";
+  units.Torque trq "trq via shaft";
+  units.Power pwr_inv "power via shaft, sign inveterd";
+  units.Torque trq_inv "trq via shaft, sign inverted";
   
-  Modelica.SIunits.AngularVelocity omega "mechanical rotation speed, rad/sec";
-  Modelica.SIunits.Angle phi "mechanical rotation displacement, rad";
-  Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm Nmech "mechanical rotation speed, rpm";
+  units.AngularVelocity omega "mechanical rotation speed, rad/sec";
+  units.Angle phi "mechanical rotation displacement, rad";
+  units.Conversions.NonSIunits.AngularVelocity_rpm Nmech "mechanical rotation speed, rpm";
   
   Real PR "pressure ratio";
-  Modelica.SIunits.PressureDifference deltap "pressure difference";
-  Modelica.SIunits.PressureDifference deltap_inv "pressure difference, sign inverted";
+  units.PressureDifference deltap "pressure difference";
+  units.PressureDifference deltap_inv "pressure difference, sign inverted";
   Real effVol "volumetric efficiency";
   Real effMech "mechanical efficiency";
-  Modelica.SIunits.SpecificEnthalpy dht_is "specific enthalpy change in isentropic compression";
-  Modelica.SIunits.SpecificEnthalpy dht "specific enthalpy change in non-isentropic compression";
-  Modelica.SIunits.SpecificEnthalpy h_2is "";
+  units.SpecificEnthalpy dht_is "specific enthalpy change in isentropic compression";
+  units.SpecificEnthalpy dht "specific enthalpy change in non-isentropic compression";
+  units.SpecificEnthalpy h_2is "";
   
-  Modelica.SIunits.MassFlowRate m_flow_max;
-  Modelica.SIunits.MassFlowRate m_flow_min;
+  units.MassFlowRate m_flow_max;
+  units.MassFlowRate m_flow_min;
   
-  Modelica.SIunits.VolumeFlowRate V_flow "volume flow rate, referring to fluid_1.T";
-  Modelica.SIunits.VolumeFlowRate V_flow_ideal "volume flow rate, ideal, referring to fluid_1.T";
+  units.VolumeFlowRate V_flow "volume flow rate, referring to fluid_1.T";
+  units.VolumeFlowRate V_flow_ideal "volume flow rate, ideal, referring to fluid_1.T";
   
-  Modelica.SIunits.VolumeFlowRate V_flow_des "volume flow rate, design point, value under effVol=1, referring to fluid_1.T";
+  units.VolumeFlowRate V_flow_des "volume flow rate, design point, value under effVol=1, referring to fluid_1.T";
   
-  Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm NmechDes "mechanical rotation speed, design point";
+  units.Conversions.NonSIunits.AngularVelocity_rpm NmechDes "mechanical rotation speed, design point";
   Real effVolDes "volumetric efficiency, design point";
   Real effMechDes "mechanical efficiency, design point";
-  Modelica.SIunits.Volume disp;
+  units.Volume disp;
   
   
   Real NqNdes "ratio of mech. rotational speed with respect to design pt. speed";
@@ -166,7 +167,7 @@ equation
   pwr = -1.0 * (port_1.m_flow * fluid_1.h + port_2.m_flow * fluid_2.h);
   omega * trq = pwr;
   der(phi) = omega;
-  Nmech = Modelica.SIunits.Conversions.NonSIunits.to_rpm(omega);
+  Nmech = units.Conversions.NonSIunits.to_rpm(omega);
   
   pwr_inv= -1*pwr;
   trq_inv= -1*trq;

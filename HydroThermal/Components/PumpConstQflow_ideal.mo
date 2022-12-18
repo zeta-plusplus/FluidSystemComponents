@@ -3,13 +3,15 @@ within FluidSystemComponents.HydroThermal.Components;
 model PumpConstQflow_ideal
   extends FluidSystemComponents.HydroThermal.BaseClasses.Pump_Base;
   //----------
+  import units=Modelica.Units.SI;
+  
   //********** Parameters **********
-  parameter Modelica.SIunits.VolumeFlowRate qFlowDes= 100
+  parameter units.VolumeFlowRate qFlowDes= 100
     ""
     annotation(
     Dialog(group = "Characteristics"));
   //********** Internal variables **********
-  Modelica.SIunits.VolumeFlowRate qFlow(start=qFlowDes) "";
+  units.VolumeFlowRate qFlow(start=qFlowDes) "";
   //----- inner-connected variables -----
   //##### none #####
   //----- inner-outer-connected variables -----
