@@ -3,23 +3,23 @@ within FluidSystemComponents.Compressible.Examples.Tutorial;
 model ComplexFlowNetwork_ex02_v01
   extends Modelica.Icons.Example;
   //-------------------------
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   //-------------------------
   parameter units.Volume volStd = 0.1;
   package fluid1 = Modelica.Media.Air.DryAirNasa;
   //redeclare package Medium= fluid1,
   //-------------------------
-  inner Modelica.Fluid.System system(T_start(displayUnit = "K") = 500, energyDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, m_flow_start = 0.1, massDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, p_start = 10 * 100 * 1000) annotation(
+  inner Modelica.Fluid.System system(T_start(displayUnit = "K") = 288.15, energyDynamics = Modelica.Fluid.Types.Dynamics.DynamicFreeInitial, m_flow_start = 0, massDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, p_start =  100 * 1000) annotation(
     Placement(visible = true, transformation(origin = {-226, 210}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = fluid1, T = 500, nPorts = 2, p = 30 * 100 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-173, 163}, extent = {{-9, -9}, {9, 9}}, rotation = 0)));
-  Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 3) annotation(
+  Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-164, 53}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = fluid1, T = 550, nPorts = 1, p = 28 * 100 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-99, 157}, extent = {{-9, -9}, {9, 9}}, rotation = 0)));
   Modelica.Fluid.Sources.Boundary_pT boundary2(redeclare package Medium = fluid1, T = 1200, nPorts = 4, p = 10 * 100 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {63, 231}, extent = {{9, -9}, {-9, 9}}, rotation = 0)));
-  Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 3) annotation(
+  Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-159, -60}, extent = {{-5, -5}, {5, 5}}, rotation = -90)));
   Modelica.Fluid.Vessels.ClosedVolume volume2(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-73, -55}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
@@ -35,14 +35,6 @@ model ComplexFlowNetwork_ex02_v01
     Placement(visible = true, transformation(origin = {91, 238}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Fluid.Vessels.ClosedVolume volume5(redeclare package Medium = fluid1, V = volStd, nPorts = 4, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {24, 67}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
-  Modelica.Fluid.Sensors.Pressure p(redeclare package Medium = fluid1) annotation(
-    Placement(visible = true, transformation(origin = {-174, 50}, extent = {{-4, 4}, {4, -4}}, rotation = 180)));
-  Modelica.Blocks.Interaction.Show.RealValue realValue(significantDigits = 6) annotation(
-    Placement(visible = true, transformation(origin = {-170, 40}, extent = {{-7, -4}, {7, 4}}, rotation = 0)));
-  Modelica.Fluid.Sensors.Pressure p1(redeclare package Medium = fluid1) annotation(
-    Placement(visible = true, transformation(origin = {-170, -62}, extent = {{-4, 4}, {4, -4}}, rotation = 180)));
-  Modelica.Blocks.Interaction.Show.RealValue realValue1(significantDigits = 6) annotation(
-    Placement(visible = true, transformation(origin = {-164, -70}, extent = {{-7, -4}, {7, 4}}, rotation = 0)));
   FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi / 4 * 0.01 ^ 2) annotation(
     Placement(visible = true, transformation(origin = {-164, 92}, extent = {{-8, -8}, {8, 8}}, rotation = -90)));
   FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 restriction1(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi / 4 * 0.005 ^ 2) annotation(
@@ -180,26 +172,18 @@ equation
     Line(points = {{-195, 170}, {-184, 170}}, color = {0, 0, 127}));
   connect(ramp_p_bc1.y, boundary1.p_in) annotation(
     Line(points = {{-121, 164}, {-110, 164}}, color = {0, 0, 127}));
-  connect(p.port, volume.ports[1]) annotation(
-    Line(points = {{-174, 46}, {-169, 46}, {-169, 48}, {-164, 48}}, color = {0, 127, 255}));
-  connect(p.p, realValue.numberPort) annotation(
-    Line(points = {{-178.4, 50}, {-178.4, 40}}, color = {0, 0, 127}));
-  connect(p1.port, volume1.ports[1]) annotation(
-    Line(points = {{-170, -66}, {-164, -66}, {-164, -60}}, color = {0, 127, 255}));
-  connect(p1.p, realValue1.numberPort) annotation(
-    Line(points = {{-174.4, -62}, {-176.4, -62}, {-176.4, -70}, {-172.4, -70}}, color = {0, 0, 127}));
+  connect(restriction.port_b, volume.ports[1]) annotation(
+    Line(points = {{-164, 84}, {-164, 48}}, color = {0, 127, 255}));
+  connect(restriction1.port_a, volume.ports[2]) annotation(
+    Line(points = {{-164, 10}, {-164, 48}}, color = {0, 127, 255}));
   connect(restriction.port_a, boundary.ports[1]) annotation(
     Line(points = {{-164, 100}, {-164, 163}}, color = {0, 127, 255}));
-  connect(restriction.port_b, volume.ports[2]) annotation(
-    Line(points = {{-164, 84}, {-164, 48}}, color = {0, 127, 255}));
-  connect(restriction1.port_a, volume.ports[3]) annotation(
-    Line(points = {{-164, 10}, {-164, 48}}, color = {0, 127, 255}));
-  connect(restriction1.port_b, volume1.ports[2]) annotation(
+  connect(restriction1.port_b, volume1.ports[1]) annotation(
     Line(points = {{-164, -6}, {-164, -60}}, color = {0, 127, 255}));
+  connect(restriction2.port_a, volume1.ports[2]) annotation(
+    Line(points = {{-108, -60}, {-164, -60}}, color = {0, 127, 255}));
   connect(restriction2.port_b, volume2.ports[1]) annotation(
     Line(points = {{-92, -60}, {-72, -60}}, color = {0, 127, 255}));
-  connect(restriction2.port_a, volume1.ports[3]) annotation(
-    Line(points = {{-108, -60}, {-164, -60}}, color = {0, 127, 255}));
   connect(restriction3.port_a, volume2.ports[2]) annotation(
     Line(points = {{-48, -60}, {-72, -60}}, color = {0, 127, 255}));
   connect(restriction3.port_b, volume3.ports[1]) annotation(
@@ -361,6 +345,5 @@ equation
   annotation(
     Diagram(coordinateSystem(extent = {{-260, -100}, {340, 340}})),
     experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.01),
-    __OpenModelica_commandLineOptions = "--matchingAlgorithm=PFPlusExt --indexReductionMethod=dynamicStateSelection -d=initialization,NLSanalyticJacobian,nonewInst -d=nonewInst -d=nonewInst -d=nonewInst -d=nonewInst",
     __OpenModelica_simulationFlags(lv = "LOG_STATS", s = "dassl"));
 end ComplexFlowNetwork_ex02_v01;

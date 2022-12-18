@@ -3,7 +3,7 @@ within FluidSystemComponents.Compressible.Function;
 function IsentropicExpandingFlow01
   extends Modelica.Icons.Function;
   //----------
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   //----------
   
   input units.Area Aeff;

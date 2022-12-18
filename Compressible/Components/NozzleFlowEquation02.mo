@@ -3,8 +3,9 @@ within FluidSystemComponents.Compressible.Components;
 model NozzleFlowEquation02
   extends FluidSystemComponents.Compressible.BaseClasses.NozzleFlowEquation_base02;
   //*****************************************************************
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   import consts = Modelica.Constants;
+  
   /*-----------------------------------
     parameters
     -----------------------------------*/

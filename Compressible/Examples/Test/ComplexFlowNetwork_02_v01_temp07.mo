@@ -3,7 +3,7 @@ within FluidSystemComponents.Compressible.Examples.Test;
 model ComplexFlowNetwork_02_v01_temp07
   extends Modelica.Icons.Example;
   //-------------------------
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   //-------------------------
   parameter units.Volume volStd = 0.1;
   package fluid1 = Modelica.Media.Air.DryAirNasa;

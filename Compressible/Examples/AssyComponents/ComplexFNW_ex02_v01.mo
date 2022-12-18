@@ -2,7 +2,7 @@ within FluidSystemComponents.Compressible.Examples.AssyComponents;
 
 model ComplexFNW_ex02_v01
   //-------------------------
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   //-------------------------
   parameter units.Volume volStd = 0.1;
   //-------------------------
@@ -11,7 +11,7 @@ model ComplexFNW_ex02_v01
   //redeclare package Medium= fluid1,
   //-------------------------
   inner Modelica.Fluid.System system(T_start(displayUnit = "K") = 288.15, energyDynamics = Modelica.Fluid.Types.Dynamics.DynamicFreeInitial, m_flow_start = 0, massDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, p_start =  100 * 1000) annotation(
-    Placement(visible = true, transformation(origin = {-226, 210}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-226, 208}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = fluid1, T = 500, nPorts = 2, p = 30 * 100 * 1000, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-173, 163}, extent = {{-9, -9}, {9, 9}}, rotation = 0)));
   Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = fluid1, V = volStd, use_portsData = false, nPorts = 3) annotation(

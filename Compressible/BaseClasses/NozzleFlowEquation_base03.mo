@@ -5,7 +5,7 @@ partial model NozzleFlowEquation_base03
       allowFlowReversal=true
   );
   //*****************************************************************
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   import consts = Modelica.Constants;
   
   /*-----------------------------------
@@ -59,7 +59,7 @@ equation
   
   pH=noEvent(if port_a.p>=port_b.p then state_a.p else state_b.p);
   Th=noEvent(if port_a.p>=port_b.p then state_a.T else state_b.T);
-  Rg=noEvent(if port_a.p>=port_b.p then fluid_a.R else fluid_b.R);
+  Rg=noEvent(if port_a.p>=port_b.p then fluid_a.R_s else fluid_b.R_s);
   gamtH=noEvent(if port_a.p>=port_b.p then Medium.specificHeatCapacityCp(state_a) / Medium.specificHeatCapacityCv(state_a)
                   else Medium.specificHeatCapacityCp(state_b) / Medium.specificHeatCapacityCv(state_b) );
   

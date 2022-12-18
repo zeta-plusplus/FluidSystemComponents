@@ -2,7 +2,7 @@ within FluidSystemComponents.Compressible.Examples.AssyComponents;
 
 model ComplexFNW_ex03_v01
   //-------------------------
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   //-------------------------
   parameter units.Volume volStd = 0.1;
   //-------------------------

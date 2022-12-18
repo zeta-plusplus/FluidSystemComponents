@@ -2,7 +2,7 @@ within FluidSystemComponents.Compressible.BaseClasses;
 
 model NozzleFlowEquation_base01
   //*****************************************************************
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   import consts = Modelica.Constants;
   /* ---------------------------------------------
   Package
@@ -24,22 +24,22 @@ model NozzleFlowEquation_base01
   parameter Real PRsmall=1.0001;
   //--------------- initialization ---------------
   //--- fluid_1 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 "" annotation(
+  parameter units.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Temperature T1_init(displayUnit = "K") = 500 "" annotation(
+  parameter units.Temperature T1_init(displayUnit = "K") = 500 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.SpecificEnthalpy h1_init(displayUnit = "J/kg") = T1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h1_init(displayUnit = "J/kg") = T1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
   //--- fluid_2 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init "" annotation(
+  parameter units.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.Temperature T2_init(displayUnit = "K") = 300 "" annotation(
+  parameter units.Temperature T2_init(displayUnit = "K") = 300 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.SpecificEnthalpy h2_init(displayUnit = "J/kg") = T2_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h2_init(displayUnit = "J/kg") = T2_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
   //-----
   parameter units.Area AmechTot_init(displayUnit = "m2") = 0.01^2.0*Modelica.Constants.pi/4.0 "" annotation(
@@ -164,7 +164,7 @@ equation
   
   (m_flow_func)= FluidSystemComponents.Compressible.Function.IsentropicExpandingFlow01(Aeff=Aeff, p1_in=fluid_1.p, T1_in=fluid_1.T, 
                                                                           p2_in=fluid_2.p, T2_in=fluid_2.T, 
-                                                                          Rg_in=fluid_H.R, gamma_in=gamtH);
+                                                                          Rg_in=fluid_H.R_s, gamma_in=gamtH);
   
   m_flow= homotopy( m_flow_func,                               
                   sign(port_1.m_flow)*dp/dp_homotopy_init*m_flow_homotopy_init);
@@ -177,13 +177,13 @@ equation
   /*
   if PR < PRcr then
     flagChoke = false;
-    [m_flow_abs]= FluidSystemComponents.Compressible.Function.IsentropicExpandingFlow01(Aeff=Aeff, pH=fluid_H.p, Th=fluid_H.T, pL=fluid_L.p, Rg=fluidStat_H.R, gamma=gams_H);
+    [m_flow_abs]= FluidSystemComponents.Compressible.Function.IsentropicExpandingFlow01(Aeff=Aeff, pH=fluid_H.p, Th=fluid_H.T, pL=fluid_L.p, Rg=fluidStat_H.R_s, gamma=gams_H);
     
-    m_flow = homotopy(Aeff * fluid_H.p / sqrt(fluid_H.T) * sqrt(2.0 * gams_H / (fluidStat_H.R * (gams_H - 1.0)) * ((fluid_L.p / fluid_H.p) ^ (2.0 / gams_H) - (fluid_L.p / fluid_H.p) ^ ((gams_H + 1.0) / gams_H))),
+    m_flow = homotopy(Aeff * fluid_H.p / sqrt(fluid_H.T) * sqrt(2.0 * gams_H / (fluidStat_H.R_s * (gams_H - 1.0)) * ((fluid_L.p / fluid_H.p) ^ (2.0 / gams_H) - (fluid_L.p / fluid_H.p) ^ ((gams_H + 1.0) / gams_H))),
       dp/dp_homotopy_init*m_flow_homotopy_init);
   else
     flagChoke = true;
-    m_flow = homotopy(Aeff * fluid_H.p / sqrt(fluidStat_H.R * fluid_H.T) * sqrt(gams_H) * ((gams_H + 1.0) / 2.0) ^ (-1.0 * (gams_H + 1.0) / (2.0 * (gams_H - 1.0))),
+    m_flow = homotopy(Aeff * fluid_H.p / sqrt(fluidStat_H.R_s * fluid_H.T) * sqrt(gams_H) * ((gams_H + 1.0) / 2.0) ^ (-1.0 * (gams_H + 1.0) / (2.0 * (gams_H - 1.0))),
       dp/dp_homotopy_init*m_flow_homotopy_init);
   end if;
   */

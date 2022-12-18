@@ -2,8 +2,9 @@ within FluidSystemComponents.Compressible.BaseClasses;
 
 model NozzleFlowEquation_base02
   //*****************************************************************
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   import consts = Modelica.Constants;
+  
   /* ---------------------------------------------
   Package
   --------------------------------------------- */
@@ -24,22 +25,22 @@ model NozzleFlowEquation_base02
   parameter Real PRsmall=1.0001;
   //--------------- initialization ---------------
   //--- fluid_1 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 "" annotation(
+  parameter units.MassFlowRate m_flow1_init(displayUnit = "kg/s") = 1.0 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p1_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Temperature T1_init(displayUnit = "K") = 500 "" annotation(
+  parameter units.Temperature T1_init(displayUnit = "K") = 500 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.SpecificEnthalpy h1_init(displayUnit = "J/kg") = T1_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h1_init(displayUnit = "J/kg") = T1_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
   //--- fluid_2 ---
-  parameter Modelica.SIunits.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init "" annotation(
+  parameter units.MassFlowRate m_flow2_init(displayUnit = "kg/s") = -1.0 * m_flow1_init "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
+  parameter units.Pressure p2_init(displayUnit = "Pa") = 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.Temperature T2_init(displayUnit = "K") = 300 "" annotation(
+  parameter units.Temperature T2_init(displayUnit = "K") = 300 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
-  parameter Modelica.SIunits.SpecificEnthalpy h2_init(displayUnit = "J/kg") = T2_init * 1.004 * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h2_init(displayUnit = "J/kg") = T2_init * 1.004 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_2"));
   //-----
   parameter units.Area AmechTot_init(displayUnit = "m2") = 0.01^2.0*Modelica.Constants.pi/4.0 "" annotation(
@@ -103,7 +104,7 @@ equation
   
   pH=noEvent(if port_1.p>=port_2.p then fluid_1.p else fluid_2.p);
   Th=noEvent(if port_1.p>=port_2.p then fluid_1.T else fluid_2.T);
-  Rg=noEvent(if port_1.p>=port_2.p then fluid_1.R else fluid_2.R);
+  Rg=noEvent(if port_1.p>=port_2.p then fluid_1.R_s else fluid_2.R_s);
   gamtH=noEvent(if port_1.p>=port_2.p then Medium.specificHeatCapacityCp(fluid_1.state) / Medium.specificHeatCapacityCv(fluid_1.state)
                   else Medium.specificHeatCapacityCp(fluid_2.state) / Medium.specificHeatCapacityCv(fluid_2.state) );
   
