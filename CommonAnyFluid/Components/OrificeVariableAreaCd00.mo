@@ -187,13 +187,12 @@ equation
       port_1.Xi_outflow = fluid_1.Xi;
     end if;
   end if;
-  //---
+//---
   Cd = u_Cd;
-  //---
-  y_ps_th= fluidStat_th.p;
+//---
+  y_ps_th = fluidStat_th.p;
   y_ps_1= fluidStat_1.p;
   y_ps_2= fluidStat_2.p;
-  
 /* ---------------------------------------------
   Eqns describing physics
   --------------------------------------------- */
@@ -219,7 +218,6 @@ equation
   else
     AmechPort = AmechPort_paramInput;
   end if;
-  
   if m_flow_max == port_2.m_flow then
     port_2.m_flow = fluid_2.d * Vth * AactualTh;
 //-- pressure loss --
@@ -255,16 +253,16 @@ equation
   
   s_fluid_th = Medium.specificEntropy(fluid_th.state);
   V_flow= AactualTh*Vth;
-  //--
-  m_flow= AmechPort*fluid_1.d*Vport1;
+//--
+  m_flow = AmechPort * fluid_1.d * Vport1;
   m_flow= AmechPort*fluid_2.d*Vport2;
 // -- total <-> static --
   fluidStat_th.h = fluid_th.h - 1.0 / 2.0 * (sign(Vth) * abs(Vth) ^ 2.0);
   fluid_th.h = Medium.isentropicEnthalpy(fluid_th.p, fluidStat_th.state);
-  //--
+//--
   fluidStat_1.h = fluid_1.h - 1.0 / 2.0 * (sign(Vport1) * abs(Vport1) ^ 2.0);
   fluid_1.h = Medium.isentropicEnthalpy(fluid_1.p, fluidStat_1.state);
-  //--
+//--
   fluidStat_2.h = fluid_2.h - 1.0 / 2.0 * (sign(Vport2) * abs(Vport2) ^ 2.0);
   fluid_2.h = Medium.isentropicEnthalpy(fluid_2.p, fluidStat_2.state);
   
@@ -275,5 +273,5 @@ equation
 ********************************************************/
   annotation(
     defaultComponentName = "Orifice",
-    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {7.21475, -33.3026}, rotation = 180, points = {{-71.2818, -1.5067}, {-63.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {60.7182, -13.5067}, {70.7182, -9.5067}, {80.7182, -5.5067}, {86.7182, -1.5067}}, thickness = 2), Line(origin = {3.22, -22.26}, points = {{-11.2064, 61.7936}, {-83.2064, -50.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {-77, -80}, extent = {{1, 8}, {35, -12}}, textString = "Cd"), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {63.37, -22.24}, points = {{-11.2064, 61.7936}, {-83.2064, -56.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {19, -68}, extent = {{-23, 8}, {35, -12}}, textString = "kArea"), Line(origin = {-8.7853, 36.4204}, points = {{-71.2818, -1.5067}, {-61.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {58.7182, -15.5067}, {68.7182, -11.5067}, {78.7182, -7.5067}, {88.7182, -1.5067}}, thickness = 2), Line(origin = {-1, 68.92}, points = {{-39, 0}, {39, 0}}, thickness = 0.5, arrow = {Arrow.None, Arrow.Half}, arrowSize = 5)}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {7.21475, -33.3026}, rotation = 180, points = {{-71.2818, -1.5067}, {-63.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {60.7182, -13.5067}, {70.7182, -9.5067}, {80.7182, -5.5067}, {86.7182, -1.5067}}, thickness = 2), Line(origin = {3.22, -22.26}, points = {{-11.2064, 61.7936}, {-83.2064, -50.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {-77, -80}, extent = {{1, 8}, {35, -12}}, textString = "Cd"), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {63.37, -22.24}, points = {{-11.2064, 61.7936}, {-83.2064, -56.2064}, {-83.2064, -80.2064}}, thickness = 1.5, arrow = {Arrow.Filled, Arrow.None}, arrowSize = 6), Text(origin = {19, -68}, extent = {{-23, 8}, {35, -12}}, textString = "kArea"), Line(origin = {-8.7853, 36.4204}, points = {{-71.2818, -1.5067}, {-61.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {58.7182, -15.5067}, {68.7182, -11.5067}, {78.7182, -7.5067}, {88.7182, -1.5067}}, thickness = 2), Line(origin = {-1, 62.92}, points = {{-39, 0}, {39, 0}}, thickness = 0.5, arrow = {Arrow.None, Arrow.Half}, arrowSize = 5)}, coordinateSystem(initialScale = 0.1)));
 end OrificeVariableAreaCd00;

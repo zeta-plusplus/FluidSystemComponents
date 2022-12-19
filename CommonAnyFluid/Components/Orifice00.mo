@@ -161,26 +161,26 @@ equation
     end if;
   end if;
 //---
-  if switch_input_dp==Switches.switch_input_dp.use_Cd then
-    Cd=Cd_paramInput;
-  elseif switch_input_dp==Switches.switch_input_dp.use_zeta then
-    zeta=zeta_paramInput;
+  if switch_input_dp == Switches.switch_input_dp.use_Cd then
+    Cd = Cd_paramInput;
+  elseif switch_input_dp == Switches.switch_input_dp.use_zeta then
+    zeta = zeta_paramInput;
   else
-    Cd=Cd_paramInput;
+    Cd = Cd_paramInput;
   end if;
 //---
   y_ps_th = fluidStat_th.p;
 /* ---------------------------------------------
   Eqns describing physics
   --------------------------------------------- */
-  //-- mass conservation --
+//-- mass conservation --
   port_1.m_flow + port_2.m_flow = 0;
   fluid_2.Xi = fluid_1.Xi;
   port_1.C_outflow = inStream(port_2.C_outflow);
   port_2.C_outflow = inStream(port_1.C_outflow);
-  //-- energy conservation --
+//-- energy conservation --
   port_1.m_flow * fluid_1.h + port_2.m_flow * fluid_2.h = 0;
-  //-- flow at throat --
+//-- flow at throat --
   if isCircular == true then
     AmechTh = Modelica.Constants.pi / 4.0 * diam_paramInput ^ 2.0;
   else
@@ -189,14 +189,14 @@ equation
   AactualTh = AmechTh * Cd;
   if m_flow_max == port_2.m_flow then
     port_2.m_flow = fluid_2.d * Vth * AactualTh;
-    //-- pressure loss --
+//-- pressure loss --
     PR = fluid_2.p / fluid_1.p;
     dp = fluid_2.p - fluid_1.p;
     dp = 1.0 / 2.0 * fluid_2.d * (port_2.m_flow / fluid_2.d / AactualTh) ^ 2.0;
     dp = zeta * 1.0 / 2.0 * fluid_2.d * (port_2.m_flow / fluid_2.d / AmechTh) ^ 2.0;
   else
     port_1.m_flow = fluid_1.d * Vth * AactualTh;
-    //-- pressure loss --
+//-- pressure loss --
     PR = fluid_1.p / fluid_2.p;
     dp = fluid_1.p - fluid_2.p;
     dp = 1.0 / 2.0 * fluid_1.d * (port_1.m_flow / fluid_1.d / AactualTh) ^ 2.0;
@@ -229,5 +229,5 @@ equation
 ********************************************************/
   annotation(
     defaultComponentName = "Orifice",
-    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {7.21475, -33.3026}, rotation = 180, points = {{-71.2818, -1.5067}, {-63.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {60.7182, -13.5067}, {70.7182, -9.5067}, {80.7182, -5.5067}, {86.7182, -1.5067}}, thickness = 2), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {-8.7853, 36.4204}, points = {{-71.2818, -1.5067}, {-61.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {58.7182, -15.5067}, {68.7182, -11.5067}, {78.7182, -7.5067}, {88.7182, -1.5067}}, thickness = 2), Line(origin = {-1, 68.92}, points = {{-39, 0}, {39, 0}}, thickness = 0.5, arrow = {Arrow.None, Arrow.Half}, arrowSize = 5)}, coordinateSystem(initialScale = 0.1)));
+    Icon(graphics = {Line(origin = {0.28, 0.34}, points = {{-98, 0}, {98, 0}}, thickness = 2.5), Line(origin = {7.21475, -33.3026}, rotation = 180, points = {{-71.2818, -1.5067}, {-63.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {60.7182, -13.5067}, {70.7182, -9.5067}, {80.7182, -5.5067}, {86.7182, -1.5067}}, thickness = 2), Text(origin = {0, 90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {-8.7853, 36.4204}, points = {{-71.2818, -1.5067}, {-61.2818, -7.50673}, {-53.2818, -11.5067}, {-41.2818, -15.5067}, {-27.2818, -19.5067}, {-11.2818, -21.5067}, {0.7182, -21.5067}, {12.7182, -21.5067}, {26.7182, -21.5067}, {38.7182, -19.5067}, {48.7182, -17.5067}, {58.7182, -15.5067}, {68.7182, -11.5067}, {78.7182, -7.5067}, {88.7182, -1.5067}}, thickness = 2), Line(origin = {-1, 56.92}, points = {{-39, 0}, {39, 0}}, thickness = 0.5, arrow = {Arrow.None, Arrow.Half}, arrowSize = 5)}, coordinateSystem(initialScale = 0.1)));
 end Orifice00;

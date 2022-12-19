@@ -8,7 +8,7 @@ model test_hydroCylinder004
   //----------
   inner Modelica.Fluid.System system annotation(
     Placement(visible = true, transformation(origin = {-150, 190}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  FluidSystemComponents.HydroThermal.Components.CheckValveSpringLoad_Linear checkValveSpringLoad_Linear1(redeclare package Medium = liquid1, deltapCrack = 500 * 101.3 * 1000, gradientQP = 0.001 * 50 / (100 * 1000)) annotation(
+  FluidSystemComponents.HydroThermal.Components.CheckValveSpringLoad_Linear checkValveSpringLoad_Linear1(redeclare package Medium = liquid1, deltapCrack = 10 * 100 * 1000, gradientQP = 0.001 * 50 / (100 * 1000)) annotation(
     Placement(visible = true, transformation(origin = {-50, 80}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = liquid1, V = 0.01, nPorts = 3, p_start = 1 *101.3 * 1000, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {-80, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
@@ -23,7 +23,7 @@ model test_hydroCylinder004
   FluidSystemComponents.HydroThermal.Components.DirValve_4ports3positions dirValve_4ports3positions1(redeclare package Medium = liquid1, dp_nominal =  10 * 1000, m_flow_nominal = 0.01) annotation(
     Placement(visible = true, transformation(origin = {-40, 130}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   Modelica.Blocks.Sources.IntegerStep integerStep1(height = 1, offset = -1, startTime = 5)  annotation(
-    Placement(visible = true, transformation(origin = {10, 130}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {7, 130}, extent = {{7, -7}, {-7, 7}}, rotation = 0)));
   FluidSystemComponents.HydroThermal.Components.pistonCylinder pistonCylinder1(redeclare package Medium = liquid1) annotation(
     Placement(visible = true, transformation(origin = {-40, 180}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
 equation
