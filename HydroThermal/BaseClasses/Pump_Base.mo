@@ -8,6 +8,7 @@ partial model Pump_Base
   ********************************************************/
   import units=Modelica.Units.SI;
   import unitConversions=Modelica.Units.Conversions;
+  import unitsNonSI=Modelica.Units.NonSI;
   
   
   //********** Parameters **********

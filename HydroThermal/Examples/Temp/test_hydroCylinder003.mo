@@ -1,4 +1,4 @@
-within FluidSystemComponents.HydroThermal.Examples;
+within FluidSystemComponents.HydroThermal.Examples.Temp;
 
 model test_hydroCylinder003
   extends Modelica.Icons.Example;
@@ -8,7 +8,7 @@ model test_hydroCylinder003
   //----------
   inner Modelica.Fluid.System system annotation(
     Placement(visible = true, transformation(origin = {-150, 190}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  FluidSystemComponents.HydroThermal.Components.CheckValveSpringLoad_Linear checkValveSpringLoad_Linear1(redeclare package Medium = liquid1, deltapCrack = 500 * 101.3 * 1000, gradientQP = 0.001 * 50 / (100 * 1000)) annotation(
+  FluidSystemComponents.HydroThermal.Components.CheckValveSpringLoad_Linear checkValveSpringLoad_Linear1(redeclare package Medium = liquid1, deltapCrack = 5 * 100.0 * 1000, gradientQP = 0.001 * 50 / (100 * 1000)) annotation(
     Placement(visible = true, transformation(origin = {-40, -90}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = liquid1, V = 0.01, nPorts = 3, p_start = 1 *101.3 * 1000, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {-70, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
@@ -51,6 +51,8 @@ model test_hydroCylinder003
     Placement(visible = true, transformation(origin = {90, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Mechanics.Translational.Components.Rod rod1(L = 0.5) annotation(
     Placement(visible = true, transformation(origin = {30, 170}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Translational.Components.Damper damper(d = 0.001) annotation(
+    Placement(visible = true, transformation(origin = {-50, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(boundary.ports[2], checkValveSpringLoad_Linear1.port_2) annotation(
     Line(points = {{-60, -130}, {-40, -130}, {-40, -100}}, color = {0, 127, 255}));
@@ -76,8 +78,6 @@ equation
     Line(points = {{16, -20}, {204, -20}, {204, 130}, {180, 130}}, color = {0, 127, 255}));
   connect(mass1.flange_b, rod1.flange_a) annotation(
     Line(points = {{0, 130}, {8, 130}, {8, 170}, {20, 170}, {20, 170}}, color = {0, 127, 0}));
-  connect(sweptVolume2.flange, mass1.flange_a) annotation(
-    Line(points = {{-80, 130}, {-20, 130}, {-20, 130}, {-20, 130}}, color = {0, 127, 0}));
   connect(mass1.flange_b, force1.flange) annotation(
     Line(points = {{0, 130}, {32, 130}, {32, 80}, {60, 80}}, color = {0, 127, 0}));
   connect(mass1.flange_b, relPositionSensor1.flange_a) annotation(
@@ -96,8 +96,12 @@ equation
     Line(points = {{70, 100}, {90, 100}, {90, 50}, {80, 50}}, color = {0, 127, 0}));
   connect(fixed1.flange, rod2.flange_a) annotation(
     Line(points = {{-90, 50}, {60, 50}}, color = {0, 127, 0}));
+  connect(sweptVolume2.flange, damper.flange_a) annotation(
+    Line(points = {{-80, 130}, {-60, 130}}, color = {0, 127, 0}));
+  connect(damper.flange_b, mass1.flange_a) annotation(
+    Line(points = {{-40, 130}, {-20, 130}}, color = {0, 127, 0}));
   annotation(
-    experiment(StartTime = 0, StopTime = 15, Tolerance = 1e-06, Interval = 0.03),
+    experiment(StartTime = 0, StopTime = 15, Tolerance = 1e-06, Interval = 0.05),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"),
     Diagram(coordinateSystem(extent = {{-160, -240}, {220, 200}}, initialScale = 0.1), graphics = {Rectangle(origin = {34, 82}, pattern = LinePattern.Dash, lineThickness = 0.5, extent = {{-164, 108}, {178, -88}}), Text(origin = {-288, -361}, extent = {{-28, 9}, {92, -3}}, textString = "piston cylinder actuator", fontSize = 8, horizontalAlignment = TextAlignment.Left), Text(origin = {81, 36}, extent = {{-21, 4}, {21, -4}}, textString = "cylinder body"), Text(origin = {-13, 112}, extent = {{-21, 4}, {21, -4}}, textString = "piston head"), Text(origin = {53, 176}, extent = {{-21, 4}, {21, -4}}, textString = "rod")}),
     Icon(coordinateSystem(extent = {{-100, -140}, {100, 100}})),

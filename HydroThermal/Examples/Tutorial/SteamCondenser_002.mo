@@ -1,4 +1,4 @@
-within FluidSystemComponents.HydroThermal.Examples.Test;
+within FluidSystemComponents.HydroThermal.Examples.Tutorial;
 
 model SteamCondenser_002
   "Complete drum boiler model, including evaporator and supplementary components"
@@ -38,7 +38,7 @@ model SteamCondenser_002
     Placement(visible = true, transformation(origin = {40, 20}, extent = {{10, 10}, {-10, -10}}, rotation = 180)));
   Modelica.Fluid.Sensors.MassFlowRate massFlowWater(redeclare package Medium = Modelica.Media.Water.StandardWater) annotation(
     Placement(visible = true, transformation(origin = {30, 0}, extent = {{10, 10}, {-10, -10}}, rotation = 180)));
-  Modelica.Blocks.Nonlinear.Limiter limiter(limitsAtInit = true, uMax = 10, uMin = -10)  annotation(
+  Modelica.Blocks.Nonlinear.Limiter limiter(uMax = 10, uMin = -10)  annotation(
     Placement(visible = true, transformation(origin = {72, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(furnace.port, condenser.heatPort) annotation(

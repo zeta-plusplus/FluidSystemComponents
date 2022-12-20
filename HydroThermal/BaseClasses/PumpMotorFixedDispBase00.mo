@@ -6,6 +6,8 @@ partial model PumpMotorFixedDispBase00
   ********************************************************/
   import Modelica.Constants;
   import units=Modelica.Units.SI;
+  import unitsNonSI=Modelica.Units.NonSI;
+  import unitConversions=Modelica.Units.Conversions;
   
   
   /********************************************************
@@ -60,7 +62,7 @@ partial model PumpMotorFixedDispBase00
   
   units.AngularVelocity omega "mechanical rotation speed, rad/sec";
   units.Angle phi "mechanical rotation displacement, rad";
-  units.Conversions.NonSIunits.AngularVelocity_rpm Nmech "mechanical rotation speed, rpm";
+  unitsNonSI.AngularVelocity_rpm Nmech "mechanical rotation speed, rpm";
   
   Real PR "pressure ratio";
   units.PressureDifference deltap "pressure difference";
@@ -79,7 +81,8 @@ partial model PumpMotorFixedDispBase00
   
   units.VolumeFlowRate V_flow_des "volume flow rate, design point, value under effVol=1, referring to fluid_1.T";
   
-  units.Conversions.NonSIunits.AngularVelocity_rpm NmechDes "mechanical rotation speed, design point";
+  
+  unitsNonSI.AngularVelocity_rpm NmechDes "mechanical rotation speed, design point";
   Real effVolDes "volumetric efficiency, design point";
   Real effMechDes "mechanical efficiency, design point";
   units.Volume disp;
@@ -167,7 +170,7 @@ equation
   pwr = -1.0 * (port_1.m_flow * fluid_1.h + port_2.m_flow * fluid_2.h);
   omega * trq = pwr;
   der(phi) = omega;
-  Nmech = units.Conversions.NonSIunits.to_rpm(omega);
+  Nmech = unitConversions.to_rpm(omega);
   
   pwr_inv= -1*pwr;
   trq_inv= -1*trq;

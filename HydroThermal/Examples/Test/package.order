@@ -1,12 +1,5 @@
-PumpMotorFixedDispCharFixed00_01
-PumpMotorFixedDispCharFixed00_02
-PumpMotorFixedDispCharFixed00_03
-LiquidPowerGenerator00_02
 LiquidPowerGenerator00_01
-SteamGenerator_001
-SteamGenerator_002
-SteamCondenser_001
-SteamCondenser_002
+LiquidPowerGenerator00_02
 R134vaporGenerator_001
 R134vaporCondenser_001
 R134vaporCondenser_002

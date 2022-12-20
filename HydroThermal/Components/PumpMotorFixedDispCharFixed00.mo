@@ -8,6 +8,9 @@ model PumpMotorFixedDispCharFixed00
   ********************************************************/
   import Modelica.Constants;
   import units=Modelica.Units.SI;
+  import unitConversions=Modelica.Units.Conversions;
+  import unitsNonSI=Modelica.Units.NonSI;
+  
   
   /********************************************************
         Declaration   
@@ -38,7 +41,7 @@ model PumpMotorFixedDispCharFixed00
   /* ---------------------------------------------
         parameters    
   --------------------------------------------- */
-  parameter units.Conversions.NonSIunits.AngularVelocity_rpm NmechDes_paramInput = 5000.0 "mechanical rotational speed, design point, valid only when use_u_NmechDes==false, value fixed through simulation" annotation(
+  parameter unitsNonSI.AngularVelocity_rpm NmechDes_paramInput = 5000.0 "mechanical rotational speed, design point, valid only when use_u_NmechDes==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
   parameter units.VolumeFlowRate V_flow_des_paramInput = 0.001 "volume flow rate, design point, value under effVol=1,  referring to fluid_1.T , valid only when use_u_V_flow_des==false, value fixed through simulation" annotation(
     Dialog(group = "Component characteristics"));
