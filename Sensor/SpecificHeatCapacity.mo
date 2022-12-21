@@ -3,7 +3,7 @@ within FluidSystemComponents.Sensor;
 model SpecificHeatCapacity
 
   extends Modelica.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor;
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
   Modelica.Blocks.Interfaces.RealOutput y_Cp(final quantity="SpecificHeatCapacity",
                                               final unit="J/kg/K")
     "Specific heat capacity in port medium"

@@ -2,7 +2,7 @@ within FluidSystemComponents.Sensor;
 
 model MassFractionsArray
   extends Modelica.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor;
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
   //-----
   Modelica.Blocks.Interfaces.RealOutput Xi[Medium.nXi] "array of mass fractions" annotation(
     Placement(transformation(extent = {{100, -10}, {120, 10}})));

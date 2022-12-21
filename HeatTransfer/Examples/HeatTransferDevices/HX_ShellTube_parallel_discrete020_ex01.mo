@@ -2,7 +2,7 @@ within FluidSystemComponents.HeatTransfer.Examples.HeatTransferDevices;
 
 model HX_ShellTube_parallel_discrete020_ex01
   extends Modelica.Icons.Example;
-  import units = Modelica.SIunits;
+  import units = Modelica.Units.SI;
   //--------------------
   //replaceable package liquidHside = Modelica.Media.Incompressible.Examples.Glycol47;
   replaceable package liquidHside = Modelica.Media.Water.StandardWater;

@@ -4,6 +4,13 @@ model StaticPressureTwoPort
   extends FluidSystemComponents.CommonAnyFluid.BaseClasses.flow1d2ports00;
   extends FluidSystemComponents.Sensor.icons.SensorFlow1d;
   
+  /********************************************************
+        imports   
+  ********************************************************/
+  import units=Modelica.Units.SI;
+  import unitsNonSI=Modelica.Units.NonSI;
+  import unitConversions=Modelica.Units.Conversions;
+  
   
   /********************************************************
                  Declaration
@@ -12,9 +19,9 @@ model StaticPressureTwoPort
         parameters
   --------------------------------------------- */
   //********** Initialization Parameters **********
-  parameter Modelica.SIunits.Length diam_paramInput=0.01 "diameter, valid if isCircular==true" annotation(
+  parameter units.Length diam_paramInput=0.01 "diameter, valid if isCircular==true" annotation(
     Dialog(group = "Geometory"));
-  parameter Modelica.SIunits.Area Apath_paramInput = Modelica.Constants.pi/4.0*diam_paramInput^2 "mechanical area of 'throat', valid if isCircular==false" annotation(
+  parameter units.Area Apath_paramInput = Modelica.Constants.pi/4.0*diam_paramInput^2 "mechanical area of 'throat', valid if isCircular==false" annotation(
     Dialog(group = "Geometory"));
   
   

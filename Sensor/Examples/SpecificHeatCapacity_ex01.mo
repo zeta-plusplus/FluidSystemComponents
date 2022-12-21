@@ -3,8 +3,8 @@ within FluidSystemComponents.Sensor.Examples;
 model SpecificHeatCapacity_ex01
   extends Modelica.Icons.Example;
   //-----
-  //package fluid1 = Modelica.Media.Air.DryAirNasa;
-  package fluid1 = FluidSystemComponents.Media.Mixture_N2O2;
+  package fluid1 = Modelica.Media.Air.DryAirNasa;
+  //package fluid1 = FluidSystemComponents.Media.Mixture_N2O2;
   //-----
   Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = fluid1, T = 500, nPorts = 1, p = 5 * 101.325 * 1000, use_T_in = true, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-50, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -18,7 +18,7 @@ model SpecificHeatCapacity_ex01
     Placement(visible = true, transformation(origin = {-10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_zeta(duration = 10, height = 1, offset = 1, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.MassFlowSource_T boundary1(redeclare package Medium = fluid1, m_flow = 0.01, nPorts = 1) annotation(
+  Modelica.Fluid.Sources.MassFlowSource_T boundary1(redeclare package Medium = fluid1, m_flow = -0.01, nPorts = 1) annotation(
     Placement(visible = true, transformation(origin = {70, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   FluidSystemComponents.Sensor.SpecificHeatCapacity specificHeatCapacity(redeclare package Medium = fluid1) annotation(
     Placement(visible = true, transformation(origin = {20, 20}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));

@@ -15,7 +15,7 @@ model VariableZetaOrifice00 "orifice with external zeta input, incompressible eq
   /* ---------------------------------------------
       switch
   --------------------------------------------- */
-  parameter Boolean allowFlowReversal= false
+  parameter Boolean allowFlowReversal= true
     "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)"
     annotation(
       Dialog(tab="Assumptions"), Evaluate=true);

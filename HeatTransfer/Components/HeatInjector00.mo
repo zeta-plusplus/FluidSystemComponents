@@ -3,6 +3,14 @@ within FluidSystemComponents.HeatTransfer.Components;
 model HeatInjector00
   extends FluidSystemComponents.HeatTransfer.BaseClasses.HeatInjectorBase00;
   
+  /********************************************************
+        imports   
+  ********************************************************/
+  import Modelica.Constants;
+  import units=Modelica.Units.SI;
+  import unitsNonSI=Modelica.Units.NonSI;
+  import unitConversions=Modelica.Units.Conversions;
+  
   
 algorithm
 //##### none #####

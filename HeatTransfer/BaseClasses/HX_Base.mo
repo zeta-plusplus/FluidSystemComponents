@@ -5,7 +5,9 @@ partial model HX_Base
         imports
   ********************************************************/
   import Modelica.Constants;
-  import Modelica.SIunits;
+  import units=Modelica.Units.SI;
+  import unitsNonSI=Modelica.Units.NonSI;
+  import unitConversions=Modelica.Units.Conversions;
   
   
   /********************************************************
@@ -25,32 +27,32 @@ partial model HX_Base
   Medium2.BaseProperties fluid_2_med2 "flow station of port_2, medium 2";
   
   
-  Modelica.SIunits.Enthalpy deltaMh1;
-  Modelica.SIunits.Enthalpy deltaMh2;
-  Modelica.SIunits.Enthalpy deltaMhMax;
-  Modelica.SIunits.Enthalpy deltaMhMin;
+  units.Enthalpy deltaMh1;
+  units.Enthalpy deltaMh2;
+  units.Enthalpy deltaMhMax;
+  units.Enthalpy deltaMhMin;
   
   
-  Modelica.SIunits.MassFlowRate m_flow1_max;
-  Modelica.SIunits.MassFlowRate m_flow1_min;
-  Modelica.SIunits.MassFlowRate m_flow2_max;
-  Modelica.SIunits.MassFlowRate m_flow2_min;
+  units.MassFlowRate m_flow1_max;
+  units.MassFlowRate m_flow1_min;
+  units.MassFlowRate m_flow2_max;
+  units.MassFlowRate m_flow2_min;
   
-  Modelica.SIunits.Temperature T1in;
-  Modelica.SIunits.Temperature T2in;
-  Modelica.SIunits.Temperature THIn;
-  Modelica.SIunits.Temperature TCIn;
+  units.Temperature T1in;
+  units.Temperature T2in;
+  units.Temperature THIn;
+  units.Temperature TCIn;
   
-  Modelica.SIunits.ThermalConductance dmCp1in;
-  Modelica.SIunits.ThermalConductance dmCp2in;
-  Modelica.SIunits.ThermalConductance dmCpMax;
-  Modelica.SIunits.ThermalConductance dmCpMin;
+  units.ThermalConductance dmCp1in;
+  units.ThermalConductance dmCp2in;
+  units.ThermalConductance dmCpMax;
+  units.ThermalConductance dmCpMin;
   
   
-  Modelica.SIunits.HeatFlowRate Q_flow_max;
-  Modelica.SIunits.HeatFlowRate Q_flow;
-  Modelica.SIunits.HeatFlowRate Q_flow1;
-  Modelica.SIunits.HeatFlowRate Q_flow2;
+  units.HeatFlowRate Q_flow_max;
+  units.HeatFlowRate Q_flow;
+  units.HeatFlowRate Q_flow1;
+  units.HeatFlowRate Q_flow2;
   
   Real effHX;
   Real ratioDmCp;
@@ -78,13 +80,6 @@ algorithm
 // none
 equation
 //********** Connections, interface <-> internal variables **********
-  //***** signalBus1 *****
-  connect(dmCpMin, signalBus1.dmCpMin);
-  connect(dmCpMax, signalBus1.dmCpMax);
-  connect(ratioDmCp, signalBus1.ratioDmCp);
-  connect(Q_flow_max, signalBus1.Q_flow_max);
-  connect(Q_flow, signalBus1.Q_flow);
-  
   
 //-- fluidPort_1, medium 1 --
   fluid_1_med1.p = port_1_med1.p;

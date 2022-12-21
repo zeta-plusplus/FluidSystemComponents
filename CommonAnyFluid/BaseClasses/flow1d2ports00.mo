@@ -14,7 +14,7 @@ partial model flow1d2ports00
   /* ---------------------------------------------
         switch
     --------------------------------------------- */
-  parameter Boolean allowFlowReversal = false "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)";
+  parameter Boolean allowFlowReversal = true "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)";
   parameter Boolean isCircular = true "= true if cross sectional area is circular";
   /* ---------------------------------------------
         Package
