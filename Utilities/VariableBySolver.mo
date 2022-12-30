@@ -29,7 +29,7 @@ model VariableBySolver
 algorithm
 //y_independent:= independent;
 equation
-  independent = y_independent;
+  independent=y_independent;
 
 /********************************************************
   Graphics

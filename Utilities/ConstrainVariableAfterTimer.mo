@@ -1,11 +1,11 @@
 within FluidSystemComponents.Utilities;
 
 model ConstrainVariableAfterTimer
-  import Modelica.SIunits;
+  import units=Modelica.Units.SI;
   /* ---------------------------------------------
               parameters    
   --------------------------------------------- */
-  parameter SIunits.Time timeToEndConstraint = 0.1 "Variable is constrained before and including this time" annotation(
+  parameter units.Time timeToEndConstraint = 0.1 "Variable is constrained before and including this time" annotation(
     Dialog(group = "Characteristics"));
   
   

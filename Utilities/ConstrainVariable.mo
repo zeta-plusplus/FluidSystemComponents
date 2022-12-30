@@ -21,7 +21,7 @@ equation
   if (use_u_targetVal==false) then
     tgtValue_paramInput = u_variable;
   elseif (use_u_targetVal==true) then
-    u_targetValue = u_variable;
+    connect( u_targetValue, u_variable);
   end if;
 /********************************************************
   Graphics
