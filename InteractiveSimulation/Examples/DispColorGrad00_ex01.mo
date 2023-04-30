@@ -4,11 +4,11 @@ model DispColorGrad00_ex01
   extends Modelica.Icons.Example;
   FluidSystemComponents.InteractiveSimulation.Output.DispColorGrad00 disp(valMin = -25)  annotation(
     Placement(visible = true, transformation(origin = {22, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.Sine sine(amplitude = 25, f = 1/5)  annotation(
+  Modelica.Blocks.Sources.Sine sine(amplitude = 25, f = 1/10)  annotation(
     Placement(visible = true, transformation(origin = {-18, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.InteractiveSimulation.Output.DispColorGrad00 dispColorGrad00(valMin = -25)  annotation(
     Placement(visible = true, transformation(origin = {22, -22}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.Sine sine1(amplitude = 50, f = 1/5) annotation(
+  Modelica.Blocks.Sources.Sine sine1(amplitude = 50, f = 1/10) annotation(
     Placement(visible = true, transformation(origin = {-18, -22}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(sine.y, disp.u) annotation(
