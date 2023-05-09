@@ -19,7 +19,7 @@ model DispColorGrad00
   // interface
   //----------------------------------------
   Modelica.Blocks.Interfaces.RealInput u annotation(
-    Placement(visible = true, transformation(origin = {-104, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-104, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-105, 30}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
 equation
   vecRGB = Colors.scalarToColor(u, valMin, valMax, colorMap);
 
