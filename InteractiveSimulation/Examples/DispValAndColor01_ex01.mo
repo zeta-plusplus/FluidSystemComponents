@@ -6,7 +6,7 @@ model DispValAndColor01_ex01
     Placement(visible = true, transformation(origin = {-18, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Sine sine1(amplitude = 50, f = 1/10) annotation(
     Placement(visible = true, transformation(origin = {-18, -22}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  FluidSystemComponents.InteractiveSimulation.Output.DispValAndColor01 disp annotation(
+  FluidSystemComponents.InteractiveSimulation.Output.DispValAndColor01 disp(sigDigits = 4)  annotation(
     Placement(visible = true, transformation(origin = {30, 15}, extent = {{-10, -8}, {10, 4}}, rotation = 0)));
   FluidSystemComponents.InteractiveSimulation.Output.DispValAndColor01 dispValAndColor01 annotation(
     Placement(visible = true, transformation(origin = {30, -25}, extent = {{-10, -8}, {10, 4}}, rotation = 0)));
