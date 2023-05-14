@@ -2,13 +2,13 @@ within FluidSystemComponents.InteractiveSimulation.Examples;
 
 model DispValAndColor01_ex01
   extends Modelica.Icons.Example;
-  Modelica.Blocks.Sources.Sine sine(amplitude = 25, f = 1/10)  annotation(
+  Modelica.Blocks.Sources.Sine sine(amplitude = 25, f = 5/100)  annotation(
     Placement(visible = true, transformation(origin = {-18, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.Sine sine1(amplitude = 50, f = 1/10) annotation(
+  Modelica.Blocks.Sources.Sine sine1(amplitude = 25, f = 1/2) annotation(
     Placement(visible = true, transformation(origin = {-18, -22}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  FluidSystemComponents.InteractiveSimulation.Output.DispValAndColor01 disp(sigDigits = 4)  annotation(
+  FluidSystemComponents.InteractiveSimulation.Output.DispValAndColor01 disp(sigDigits = 4, valMax = 25, valMin = -25)  annotation(
     Placement(visible = true, transformation(origin = {30, 15}, extent = {{-10, -8}, {10, 4}}, rotation = 0)));
-  FluidSystemComponents.InteractiveSimulation.Output.DispValAndColor01 dispValAndColor01 annotation(
+  FluidSystemComponents.InteractiveSimulation.Output.DispValAndColor01 dispValAndColor01(valMax = 25, valMin = -25)  annotation(
     Placement(visible = true, transformation(origin = {30, -25}, extent = {{-10, -8}, {10, 4}}, rotation = 0)));
 equation
   connect(sine.y, disp.u) annotation(
