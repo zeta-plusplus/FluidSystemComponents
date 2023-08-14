@@ -19,7 +19,7 @@ model FluidNW_ex01_v001
     Placement(visible = true, transformation(origin = {-140, 154}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_b0_0(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.01^2) annotation(
     Placement(visible = true, transformation(origin = {-110, 84}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Fluid.Vessels.ClosedVolume vol1(redeclare package Medium = fluid1, V = volStd, nPorts = 4, use_portsData = false) annotation(
+  Modelica.Fluid.Vessels.ClosedVolume vol1(redeclare package Medium = fluid1, V = volStd, nPorts = 5, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {10, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Vessels.ClosedVolume vol0(redeclare package Medium = fluid1, V = volStd, nPorts = 4, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {-110, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -45,7 +45,7 @@ model FluidNW_ex01_v001
     Placement(visible = true, transformation(origin = {10, 60}, extent = {{-8, -8}, {8, 8}}, rotation = -90)));
   FluidSystemComponents.Sensor.Monitor_p_kPa_T_K monitorPT_b0(redeclare package Medium = fluid1,significantDigits_T = 5, significantDigits_p = 6) annotation(
     Placement(visible = true, transformation(origin = {-94, 116}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Vessels.ClosedVolume vol2(redeclare package Medium = fluid1, V = volStd, nPorts = 4, use_portsData = false) annotation(
+  Modelica.Fluid.Vessels.ClosedVolume vol2(redeclare package Medium = fluid1, V = volStd, nPorts = 5, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {120, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_b2_2(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.005^2) annotation(
     Placement(visible = true, transformation(origin = {120, 84}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -83,6 +83,10 @@ model FluidNW_ex01_v001
     Placement(visible = true, transformation(origin = {170, 34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.Sensor.Monitor_MassFlow monitorMassFlow_2_b1001(redeclare package Medium = fluid1) annotation(
     Placement(visible = true, transformation(origin = {200, 34}, extent = {{-8, -8}, {8, 8}}, rotation = 0)));
+  FluidSystemComponents.Sensor.PressureDispColor00 pressure1(redeclare package Medium = fluid1) annotation(
+    Placement(visible = true, transformation(origin = {22, -6}, extent = {{-10, -4}, {10, 4}}, rotation = 0)));
+  FluidSystemComponents.Sensor.PressureDispColor00 pressure2(redeclare package Medium = fluid1) annotation(
+    Placement(visible = true, transformation(origin = {138, -6}, extent = {{-10, -4}, {10, 4}}, rotation = 0)));
 equation
   connect(ramp_p0.y, firstOrder_p0.u) annotation(
     Line(points = {{-140, 173}, {-140, 165}}, color = {0, 0, 127}));
@@ -154,6 +158,10 @@ equation
     Line(points = {{180, 34}, {192, 34}}, color = {0, 127, 255}));
   connect(monitorMassFlow_2_b1001.port_b, boundary1001.ports[1]) annotation(
     Line(points = {{208, 34}, {220, 34}}, color = {0, 127, 255}));
+  connect(pressure2.port, vol2.ports[5]) annotation(
+    Line(points = {{128, -6}, {120, -6}, {120, 20}}, color = {0, 127, 255}));
+  connect(pressure1.port, vol1.ports[5]) annotation(
+    Line(points = {{12, -6}, {10, -6}, {10, 20}}, color = {0, 127, 255}));
   annotation(
     Diagram(coordinateSystem(extent = {{-300, -260}, {300, 260}})),
     experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.1),

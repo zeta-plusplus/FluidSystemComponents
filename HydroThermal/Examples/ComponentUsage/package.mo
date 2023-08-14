@@ -1,5 +1,5 @@
 within FluidSystemComponents.HydroThermal.Examples;
 
 package ComponentUsage
-  extends FluidSystemComponents.HydroThermal.Examples;
+  extends Modelica.Icons.ExamplesPackage;
 end ComponentUsage;
