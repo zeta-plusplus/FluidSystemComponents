@@ -1,4 +1,6 @@
 PressureDispColor00
+TemperatureDispColor00
+Temperature_degC_DispColor00
 Monitor_MassFlow
 Monitor_p_kPa_T_K
 SpecificHeatCapacity
