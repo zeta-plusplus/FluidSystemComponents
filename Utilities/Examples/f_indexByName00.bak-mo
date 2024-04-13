@@ -1,0 +1,7 @@
+within FluidSystemComponents.Utilities.Examples;
+
+function f_indexByName00
+  extends Modelica.Icons.Function;
+algorithm
+
+end f_indexByName00;

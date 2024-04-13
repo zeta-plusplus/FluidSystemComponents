@@ -1,0 +1,7 @@
+within FluidSystemComponents.Utilities.Examples;
+
+model ReadTimeDatCSV00
+  extends Modelica.Icons.Example;
+equation
+
+end ReadTimeDatCSV00;

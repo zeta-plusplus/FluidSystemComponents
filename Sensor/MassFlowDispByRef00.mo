@@ -50,6 +50,6 @@ equation
 //************************************************************
 annotation(
     defaultComponentName ="m_flow_ref",
-    Icon(graphics = {Text(origin = {0, 36}, extent = {{-160, 20}, {160, -20}}, textString = DynamicSelect("0.0", String(m_flow_dat, significantDigits_m_flow, 0, true))), Text(origin = {48, -19}, extent = {{-36, 15}, {36, -15}}, textString = "kg/s"), Line(origin = {-3.52, 2.22}, points = {{-97, -2}, {103, -2}}, thickness = 2), Line(origin = {-2.21638, -46.0887}, points = {{-68, 0}, {68, 0}}, thickness = 1), Line(origin = {58.03, -44.48}, points = {{-7.62371, 7.98346}, {8.37629, -2.01654}, {-7.62371, -10.0165}}, thickness = 1.5), Text(origin = {0, -61}, extent = {{-120, 7}, {120, -7}}, textString ="%name")}, coordinateSystem(extent = {{-100, -60}, {100, 60}})));
+    Icon(graphics = {Text(origin = {0, 36}, extent = {{-160, 20}, {160, -20}}, textString = DynamicSelect("0.0", String(m_flow_dat, significantDigits_m_flow, 0, true))), Text(origin = {42, -23}, extent = {{-36, 15}, {36, -15}}, textString = "kg/s"), Line(origin = {-3.52, 2.22}, points = {{-97, -2}, {103, -2}}, thickness = 1.5), Line(origin = {37.15, 2.17}, points = {{-9.62371, 9.98346}, {8.37629, -2.01654}, {-9.62371, -12.0165}}, thickness = 1), Text(origin = {0, -49}, extent = {{-120, 7}, {120, -7}}, textString ="%name")}, coordinateSystem(extent = {{-100, -60}, {100, 60}})));
     
 end MassFlowDispByRef00;

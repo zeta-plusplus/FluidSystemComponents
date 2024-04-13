@@ -2,4 +2,6 @@ Frame_2FluidPorts
 Frame_2FluidPorts_1Shaft
 Frame_4FluidPorts
 Frame_2FluidPorts_1MechLin
+StringVectorInput
+StringInput
 Bus
