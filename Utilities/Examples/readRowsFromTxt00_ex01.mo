@@ -2,7 +2,7 @@ within FluidSystemComponents.Utilities.Examples;
 
 model readRowsFromTxt00_ex01
   extends Modelica.Icons.Example;
-  readRowsFromTxt00 readRowsFromTxt(filePath = "modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv")  annotation(
+  readRowsFromTxt00 readRowsFromTxt(filePath = "modelica://FluidSystemComponents/Utilities/Examples/varList_exampleTimeTable01.csv")  annotation(
     Placement(transformation(origin = {-26, 54}, extent = {{-10, -10}, {10, 10}})));
 initial algorithm
   /*for i in 1:readRowsFromTxt00.y_nRows loop

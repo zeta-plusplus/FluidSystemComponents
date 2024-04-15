@@ -4,4 +4,6 @@ Frame_4FluidPorts
 Frame_2FluidPorts_1MechLin
 StringVectorInput
 StringInput
+StringVectorOutput
+StringOutput
 Bus
