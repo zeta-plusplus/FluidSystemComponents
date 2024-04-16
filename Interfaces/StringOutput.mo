@@ -1,8 +1,8 @@
 within FluidSystemComponents.Interfaces;
 
-connector StringOutput = input String "'input String' as connector" 
+connector StringOutput = output String "'output String' as connector" 
   annotation (
-  defaultComponentName="u",
+  defaultComponentName="y",
   Icon(graphics={Polygon(lineColor = {0, 170, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 1, points = {{-100, 100}, {100, 0}, {-100, -100}, {-100, 100}})},
     coordinateSystem(extent={{-100,-100},{100,100}},
       preserveAspectRatio=true,
@@ -13,9 +13,8 @@ connector StringOutput = input String "'input String' as connector"
       extent={{-100,-100},{100,100}}),
       graphics={
     Polygon(
-      lineColor={0,170,0},
-      fillColor={0,170,0},
-      fillPattern=FillPattern.Solid,
+      lineColor={0,170,0}, fillColor = {255, 255, 255},
+      fillPattern=FillPattern.Solid, lineThickness = 1,
       points={{0,50},{100,0},{0,-50},{0,50}}),
     Text(
       textColor={0,0,127},
