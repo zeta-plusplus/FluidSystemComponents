@@ -20,11 +20,9 @@ import SI=Modelica.Units.SI;
       group="Table data definition"
       ));
   
-  //
-  discrete String arrRows[nVars];
   
   //
-  discrete Interfaces.StringVectorOutput y_arrRows[nVars] annotation(
+  discrete Interfaces.StringVectorOutput y_arrRows[nRows] annotation(
     Placement(transformation(origin = {100, 0}, extent = {{-22, -76}, {22, 76}}), iconTransformation(origin = {99, 0}, extent = {{-21, -60}, {21, 60}})));
 
 //*****************************************************************
@@ -32,32 +30,25 @@ protected
   /**/
   parameter String fileName=Files.loadResource(filePath) "File where matrix is stored"
     annotation(
-    HideResult=true);
+    fixed=false, HideResult=true);
   
-  parameter Integer nVars=Streams.countLines(fileName) annotation(
-    HideResult=false);
+  parameter Integer nRows=Streams.countLines(fileName) annotation(
+    fixed=false, HideResult=false);
   
   parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName) annotation(
     each HideResult=false, each fixed=false
     );
   
   
-  parameter Integer nLines=Streams.countLines(fileName) 
-    annotation(
-      HideResult=false);
-  parameter Integer nColumns=Strings.count(matCSVread[1],",")+1 
-    annotation(
-    HideResult=false);
-  
-  
 //*****************************************************************
 initial algorithm
-  Streams.print("nVars= " + String(nVars));
+  //nLines:=Streams.countLines(fileName);
+  
+  Streams.print("nVars= " + String(nRows));
   Streams.print("size(matCSVread,1)= " + String(size(matCSVread, 1)));
   Streams.print("");
   //-----
-  for i in 1:nVars loop
-    arrRows[i] := matCSVread[i];
+  for i in 1:nRows loop
     y_arrRows[i] := matCSVread[i];
   end for;
 /**/
@@ -66,8 +57,7 @@ equation
   //
   when(time==0)then
     Streams.print("");
-    for i in 1:nVars loop
-      arrRows[i]=matCSVread[i];
+    for i in 1:nRows loop
       y_arrRows[i]=matCSVread[i];
       Streams.print(y_arrRows[i]);
     end for;
