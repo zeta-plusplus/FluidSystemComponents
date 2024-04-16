@@ -1,7 +1,7 @@
 Examples
 readRowsFromTxt00
-f_indexByName00
 indexByName00
+StringExpression00
 CombiTimeTableByName00
 CombiTimeTableAll00
 VariableBySolver
@@ -18,4 +18,5 @@ arr_us_const_p_00
 arr_pv_const_s_00
 arr_pVol_const_s_00
 ReadTimeDatCSV00
+f_indexByName00
 f_readRowsFromTxt00

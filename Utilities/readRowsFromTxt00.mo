@@ -50,11 +50,12 @@ initial algorithm
 equation
   //
   when(time==0)then
-    Streams.print("");
+    Streams.print("-----");
     for i in 1:nRows loop
       y_arrRows[i]=matCSVread[i];
       Streams.print(y_arrRows[i]);
     end for;
+    Streams.print("-----");
   end when;
   
 //*****************************************************************
