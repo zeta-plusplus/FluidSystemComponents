@@ -8,11 +8,6 @@ import SI=Modelica.Units.SI;
   import Scripting=OpenModelica.Scripting;
   import Streams=Modelica.Utilities.Streams;
   //
-  //extends Modelica.Blocks.Interfaces.MO(nout=nVarMax);
-  //extends Modelica.Blocks.Interfaces.MO(nout=max([size(columns, 1); size(offset, 1)]));
-  //extends Modelica.Blocks.Interfaces.MO(nout=size(varNames,1));
-  //extends Modelica.Blocks.Interfaces.MO(nout=Strings.count(matCSVread[1],",")+1);
-  //
   
   
   parameter String filePath="modelica://FluidSystemComponents/Utilities/Examples/varList_exampleTimeTable01.csv"
@@ -42,7 +37,6 @@ protected
   
 //*****************************************************************
 initial algorithm
-  //nLines:=Streams.countLines(fileName);
   
   Streams.print("nVars= " + String(nRows));
   Streams.print("size(matCSVread,1)= " + String(size(matCSVread, 1)));
