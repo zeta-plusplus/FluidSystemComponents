@@ -51,10 +51,11 @@ initial algorithm
   /*for i in 1:nColumns loop
     y_arrColumns[i] := matCSVread[i];
   end for;*/
+  strTemp:=matCSVread[1];
   for i in 1:nColumns loop
     iDelim:=Strings.find(strTemp, strDelim);
-    y_arrColumns[i]:=Strings.substring(strTemp,1,iDelim);
-    strTemp:=Strings.substring(matCSVread[1],iDelim+1,Strings.length(strTemp));
+    y_arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
+    strTemp:=Strings.substring(matCSVread[1],iDelim,Strings.length(strTemp));
   end for;
 /**/
 //*****************************************************************
