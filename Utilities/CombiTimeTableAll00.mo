@@ -106,6 +106,7 @@ protected
   parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName);
   parameter Integer nLines=Streams.countLines(fileName);
   parameter Integer nColumns=Strings.count(matCSVread[1],",")+1;
+  
   /*
   parameter String varNames[:]=fill("",nVarMax) "" annotation(
     HideResult=false);
