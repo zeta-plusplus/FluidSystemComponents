@@ -37,41 +37,44 @@ protected
   parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName);
   parameter Integer nColumns=Strings.count(matCSVread[1],strDelim)+1;
   
-  
-  
-  
 //*****************************************************************
 initial algorithm
-  //nColumns:=Strings.count(matCSVread[1],",")+1;
-  
-  Streams.print("nVars= " + String(nColumns));
-  //Streams.print("size(matCSVread,1)= " + String(size(matCSVread, 1)));
-  Streams.print("");
+  Streams.print("initialization");
+  Streams.print("nColumns= " + String(nColumns));
+  Streams.print("---");
   //-----
-  /*for i in 1:nColumns loop
-    y_arrColumns[i] := matCSVread[i];
-  end for;*/
   strTemp:=matCSVread[1];
+  Streams.print(strTemp);
+  Streams.print("---");
   for i in 1:nColumns loop
-    iDelim:=Strings.find(strTemp, strDelim);
-    y_arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
-    strTemp:=Strings.substring(matCSVread[1],iDelim,Strings.length(strTemp));
+    if(i==nColumns)then
+      y_arrColumns[i]:=strTemp;
+    else
+      iDelim:=Strings.find(strTemp, strDelim);
+      y_arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
+      strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
+      //Streams.print(String(iDelim));
+      //Streams.print(strTemp);
+    end if;
+    Streams.print(y_arrColumns[i]);
+    //Streams.print("");
   end for;
+  Streams.print("-----");
 /**/
 //*****************************************************************
 algorithm
   when(time==0)then
-  strTemp:=matCSVread[1];
+    iDelim:=iDelim;
+    strTemp:=strTemp;
     for i in 1:nColumns loop
-      iDelim:=Strings.find(strTemp, strDelim);
-      y_arrColumns[i]:=Strings.substring(strTemp,1,iDelim);
-      strTemp:=Strings.substring(matCSVread[1],iDelim+1,Strings.length(strTemp));
+      y_arrColumns[i]:=y_arrColumns[i];
     end for;
   end when;
 
 //*****************************************************************
 equation
-  when(time==0)then
+  when(time>0)then
+    Streams.print("when clause, time>0");
     for i in 1:nColumns loop
       Streams.print(y_arrColumns[i]);
     end for;

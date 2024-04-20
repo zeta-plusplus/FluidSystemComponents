@@ -34,37 +34,37 @@ protected
     each HideResult=false, each fixed=false
     );
   
-  
 //*****************************************************************
 initial algorithm
-  
-  Streams.print("nVars= " + String(nRows));
+  Streams.print("initializeation");
+  Streams.print("nRows= " + String(nRows));
   Streams.print("size(matCSVread,1)= " + String(size(matCSVread, 1)));
-  Streams.print("");
+  Streams.print("---");
   //-----
   for i in 1:nRows loop
     y_arrRows[i] := matCSVread[i];
+    Streams.print(y_arrRows[i]);
   end for;
+  Streams.print("-----");
 /**/
 //*****************************************************************
 algorithm
   when(time==0)then
-    Streams.print("-----");
     for i in 1:nRows loop
-      y_arrRows[i]:=matCSVread[i];
+      y_arrRows[i]:=y_arrRows[i];
     end for;
   end when;
-  
+  /**/
 //*****************************************************************
 equation
   //
-  when(time==0)then
-    Streams.print("-----");
+  when(time>0)then
+    Streams.print("when clause, time>0");
     for i in 1:nRows loop
       Streams.print(y_arrRows[i]);
     end for;
   end when;
-  
+  /**/
 //*****************************************************************
 annotation(
   defaultComponentName = "readRows",
