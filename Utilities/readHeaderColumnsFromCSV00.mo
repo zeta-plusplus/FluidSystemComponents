@@ -73,12 +73,13 @@ algorithm
 
 //*****************************************************************
 equation
-  when(time>0)then
+  /*when(time>0)then
     Streams.print("when clause, time>0");
     for i in 1:nColumns loop
       Streams.print(y_arrColumns[i]);
     end for;
   end when;
+  */
 
 //*****************************************************************
 annotation(

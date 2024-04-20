@@ -7,19 +7,25 @@ block indexByName00
   import Strings=Modelica.Utilities.Strings;
   
   /*-----------------------------------
+          parameters
+  -----------------------------------*/
+  
+  
+  /*-----------------------------------
           replaceable
   -----------------------------------*/
-  replaceable String stringVector[:];
+  replaceable String stringVector[:] "";
+  
   
   /*-----------------------------------
           interfaces
   -----------------------------------*/
-  Interfaces.StringInput u_keyString annotation(
+  Interfaces.StringInput u_keyString "" annotation(
     Placement(transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.IntegerOutput y_index annotation(
     Placement(transformation(origin = {112, -2}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}})));
-
-//************************************************************
+  
+  //************************************************************
 equation
   y_index=FluidSystemComponents.Utilities.f_indexByName00(stringVector, u_keyString);
   

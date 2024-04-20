@@ -13,7 +13,8 @@ model CombiTimeTableAll00
   
   parameter Boolean tableOnFile=true
     "= true, if table is defined on file or in function usertab"
-    annotation (Dialog(group="Table data definition"));
+    annotation (Dialog(enable = false, group="Table data definition"));
+  
   
   parameter String filePath="modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv"
     annotation (Dialog(
@@ -27,23 +28,21 @@ model CombiTimeTableAll00
     "Table name on file or in function usertab (see docu)"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
   
-  parameter String fileName=Files.loadResource(filePath) "File where matrix is stored"
-    annotation (Dialog(
-      group="Table data definition",
-      enable=tableOnFile,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
-          caption="Open file in which table is present")));
-  
-  parameter Real table[:, :] = fill(0.0, 0, 2)
-    "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
-    annotation (Dialog(group="Table data definition",enable=not tableOnFile));
   parameter Boolean verboseRead=true
     "= true, if info message that file is loading is to be printed"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
+  
   parameter Integer columns[:]={1,2,3}
     "Columns of table to be interpolated"
-    annotation (Dialog(group="Table data interpretation",
+    annotation (Dialog(enable=false, group="Table data interpretation",
     groupImage="modelica://Modelica/Resources/Images/Blocks/Sources/CombiTimeTable.png"));
+  
+  //
+  parameter String strDelim="," 
+    ""
+    annotation (Dialog(group="Table data interpretation"));
+  
+  //
   parameter Modelica.Blocks.Types.Smoothness smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments
     "Smoothness of table interpolation"
     annotation (Dialog(group="Table data interpretation"));
@@ -77,9 +76,6 @@ model CombiTimeTableAll00
     "Maximum (scaled) abscissa value defined in table";
   
   //
-  parameter String strDelim=",";
-  
-  //
   discrete Integer iDelim;
   discrete String strTemp;
   
@@ -92,9 +88,24 @@ model CombiTimeTableAll00
 //*****************************************************************
 protected
   /**/
+  parameter String fileName=Files.loadResource(filePath) "File where matrix is stored"
+    annotation (Dialog(
+      group="Table data definition",
+      enable=tableOnFile,
+      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
+          caption="Open file in which table is present")));
+  
   parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName);
   parameter Integer nLines=Streams.countLines(fileName);
-  parameter Integer nColumns=Strings.count(matCSVread[1],",")+1;
+  parameter Integer nColumns=Strings.count(matCSVread[1],",")+1
+    annotation(
+      HideResult = false
+    );
+  
+  //-----
+  parameter Real table[:, :] = fill(0.0, 0, 2)
+    "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    annotation (Dialog(group="Table data definition",enable=not tableOnFile));
   
   
   final parameter Real p_offset[nout]=(if size(offset, 1) == 1 then ones(nout)*offset[1] else offset)
@@ -156,6 +167,14 @@ algorithm
 
 //*****************************************************************
 equation
+  /*when(time>0)then
+    Streams.print("when clause, time>0");
+    for i in 1:nColumns loop
+      Streams.print(y_arrColumns[i]);
+    end for;
+  end when;
+  */
+  //--------------------
   if tableOnFile then
     assert(tableName <> "NoName",
       "tableOnFile = true and no table name given");
@@ -196,7 +215,7 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
     end for;
   end if;
   
-  //
+  //*****************************************************************
   annotation(
     defaultComponentName = "combiTimeTable",
     Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}), graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Polygon(lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid, points = {{-80, 90}, {-88, 68}, {-72, 68}, {-80, 90}}), Line(points = {{-80, 68}, {-80, -80}}, color = {192, 192, 192}), Line(points = {{-90, -70}, {82, -70}}, color = {192, 192, 192}), Polygon(lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid, points = {{90, -70}, {68, -62}, {68, -78}, {90, -70}}), Rectangle(lineColor = {255, 255, 255}, fillColor = {255, 215, 136}, fillPattern = FillPattern.Solid, extent = {{-48, -50}, {2, 70}}), Line(points = {{-48, -50}, {-48, 70}, {52, 70}, {52, -50}, {-48, -50}, {-48, -20}, {52, -20}, {52, 10}, {-48, 10}, {-48, 40}, {52, 40}, {52, 70}, {2, 70}, {2, -51}})}));
