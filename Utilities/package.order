@@ -1,9 +1,9 @@
 Examples
 readRowsFromTxt00
 indexByName00
+CombiTimeTableAll00
 StringExpression00
 CombiTimeTableByName00
-CombiTimeTableAll00
 VariableBySolver
 ConstrainVariable
 ConstrainVariableUntilTimer

@@ -8,27 +8,16 @@ model CombiTimeTableAll00
   import Scripting=OpenModelica.Scripting;
   import Streams=Modelica.Utilities.Streams;
   //
-  //extends Modelica.Blocks.Interfaces.MO(nout=nVarMax);
-  extends Modelica.Blocks.Interfaces.MO(nout=max([size(columns, 1); size(offset, 1)]));
-  //extends Modelica.Blocks.Interfaces.MO(nout=size(varNames,1));
-  //extends Modelica.Blocks.Interfaces.MO(nout=Strings.count(matCSVread[1],",")+1);
+  extends Modelica.Blocks.Interfaces.MO(final nout=nColumns);
   //
-  parameter Integer nVarMax=10;
   
   parameter Boolean tableOnFile=true
     "= true, if table is defined on file or in function usertab"
     annotation (Dialog(group="Table data definition"));
   
-  
   parameter String filePath="modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv"
     annotation (Dialog(
       group="Table data definition",
-      enable=tableOnFile,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
-          caption="Open file in which table is present")));
-  parameter String filePath_varList="modelica://FluidSystemComponents/Utilities/Examples/varList_exampleTimeTable01.csv"
-    annotation (Dialog(
-      group="list of variables in single column",
       enable=tableOnFile,
       loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
           caption="Open file in which table is present")));
@@ -38,8 +27,6 @@ model CombiTimeTableAll00
     "Table name on file or in function usertab (see docu)"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
   
-  parameter String varNames[:]={"var1", "var2", "var3"};
-  
   parameter String fileName=Files.loadResource(filePath) "File where matrix is stored"
     annotation (Dialog(
       group="Table data definition",
@@ -47,21 +34,13 @@ model CombiTimeTableAll00
       loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
           caption="Open file in which table is present")));
   
-  parameter String fileName_varList=Files.loadResource(filePath_varList) ""
-    annotation (Dialog(
-      group="Table data definition",
-      enable=tableOnFile,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
-          caption="Open file in which table is present")));
-  
-  
   parameter Real table[:, :] = fill(0.0, 0, 2)
     "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
     annotation (Dialog(group="Table data definition",enable=not tableOnFile));
   parameter Boolean verboseRead=true
     "= true, if info message that file is loading is to be printed"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
-  parameter Integer columns[:]=2:size(table, 2)
+  parameter Integer columns[:]={1,2,3}
     "Columns of table to be interpolated"
     annotation (Dialog(group="Table data interpretation",
     groupImage="modelica://Modelica/Resources/Images/Blocks/Sources/CombiTimeTable.png"));
@@ -96,21 +75,26 @@ model CombiTimeTableAll00
     "Minimum (scaled) abscissa value defined in table";
   final parameter Real t_maxScaled=Internal.getTimeTableTmax(tableID)
     "Maximum (scaled) abscissa value defined in table";
-
+  
+  //
+  parameter String strDelim=",";
+  
+  //
+  discrete Integer iDelim;
+  discrete String strTemp;
+  
+  //
+  discrete Interfaces.StringVectorOutput y_arrColumns[nColumns] 
+    annotation(
+      Placement(transformation(origin = {100, 60}, extent = {{-16, -30}, {16, 30}}), iconTransformation(origin = {100, 60}, extent = {{-9, -20}, {9, 20}})));
+  
+  
 //*****************************************************************
 protected
   /**/
-  parameter Integer nVars=Streams.countLines(fileName_varList) annotation(
-    HideResult=false);
-  
   parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName);
   parameter Integer nLines=Streams.countLines(fileName);
   parameter Integer nColumns=Strings.count(matCSVread[1],",")+1;
-  
-  /*
-  parameter String varNames[:]=fill("",nVarMax) "" annotation(
-    HideResult=false);
-  */
   
   
   final parameter Real p_offset[nout]=(if size(offset, 1) == 1 then ones(nout)*offset[1] else offset)
@@ -136,15 +120,38 @@ protected
 
 //*****************************************************************
 initial algorithm
-  
-  Streams.print(matCSVread[1]);
-  Streams.print("");
-  
-  //varNames:=Scripting.stringSplit(matCSVread[1],",");
-  /*for i in 1:nVarMax loop
-    Streams.print(varNames[i]+", ");
+  Streams.print("initialization");
+  Streams.print("nColumns= " + String(nColumns));
+  Streams.print("---");
+  //-----
+  strTemp:=matCSVread[1];
+  Streams.print(strTemp);
+  Streams.print("---");
+  for i in 1:nColumns loop
+    if(i==nColumns)then
+      y_arrColumns[i]:=strTemp;
+    else
+      iDelim:=Strings.find(strTemp, strDelim);
+      y_arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
+      strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
+      //Streams.print(String(iDelim));
+      //Streams.print(strTemp);
+    end if;
+    Streams.print(y_arrColumns[i]);
+    //Streams.print("");
   end for;
-  */
+  Streams.print("-----");
+
+
+//*****************************************************************
+algorithm
+  when(time==0)then
+    iDelim:=iDelim;
+    strTemp:=strTemp;
+    for i in 1:nColumns loop
+      y_arrColumns[i]:=y_arrColumns[i];
+    end for;
+  end when;
   
 
 //*****************************************************************
