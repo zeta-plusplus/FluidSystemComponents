@@ -150,24 +150,13 @@ initial algorithm
   Streams.print("---");
   for i in 1:nColumns loop
     if(i==nColumns)then
-      y_column:=strTemp;
-      //columns[1]:=i;
+      arrColumns[i]:=strTemp;
     else
       iDelim:=Strings.find(strTemp, strDelim);
-      //y_column:=Strings.substring(strTemp,1,iDelim-1);
       arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
       strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
-      /*if(y_column==nmVar)then
-        columns[1]:=i;
-      else
-        columns[1]:=columns[1];
-      end if;
-      */
-      //Streams.print(String(iDelim));
-      //Streams.print(strTemp);
     end if;
     Streams.print(arrColumns[i]);
-    //Streams.print("");
   end for;
   y_column:=strVar;
   //columns[1]:=4;
