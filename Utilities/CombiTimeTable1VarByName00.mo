@@ -35,6 +35,7 @@ model CombiTimeTable1VarByName00
       enable=tableOnFile
       ));
   
+  
   parameter Boolean verboseRead=true
     "= true, if info message that file is loading is to be printed"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
@@ -44,6 +45,11 @@ model CombiTimeTable1VarByName00
   parameter String strDelim="," 
     ""
     annotation (Dialog(group="Table data interpretation"));
+  
+  parameter Integer columns[:]={1,2,3}
+    "Columns of table to be interpolated"
+    annotation (Dialog(enable=false, group="Table data interpretation",
+    groupImage="modelica://Modelica/Resources/Images/Blocks/Sources/CombiTimeTable.png"));
   
   //
   parameter Modelica.Blocks.Types.Smoothness smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments
@@ -69,19 +75,41 @@ model CombiTimeTable1VarByName00
   parameter Boolean verboseExtrapolation=false
     "= true, if warning messages are to be printed if time is outside the table definition range"
     annotation (Dialog(group="Table data interpretation", enable=extrapolation == Modelica.Blocks.Types.Extrapolation.LastTwoPoints or extrapolation == Modelica.Blocks.Types.Extrapolation.HoldLastPoint));
-  final parameter SI.Time t_min=t_minScaled*timeScale
+  /*
+  discrete SI.Time t_min=t_minScaled*timeScale
     "Minimum abscissa value defined in table";
-  final parameter SI.Time t_max=t_maxScaled*timeScale
+  discrete SI.Time t_max=t_maxScaled*timeScale
     "Maximum abscissa value defined in table";
-  final parameter Real t_minScaled=Internal.getTimeTableTmin(tableID)
+  
+  
+  discrete Real t_minScaled=Internal.getTimeTableTmin(tableID)
     "Minimum (scaled) abscissa value defined in table";
-  final parameter Real t_maxScaled=Internal.getTimeTableTmax(tableID)
+  discrete Real t_maxScaled=Internal.getTimeTableTmax(tableID)
     "Maximum (scaled) abscissa value defined in table";
+  */
+  discrete SI.Time t_min;
+  discrete SI.Time t_max;
+  discrete Real t_minScaled;
+  discrete Real t_maxScaled;
+  /**/
+  discrete Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
+      Modelica.Blocks.Types.ExternalCombiTimeTable(
+        if tableOnFile then tableName else "NoName",
+        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
+        table,
+        startTime/timeScale,
+        columns,
+        smoothness,
+        extrapolation,
+        shiftTime/timeScale,
+        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
+        if tableOnFile then verboseRead else false) "External table object";
   
   //
   discrete Integer iDelim;
   discrete String strTemp;
   discrete String arrColumns[nColumns];
+  discrete Integer colPickedUp[1];
   //
   discrete Interfaces.StringOutput y_column annotation(
     Placement(transformation(origin = {100, 60}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, 60}, extent = {{-10, -10}, {10, 10}})));
@@ -106,9 +134,6 @@ protected
       HideResult = false
     );
   
-  parameter Integer columns[1]={3}
-    "Columns of table to be interpolated"
-    annotation(HideResult = false,fixed=false);
   
   //y_index=FluidSystemComponents.Utilities.f_indexByName00(stringVector, u_keyString);
   
@@ -120,6 +145,8 @@ protected
   
   final parameter Real p_offset[nout]=(if size(offset, 1) == 1 then ones(nout)*offset[1] else offset)
     "Offsets of output signals";
+  
+  /*
   parameter Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
       Modelica.Blocks.Types.ExternalCombiTimeTable(
         if tableOnFile then tableName else "NoName",
@@ -131,7 +158,12 @@ protected
         extrapolation,
         shiftTime/timeScale,
         if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
-        if tableOnFile then verboseRead else false) "External table object";
+        if tableOnFile then verboseRead else false) "External table object" 
+        annotation(fixed=false);
+  */
+  
+  
+  
   discrete SI.Time nextTimeEvent(start=0, fixed=true)
     "Next time event instant";
   discrete Real nextTimeEventScaled(start=0, fixed=true)
@@ -159,18 +191,35 @@ initial algorithm
     Streams.print(arrColumns[i]);
   end for;
   y_column:=strVar;
-  //columns[1]:=4;
-  //columns[1]:=FluidSystemComponents.Utilities.f_indexByName00(arrColumns, strVar);
+  colPickedUp[1]:=FluidSystemComponents.Utilities.f_indexByName00(arrColumns, strVar);
   Streams.print("-----");
+  Streams.print(String(colPickedUp[1]));
   Streams.print(y_column);
   Streams.print("-----");
   
+initial equation
+  
+  tableID=
+      Modelica.Blocks.Types.ExternalCombiTimeTable(
+        if tableOnFile then tableName else "NoName",
+        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
+        table,
+        startTime/timeScale,
+        colPickedUp,
+        smoothness,
+        extrapolation,
+        shiftTime/timeScale,
+        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
+        if tableOnFile then verboseRead else false);
+  /**/
+
 //*****************************************************************
 algorithm
   when(time==0)then
     iDelim:=iDelim;
     strTemp:=strTemp;
     y_column:=y_column;
+    colPickedUp[1]:=FluidSystemComponents.Utilities.f_indexByName00(arrColumns, strVar);
     
     for i in 1:nColumns loop
       arrColumns[i]:=arrColumns[i];
@@ -186,6 +235,26 @@ equation
     Streams.print(y_column);
   end when;
   */
+  when(time==0)then
+    tableID=
+        Modelica.Blocks.Types.ExternalCombiTimeTable(
+          if tableOnFile then tableName else "NoName",
+          if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
+          table,
+          startTime/timeScale,
+          colPickedUp,
+          smoothness,
+          extrapolation,
+          shiftTime/timeScale,
+          if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
+          if tableOnFile then verboseRead else false);
+  
+    t_minScaled=Internal.getTimeTableTmin(tableID);
+    t_maxScaled=Internal.getTimeTableTmax(tableID);
+    t_min=t_minScaled*timeScale;
+    t_max=t_maxScaled*timeScale;
+  end when;
+  
   //--------------------
   if tableOnFile then
     assert(tableName <> "NoName",
@@ -213,17 +282,19 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
     nextTimeEventScaled = Internal.getNextTimeEvent(tableID, timeScaled);
     nextTimeEvent = if nextTimeEventScaled < Modelica.Constants.inf then nextTimeEventScaled*timeScale else Modelica.Constants.inf;
   end when;
+  
+  //
   if smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then
     for i in 1:nout loop
-      y[i] = p_offset[i] + Internal.getTimeTableValueNoDer(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      y[i] = p_offset[i] + Internal.getTimeTableValueNoDer(tableID, colPickedUp[1], timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
     end for;
   elseif smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then
     for i in 1:nout loop
-      y[i] = p_offset[i] + Internal.getTimeTableValueNoDer2(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      y[i] = p_offset[i] + Internal.getTimeTableValueNoDer2(tableID, colPickedUp[1], timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
     end for;
   else
     for i in 1:nout loop
-      y[i] = p_offset[i] + Internal.getTimeTableValue(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      y[i] = p_offset[i] + Internal.getTimeTableValue(tableID, colPickedUp[1], timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
     end for;
   end if;
   
