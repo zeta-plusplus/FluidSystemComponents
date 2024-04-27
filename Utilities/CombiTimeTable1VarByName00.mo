@@ -15,13 +15,27 @@ model CombiTimeTable1VarByName00
     "= true, if table is defined on file or in function usertab"
     annotation (Dialog(enable = false, group="Table data definition"));
   
+  parameter Integer nColMax=200;
   
   parameter String filePath="modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv"
-    annotation (Dialog(
+    annotation (
+      Dialog(
       group="Table data definition",
-      enable=tableOnFile,
+      enable=true,
       loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
           caption="Open file in which table is present")));
+  
+  parameter String fileName=Modelica.Utilities.Files.loadResource(filePath) "Modelica.Utilities.Files.loadResource(string),File where matrix is stored"
+    annotation (
+      HideResult = false,
+      Dialog(
+      group="Table data definition",
+      enable=true,
+      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
+          caption="Open file in which table is present")));
+  
+  
+  
   
   
   parameter String tableName="table01"
@@ -76,6 +90,10 @@ model CombiTimeTable1VarByName00
     "= true, if warning messages are to be printed if time is outside the table definition range"
     annotation (Dialog(group="Table data interpretation", enable=extrapolation == Modelica.Blocks.Types.Extrapolation.LastTwoPoints or extrapolation == Modelica.Blocks.Types.Extrapolation.HoldLastPoint));
   
+  
+  
+  
+  
   discrete SI.Time t_min;
   discrete SI.Time t_max;
   discrete Real t_minScaled;
@@ -95,9 +113,13 @@ model CombiTimeTable1VarByName00
         if tableOnFile then verboseRead else false) "External table object";
   
   //
+  discrete String matCSVread;
+  //discrete Integer nLines=Streams.countLines(fileName);
+  discrete Integer nColumns;
+  
   discrete Integer iDelim;
   discrete String strTemp;
-  discrete String arrColumns[nColumns];
+  discrete String arrColumns[nColMax];
   discrete Integer colPickedUp[1];
   //
   discrete Interfaces.StringOutput y_column annotation(
@@ -106,23 +128,20 @@ model CombiTimeTable1VarByName00
 
 protected
   /**/
-  parameter String fileName=Files.loadResource(filePath) "File where matrix is stored"
-    annotation (Dialog(
-      group="Table data definition",
-      enable=tableOnFile,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
-          caption="Open file in which table is present")));
-  
-  parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName);
+  /*parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName)
+    ""
+    annotation(HideResult = false, fixed=false)
+    ;
   parameter Integer nLines=Streams.countLines(fileName)
     ""
-    annotation(HideResult = false)
+    annotation(HideResult = false, fixed=false)
     ;
   parameter Integer nColumns=Strings.count(matCSVread[1],",")+1
     annotation(
-      HideResult = false
+      HideResult = false, fixed=false
     );
   
+  */
   
   //y_index=FluidSystemComponents.Utilities.f_indexByName00(stringVector, u_keyString);
   
@@ -145,23 +164,32 @@ protected
 
 //*****************************************************************
 initial algorithm
+  //matCSVread[:]:=Modelica.Utilities.Streams.readFile(fileName);
+  //nLines:=Streams.countLines(fileName);
+  matCSVread:= Modelica.Utilities.Streams.readLine(fileName, 1);
+  nColumns:=Strings.count(matCSVread,",")+1;
+  
   Streams.print("initialization");
   Streams.print("nColumns= " + String(nColumns));
   Streams.print("---");
   //-----
-  strTemp:=matCSVread[1];
+  strTemp:=matCSVread;
   Streams.print(strTemp);
   Streams.print("---");
+  //-----
   for i in 1:nColumns loop
-    if(i==nColumns)then
-      arrColumns[i]:=strTemp;
-    else
-      iDelim:=Strings.find(strTemp, strDelim);
-      arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
-      strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
+    if(i<=nColMax)then
+      if(i==nColumns)then
+        arrColumns[i]:=strTemp;
+      else
+        iDelim:=Strings.find(strTemp, strDelim);
+        arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
+        strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
+      end if;
+      Streams.print(arrColumns[i]);
     end if;
-    Streams.print(arrColumns[i]);
   end for;
+  //-----
   y_column:=strVar;
   colPickedUp[1]:=FluidSystemComponents.Utilities.f_indexByName00(arrColumns, strVar);
   Streams.print("-----");
@@ -191,12 +219,16 @@ initial equation
 //*****************************************************************
 algorithm
   when(time==0)then
+    matCSVread:=matCSVread;
+    //nLines:=nLines;
+    nColumns:=nColumns;
+  
     iDelim:=iDelim;
     strTemp:=strTemp;
     y_column:=y_column;
     colPickedUp[1]:=FluidSystemComponents.Utilities.f_indexByName00(arrColumns, strVar);
     
-    for i in 1:nColumns loop
+    for i in 1:nColMax loop
       arrColumns[i]:=arrColumns[i];
     end for;
     
