@@ -75,18 +75,7 @@ model CombiTimeTable1VarByName00
   parameter Boolean verboseExtrapolation=false
     "= true, if warning messages are to be printed if time is outside the table definition range"
     annotation (Dialog(group="Table data interpretation", enable=extrapolation == Modelica.Blocks.Types.Extrapolation.LastTwoPoints or extrapolation == Modelica.Blocks.Types.Extrapolation.HoldLastPoint));
-  /*
-  discrete SI.Time t_min=t_minScaled*timeScale
-    "Minimum abscissa value defined in table";
-  discrete SI.Time t_max=t_maxScaled*timeScale
-    "Maximum abscissa value defined in table";
   
-  
-  discrete Real t_minScaled=Internal.getTimeTableTmin(tableID)
-    "Minimum (scaled) abscissa value defined in table";
-  discrete Real t_maxScaled=Internal.getTimeTableTmax(tableID)
-    "Maximum (scaled) abscissa value defined in table";
-  */
   discrete SI.Time t_min;
   discrete SI.Time t_max;
   discrete Real t_minScaled;
@@ -146,23 +135,6 @@ protected
   final parameter Real p_offset[nout]=(if size(offset, 1) == 1 then ones(nout)*offset[1] else offset)
     "Offsets of output signals";
   
-  /*
-  parameter Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
-      Modelica.Blocks.Types.ExternalCombiTimeTable(
-        if tableOnFile then tableName else "NoName",
-        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
-        table,
-        startTime/timeScale,
-        columns,
-        smoothness,
-        extrapolation,
-        shiftTime/timeScale,
-        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
-        if tableOnFile then verboseRead else false) "External table object" 
-        annotation(fixed=false);
-  */
-  
-  
   
   discrete SI.Time nextTimeEvent(start=0, fixed=true)
     "Next time event instant";
@@ -197,6 +169,9 @@ initial algorithm
   Streams.print(y_column);
   Streams.print("-----");
   
+
+
+//*****************************************************************
 initial equation
   
   tableID=
@@ -230,11 +205,6 @@ algorithm
 
 //*****************************************************************
 equation
-  /*when(time>0)then
-    Streams.print("when clause, time>0");
-    Streams.print(y_column);
-  end when;
-  */
   when(time==0)then
     tableID=
         Modelica.Blocks.Types.ExternalCombiTimeTable(
