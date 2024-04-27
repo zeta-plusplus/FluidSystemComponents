@@ -11,27 +11,30 @@ model CombiTimeTable1VarByName00
   extends Modelica.Blocks.Interfaces.MO(final nout=1);
   //
   
+  /*-----------------------------------
+          parameters
+  -----------------------------------*/
+  parameter Integer nColMax=200;
+  
   parameter Boolean tableOnFile=true
     "= true, if table is defined on file or in function usertab"
     annotation (Dialog(enable = false, group="Table data definition"));
   
-  parameter Integer nColMax=200;
-  
-  parameter String filePath="modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv"
+  parameter String strFileName="modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv"
     annotation (
       Dialog(
       group="Table data definition",
       enable=true,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
+      loadSelector(filter="CSV files (*.csv);;Text files (*.txt);;MATLAB MAT-files (*.mat)",
           caption="Open file in which table is present")));
   
-  parameter String fileName=Modelica.Utilities.Files.loadResource(filePath) "Modelica.Utilities.Files.loadResource(string),File where matrix is stored"
+  parameter String fileName=Modelica.Utilities.Files.loadResource(strFileName) "Modelica.Utilities.Files.loadResource(string),File where matrix is stored"
     annotation (
       HideResult = false,
       Dialog(
       group="Table data definition",
-      enable=true,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
+      enable=false,
+      loadSelector(filter="CSV files (*.csv);;Text files (*.txt);;MATLAB MAT-files (*.mat)",
           caption="Open file in which table is present")));
   
   
@@ -93,7 +96,9 @@ model CombiTimeTable1VarByName00
   
   
   
-  
+  /*-----------------------------------
+          variables
+  -----------------------------------*/
   discrete SI.Time t_min;
   discrete SI.Time t_max;
   discrete Real t_minScaled;
@@ -122,28 +127,18 @@ model CombiTimeTable1VarByName00
   discrete String arrColumns[nColMax];
   discrete Integer colPickedUp[1];
   //
+  
+  
+  /*-----------------------------------
+          interfaces
+  -----------------------------------*/
   discrete Interfaces.StringOutput y_column annotation(
     Placement(transformation(origin = {100, 60}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, 60}, extent = {{-10, -10}, {10, 10}})));
+  
+  
   //*****************************************************************
-
 protected
   /**/
-  /*parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName)
-    ""
-    annotation(HideResult = false, fixed=false)
-    ;
-  parameter Integer nLines=Streams.countLines(fileName)
-    ""
-    annotation(HideResult = false, fixed=false)
-    ;
-  parameter Integer nColumns=Strings.count(matCSVread[1],",")+1
-    annotation(
-      HideResult = false, fixed=false
-    );
-  
-  */
-  
-  //y_index=FluidSystemComponents.Utilities.f_indexByName00(stringVector, u_keyString);
   
   //-----
   parameter Real table[:, :] = fill(0.0, 0, 2)
@@ -164,8 +159,6 @@ protected
 
 //*****************************************************************
 initial algorithm
-  //matCSVread[:]:=Modelica.Utilities.Streams.readFile(fileName);
-  //nLines:=Streams.countLines(fileName);
   matCSVread:= Modelica.Utilities.Streams.readLine(fileName, 1);
   nColumns:=Strings.count(matCSVread,",")+1;
   
