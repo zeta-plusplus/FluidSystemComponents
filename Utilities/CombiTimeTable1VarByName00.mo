@@ -14,7 +14,7 @@ model CombiTimeTable1VarByName00
   /*-----------------------------------
           parameters
   -----------------------------------*/
-  parameter Integer nColMax=200;
+  parameter Integer nColMax=7;
   
   parameter Boolean tableOnFile=true
     "= true, if table is defined on file or in function usertab"
@@ -63,7 +63,7 @@ model CombiTimeTable1VarByName00
     ""
     annotation (Dialog(group="Table data interpretation"));
   
-  parameter Integer columns[:]={1,2,3}
+  parameter Integer columns[:]=integer(linspace(1, nColMax, nColMax))
     "Columns of table to be interpolated"
     annotation (Dialog(enable=false, group="Table data interpretation",
     groupImage="modelica://Modelica/Resources/Images/Blocks/Sources/CombiTimeTable.png"));
