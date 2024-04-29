@@ -93,15 +93,23 @@ model CombiTimeTableAll00
     "= true, if warning messages are to be printed if time is outside the table definition range"
     annotation (Dialog(group="Table data interpretation", enable=extrapolation == Modelica.Blocks.Types.Extrapolation.LastTwoPoints or extrapolation == Modelica.Blocks.Types.Extrapolation.HoldLastPoint));
   
+  final parameter SI.Time t_min=t_minScaled*timeScale
+    "Minimum abscissa value defined in table";
+  final parameter SI.Time t_max=t_maxScaled*timeScale
+    "Maximum abscissa value defined in table";
+  final parameter Real t_minScaled=Internal.getTimeTableTmin(tableID)
+    "Minimum (scaled) abscissa value defined in table";
+  final parameter Real t_maxScaled=Internal.getTimeTableTmax(tableID)
+    "Maximum (scaled) abscissa value defined in table";
   
   /*-----------------------------------
           variables
   -----------------------------------*/
-  discrete SI.Time t_min;
+  /*discrete SI.Time t_min;
   discrete SI.Time t_max;
   discrete Real t_minScaled;
   discrete Real t_maxScaled;
-  /*
+  
   discrete Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
       Modelica.Blocks.Types.ExternalCombiTimeTable(
         if tableOnFile then tableName else "NoName",
@@ -267,9 +275,9 @@ algorithm
 
 //*****************************************************************
 equation
-  
+  /*
   when(time==0)then
-    /*
+    
     tableID=
         Modelica.Blocks.Types.ExternalCombiTimeTable(
           if tableOnFile then tableName else "NoName",
@@ -282,7 +290,7 @@ equation
           shiftTime/timeScale,
           if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
           if tableOnFile then verboseRead else false);
-    */
+    
     
     t_minScaled=Internal.getTimeTableTmin(tableID);
     t_maxScaled=Internal.getTimeTableTmax(tableID);
@@ -290,7 +298,7 @@ equation
     t_max=t_maxScaled*timeScale;
     
   end when;
-  
+  */
   //--------------------
   if tableOnFile then
     assert(tableName <> "NoName",
