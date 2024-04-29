@@ -2,7 +2,7 @@ within FluidSystemComponents.Utilities.Examples;
 
 model CombiTimeTable1ByName00_ex01
   extends Modelica.Icons.Example;
-  CombiTimeTable1VarByName00 combiTimeTable(strVar = "der(volume.medium.T)", strFileName = "modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv", nColMax = 7)  annotation(
+  CombiTimeTable1VarByName00 combiTimeTable(strVar = "der(volume.medium.T)", strFileName = "modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable02.csv", nColMax = 179)  annotation(
     Placement(transformation(origin = {-18, 22}, extent = {{-10, -10}, {10, 10}})));
 equation
 

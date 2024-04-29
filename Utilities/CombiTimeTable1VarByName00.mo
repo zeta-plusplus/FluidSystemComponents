@@ -37,10 +37,7 @@ model CombiTimeTable1VarByName00
       loadSelector(filter="CSV files (*.csv);;Text files (*.txt);;MATLAB MAT-files (*.mat)",
           caption="Open file in which table is present")));
   
-  
-  
-  
-  
+  //
   parameter String tableName="table01"
     "Table name on file or in function usertab (see docu)"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
@@ -119,7 +116,6 @@ model CombiTimeTable1VarByName00
   
   //
   discrete String matCSVread;
-  //discrete Integer nLines=Streams.countLines(fileName);
   discrete Integer nColumns;
   
   discrete Integer iDelim;
@@ -213,7 +209,6 @@ initial equation
 algorithm
   when(time==0)then
     matCSVread:=matCSVread;
-    //nLines:=nLines;
     nColumns:=nColumns;
   
     iDelim:=iDelim;
@@ -278,7 +273,7 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
     nextTimeEvent = if nextTimeEventScaled < Modelica.Constants.inf then nextTimeEventScaled*timeScale else Modelica.Constants.inf;
   end when;
   
-  //
+  /**/
   if smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then
     for i in 1:nout loop
       y[i] = p_offset[i] + Internal.getTimeTableValueNoDer(tableID, colPickedUp[1], timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));

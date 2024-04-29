@@ -83,17 +83,6 @@ model CombiTimeTableAll00
     "= true, if warning messages are to be printed if time is outside the table definition range"
     annotation (Dialog(group="Table data interpretation", enable=extrapolation == Modelica.Blocks.Types.Extrapolation.LastTwoPoints or extrapolation == Modelica.Blocks.Types.Extrapolation.HoldLastPoint));
   
-  /*
-  final parameter SI.Time t_min=t_minScaled*timeScale
-    "Minimum abscissa value defined in table";
-  final parameter SI.Time t_max=t_maxScaled*timeScale
-    "Maximum abscissa value defined in table";
-  final parameter Real t_minScaled=Internal.getTimeTableTmin(tableID)
-    "Minimum (scaled) abscissa value defined in table";
-  final parameter Real t_maxScaled=Internal.getTimeTableTmax(tableID)
-    "Maximum (scaled) abscissa value defined in table";
-  */
-  
   /*-----------------------------------
           variables
   -----------------------------------*/
@@ -136,22 +125,6 @@ model CombiTimeTableAll00
   
   //*****************************************************************
 protected
-  /*
-  
-  parameter Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
-      Modelica.Blocks.Types.ExternalCombiTimeTable(
-        if tableOnFile then tableName else "NoName",
-        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
-        table,
-        startTime/timeScale,
-        columns,
-        smoothness,
-        extrapolation,
-        shiftTime/timeScale,
-        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
-        if tableOnFile then verboseRead else false) "External table object";
-  */
-  
   //-----
   parameter Real table[:, :] = fill(0.0, 0, 2)
     "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
@@ -306,13 +279,6 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
     nextTimeEvent = if nextTimeEventScaled < Modelica.Constants.inf then nextTimeEventScaled*timeScale else Modelica.Constants.inf;
   end when;
   
-  //
-  /*
-  for i in 1:nout loop
-    y[i]=p_offset[i]+0.0;
-  end for;
-  //Streams.print("----- equation, talble interpolation -----");
-  */
   /**/
   if smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then
     for i in 1:nout loop
