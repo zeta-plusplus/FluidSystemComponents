@@ -105,34 +105,12 @@ model CombiTimeTableAll00
   /*-----------------------------------
           variables
   -----------------------------------*/
-  /*discrete SI.Time t_min;
-  discrete SI.Time t_max;
-  discrete Real t_minScaled;
-  discrete Real t_maxScaled;
-  
-  discrete Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
-      Modelica.Blocks.Types.ExternalCombiTimeTable(
-        if tableOnFile then tableName else "NoName",
-        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
-        table,
-        startTime/timeScale,
-        columns,
-        smoothness,
-        extrapolation,
-        shiftTime/timeScale,
-        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
-        if tableOnFile then verboseRead else false) "External table object";
-  */
-  
   //
   discrete String matCSVread;
-  //discrete Integer nLines=Streams.countLines(fileName);
   discrete Integer nColumns;
   
   discrete Integer iDelim;
   discrete String strTemp;
-  //discrete String arrColumns[nColMax];
-  //discrete Integer colPickedUp[nColMax];
   //
   
   
@@ -182,9 +160,7 @@ protected
 initial algorithm
   //-----
   for i in 1:nColMax loop
-    //arrColumns[i]:="";
-    //colPickedUp[i]:=i;
-    y_column[i]:="";
+    y_column[i]:="NA";
   end for;
   //-----
   matCSVread:= Modelica.Utilities.Streams.readLine(fileName, 1);
@@ -208,8 +184,6 @@ initial algorithm
         y_column[i]:=Strings.substring(strTemp,1,iDelim-1);
         strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
       end if;
-      //colPickedUp[i]:=i;
-      //y_column[i]:= arrColumns[i];
     end if;
   end for;
   
@@ -219,11 +193,6 @@ initial algorithm
   end for;
   
   //-----
-  //y_column:=strVar;
-  //colPickedUp[1]:=FluidSystemComponents.Utilities.f_indexByName00(arrColumns, strVar);
-  //Streams.print("-----");
-  //Streams.print(String(colPickedUp[1]));
-  //Streams.print(y_column);
   Streams.print("-----");
   
 
@@ -232,20 +201,7 @@ initial algorithm
 initial equation
   //Streams.print("----- beginning of initial equation -----");
   //Streams.print("-----");
-  /*
-  tableID=
-      Modelica.Blocks.Types.ExternalCombiTimeTable(
-        if tableOnFile then tableName else "NoName",
-        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
-        table,
-        startTime/timeScale,
-        columns,
-        smoothness,
-        extrapolation,
-        shiftTime/timeScale,
-        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
-        if tableOnFile then verboseRead else false);
-  */
+  
   //Streams.print("----- end of initial equation -----");
   //Streams.print("-----");
   /**/
@@ -263,8 +219,6 @@ algorithm
     strTemp:=strTemp;
     
     for i in 1:nColMax loop
-      //arrColumns[i]:=arrColumns[i];
-      //colPickedUp[i]:=colPickedUp[i];
       y_column[i]:=y_column[i];
     end for;
     
@@ -275,30 +229,6 @@ algorithm
 
 //*****************************************************************
 equation
-  /*
-  when(time==0)then
-    
-    tableID=
-        Modelica.Blocks.Types.ExternalCombiTimeTable(
-          if tableOnFile then tableName else "NoName",
-          if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
-          table,
-          startTime/timeScale,
-          columns,
-          smoothness,
-          extrapolation,
-          shiftTime/timeScale,
-          if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
-          if tableOnFile then verboseRead else false);
-    
-    
-    t_minScaled=Internal.getTimeTableTmin(tableID);
-    t_maxScaled=Internal.getTimeTableTmax(tableID);
-    t_min=t_minScaled*timeScale;
-    t_max=t_maxScaled*timeScale;
-    
-  end when;
-  */
   //--------------------
   if tableOnFile then
     assert(tableName <> "NoName",
@@ -328,9 +258,16 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
   end when;
   
   //
+  /*
+  for i in 1:nout loop
+    y[i]=p_offset[i]+0.0;
+  end for;
+  //Streams.print("----- equation, talble interpolation -----");
+  */
+  /**/
   if smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then
     for i in 1:nout loop
-      if(i<=nColumns)then
+      if(i<nColumns)then
         y[i] = p_offset[i] + Internal.getTimeTableValueNoDer(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
       else
         y[i]=0.0;
@@ -338,7 +275,7 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
     end for;
   elseif smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then
     for i in 1:nout loop
-      if(i<=nColumns)then
+      if(i<nColumns)then
         y[i] = p_offset[i] + Internal.getTimeTableValueNoDer2(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
       else
         y[i]=0.0;
@@ -346,7 +283,7 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
     end for;
   else
     for i in 1:nout loop
-      if(i<=nColumns)then
+      if(i<nColumns)then
         y[i] = p_offset[i] + Internal.getTimeTableValue(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
       else
         y[i]=0.0;
