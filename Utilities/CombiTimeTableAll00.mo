@@ -8,39 +8,65 @@ model CombiTimeTableAll00
   import Scripting=OpenModelica.Scripting;
   import Streams=Modelica.Utilities.Streams;
   //
-  extends Modelica.Blocks.Interfaces.MO(final nout=nColumns);
+  extends Modelica.Blocks.Interfaces.MO(final nout=nColMax);
   //
+  
+  /*-----------------------------------
+          parameters
+  -----------------------------------*/
+  parameter Integer nColMax=10;
   
   parameter Boolean tableOnFile=true
     "= true, if table is defined on file or in function usertab"
     annotation (Dialog(enable = false, group="Table data definition"));
   
-  
-  parameter String filePath="modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv"
-    annotation (Dialog(
+  parameter String strFileName="modelica://FluidSystemComponents/Utilities/Examples/exampleTimeTable01.csv"
+    annotation (
+      Dialog(
       group="Table data definition",
-      enable=tableOnFile,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
+      enable=true,
+      loadSelector(filter="CSV files (*.csv);;Text files (*.txt);;MATLAB MAT-files (*.mat)",
           caption="Open file in which table is present")));
+  
+  parameter String fileName=Modelica.Utilities.Files.loadResource(strFileName) "Modelica.Utilities.Files.loadResource(string),File where matrix is stored"
+    annotation (
+      HideResult = false,
+      Dialog(
+      group="Table data definition",
+      enable=false,
+      loadSelector(filter="CSV files (*.csv);;Text files (*.txt);;MATLAB MAT-files (*.mat)",
+          caption="Open file in which table is present")));
+  
+  
+  
   
   
   parameter String tableName="table01"
     "Table name on file or in function usertab (see docu)"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
   
+  parameter String strVar="volume.medium.p" 
+    "variable name to be extracted"
+    annotation (Dialog(
+      group="Table data definition",
+      enable=tableOnFile
+      ));
+  
+  
   parameter Boolean verboseRead=true
     "= true, if info message that file is loading is to be printed"
     annotation (Dialog(group="Table data definition",enable=tableOnFile));
   
-  parameter Integer columns[:]={1,2,3}
-    "Columns of table to be interpolated"
-    annotation (Dialog(enable=false, group="Table data interpretation",
-    groupImage="modelica://Modelica/Resources/Images/Blocks/Sources/CombiTimeTable.png"));
   
   //
   parameter String strDelim="," 
     ""
     annotation (Dialog(group="Table data interpretation"));
+  
+  parameter Integer columns[:]={1,2,3,4,5}
+    "Columns of table to be interpolated"
+    annotation (Dialog(enable=false, group="Table data interpretation",
+    groupImage="modelica://Modelica/Resources/Images/Blocks/Sources/CombiTimeTable.png"));
   
   //
   parameter Modelica.Blocks.Types.Smoothness smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments
@@ -66,50 +92,53 @@ model CombiTimeTableAll00
   parameter Boolean verboseExtrapolation=false
     "= true, if warning messages are to be printed if time is outside the table definition range"
     annotation (Dialog(group="Table data interpretation", enable=extrapolation == Modelica.Blocks.Types.Extrapolation.LastTwoPoints or extrapolation == Modelica.Blocks.Types.Extrapolation.HoldLastPoint));
-  final parameter SI.Time t_min=t_minScaled*timeScale
-    "Minimum abscissa value defined in table";
-  final parameter SI.Time t_max=t_maxScaled*timeScale
-    "Maximum abscissa value defined in table";
-  final parameter Real t_minScaled=Internal.getTimeTableTmin(tableID)
-    "Minimum (scaled) abscissa value defined in table";
-  final parameter Real t_maxScaled=Internal.getTimeTableTmax(tableID)
-    "Maximum (scaled) abscissa value defined in table";
+  
+  
+  /*-----------------------------------
+          variables
+  -----------------------------------*/
+  discrete SI.Time t_min;
+  discrete SI.Time t_max;
+  discrete Real t_minScaled;
+  discrete Real t_maxScaled;
+  /*
+  discrete Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
+      Modelica.Blocks.Types.ExternalCombiTimeTable(
+        if tableOnFile then tableName else "NoName",
+        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
+        table,
+        startTime/timeScale,
+        columns,
+        smoothness,
+        extrapolation,
+        shiftTime/timeScale,
+        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
+        if tableOnFile then verboseRead else false) "External table object";
+  */
   
   //
+  discrete String matCSVread;
+  //discrete Integer nLines=Streams.countLines(fileName);
+  discrete Integer nColumns;
+  
   discrete Integer iDelim;
   discrete String strTemp;
-  
+  //discrete String arrColumns[nColMax];
+  //discrete Integer colPickedUp[nColMax];
   //
-  discrete Interfaces.StringVectorOutput y_arrColumns[nColumns] 
-    annotation(
-      Placement(transformation(origin = {100, 60}, extent = {{-16, -30}, {16, 30}}), iconTransformation(origin = {100, 60}, extent = {{-9, -20}, {9, 20}})));
   
   
-//*****************************************************************
+  /*-----------------------------------
+          interfaces
+  -----------------------------------*/
+  discrete Interfaces.StringOutput y_column[nColMax] annotation(
+    Placement(transformation(origin = {100, 60}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, 60}, extent = {{-10, -10}, {10, 10}})));
+  
+  
+  //*****************************************************************
 protected
   /**/
-  parameter String fileName=Files.loadResource(filePath) "File where matrix is stored"
-    annotation (Dialog(
-      group="Table data definition",
-      enable=tableOnFile,
-      loadSelector(filter="Text files (*.txt);;MATLAB MAT-files (*.mat)",
-          caption="Open file in which table is present")));
   
-  parameter String matCSVread[:]=Modelica.Utilities.Streams.readFile(fileName);
-  parameter Integer nLines=Streams.countLines(fileName);
-  parameter Integer nColumns=Strings.count(matCSVread[1],",")+1
-    annotation(
-      HideResult = false
-    );
-  
-  //-----
-  parameter Real table[:, :] = fill(0.0, 0, 2)
-    "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
-    annotation (Dialog(group="Table data definition",enable=not tableOnFile));
-  
-  
-  final parameter Real p_offset[nout]=(if size(offset, 1) == 1 then ones(nout)*offset[1] else offset)
-    "Offsets of output signals";
   parameter Modelica.Blocks.Types.ExternalCombiTimeTable tableID=
       Modelica.Blocks.Types.ExternalCombiTimeTable(
         if tableOnFile then tableName else "NoName",
@@ -122,58 +151,146 @@ protected
         shiftTime/timeScale,
         if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
         if tableOnFile then verboseRead else false) "External table object";
+  
+  
+  //-----
+  parameter Real table[:, :] = fill(0.0, 0, 2)
+    "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    annotation (Dialog(group="Table data definition",enable=not tableOnFile));
+  
+  
+  final parameter Real p_offset[nout]=(if size(offset, 1) == 1 then ones(nout)*offset[1] else offset)
+    "Offsets of output signals";
+  
+  
   discrete SI.Time nextTimeEvent(start=0, fixed=true)
     "Next time event instant";
   discrete Real nextTimeEventScaled(start=0, fixed=true)
     "Next scaled time event instant";
   Real timeScaled "Scaled time";
-
+  
 
 //*****************************************************************
 initial algorithm
+  //-----
+  for i in 1:nColMax loop
+    //arrColumns[i]:="";
+    //colPickedUp[i]:=i;
+    y_column[i]:="";
+  end for;
+  //-----
+  matCSVread:= Modelica.Utilities.Streams.readLine(fileName, 1);
+  nColumns:=Strings.count(matCSVread,",")+1;
+  
   Streams.print("initialization");
   Streams.print("nColumns= " + String(nColumns));
   Streams.print("---");
   //-----
-  strTemp:=matCSVread[1];
+  strTemp:=matCSVread;
   Streams.print(strTemp);
   Streams.print("---");
+  
+  //-----
   for i in 1:nColumns loop
-    if(i==nColumns)then
-      y_arrColumns[i]:=strTemp;
-    else
-      iDelim:=Strings.find(strTemp, strDelim);
-      y_arrColumns[i]:=Strings.substring(strTemp,1,iDelim-1);
-      strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
-      //Streams.print(String(iDelim));
-      //Streams.print(strTemp);
+    if(i<=nColMax)then
+      if(i==nColumns)then
+        y_column[i]:=strTemp;
+      else
+        iDelim:=Strings.find(strTemp, strDelim);
+        y_column[i]:=Strings.substring(strTemp,1,iDelim-1);
+        strTemp:=Strings.substring(strTemp,iDelim+1,Strings.length(strTemp));
+      end if;
+      //colPickedUp[i]:=i;
+      //y_column[i]:= arrColumns[i];
     end if;
-    Streams.print(y_arrColumns[i]);
-    //Streams.print("");
   end for;
+  
+  //-----
+  for i in 1:nColMax loop
+    Streams.print(String(i)+", "+ y_column[i]);
+  end for;
+  
+  //-----
+  //y_column:=strVar;
+  //colPickedUp[1]:=FluidSystemComponents.Utilities.f_indexByName00(arrColumns, strVar);
+  //Streams.print("-----");
+  //Streams.print(String(colPickedUp[1]));
+  //Streams.print(y_column);
   Streams.print("-----");
+  
 
+
+//*****************************************************************
+initial equation
+  //Streams.print("----- beginning of initial equation -----");
+  //Streams.print("-----");
+  /*
+  tableID=
+      Modelica.Blocks.Types.ExternalCombiTimeTable(
+        if tableOnFile then tableName else "NoName",
+        if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
+        table,
+        startTime/timeScale,
+        columns,
+        smoothness,
+        extrapolation,
+        shiftTime/timeScale,
+        if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
+        if tableOnFile then verboseRead else false);
+  */
+  //Streams.print("----- end of initial equation -----");
+  //Streams.print("-----");
+  /**/
 
 //*****************************************************************
 algorithm
   when(time==0)then
+    //Streams.print("----- beginning of algorithm, time==0.0 -----");
+    //Streams.print("-----");
+    
+    matCSVread:=matCSVread;
+    nColumns:=nColumns;
+  
     iDelim:=iDelim;
     strTemp:=strTemp;
-    for i in 1:nColumns loop
-      y_arrColumns[i]:=y_arrColumns[i];
+    
+    for i in 1:nColMax loop
+      //arrColumns[i]:=arrColumns[i];
+      //colPickedUp[i]:=colPickedUp[i];
+      y_column[i]:=y_column[i];
     end for;
+    
+    //Streams.print("----- end of algorithm, time==0.0 -----");
+    //Streams.print("-----");
   end when;
   
 
 //*****************************************************************
 equation
-  /*when(time>0)then
-    Streams.print("when clause, time>0");
-    for i in 1:nColumns loop
-      Streams.print(y_arrColumns[i]);
-    end for;
+  
+  when(time==0)then
+    /*
+    tableID=
+        Modelica.Blocks.Types.ExternalCombiTimeTable(
+          if tableOnFile then tableName else "NoName",
+          if tableOnFile and fileName <> "NoName" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else "NoName",
+          table,
+          startTime/timeScale,
+          columns,
+          smoothness,
+          extrapolation,
+          shiftTime/timeScale,
+          if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,
+          if tableOnFile then verboseRead else false);
+    */
+    
+    t_minScaled=Internal.getTimeTableTmin(tableID);
+    t_maxScaled=Internal.getTimeTableTmax(tableID);
+    t_min=t_minScaled*timeScale;
+    t_max=t_maxScaled*timeScale;
+    
   end when;
-  */
+  
   //--------------------
   if tableOnFile then
     assert(tableName <> "NoName",
@@ -201,22 +318,39 @@ than the maximum abscissa value t_max (=" + String(t_max) + ") defined in the ta
     nextTimeEventScaled = Internal.getNextTimeEvent(tableID, timeScaled);
     nextTimeEvent = if nextTimeEventScaled < Modelica.Constants.inf then nextTimeEventScaled*timeScale else Modelica.Constants.inf;
   end when;
+  
+  //
   if smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then
     for i in 1:nout loop
-      y[i] = p_offset[i] + Internal.getTimeTableValueNoDer(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      if(i<=nColumns)then
+        y[i] = p_offset[i] + Internal.getTimeTableValueNoDer(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      else
+        y[i]=0.0;
+      end if;
     end for;
   elseif smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then
     for i in 1:nout loop
-      y[i] = p_offset[i] + Internal.getTimeTableValueNoDer2(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      if(i<=nColumns)then
+        y[i] = p_offset[i] + Internal.getTimeTableValueNoDer2(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      else
+        y[i]=0.0;
+      end if;
     end for;
   else
     for i in 1:nout loop
-      y[i] = p_offset[i] + Internal.getTimeTableValue(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      if(i<=nColumns)then
+        y[i] = p_offset[i] + Internal.getTimeTableValue(tableID, i, timeScaled, nextTimeEventScaled, pre(nextTimeEventScaled));
+      else
+        y[i]=0.0;
+      end if;
     end for;
   end if;
+  
   
   //*****************************************************************
   annotation(
     defaultComponentName = "combiTimeTable",
     Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}), graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Polygon(lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid, points = {{-80, 90}, {-88, 68}, {-72, 68}, {-80, 90}}), Line(points = {{-80, 68}, {-80, -80}}, color = {192, 192, 192}), Line(points = {{-90, -70}, {82, -70}}, color = {192, 192, 192}), Polygon(lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid, points = {{90, -70}, {68, -62}, {68, -78}, {90, -70}}), Rectangle(lineColor = {255, 255, 255}, fillColor = {255, 215, 136}, fillPattern = FillPattern.Solid, extent = {{-48, -50}, {2, 70}}), Line(points = {{-48, -50}, {-48, 70}, {52, 70}, {52, -50}, {-48, -50}, {-48, -20}, {52, -20}, {52, 10}, {-48, 10}, {-48, 40}, {52, 40}, {52, 70}, {2, 70}, {2, -51}})}));
+
+
 end CombiTimeTableAll00;
