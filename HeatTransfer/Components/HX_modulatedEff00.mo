@@ -1,7 +1,7 @@
 within FluidSystemComponents.HeatTransfer.Components;
 
 model HX_modulatedEff00
-  extends FluidSystemComponents.HeatTransfer.BaseClasses.HX_Base;
+  extends FluidSystemComponents.HeatTransfer.BaseClasses.HX_Base_effHX;
   /********************************************************
         imports
   ********************************************************/

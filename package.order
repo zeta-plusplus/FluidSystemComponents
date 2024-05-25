@@ -3,6 +3,7 @@ HydroThermal
 Compressible
 HeatTransfer
 Sensor
+Visualizers
 Interfaces
 Types
 Utilities

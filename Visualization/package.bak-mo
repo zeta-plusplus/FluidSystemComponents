@@ -1,0 +1,5 @@
+within FluidSystemComponents;
+
+package Visualization
+  extends Modelica.Icons.UtilitiesPackage;
+end Visualization;

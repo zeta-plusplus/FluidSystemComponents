@@ -1,0 +1,7 @@
+within FluidSystemComponents.HeatTransfer.Components.SubComponents.Examples.Test;
+
+model effHX_NTU_Parallel
+  extends Modelica.Icons.Example;
+equation
+
+end effHX_NTU_Parallel;
