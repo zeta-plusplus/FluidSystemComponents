@@ -2,4 +2,8 @@ calcNTU
 effHX_NTU_Parallel
 effHX_NTU_Counter
 effHX_NTU_ShellTube_1Shell
+effHX_NTU_Cross_BothUnmixed
+effHX_NTU_dmCpMaxMixed
+effHX_NTU_dmCpMinMixed
+effHX_NTU_ShellTube_nShell
 Examples
