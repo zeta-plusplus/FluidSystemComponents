@@ -2,15 +2,15 @@ within FluidSystemComponents.HeatTransfer.BaseClasses;
 
 partial model HX_Base_effHX
   /********************************************************
-          imports
-    ********************************************************/
+            imports
+      ********************************************************/
   import Modelica.Constants;
   import units = Modelica.Units.SI;
   import unitsNonSI = Modelica.Units.NonSI;
   import unitConversions = Modelica.Units.Conversions;
   /********************************************************
-              Declaration
-    ********************************************************/
+                Declaration
+      ********************************************************/
   //********** Package **********
   replaceable package Medium1 = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);
@@ -49,9 +49,9 @@ partial model HX_Base_effHX
   Integer flagMedium1Inlet;
   Integer flagMedium2Inlet;
   /*
-    String flagHotInlet;
-    String flagColdInlet;
-    */
+      String flagHotInlet;
+      String flagColdInlet;
+      */
   //********** Interfaces **********
   Modelica.Fluid.Interfaces.FluidPort_a port_1_med1(redeclare package Medium = Medium1) annotation(
     Placement(visible = true, transformation(origin = {-100, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-140, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -62,7 +62,7 @@ partial model HX_Base_effHX
   Modelica.Fluid.Interfaces.FluidPort_b port_2_med2(redeclare package Medium = Medium2) annotation(
     Placement(visible = true, transformation(origin = {100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {140, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Types.InfoBus signalBus1 annotation(
-    Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {140, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {90, -92}, extent = {{-10, -10}, {10, 10}})));
 algorithm
 // none
 equation
@@ -162,5 +162,4 @@ equation
     Diagram(graphics = {Line(origin = {0.0638821, -65.226}, points = {{0, 6}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, -67}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow2"), Line(origin = {0.00245751, 94.1476}, points = {{0, -34}, {0, -14}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}), Text(origin = {18, 69}, extent = {{-14, 5}, {14, -5}}, textString = "Q_flow1")}),
     Icon(coordinateSystem(extent = {{-140, -100}, {140, 100}})),
     __OpenModelica_commandLineOptions = "");
-    
 end HX_Base_effHX;

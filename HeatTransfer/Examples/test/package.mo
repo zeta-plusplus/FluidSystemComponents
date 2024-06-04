@@ -1,5 +1,5 @@
 within FluidSystemComponents.HeatTransfer.Examples;
 
 package test
-  extends Modelica.Icons.Package;
+  extends Modelica.Icons.ExamplesPackage;
 end test;
