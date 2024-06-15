@@ -69,8 +69,7 @@ model VolumeVisPressure00
   //----------------------------------------
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b ports[nPorts](redeclare each package Medium = Medium)
   "Fluid inlets and outlets"
-    annotation (Placement(transformation(extent={{-40,-10},{40,10}},
-      origin={0,-100})));
+    annotation (Placement(transformation(origin = {0, -100}, extent = {{-40, -10}, {40, 10}}), iconTransformation(origin = {0, -90}, extent = {{-40, -10}, {40, 10}})));
   
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a heatPort if use_HeatTransfer
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
@@ -93,13 +92,6 @@ equation
     Qb_flow=0.0;
   end if;
   
-  //m = fluidVolume*medium.d;
-  //U = m*medium.u;
-  
-  //der(U)= Hb_flow + Qb_flow;
-  
-  //medium.h= (Hb_flow + Qb_flow)/mb_flow;
-  
   for i in 1:nPorts loop
     ports_H_flow[i] = ports[i].m_flow * actualStream(ports[i].h_outflow) "Enthalpy flow";
     ports_E_flow[i] = 0.0 "Flow of kinetic and potential energy";
@@ -111,5 +103,7 @@ equation
     
 annotation(
     defaultComponentName = "Vol_pVis",
-    Icon(graphics = {Ellipse(fillColor = DynamicSelect({192, 192, 192}, {vecRGB[1], vecRGB[2], vecRGB[3]}), fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Text(origin = {0, 112}, extent = {{-100, 8}, {100, -8}}, textString = "%name")}));
+    Icon(graphics = {Ellipse(fillColor = DynamicSelect({192, 192, 192}, {vecRGB[1], vecRGB[2], vecRGB[3]}), fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), 
+    Text(origin = {0, -124}, extent = {{-100, 8}, {100, -8}}, textString = "%name"), 
+    Text(origin = {0, 121}, extent = {{-100, 15}, {100, -15}}, textString = DynamicSelect("0.0", String(medium.p, sigDigits, 0, true)))}));
 end VolumeVisPressure00;
