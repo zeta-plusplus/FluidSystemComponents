@@ -24,9 +24,9 @@ model MassFlowDisp_RefVar00_ex01
     Placement(transformation(origin = {28, 26}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Fluid.Fittings.SimpleGenericOrifice orifice2(redeclare package Medium = fluid1, diameter = 0.005, zeta = 1) annotation(
     Placement(transformation(origin = {22, -20}, extent = {{-10, -10}, {10, 10}})));
-  FluidSystemComponents.Visualizers.MassFlowDisp_RefVar00 m_flow_orifice1(redeclare package Medium = fluid1, m_flow_dat = orifice1.m_flow) annotation(
+  FluidSystemComponents.Visualizers.MassFlowDisp_RefVar00 m_flow_orifice1(redeclare package Medium = fluid1, m_flow_ref = orifice1.m_flow) annotation(
     Placement(transformation(origin = {26, 52}, extent = {{-10, -7}, {10, 7}})));
-  FluidSystemComponents.Visualizers.MassFlowDisp_RefVar00 m_flow_par_test(redeclare package Medium = fluid1, m_flow_dat = val_m_flow_test) annotation(
+  FluidSystemComponents.Visualizers.MassFlowDisp_RefVar00 m_flow_par_test(redeclare package Medium = fluid1, m_flow_ref = val_m_flow_test) annotation(
     Placement(transformation(origin = {26, 70}, extent = {{-10, -7}, {10, 7}})));
 equation
   connect(boundary.ports[1], orifice.port_a) annotation(

@@ -20,12 +20,14 @@ model VolumeVisP_RefVar00
   //----------------------------------------
   // parameter
   //----------------------------------------
+  parameter FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure switchUnitP= FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa;
+  
   parameter Boolean use_HeatTransfer = false
   "= true to use the HeatTransfer model"
       annotation (Dialog(tab="Assumptions", group="Heat transfer"));
   
   parameter Integer sigDigits(min=1) = 6 "";
-  parameter Modelica.Units.SI.AbsolutePressure pContourMin = 100000 "" annotation(displayUnit="kPa");
+  parameter Modelica.Units.SI.AbsolutePressure pContourMin = 100000 "";
   parameter Modelica.Units.SI.AbsolutePressure pContourMax = 5000000 "";
   parameter Real colorMap[:, 3] = Colors.ColorMaps.jet();
   
@@ -38,7 +40,7 @@ model VolumeVisP_RefVar00
   // variables
   //----------------------------------------
   Real vecRGB[3];
-  
+  Real pVis;
   //units.Energy U "Internal energy of fluid";
   //units.Mass m "Mass of fluid";
   
@@ -81,6 +83,12 @@ equation
   
   vecRGB = Colors.scalarToColor(medium.p, pContourMin, pContourMax, colorMap);
   
+  if(switchUnitP==FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa)then
+    pVis= medium.p/1000.0;
+  else
+    pVis= medium.p;
+  end if;
+  
   //-------------------------
   medium.p= pRef;
   medium.T= 288.15;
@@ -107,5 +115,5 @@ annotation(
     defaultComponentName = "Vol_pVis",
     Icon(graphics = {Ellipse(fillColor = DynamicSelect({192, 192, 192}, {vecRGB[1], vecRGB[2], vecRGB[3]}), fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), 
     Text(origin = {0, -124}, extent = {{-100, 8}, {100, -8}}, textString = "%name"), 
-    Text(origin = {0, 121}, extent = {{-100, 15}, {100, -15}}, textString = DynamicSelect("0.0", String(medium.p, sigDigits, 0, true)))}));
+    Text(origin = {0, 121}, extent = {{-100, 15}, {100, -15}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true)))}));
 end VolumeVisP_RefVar00;

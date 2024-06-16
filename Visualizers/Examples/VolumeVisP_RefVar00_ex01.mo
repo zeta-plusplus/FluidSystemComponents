@@ -19,7 +19,7 @@ model VolumeVisP_RefVar00_ex01
   
   VolumeVisP_RefVar00 Vol_pVis(redeclare package Medium = fluid1, pContourMin = pContourMin, pContourMax = pContourMax, nPorts = 1, pRef = ramp_p.y) annotation(
     Placement(transformation(origin = {-12, 31}, extent = {{-10, -10}, {10, 10}})));
-  MassFlowDisp_RefVar00 m_flow_disp(redeclare package Medium = fluid1, m_flow_dat = ramp_m_flow.y)  annotation(
+  MassFlowDisp_RefVar00 m_flow_disp(redeclare package Medium = fluid1, m_flow_ref = ramp_m_flow.y)  annotation(
     Placement(transformation(origin = {21, 21.8}, extent = {{-13, -7.8}, {13, 7.8}})));
   VolumeVisP_RefVar00 Vol_pVis1(redeclare package Medium = fluid1, pContourMax = pContourMax, pContourMin = pContourMin, nPorts = 1, pRef = ramp_p1.y) annotation(
     Placement(transformation(origin = {52, 31}, extent = {{-10, -10}, {10, 10}})));

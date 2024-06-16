@@ -6,7 +6,7 @@ model MassFlowDisp_RefVar00
   //----------------------------------------
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium "Medium in the component" annotation(
     choicesAllMatching = true);
-  replaceable Real m_flow_dat;
+  replaceable Real m_flow_ref;
   //----------------------------------------
   // parameter
   //----------------------------------------
@@ -31,5 +31,5 @@ equation
 //************************************************************
   annotation(
     defaultComponentName = "m_flow_disp",
-    Icon(graphics = {Text(origin = {0, 36}, extent = {{-160, 20}, {160, -20}}, textString = DynamicSelect("0.0", String(m_flow_dat, significantDigits_m_flow, 0, true))), Line(origin = {-3.52, 2.22}, points = {{-97, -2}, {103, -2}}, thickness = 1.5), Line(origin = {37.15, 2.17}, points = {{-9.62371, 9.98346}, {8.37629, -2.01654}, {-9.62371, -12.0165}}, thickness = 1), Text(origin = {0, -41}, extent = {{-120, 7}, {120, -7}}, textString = "%name")}, coordinateSystem(extent = {{-100, -60}, {100, 60}})));
+    Icon(graphics = {Text(origin = {0, 36}, extent = {{-160, 20}, {160, -20}}, textString = DynamicSelect("0.0", String(m_flow_ref, significantDigits_m_flow, 0, true))), Line(origin = {-3.52, 2.22}, points = {{-97, -2}, {103, -2}}, thickness = 6, arrowSize = 5), Line(origin = {47.15, 2.17}, points = {{-9.62371, 17.9835}, {18.3763, -2.01654}, {-9.62371, -22.0165}}, thickness = 5), Text(origin = {0, -41}, extent = {{-120, 7}, {120, -7}}, textString = "%name")}, coordinateSystem(extent = {{-100, -60}, {100, 60}})));
 end MassFlowDisp_RefVar00;
