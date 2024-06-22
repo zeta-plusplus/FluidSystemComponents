@@ -76,7 +76,7 @@ model CombiTimeTableAll00
   parameter SI.Time shiftTime=startTime
     "Shift time of first table column"
     annotation (Dialog(group="Table data interpretation"));
-  parameter Modelica.Blocks.Types.TimeEvents timeEvents=Modelica.Blocks.Types.TimeEvents.Always
+  parameter Modelica.Blocks.Types.TimeEvents timeEvents=Modelica.Blocks.Types.TimeEvents.NoTimeEvents
     "Time event handling of table interpolation"
     annotation (Dialog(group="Table data interpretation", enable=smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments));
   parameter Boolean verboseExtrapolation=false
