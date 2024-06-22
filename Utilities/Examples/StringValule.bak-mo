@@ -1,0 +1,6 @@
+within FluidSystemComponents.Utilities.Examples;
+
+model StringValule
+equation
+
+end StringValule;

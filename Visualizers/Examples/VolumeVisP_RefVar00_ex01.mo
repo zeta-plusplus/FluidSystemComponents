@@ -7,9 +7,9 @@ model VolumeVisP_RefVar00_ex01
   //--------------------
   package fluid1 = Modelica.Media.Air.DryAirNasa;
   //--------------------
-  parameter Modelica.Units.SI.AbsolutePressure pContourMin = 100*1000 "";
-  parameter Modelica.Units.SI.AbsolutePressure pContourMax = 5000*1000 "";
-  parameter Modelica.Units.SI.AbsolutePressure p_par=100*1000;
+  parameter Modelica.Units.SI.Pressure pContourMin = 100*1000 "";
+  parameter Modelica.Units.SI.Pressure pContourMax = 5000*1000 "";
+  parameter Modelica.Units.SI.Pressure p_par=100*1000;
   parameter Modelica.Units.SI.Temperature T_par= 288.15;
   
   

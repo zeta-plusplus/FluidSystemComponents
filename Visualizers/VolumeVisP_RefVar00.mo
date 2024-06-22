@@ -41,8 +41,6 @@ model VolumeVisP_RefVar00
   //----------------------------------------
   Real vecRGB[3];
   Real pVis;
-  //units.Energy U "Internal energy of fluid";
-  //units.Mass m "Mass of fluid";
   
   Medium.BaseProperties medium;
   Medium.EnthalpyFlowRate ports_H_flow[nPorts];
@@ -51,21 +49,6 @@ model VolumeVisP_RefVar00
   units.MassFlowRate mb_flow "Mass flows across boundaries";
   units.EnthalpyFlowRate Hb_flow "Enthalpy flow across boundaries or energy source/sink";
   units.HeatFlowRate Qb_flow "Heat flow across boundaries or energy source/sink";
-  
-  //units.MassFlowRate[Medium.nXi] mbXi_flow "Substance mass flows across boundaries";
-  //Medium.ExtraPropertyFlowRate[Medium.nC] mbC_flow "Trace substance mass flows across boundaries";
-  //units.EnthalpyFlowRate Hb_flow "Enthalpy flow across boundaries or energy source/sink";
-  //units.HeatFlowRate Qb_flow "Heat flow across boundaries or energy source/sink";
-  //units.Power Wb_flow "Work flow across boundaries or source term";
-  
-  
-  /*
-  Medium.MassFlowRate[Medium.nXi] sum_ports_mXi_flow;
-  Medium.ExtraPropertyFlowRate[Medium.nC] sum_ports_mC_flow;
-  
-  Medium.EnthalpyFlowRate ports_H_flow[nPorts];
-  units.EnergyFlowRate[nPorts] ports_E_flow;
-  */
   
   //----------------------------------------
   // interface
