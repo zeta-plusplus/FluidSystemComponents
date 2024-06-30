@@ -44,7 +44,7 @@ model VolumeVisP_RefArrAndKey00
   // interface
   //----------------------------------------
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b ports[nPorts](redeclare each package Medium = Medium) "Fluid inlets and outlets" annotation(
-    Placement(transformation(origin = {0, -100}, extent = {{-40, -10}, {40, 10}}), iconTransformation(origin = {0, -90}, extent = {{-40, -10}, {40, 10}})));
+    Placement(transformation(origin = {0, -100}, extent = {{-40, -10}, {40, 10}}), iconTransformation(origin = {0, -98}, extent = {{-40, -10}, {40, 10}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a heatPort if use_HeatTransfer annotation(
     Placement(transformation(extent = {{-110, -10}, {-90, 10}})));
   //************************************************************

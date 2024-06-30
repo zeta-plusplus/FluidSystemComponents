@@ -102,6 +102,10 @@ model FluidNW_ex01_v001
     Placement(transformation(origin = {104, 112}, extent = {{10, -4}, {-10, 4}})));
   Sensor.PressureDispColor00 Pressure_1_4(redeclare package Medium = fluid1, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {234, 18}, extent = {{-10, -4}, {10, 4}})));
+  InteractiveSimulation.System.getCPUclock CPUtime annotation(
+    Placement(transformation(origin = {-266, 222}, extent = {{-10, -10}, {10, 10}})));
+  InteractiveSimulation.System.terminateByCPUtimer terminateByCPUtimer annotation(
+    Placement(transformation(origin = {-258, 190}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(ramp_p0.y, firstOrder_p0.u) annotation(
     Line(points = {{-140, 173}, {-140, 165}}, color = {0, 0, 127}));
