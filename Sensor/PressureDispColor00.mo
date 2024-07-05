@@ -16,16 +16,20 @@ model PressureDispColor00
   //----------------------------------------
   // parameter
   //----------------------------------------
+  parameter Visualizers.Types.SwitchUnitVisPressure switchUnitP = Visualizers.Types.SwitchUnitVisPressure.kPa;
   parameter Integer sigDigits(min=1) = 6
     "";
-  parameter Real valMin = 100*1000 "";
-  parameter Real valMax = 1000*1000 "";
+  parameter Real valMin = 100 "";
+  parameter Real valMax = 1000 "";
   parameter Real colorMap[:, 3] = Colors.ColorMaps.jet();
   
   //----------------------------------------
   // variables
   //----------------------------------------
   Real vecRGB[3];
+  Real pVis;
+  Real pMinContour;
+  Real pMaxContour;
   
   //----------------------------------------
   // interface
@@ -38,12 +42,22 @@ equation
   port.h_outflow = Medium.h_default;
   port.Xi_outflow = Medium.X_default[1:Medium.nXi];
   port.C_outflow = zeros(Medium.nC);
-  //
-  vecRGB = Colors.scalarToColor(port.p, valMin, valMax, colorMap);
+  //----------
+  if (switchUnitP == Visualizers.Types.SwitchUnitVisPressure.kPa) then
+    pVis = port.p/1000.0;
+    pMinContour= valMin/1000.0;
+    pMaxContour= valMax/1000.0;
+  else
+    pVis = port.p;
+    pMinContour= valMin;
+    pMaxContour= valMax;
+  end if;
+  //----------
+  vecRGB = Colors.scalarToColor(pVis, pMinContour, pMaxContour, colorMap);
   
   
 annotation(
-    Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -40}, {100, 40}}), graphics = {Rectangle( fillColor = DynamicSelect({192, 192, 192}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 40}, {100, -40}}),Rectangle(origin = {0, -60}, fillColor = {255, 255, 255}, pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 20}, {100, -20}}), Text(origin = {0, -59}, extent = {{-100, 15}, {100, -15}}, textString = DynamicSelect("0.0", String(port.p, sigDigits, 0, true)))}),
+    Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -40}, {100, 40}}), graphics = {Rectangle( fillColor = DynamicSelect({192, 192, 192}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 40}, {100, -40}}),Rectangle(origin = {0, -60}, fillColor = {255, 255, 255}, pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 20}, {100, -20}}), Text(origin = {0, -59}, extent = {{-100, 15}, {100, -15}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true)))}),
     defaultComponentName = "Pressure"
     );
 
