@@ -16,7 +16,7 @@ model FluidNW_ex01_Vis_ex01
   parameter Real arrowMin=0.01;
   parameter Real arrowMax= 30;
   //--------------------
-  Modelica.Units.SI.MassFlowRate m_flow;
+  //Modelica.Units.SI.MassFlowRate m_flow;
   VolumeVisP_RefArrAndKey00 Vol_pVis_1_1(nPorts = 3, redeclare package Medium = fluid1, varVector = combiTimeTable1.y, stringVector = combiTimeTable1.y_column, keyString = "vol_1_1.medium.p", pContourMin = pContourMin, pContourMax = pContourMax)  annotation(
     Placement(transformation(origin = {-38, -10}, extent = {{-10, -10}, {10, 10}})));
   Utilities.CombiTimeTableAll00 combiTimeTable(nColMax = 179, strFileName = "modelica://FluidSystemComponents/Visualizers/Examples/exampleTimeTable02.csv", timeEvents = Modelica.Blocks.Types.TimeEvents.NoTimeEvents) annotation(
@@ -51,8 +51,11 @@ model FluidNW_ex01_Vis_ex01
     Placement(transformation(origin = {3.6667, 20}, extent = {{-8.33333, -5}, {8.33333, 5}}, rotation = -90)));
   MassFlowDisp_RefArrAndKey00 VisMflow_0_3_to_1_3(redeclare package Medium = fluid1, keyString = "rst_0_3_to_1_3.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {45.6667, 20}, extent = {{-8.33333, -5}, {8.33333, 5}}, rotation = -90)));
+  Modelica.Blocks.Interaction.Show.RealValue dispTime(significantDigits = 3)  annotation(
+    Placement(transformation(origin = {-79, 52}, extent = {{-9, -6}, {9, 6}})));
 equation
-  m_flow = 0.1*time;
+  //m_flow = 0.1*time;
+  dispTime.numberPort=time;
   connect(visMflow_1_0_to_1_1.port_b, Vol_pVis_1_1.ports[1]) annotation(
     Line(points = {{-52, -14}, {-38, -14}, {-38, -20}}, color = {0, 127, 255}));
   connect(visMflow_1_0_to_1_1.port_a, Vol_pVis_1_0.ports[1]) annotation(
@@ -82,5 +85,6 @@ equation
   connect(VisMflow_0_3_to_1_3.port_b, Vol_pVis_1_3.ports[3]) annotation(
     Line(points = {{46, 12}, {46, -20}}, color = {0, 127, 255}));
   annotation(
-    experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.1));
+    experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.1),
+  Diagram(graphics = {Text(origin = {-90, 59}, extent = {{-8, 3}, {8, -3}}, textString = "time="), Text(origin = {-66, 52}, extent = {{-3, 3}, {3, -3}}, textString = "[s]")}));
 end FluidNW_ex01_Vis_ex01;
