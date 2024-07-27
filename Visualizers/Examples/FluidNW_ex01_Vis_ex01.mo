@@ -7,10 +7,14 @@ model FluidNW_ex01_Vis_ex01
   //--------------------
   package fluid1 = Modelica.Media.Air.DryAirNasa;
   //--------------------
-  parameter Modelica.Units.SI.Pressure pContourMin = 100*1000 "";
-  parameter Modelica.Units.SI.Pressure pContourMax = 1000*1000 "";
-  parameter Modelica.Units.SI.Pressure p_par=100*1000;
-  parameter Modelica.Units.SI.Temperature T_par= 288.15;
+  parameter units.Pressure pContourMin = 100*1000 "";
+  parameter units.Pressure pContourMax = 1000*1000 "";
+  parameter units.Pressure p_par=100*1000;
+  parameter units.Temperature T_par= 288.15;
+  parameter units.MassFlowRate m_flow_Min= 0.0001;
+  parameter units.MassFlowRate m_flow_Max= 0.1;
+  parameter Real arrowMin=0.01;
+  parameter Real arrowMax= 30;
   //--------------------
   Modelica.Units.SI.MassFlowRate m_flow;
   VolumeVisP_RefArrAndKey00 Vol_pVis_1_1(nPorts = 3, redeclare package Medium = fluid1, varVector = combiTimeTable1.y, stringVector = combiTimeTable1.y_column, keyString = "vol_1_1.medium.p", pContourMin = pContourMin, pContourMax = pContourMax)  annotation(
@@ -33,19 +37,19 @@ model FluidNW_ex01_Vis_ex01
     Placement(transformation(origin = {4, 44}, extent = {{-10, -10}, {10, 10}})));
   VolumeVisP_RefArrAndKey00 Vol_pVis_0_3(redeclare package Medium = fluid1, keyString = "boundary_0_3.medium.p", nPorts = 1, pContourMax = pContourMax, pContourMin = pContourMin, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
     Placement(transformation(origin = {46, 44}, extent = {{-10, -10}, {10, 10}})));
-  MassFlowDisp_RefArrAndKey00 visMflow_1_0_to_1_1(keyString = "rst_1_0_to_1_1.m_flow", redeclare package Medium = fluid1, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y)  annotation(
+  MassFlowDisp_RefArrAndKey00 visMflow_1_0_to_1_1(keyString = "rst_1_0_to_1_1.m_flow", redeclare package Medium = fluid1, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax)  annotation(
     Placement(transformation(origin = {-60.3333, -14}, extent = {{-8.33333, -5}, {8.33333, 5}})));
-  MassFlowDisp_RefArrAndKey00 visMflow_1_1_to_1_2(redeclare package Medium = fluid1, keyString = "rst_1_1_to_1_2.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
+  MassFlowDisp_RefArrAndKey00 visMflow_1_1_to_1_2(redeclare package Medium = fluid1, keyString = "rst_1_1_to_1_2.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {-17, -14.4}, extent = {{-9, -5.4}, {9, 5.4}})));
-  MassFlowDisp_RefArrAndKey00 VisMflow_1_2_to_1_3(redeclare package Medium = fluid1, keyString = "rst_1_2_to_1_3.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
+  MassFlowDisp_RefArrAndKey00 VisMflow_1_2_to_1_3(redeclare package Medium = fluid1, keyString = "rst_1_2_to_1_3.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {25, -14.4}, extent = {{-9, -5.4}, {9, 5.4}})));
-  MassFlowDisp_RefArrAndKey00 VisMflow_1_3_to_1_4(redeclare package Medium = fluid1, keyString = "rst_1_3_to_1_4.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
+  MassFlowDisp_RefArrAndKey00 VisMflow_1_3_to_1_4(redeclare package Medium = fluid1, keyString = "rst_1_3_to_1_4.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {67, -14.4}, extent = {{-9, -5.4}, {9, 5.4}})));
-  MassFlowDisp_RefArrAndKey00 VisMflow_0_1_to_1_1(redeclare package Medium = fluid1, keyString = "rst_0_1_to_1_1.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
+  MassFlowDisp_RefArrAndKey00 VisMflow_0_1_to_1_1(redeclare package Medium = fluid1, keyString = "rst_0_1_to_1_1.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {-38.3333, 20}, extent = {{-8.33333, -5}, {8.33333, 5}}, rotation = -90)));
-  MassFlowDisp_RefArrAndKey00 VisMflow_0_2_to_1_2(redeclare package Medium = fluid1, keyString = "rst_0_2_to_1_2.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
+  MassFlowDisp_RefArrAndKey00 VisMflow_0_2_to_1_2(redeclare package Medium = fluid1, keyString = "rst_0_2_to_1_2.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {3.6667, 20}, extent = {{-8.33333, -5}, {8.33333, 5}}, rotation = -90)));
-  MassFlowDisp_RefArrAndKey00 VisMflow_0_3_to_1_3(redeclare package Medium = fluid1, keyString = "rst_0_3_to_1_3.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
+  MassFlowDisp_RefArrAndKey00 VisMflow_0_3_to_1_3(redeclare package Medium = fluid1, keyString = "rst_0_3_to_1_3.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {45.6667, 20}, extent = {{-8.33333, -5}, {8.33333, 5}}, rotation = -90)));
 equation
   m_flow = 0.1*time;
