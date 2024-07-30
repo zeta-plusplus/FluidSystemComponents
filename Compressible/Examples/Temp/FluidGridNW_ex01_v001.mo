@@ -180,41 +180,41 @@ equation
   connect(boundary_1_6.ports[1], rst_1_5_to_1_6.port_b) annotation(
     Line(points = {{170, 50}, {150, 50}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_0_to_1_1.port_b, vol_1_1.ports[1]) annotation(
-    Line(points = {{-240, 50}, {-210, 50}, {-210, 40}}, color = {0, 127, 255}));
+    Line(points = {{-240, 50}, {-210, 50}, {-210, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_1_to_1_1.port_b, vol_1_1.ports[2]) annotation(
-    Line(points = {{-210, 80}, {-210, 40}}, color = {0, 127, 255}));
+    Line(points = {{-210, 80}, {-210, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_1_to_1_2.port_a, vol_1_1.ports[3]) annotation(
-    Line(points = {{-180, 50}, {-210, 50}, {-210, 40}}, color = {0, 127, 255}));
+    Line(points = {{-180, 50}, {-210, 50}, {-210, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_1_to_1_2.port_b, vol_1_2.ports[1]) annotation(
-    Line(points = {{-160, 50}, {-130, 50}, {-130, 40}}, color = {0, 127, 255}));
+    Line(points = {{-160, 50}, {-130, 50}, {-130, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_2_to_1_2.port_b, vol_1_2.ports[2]) annotation(
-    Line(points = {{-130, 80}, {-130, 40}}, color = {0, 127, 255}));
+    Line(points = {{-130, 80}, {-130, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_2_to_1_3.port_a, vol_1_2.ports[3]) annotation(
-    Line(points = {{-100, 50}, {-130, 50}, {-130, 40}}, color = {0, 127, 255}));
+    Line(points = {{-100, 50}, {-130, 50}, {-130, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_2_to_1_3.port_b, vol_1_3.ports[1]) annotation(
-    Line(points = {{-80, 50}, {-50, 50}, {-50, 40}}, color = {0, 127, 255}));
+    Line(points = {{-80, 50}, {-50, 50}, {-50, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_3_to_1_3.port_b, vol_1_3.ports[2]) annotation(
-    Line(points = {{-50, 80}, {-50, 40}}, color = {0, 127, 255}));
+    Line(points = {{-50, 80}, {-50, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_3_to_1_4.port_a, vol_1_3.ports[3]) annotation(
-    Line(points = {{-20, 50}, {-50, 50}, {-50, 40}}, color = {0, 127, 255}));
+    Line(points = {{-20, 50}, {-50, 50}, {-50, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_3_to_1_4.port_b, vol_1_4.ports[1]) annotation(
-    Line(points = {{0, 50}, {30, 50}, {30, 40}}, color = {0, 127, 255}));
+    Line(points = {{0, 50}, {30, 50}, {30, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_4_to_1_4.port_b, vol_1_4.ports[2]) annotation(
-    Line(points = {{30, 80}, {30, 40}}, color = {0, 127, 255}));
+    Line(points = {{30, 80}, {30, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_4_to_1_5.port_a, vol_1_4.ports[3]) annotation(
-    Line(points = {{54, 50}, {30, 50}, {30, 40}}, color = {0, 127, 255}));
+    Line(points = {{54, 50}, {30, 50}, {30, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_4_to_1_5.port_b, vol_1_5.ports[1]) annotation(
-    Line(points = {{74, 50}, {100, 50}, {100, 40}}, color = {0, 127, 255}));
+    Line(points = {{74, 50}, {100, 50}, {100, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_5_to_1_5.port_b, vol_1_5.ports[2]) annotation(
-    Line(points = {{100, 80}, {100, 40}}, color = {0, 127, 255}));
+    Line(points = {{100, 80}, {100, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_5_to_1_6.port_a, vol_1_5.ports[3]) annotation(
-    Line(points = {{130, 50}, {100, 50}, {100, 40}}, color = {0, 127, 255}));
+    Line(points = {{130, 50}, {100, 50}, {100, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_1_to_2_1.port_a, vol_1_1.ports[4]) annotation(
-    Line(points = {{-210, 20}, {-210, 40}}, color = {0, 127, 255}));
+    Line(points = {{-210, 20}, {-210, 40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_1_to_2_1.port_b, vol_2_1.ports[1]) annotation(
-    Line(points = {{-210, 0}, {-210, -40}}, color = {0, 127, 255}));
+    Line(points = {{-210, 0}, {-210, -40}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_2_0_to_2_1.port_b, vol_2_1.ports[2]) annotation(
-    Line(points = {{-240, -30}, {-210, -30}, {-210, -40}}, color = {0, 127, 255}));
+    Line(points = {{-240, -30}, {-210, -30}, {-210, -40}}, color = {0, 127, 255}, thickness = 1.5));
   annotation(
     Diagram(coordinateSystem(extent = {{-400, -260}, {400, 260}})),
     experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.01),

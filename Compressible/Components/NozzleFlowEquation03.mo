@@ -19,7 +19,7 @@ equation
   
   annotation(
     defaultComponentName = "Restriction",
-    Icon(graphics = {Text(origin = {0, 148}, extent = {{-100, 6}, {100, -6}}, textString = "Amech="), Text(origin = {0, 121}, extent = {{-200, 7}, {200, -7}}, textString = "%AmechTot_par")}));
+    Icon(graphics = {Text(origin = {0, 129}, extent = {{-200, 9}, {200, -9}}, textString = "%AmechTot_par")}));
     
     
 end NozzleFlowEquation03;
