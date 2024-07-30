@@ -24,7 +24,7 @@ model FluidGridNW_ex01_v001
     Placement(transformation(origin = {-250, 160}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Compressible.Components.NozzleFlowEquation03 rst_0_1_to_1_1(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.01^2) annotation(
     Placement(transformation(origin = {-220, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Compressible.Components.NozzleFlowEquation03 rst_0_2_to_1_2(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.02^2) annotation(
+  Compressible.Components.NozzleFlowEquation03 rst_0_2_to_1_2(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.05^2) annotation(
     Placement(transformation(origin = {-100, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Continuous.FirstOrder firstOrder_p_0_2(T = 0.5, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
     Placement(transformation(origin = {-130, 160}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -32,25 +32,25 @@ model FluidGridNW_ex01_v001
     Placement(transformation(origin = {-130, 190}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Compressible.Components.NozzleFlowEquation03 rst_1_1_to_1_2(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.02^2) annotation(
     Placement(transformation(origin = {-170, 30}, extent = {{-10, -10}, {10, 10}})));
-  Compressible.Components.NozzleFlowEquation03 rst_0_3_to_1_3(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.005^2) annotation(
+  Compressible.Components.NozzleFlowEquation03 rst_0_3_to_1_3(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.02^2) annotation(
     Placement(transformation(origin = {10, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Continuous.FirstOrder firstOrder_p_0_3(T = 0.5, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
     Placement(transformation(origin = {-20, 160}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp_p_0_3(duration = 10, height = -50*1000, offset = 100*1000, startTime = 15) annotation(
     Placement(transformation(origin = {-20, 190}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Compressible.Components.NozzleFlowEquation03 rst_1_2_to_1_3(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.015^2) annotation(
+  Compressible.Components.NozzleFlowEquation03 rst_1_2_to_1_3(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.002^2) annotation(
     Placement(transformation(origin = {-60, 30}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Continuous.FirstOrder firstOrder_p_1_0(T = 0.5, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
     Placement(transformation(origin = {-358, 38}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Ramp ramp_p_1_0(duration = 10, height = 1000*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-390, 38}, extent = {{-10, -10}, {10, 10}})));
   Compressible.Components.NozzleFlowEquation03 rst_1_0_to_1_1(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.002^2) annotation(
-    Placement(transformation(origin = {-284, 30}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-290, 30}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Continuous.FirstOrder firstOrder_p_1_6(T = 0.5, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
     Placement(transformation(origin = {360, 38}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
-  Modelica.Blocks.Sources.Ramp ramp_p_1_6(duration = 10, height = 600*1000, offset = 100*1000, startTime = 20) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_1_6(duration = 10, height = 1100*1000, offset = 100*1000, startTime = 20) annotation(
     Placement(transformation(origin = {390, 38}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
-  Compressible.Components.NozzleFlowEquation03 rst_1_3_to_1_4(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.002^2) annotation(
+  Compressible.Components.NozzleFlowEquation03 rst_1_3_to_1_4(redeclare package Medium = fluid1, AmechTot_par = Modelica.Constants.pi/4*0.05^2) annotation(
     Placement(transformation(origin = {50, 30}, extent = {{-10, -10}, {10, 10}})));
   InteractiveSimulation.System.getCPUclock CPUtime annotation(
     Placement(transformation(origin = {-266, 222}, extent = {{-10, -10}, {10, 10}})));
@@ -130,63 +130,63 @@ equation
   connect(ramp_p_1_6.y, firstOrder_p_1_6.u) annotation(
     Line(points = {{379, 38}, {372, 38}}, color = {0, 0, 127}));
   connect(rst_1_0_to_1_1.port_b, m_flow_1_0_to_1_1.port_a) annotation(
-    Line(points = {{-274, 30}, {-270, 30}}, color = {0, 127, 255}));
+    Line(points = {{-280, 30}, {-270, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_1_to_1_2.port_b, m_flow_1_1_to_1_2.port_a) annotation(
-    Line(points = {{-160, 30}, {-150, 30}}, color = {0, 127, 255}));
+    Line(points = {{-160, 30}, {-150, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_2_to_1_3.port_b, m_flow_1_2_to_1_3.port_a) annotation(
-    Line(points = {{-50, 30}, {-40, 30}}, color = {0, 127, 255}));
+    Line(points = {{-50, 30}, {-40, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_3_to_1_4.port_b, m_flow_1_3_to_1_4.port_a) annotation(
-    Line(points = {{60, 30}, {68, 30}}, color = {0, 127, 255}));
+    Line(points = {{60, 30}, {68, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_1_to_1_1.port_b, m_flow_0_1_to_1_1.port_a) annotation(
-    Line(points = {{-220, 90}, {-220, 80}}, color = {0, 127, 255}));
+    Line(points = {{-220, 90}, {-220, 80}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_2_to_1_2.port_b, m_flow_0_2_to_1_2.port_a) annotation(
-    Line(points = {{-100, 90}, {-100, 80}}, color = {0, 127, 255}));
+    Line(points = {{-100, 90}, {-100, 80}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_3_to_1_3.port_b, m_flow_0_3_to_1_3.port_a) annotation(
-    Line(points = {{10, 90}, {10, 80}}, color = {0, 127, 255}));
+    Line(points = {{10, 90}, {10, 80}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_1_0_to_1_1.port_b, vol_1_1.ports[1]) annotation(
-    Line(points = {{-249, 30}, {-219.334, 30}, {-219.334, 20}}, color = {0, 127, 255}));
+    Line(points = {{-249, 30}, {-219.334, 30}, {-219.334, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_0_1_to_1_1.port_b, vol_1_1.ports[2]) annotation(
-    Line(points = {{-219.667, 59.6667}, {-219.667, 19.6667}}, color = {0, 127, 255}));
+    Line(points = {{-219.667, 59.6667}, {-219.667, 19.6667}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_1_to_1_2.port_a, vol_1_1.ports[3]) annotation(
-    Line(points = {{-180, 30}, {-220, 30}, {-220, 20}}, color = {0, 127, 255}));
+    Line(points = {{-180, 30}, {-220, 30}, {-220, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_1_1_to_1_2.port_b, vol_1_2.ports[1]) annotation(
-    Line(points = {{-129, 30}, {-99.3322, 30}, {-99.3322, 20}}, color = {0, 127, 255}));
+    Line(points = {{-129, 30}, {-99.3322, 30}, {-99.3322, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_0_2_to_1_2.port_b, vol_1_2.ports[2]) annotation(
-    Line(points = {{-99.667, 59.6667}, {-99.667, 19.6667}}, color = {0, 127, 255}));
+    Line(points = {{-99.667, 59.6667}, {-99.667, 19.6667}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_2_to_1_3.port_a, vol_1_2.ports[3]) annotation(
-    Line(points = {{-70, 30}, {-100, 30}, {-100, 20}}, color = {0, 127, 255}));
+    Line(points = {{-70, 30}, {-100, 30}, {-100, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_1_2_to_1_3.port_b, vol_1_3.ports[1]) annotation(
-    Line(points = {{-19, 30}, {10.666, 30}, {10.666, 20}}, color = {0, 127, 255}));
+    Line(points = {{-19, 30}, {10.666, 30}, {10.666, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_0_3_to_1_3.port_b, vol_1_3.ports[2]) annotation(
-    Line(points = {{10.333, 59.6667}, {10.333, 19.6667}}, color = {0, 127, 255}));
+    Line(points = {{10, 60}, {10, 39.6667}, {10.333, 39.6667}, {10.333, 19.6667}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_3_to_1_4.port_a, vol_1_3.ports[3]) annotation(
-    Line(points = {{40, 30}, {10, 30}, {10, 20}}, color = {0, 127, 255}));
+    Line(points = {{40, 30}, {10, 30}, {10, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(boundary_1_0.ports[1], rst_1_0_to_1_1.port_a) annotation(
-    Line(points = {{-310, 30}, {-294, 30}}, color = {0, 127, 255}));
+    Line(points = {{-310, 30}, {-300, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(firstOrder_p_1_0.y, boundary_1_0.p_in) annotation(
     Line(points = {{-347, 38}, {-332, 38}}, color = {0, 0, 127}));
   connect(boundary_1_6.p_in, firstOrder_p_1_6.y) annotation(
     Line(points = {{332, 38}, {349, 38}}, color = {0, 0, 127}));
   connect(boundary_0_1.ports[1], rst_0_1_to_1_1.port_a) annotation(
-    Line(points = {{-220, 130}, {-220, 110}}, color = {0, 127, 255}));
+    Line(points = {{-220, 130}, {-220, 110}}, color = {0, 127, 255}, thickness = 1.5));
   connect(firstOrder_p_0_1.y, boundary_0_1.p_in) annotation(
     Line(points = {{-250, 149}, {-250, 138}, {-242, 138}}, color = {0, 0, 127}));
   connect(boundary_0_2.ports[1], rst_0_2_to_1_2.port_a) annotation(
-    Line(points = {{-100, 130}, {-100, 110}}, color = {0, 127, 255}));
+    Line(points = {{-100, 130}, {-100, 110}}, color = {0, 127, 255}, thickness = 1.5));
   connect(firstOrder_p_0_2.y, boundary_0_2.p_in) annotation(
     Line(points = {{-130, 149}, {-130, 137}, {-122, 137}}, color = {0, 0, 127}));
   connect(boundary_0_3.ports[1], rst_0_3_to_1_3.port_a) annotation(
-    Line(points = {{10, 130}, {10, 110}}, color = {0, 127, 255}));
+    Line(points = {{10, 130}, {10, 110}}, color = {0, 127, 255}, thickness = 1.5));
   connect(firstOrder_p_0_3.y, boundary_0_3.p_in) annotation(
     Line(points = {{-20, 149}, {-20, 137}, {-12, 137}}, color = {0, 0, 127}));
   connect(m_flow_1_3_to_1_4.port_b, vol_1_4.ports[1]) annotation(
-    Line(points = {{89, 30}, {110.666, 30}, {110.666, 20}}, color = {0, 127, 255}));
+    Line(points = {{89, 30}, {110.666, 30}, {110.666, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(boundary_0_4.ports[1], rst_0_4_to_1_4.port_a) annotation(
-    Line(points = {{110, 130}, {110, 110}}, color = {0, 127, 255}));
+    Line(points = {{110, 130}, {110, 110}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_4_to_1_4.port_b, m_flow_0_4_to_1_4.port_a) annotation(
-    Line(points = {{110, 90}, {110, 80}}, color = {0, 127, 255}));
+    Line(points = {{110, 90}, {110, 80}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_0_4_to_1_4.port_b, vol_1_4.ports[2]) annotation(
-    Line(points = {{110.333, 59.6667}, {110.333, 19.6667}}, color = {0, 127, 255}));
+    Line(points = {{110.333, 59.6667}, {110.333, 19.6667}}, color = {0, 127, 255}, thickness = 1.5));
   connect(ramp_p_0_4.y, firstOrder_p_0_4.u) annotation(
     Line(points = {{80, 179}, {80, 171}}, color = {0, 0, 127}));
   connect(firstOrder_p_0_4.y, boundary_0_4.p_in) annotation(
@@ -196,23 +196,23 @@ equation
   connect(firstOrder_p_0_5.y, boundary_0_5.p_in) annotation(
     Line(points = {{180, 149}, {180, 137}, {188, 137}}, color = {0, 0, 127}));
   connect(rst_1_4_to_1_5.port_a, vol_1_4.ports[3]) annotation(
-    Line(points = {{134, 30}, {110, 30}, {110, 20}}, color = {0, 127, 255}));
+    Line(points = {{134, 30}, {110, 30}, {110, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_4_to_1_5.port_b, m_flow_1_4_to_1_5.port_a) annotation(
-    Line(points = {{154, 30}, {164, 30}}, color = {0, 127, 255}));
+    Line(points = {{154, 30}, {164, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_1_4_to_1_5.port_b, vol_1_5.ports[1]) annotation(
-    Line(points = {{185, 30}, {210.666, 30}, {210.666, 20}}, color = {0, 127, 255}));
+    Line(points = {{185, 30}, {210.666, 30}, {210.666, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_5_to_1_6.port_a, vol_1_5.ports[2]) annotation(
-    Line(points = {{240, 30}, {210, 30}, {210, 20}}, color = {0, 127, 255}));
+    Line(points = {{240, 30}, {210, 30}, {210, 20}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_1_5_to_1_6.port_b, m_flow_1_5_to_1_6.port_a) annotation(
-    Line(points = {{260, 30}, {270, 30}}, color = {0, 127, 255}));
+    Line(points = {{260, 30}, {270, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_1_5_to_1_6.port_b, boundary_1_6.ports[1]) annotation(
-    Line(points = {{290.666, 30}, {309.666, 30}}, color = {0, 127, 255}));
+    Line(points = {{290.666, 30}, {309.666, 30}}, color = {0, 127, 255}, thickness = 1.5));
   connect(boundary_0_5.ports[1], rst_0_5_to_1_5.port_a) annotation(
-    Line(points = {{210, 130}, {210, 110}}, color = {0, 127, 255}));
+    Line(points = {{210, 130}, {210, 110}}, color = {0, 127, 255}, thickness = 1.5));
   connect(rst_0_5_to_1_5.port_b, m_flow_0_5_to_0_6.port_a) annotation(
-    Line(points = {{210, 90}, {210, 80}}, color = {0, 127, 255}));
+    Line(points = {{210, 90}, {210, 80}}, color = {0, 127, 255}, thickness = 1.5));
   connect(m_flow_0_5_to_0_6.port_b, vol_1_5.ports[3]) annotation(
-    Line(points = {{210, 60}, {210, 20}}, color = {0, 127, 255}));
+    Line(points = {{210, 60}, {210, 20}}, color = {0, 127, 255}, thickness = 1.5));
   annotation(
     Diagram(coordinateSystem(extent = {{-400, -260}, {400, 260}})),
     experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.01),
