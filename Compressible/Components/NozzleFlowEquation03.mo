@@ -14,7 +14,12 @@ model NozzleFlowEquation03
 equation
   AmechTot = AmechTot_par;
   Cd = Cd_par;
+  
+  
+  
   annotation(
     defaultComponentName = "Restriction",
-    Icon);
+    Icon(graphics = {Text(origin = {0, 148}, extent = {{-100, 6}, {100, -6}}, textString = "Amech="), Text(origin = {0, 121}, extent = {{-200, 7}, {200, -7}}, textString = "%AmechTot_par")}));
+    
+    
 end NozzleFlowEquation03;

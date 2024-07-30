@@ -1,7 +1,7 @@
 within FluidSystemComponents.Sensor;
 
 model MonitorMassFlow00
-  extends Modelica.Fluid.Sensors.BaseClasses.PartialFlowSensor(showDesignFlowDirection=false);
+  extends Modelica.Fluid.Sensors.BaseClasses.PartialFlowSensor(showDesignFlowDirection = false);
   //----------------------------------------
   // Import
   //----------------------------------------
@@ -9,7 +9,6 @@ model MonitorMassFlow00
   //----------------------------------------
   // replaceable
   //----------------------------------------
-  
   //----------------------------------------
   // parameter
   //----------------------------------------
@@ -44,14 +43,11 @@ equation
     thickArrowFwd = 0.0;
     sizeArrowFwd = 0.0;
   end if;
-  //-------------------------
-  m_flow= port_a.m_flow;
-  
-  //-------------------------
-  
+//-------------------------
+  m_flow = port_a.m_flow;
+//-------------------------
 //************************************************************
   annotation(
     defaultComponentName = "m_flow_sensor",
-    
-    Icon(graphics = {Text(origin = {0, 52}, extent = {{-100, 8}, {100, -8}}, textString = DynamicSelect("0.0", String(m_flow, significantDigits_m_flow, 0, true))), Line(origin = {-0.2, -1.33}, points = {{-100, 0}, {90, 0}}, thickness = DynamicSelect(3, thickArrowFwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(14, sizeArrowFwd)), Line(origin = {-180.17, -0.73}, points = {{270, 0}, {90, 0}}, pattern = LinePattern.Dash, thickness = DynamicSelect(0.25, thickArrowBwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(0, sizeArrowBwd)), Text(origin = {50, -46}, extent = {{-50, 6}, {50, -6}}, textString = "kg/s", horizontalAlignment = TextAlignment.Right)}, coordinateSystem(preserveAspectRatio=false, extent = {{-100, -60}, {100, 60}})));
+    Icon(graphics = {Text(origin = {0, 52}, extent = {{-100, 8}, {100, -8}}, textString = DynamicSelect("0.0", String(m_flow, significantDigits_m_flow, 0, true))), Line(origin = {-0.595137, 0.250547}, points = {{-100, 0}, {90, 0}}, thickness = DynamicSelect(3, thickArrowFwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(14, sizeArrowFwd)), Line(origin = {-179.775, 0.257798}, points = {{270, 0}, {90, 0}}, pattern = LinePattern.Dash, thickness = DynamicSelect(0.25, thickArrowBwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(0, sizeArrowBwd)), Text(origin = {50, -46}, extent = {{-50, 6}, {50, -6}}, textString = "kg/s", horizontalAlignment = TextAlignment.Right)}, coordinateSystem(preserveAspectRatio = false, extent = {{-100, -60}, {100, 60}})));
 end MonitorMassFlow00;
