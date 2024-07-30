@@ -15,7 +15,14 @@ model NozzleFlowEquation_varMflow01
 equation
   m_flow_abs = u_m_flow_abs;
   Cd = Cd_par;
+  
+  if(Modelica.Constants.small<=u_m_flow_abs)then
+    flagClosed=false;
+  else
+    flagClosed=true;
+  end if;
+  
   annotation(
     defaultComponentName = "Restriction",
-    Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Text(origin = {-35, -56}, extent = {{1, 12}, {47, -18}}, textString = "m_flow"), Line(origin = {-40, 8}, points = {{0, 92}, {0, -92}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 7)}));
+    Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Text(origin = {-103, 120}, extent = {{1, 6}, {43, -10}}, textString = "m_flow"), Line(origin = {-40, 8}, points = {{0, 92}, {0, -20}, {54, -20}}, thickness = 3, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10)}));
 end NozzleFlowEquation_varMflow01;

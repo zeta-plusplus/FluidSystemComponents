@@ -16,7 +16,7 @@ model NozzleFlowEquation_varArea01_ex01
     Placement(visible = true, transformation(origin = {-90, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   FluidSystemComponents.Compressible.Components.NozzleFlowEquation_varArea01 restriction(redeclare package Medium = gas1) annotation(
     Placement(visible = true, transformation(origin = {-5, 10}, extent = {{-15, -15}, {15, 15}}, rotation = 0)));
-  Modelica.Blocks.Sources.Ramp ramp_Amech(duration = 1, height = 1*10e-6, offset = 5*10e-6, startTime = 3) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_Amech(duration = 1, height = -1*5*10e-6, offset = 5*10e-6, startTime = 3) annotation(
     Placement(visible = true, transformation(origin = {-40, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(ramp_pH_1.y, BC_H_1.p_in) annotation(

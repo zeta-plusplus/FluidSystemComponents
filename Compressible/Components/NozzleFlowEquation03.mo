@@ -15,11 +15,16 @@ equation
   AmechTot = AmechTot_par;
   Cd = Cd_par;
   
+  if(Modelica.Constants.small<=AmechTot_par*Cd_par)then
+    flagClosed=false;
+  else
+    flagClosed=true;
+  end if;
   
   
   annotation(
     defaultComponentName = "Restriction",
-    Icon(graphics = {Text(origin = {0, 129}, extent = {{-200, 9}, {200, -9}}, textString = "%AmechTot_par")}));
+    Icon(graphics = {Text(origin = {0, -92}, extent = {{-200, 8}, {200, -8}}, textString = "%AmechTot_par")}));
     
     
 end NozzleFlowEquation03;
