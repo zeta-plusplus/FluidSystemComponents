@@ -3,26 +3,24 @@ within FluidSystemComponents.Visualizers.Examples;
 model FluidNW_ex01_Vis_ex01
   extends Modelica.Icons.Example;
   //--------------------
-  import units=Modelica.Units.SI;
+  import units = Modelica.Units.SI;
   //--------------------
   package fluid1 = Modelica.Media.Air.DryAirNasa;
   //--------------------
   parameter units.Pressure pContourMin = 100*1000 "";
   parameter units.Pressure pContourMax = 1000*1000 "";
-  parameter units.Pressure p_par=100*1000;
-  parameter units.Temperature T_par= 288.15;
-  parameter units.MassFlowRate m_flow_Min= 0.0001;
-  parameter units.MassFlowRate m_flow_Max= 0.1;
-  parameter Real arrowMin=0.01;
-  parameter Real arrowMax= 30;
+  parameter units.Pressure p_par = 100*1000;
+  parameter units.Temperature T_par = 288.15;
+  parameter units.MassFlowRate m_flow_Min = 0.0001;
+  parameter units.MassFlowRate m_flow_Max = 0.1;
+  parameter Real arrowMin = 0.01;
+  parameter Real arrowMax = 30;
   //--------------------
   //Modelica.Units.SI.MassFlowRate m_flow;
-  VolumeVisP_RefArrAndKey00 Vol_pVis_1_1(nPorts = 3, redeclare package Medium = fluid1, varVector = combiTimeTable1.y, stringVector = combiTimeTable1.y_column, keyString = "vol_1_1.medium.p", pContourMin = pContourMin, pContourMax = pContourMax)  annotation(
+  VolumeVisP_RefArrAndKey00 Vol_pVis_1_1(nPorts = 3, redeclare package Medium = fluid1, varVector = combiTimeTable1.y, stringVector = combiTimeTable1.y_column, keyString = "vol_1_1.medium.p", pContourMin = pContourMin, pContourMax = pContourMax) annotation(
     Placement(transformation(origin = {-38, -10}, extent = {{-10, -10}, {10, 10}})));
-  Utilities.CombiTimeTableAll00 combiTimeTable(nColMax = 179, strFileName = "modelica://FluidSystemComponents/Visualizers/Examples/exampleTimeTable02.csv", timeEvents = Modelica.Blocks.Types.TimeEvents.NoTimeEvents) annotation(
-    Placement(transformation(origin = {-32, 86}, extent = {{-10, -10}, {10, 10}})));
   Utilities.CombiTimeTableAll00 combiTimeTable1(nColMax = 849, strFileName = "modelica://FluidSystemComponents/Visualizers/Examples/ex_FluidNW_ex01_v001_res.csv", timeEvents = Modelica.Blocks.Types.TimeEvents.NoTimeEvents) annotation(
-    Placement(transformation(origin = {-62, 76}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-62, 80}, extent = {{-10, -10}, {10, 10}})));
   VolumeVisP_RefArrAndKey00 Vol_pVis_1_2(redeclare package Medium = fluid1, keyString = "vol_1_2.medium.p", nPorts = 3, pContourMax = pContourMax, pContourMin = pContourMin, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
     Placement(transformation(origin = {4, -10}, extent = {{-10, -10}, {10, 10}})));
   VolumeVisP_RefArrAndKey00 Vol_pVis_1_3(redeclare package Medium = fluid1, keyString = "vol_1_3.medium.p", nPorts = 3, pContourMax = pContourMax, pContourMin = pContourMin, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
@@ -37,7 +35,7 @@ model FluidNW_ex01_Vis_ex01
     Placement(transformation(origin = {4, 44}, extent = {{-10, -10}, {10, 10}})));
   VolumeVisP_RefArrAndKey00 Vol_pVis_0_3(redeclare package Medium = fluid1, keyString = "boundary_0_3.medium.p", nPorts = 1, pContourMax = pContourMax, pContourMin = pContourMin, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
     Placement(transformation(origin = {46, 44}, extent = {{-10, -10}, {10, 10}})));
-  MassFlowDisp_RefArrAndKey00 visMflow_1_0_to_1_1(keyString = "rst_1_0_to_1_1.m_flow", redeclare package Medium = fluid1, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax)  annotation(
+  MassFlowDisp_RefArrAndKey00 visMflow_1_0_to_1_1(keyString = "rst_1_0_to_1_1.m_flow", redeclare package Medium = fluid1, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {-60.3333, -14}, extent = {{-8.33333, -5}, {8.33333, 5}})));
   MassFlowDisp_RefArrAndKey00 visMflow_1_1_to_1_2(redeclare package Medium = fluid1, keyString = "rst_1_1_to_1_2.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {-17, -14.4}, extent = {{-9, -5.4}, {9, 5.4}})));
@@ -51,11 +49,11 @@ model FluidNW_ex01_Vis_ex01
     Placement(transformation(origin = {3.6667, 20}, extent = {{-8.33333, -5}, {8.33333, 5}}, rotation = -90)));
   MassFlowDisp_RefArrAndKey00 VisMflow_0_3_to_1_3(redeclare package Medium = fluid1, keyString = "rst_0_3_to_1_3.m_flow", stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMin, thickArrowMax = arrowMax) annotation(
     Placement(transformation(origin = {45.6667, 20}, extent = {{-8.33333, -5}, {8.33333, 5}}, rotation = -90)));
-  Modelica.Blocks.Interaction.Show.RealValue dispTime(significantDigits = 3)  annotation(
+  Modelica.Blocks.Interaction.Show.RealValue dispTime(significantDigits = 3) annotation(
     Placement(transformation(origin = {-79, 52}, extent = {{-9, -6}, {9, 6}})));
 equation
-  //m_flow = 0.1*time;
-  dispTime.numberPort=time;
+//m_flow = 0.1*time;
+  dispTime.numberPort = time;
   connect(visMflow_1_0_to_1_1.port_b, Vol_pVis_1_1.ports[1]) annotation(
     Line(points = {{-52, -14}, {-38, -14}, {-38, -20}}, color = {0, 127, 255}));
   connect(visMflow_1_0_to_1_1.port_a, Vol_pVis_1_0.ports[1]) annotation(
@@ -86,5 +84,6 @@ equation
     Line(points = {{46, 12}, {46, -20}}, color = {0, 127, 255}));
   annotation(
     experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.1),
-  Diagram(graphics = {Text(origin = {-90, 59}, extent = {{-8, 3}, {8, -3}}, textString = "time="), Text(origin = {-66, 52}, extent = {{-3, 3}, {3, -3}}, textString = "[s]")}));
+    Diagram(graphics = {Text(origin = {-90, 59}, extent = {{-8, 3}, {8, -3}}, textString = "time="), Text(origin = {-66, 52}, extent = {{-3, 3}, {3, -3}}, textString = "[s]"), Text(origin = {-65, 100}, extent = {{-31, 5}, {31, -5}}, textString = "Component 
+to read CSV time data", horizontalAlignment = TextAlignment.Left)}, coordinateSystem(extent = {{-100, -60}, {100, 120}})));
 end FluidNW_ex01_Vis_ex01;

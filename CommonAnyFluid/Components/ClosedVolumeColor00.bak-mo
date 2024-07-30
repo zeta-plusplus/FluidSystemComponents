@@ -1,0 +1,6 @@
+within FluidSystemComponents.CommonAnyFluid.Components;
+
+model ClosedVolumeColor00
+equation
+
+end ClosedVolumeColor00;
