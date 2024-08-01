@@ -52,7 +52,6 @@ model FluidNW_ex01_Vis_ex01
   Modelica.Blocks.Interaction.Show.RealValue dispTime(significantDigits = 3) annotation(
     Placement(transformation(origin = {-79, 52}, extent = {{-9, -6}, {9, 6}})));
 equation
-//m_flow = 0.1*time;
   dispTime.numberPort = time;
   connect(visMflow_1_0_to_1_1.port_b, Vol_pVis_1_1.ports[1]) annotation(
     Line(points = {{-52, -14}, {-38, -14}, {-38, -20}}, color = {0, 127, 255}));
