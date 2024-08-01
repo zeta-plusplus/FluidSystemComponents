@@ -7,13 +7,14 @@ model FluidGridNW_ex01_v001
   //-------------------------
   parameter units.Volume volStd = 0.1;
   parameter units.Time durStd=5.0;
+  parameter units.Time durStd2=20.0;
   parameter units.Time TconstStd= 1.0;
   parameter Modelica.Units.SI.Pressure pContourMin = 0*1000 "";
   parameter Modelica.Units.SI.Pressure pContourMax = 1500*1000 "";
   parameter units.MassFlowRate m_flow_Min = 0.0;
-  parameter units.MassFlowRate m_flow_Max = 0.2;
+  parameter units.MassFlowRate m_flow_Max = 0.3;
   parameter Real arrowMassFlowMin = 0.01;
-  parameter Real arrowMassFlowMax = 30;
+  parameter Real arrowMassFlowMax = 40;
   //-------------------------
   package fluid1 = Modelica.Media.Air.DryAirNasa;
   //redeclare package Medium= fluid1,
@@ -53,9 +54,9 @@ model FluidGridNW_ex01_v001
   
   //----------
   
-  Modelica.Blocks.Sources.Ramp ramp_fracA_1_2_to_2_2(duration = durStd, height = -1, offset = 1, startTime = 30) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_fracA_1_2_to_2_2(duration = durStd2, height = -1, offset = 1, startTime = 30) annotation(
     Placement(transformation(origin = {-168, 14}, extent = {{-4, -4}, {4, 4}})));
-  Modelica.Blocks.Sources.Ramp ramp_fracA_1_4_to_2_4(duration = durStd, height = -1, offset = 1, startTime = 30) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_fracA_1_4_to_2_4(duration = durStd2, height = -1, offset = 1, startTime = 30) annotation(
     Placement(transformation(origin = {-8, 14}, extent = {{-4, -4}, {4, 4}})));
 
   //----------

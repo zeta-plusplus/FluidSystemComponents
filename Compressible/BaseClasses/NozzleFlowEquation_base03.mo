@@ -78,13 +78,7 @@ partial model NozzleFlowEquation_base03
   
   //************************************************************
 algorithm
-  /*
-  if(0<AmechTot)and(0<Cd)then
-    Aeff := AmechTot*Cd;
-  else
-    Aeff := Modelica.Constants.eps;
-  end if;
-  */
+  //************************************************************
 equation
   fluid_a.state = state_a;
   fluid_b.state = state_b;
@@ -148,13 +142,13 @@ equation
   
   //--------------------
   if (0 <= m_flow) then
-    thickArrowFwd = thickArrowMin + m_flow*(thickArrowMax - thickArrowMin)/(m_flow_Max - m_flow_Min);
-    sizeArrowFwd = 4*thickArrowFwd;
+    thickArrowFwd = max(thickArrowMin, min(thickArrowMax, thickArrowMin + m_flow*(thickArrowMax - thickArrowMin)/(m_flow_Max - m_flow_Min)));
+    sizeArrowFwd = 3.5*thickArrowFwd;
     thickArrowBwd = 0.0;
     sizeArrowBwd = 0.0;
   else
-    thickArrowBwd = thickArrowMin + abs(m_flow)*(thickArrowMax - thickArrowMin)/(m_flow_Max - m_flow_Min);
-    sizeArrowBwd = 4*thickArrowBwd;
+    thickArrowBwd = max(thickArrowMin, min(thickArrowMax, thickArrowMin + abs(m_flow)*(thickArrowMax - thickArrowMin)/(m_flow_Max - m_flow_Min)));
+    sizeArrowBwd = 3.5*thickArrowBwd;
     thickArrowFwd = 0.0;
     sizeArrowFwd = 0.0;
   end if;
