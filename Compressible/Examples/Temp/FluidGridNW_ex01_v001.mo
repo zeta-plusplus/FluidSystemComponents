@@ -35,27 +35,27 @@ model FluidGridNW_ex01_v001
   
   
   //----------
-  Modelica.Blocks.Sources.Ramp ramp_p_0_1(duration = durStd, height = 700*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_0_1(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-240, 200}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Blocks.Sources.Ramp ramp_p_0_2(duration = durStd, height = 200*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_0_2(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-160, 200}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Blocks.Sources.Ramp ramp_p_0_3(duration = durStd, height = -50*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_0_3(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-80, 200}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp_p_1_0(duration = durStd, height = 1000*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-360, 58}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Ramp ramp_p_1_6(duration = durStd, height = 1100*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_1_6(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {260, 58}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
-  Modelica.Blocks.Sources.Ramp ramp_p_0_4(duration = durStd, height = -10*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_0_4(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {0, 200}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Blocks.Sources.Ramp ramp_p_0_5(duration = durStd, height = 200*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_0_5(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {80, 200}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Sources.Ramp ramp_p_2_0(duration = durStd, height = 1200*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-360, -22}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Ramp ramp_p_2_6(duration = durStd, height = -10*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_2_6(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {260, -22}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
-  Modelica.Blocks.Sources.Ramp ramp_p_3_0(duration = durStd, height = 1200*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_3_0(duration = durStd, height = 900*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-360, -102}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Ramp ramp_p_3_6(duration = durStd, height = 900*1000, offset = 100*1000, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_p_3_6(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {260, -102}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
   
   //----------
@@ -158,13 +158,13 @@ model FluidGridNW_ex01_v001
   //----------
   Compressible.Components.NozzleFlowEquation03 rst_1_0_to_1_1(redeclare package Medium = fluid1, AmechTot_par = 0.005^2*Modelica.Constants.pi/4, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax) annotation(
     Placement(transformation(origin = {-250, 50}, extent = {{-10, -10}, {10, 10}})));
-  Compressible.Components.NozzleFlowEquation03 rst_0_1_to_1_1(redeclare package Medium = fluid1, AmechTot_par = 0.01^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
+  Compressible.Components.NozzleFlowEquation03 rst_0_1_to_1_1(redeclare package Medium = fluid1, AmechTot_par = 0.005^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
     Placement(transformation(origin = {-210, 90}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Compressible.Components.NozzleFlowEquation03 rst_0_2_to_1_2(redeclare package Medium = fluid1, AmechTot_par = 0.05^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
+  Compressible.Components.NozzleFlowEquation03 rst_0_2_to_1_2(redeclare package Medium = fluid1, AmechTot_par = 0.005^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
     Placement(transformation(origin = {-130, 90}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Compressible.Components.NozzleFlowEquation03 rst_1_1_to_1_2(redeclare package Medium = fluid1, AmechTot_par = 0.02^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
     Placement(transformation(origin = {-170, 50}, extent = {{-10, -10}, {10, 10}})));
-  Compressible.Components.NozzleFlowEquation03 rst_0_3_to_1_3(redeclare package Medium = fluid1, AmechTot_par = 0.02^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
+  Compressible.Components.NozzleFlowEquation03 rst_0_3_to_1_3(redeclare package Medium = fluid1, AmechTot_par = 0.01^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
     Placement(transformation(origin = {-50, 90}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Compressible.Components.NozzleFlowEquation03 rst_1_2_to_1_3(redeclare package Medium = fluid1, AmechTot_par = 0.05^2*Modelica.Constants.pi/4, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max) annotation(
     Placement(transformation(origin = {-90, 50}, extent = {{-10, -10}, {10, 10}})));
