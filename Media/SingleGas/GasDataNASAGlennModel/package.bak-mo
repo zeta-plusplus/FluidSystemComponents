@@ -1,0 +1,20 @@
+within FluidSystemComponents.Media.SingleGas;
+
+package GasDataNASAGlennModel "Ideal gas data based on the NASA Glenn coefficients"
+  extends Modelica.Icons.VariantsPackage;
+  
+  constant Modelica.Media.IdealGases.Common.DataRecord N2(
+    name="N2",
+    MM=0.0280134,
+    Hf=0,
+    H0=309498.4543111511,
+    Tlimit=1000,
+    alow={22103.71497,-381.846182,6.08273836,-0.00853091441,1.384646189e-005,-9.62579362e-009,
+        2.519705809e-012},
+    blow={710.846086,-10.76003744},
+    ahigh={587712.406,-2239.249073,6.06694922,-0.00061396855,1.491806679e-007,-1.923105485e-011,
+        1.061954386e-015},
+    bhigh={12832.10415,-15.86640027},
+    R_s=296.8033869505308);
+  
+end GasDataNASAGlennModel;

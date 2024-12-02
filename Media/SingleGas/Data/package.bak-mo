@@ -1,0 +1,5 @@
+within FluidSystemComponents.Media.SingleGas;
+
+package Data
+  extends Modelica.Icons.VariantsPackage;
+end Data;

@@ -1,0 +1,7 @@
+within FluidSystemComponents.Media.Examples.Test;
+
+model IdealConstAirNASAGlenn
+  extends Modelica.Icons.Example;
+equation
+
+end IdealConstAirNASAGlenn;
