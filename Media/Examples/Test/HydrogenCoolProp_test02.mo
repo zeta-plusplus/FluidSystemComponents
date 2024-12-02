@@ -4,17 +4,17 @@ model HydrogenCoolProp_test02
   extends Modelica.Icons.Example;
   inner Modelica.Fluid.System system annotation(
     Placement(visible = true, transformation(origin = {-72, 74}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = FluidSystemComponents.Media.HydrogenCoolProp, T_start = -30 + 273.15, V = 0.1, nPorts = 2, p_start = 100*1000, use_portsData = false) annotation(
+  Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = FluidSystemComponents.Media.CoolProp.Hydrogen, T_start = -30 + 273.15, V = 0.1, nPorts = 2, p_start = 100*1000, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {0, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Pipes.StaticPipe pipe(redeclare package Medium = FluidSystemComponents.Media.HydrogenCoolProp, diameter = 0.05, length = 1) annotation(
+  Modelica.Fluid.Pipes.StaticPipe pipe(redeclare package Medium = FluidSystemComponents.Media.CoolProp.Hydrogen, diameter = 0.05, length = 1) annotation(
     Placement(visible = true, transformation(origin = {-24, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Pipes.StaticPipe staticPipe(redeclare package Medium = FluidSystemComponents.Media.HydrogenCoolProp, diameter = 0.05, length = 1) annotation(
+  Modelica.Fluid.Pipes.StaticPipe staticPipe(redeclare package Medium = FluidSystemComponents.Media.CoolProp.Hydrogen, diameter = 0.05, length = 1) annotation(
     Placement(visible = true, transformation(origin = {24, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = FluidSystemComponents.Media.HydrogenCoolProp, nPorts = 1, use_T_in = true, use_p_in = true) annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = FluidSystemComponents.Media.CoolProp.Hydrogen, nPorts = 1, use_T_in = true, use_p_in = true) annotation(
     Placement(visible = true, transformation(origin = {-52, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = FluidSystemComponents.Media.HydrogenCoolProp, T = -30 + 273.15, nPorts = 1, p = 100*1000) annotation(
+  Modelica.Fluid.Sources.Boundary_pT boundary1(redeclare package Medium = FluidSystemComponents.Media.CoolProp.Hydrogen, T = -30 + 273.15, nPorts = 1, p = 100*1000) annotation(
     Placement(visible = true, transformation(origin = {70, 16}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = FluidSystemComponents.Media.HydrogenCoolProp, T_start = -30 + 273.15, V = 0.1, nPorts = 2, p_start = 100*1000, use_portsData = false) annotation(
+  Modelica.Fluid.Vessels.ClosedVolume volume1(redeclare package Medium = FluidSystemComponents.Media.CoolProp.Hydrogen, T_start = -30 + 273.15, V = 0.1, nPorts = 2, p_start = 100*1000, use_portsData = false) annotation(
     Placement(visible = true, transformation(origin = {46, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_p(duration = 1, height = 1000*1000, offset = 100*1000, startTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-88, 24}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -36,5 +36,5 @@ equation
   connect(ramp_T.y, boundary.T_in) annotation(
     Line(points = {{-76, -6}, {-70, -6}, {-70, 20}, {-64, 20}}, color = {0, 0, 127}));
   annotation(
-    experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-6, Interval = 0.01));
+    experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.01));
 end HydrogenCoolProp_test02;
