@@ -9,19 +9,20 @@ model MassFlowSource_T
     m_flow_in_internal(start=m_flow_init)
   );
   
+  import units= Modelica.Units.SI;
   
   /* ---------------------------------------------
                     parameters
   --------------------------------------------- */
   //********** Initialization Parameters **********
   //--- fluid, port ---
-  parameter Modelica.SIunits.MassFlowRate m_flow_init(displayUnit = "kg/s") = -0.01 "" annotation(
+  parameter units.MassFlowRate m_flow_init(displayUnit = "kg/s") = -0.01 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Pressure p_init(displayUnit = "Pa") = 20* 101.3 * 1000 "" annotation(
+  parameter units.Pressure p_init(displayUnit = "Pa") = 20* 101.3 * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.Temperature T_init(displayUnit = "K") = 400.0 "" annotation(
+  parameter units.Temperature T_init(displayUnit = "K") = 400.0 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
-  parameter Modelica.SIunits.SpecificEnthalpy h_init(displayUnit = "J/kg") = T_init * 1000 "" annotation(
+  parameter units.SpecificEnthalpy h_init(displayUnit = "J/kg") = T_init * 1000 "" annotation(
     Dialog(tab = "Initialization", group = "fluid_1"));
   
   

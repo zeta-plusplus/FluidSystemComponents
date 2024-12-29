@@ -1,0 +1,6 @@
+within FluidSystemComponents.Compressible.BaseClasses;
+
+model IdealGasVolume
+equation
+
+end IdealGasVolume;

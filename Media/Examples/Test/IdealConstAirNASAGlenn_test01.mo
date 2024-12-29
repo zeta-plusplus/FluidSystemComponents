@@ -2,7 +2,9 @@ within FluidSystemComponents.Media.Examples.Test;
 
 model IdealConstAirNASAGlenn_test01
   extends Modelica.Icons.Example;
+  //-----
   replaceable package gas = FluidSystemComponents.Media.SingleGas.IdealConstAirNASAGlennModel;
+  //-----
   Modelica.Fluid.Sources.Boundary_pT boundary(redeclare package Medium = gas, use_p_in = true, use_T_in = true, nPorts = 1) annotation(
     Placement(transformation(origin = {-30, -20}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Fluid.Vessels.ClosedVolume volume(redeclare package Medium = gas, use_portsData = false, V = 1, nPorts = 6, energyDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, massDynamics = Modelica.Fluid.Types.Dynamics.SteadyState) annotation(
