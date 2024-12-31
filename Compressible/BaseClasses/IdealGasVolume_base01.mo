@@ -71,8 +71,6 @@ algorithm
   
   
   /*
-  
-  
   for i in 1:nPorts loop
     ports[i].p:= medium.p;
     ports[i].h_outflow:= medium.h;
@@ -113,7 +111,6 @@ equation
   der(medium.T)= MatInv[2,1]*mb_flow + MatInv[2,2]*Hb_flow;
   
   //
-  
   for i in 1:nPorts loop
     ports[i].p= medium.p;
     ports[i].h_outflow= medium.h;
