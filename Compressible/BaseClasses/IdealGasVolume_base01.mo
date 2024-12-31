@@ -44,27 +44,15 @@ model IdealGasVolume_base01
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},
       origin={0,-100})));
   
+  
 initial equation
   medium.p= p_start;
   medium.T= T_start;
   
 algorithm
   //
-  /*
-  for i in 1:nPorts loop
-    ports_H_flow[i]:= ports[i].m_flow * inStream(ports[i].h_outflow);
-    
-  end for;
-  
-  
-  //
   mb_flow := sum(ports.m_flow);
   Hb_flow := sum(ports_H_flow);
-  
-  //
-  //mb_flow:= 0.0;
-  //Hb_flow:= 0.0;
-  
   
   mass:= medium.d*Vol;
   Cp:= Medium.specificHeatCapacityCp(medium.state);
@@ -81,24 +69,20 @@ algorithm
   MatInv[2,1]:= -1/detMat*Mat[2,1];
   MatInv[2,2]:= 1/detMat*Mat[1,1];
   
+  
+  /*
+  
+  
   for i in 1:nPorts loop
     ports[i].p:= medium.p;
     ports[i].h_outflow:= medium.h;
     ports[i].Xi_outflow:= medium.Xi;
   end for;
+  
   */
   
 equation
-  /**/
-  for i in 1:nPorts loop
-    ports_H_flow[i]= ports[i].m_flow * actualStream(ports[i].h_outflow);
-  end for;
-  
-  
-  der(medium.p)= MatInv[1,1]*mb_flow + MatInv[1,2]*Hb_flow;
-  der(medium.T)= MatInv[2,1]*mb_flow + MatInv[2,2]*Hb_flow;
-  
-  //
+  /*
   mb_flow = sum(ports.m_flow);
   Hb_flow = sum(ports_H_flow);
   
@@ -117,10 +101,24 @@ equation
   MatInv[2,1]= -1/detMat*Mat[2,1];
   MatInv[2,2]= 1/detMat*Mat[1,1];
   
+  */
+  
+  //
+  for i in 1:nPorts loop
+    ports_H_flow[i]= ports[i].m_flow * actualStream(ports[i].h_outflow);
+  end for;
+  
+  //
+  der(medium.p)= MatInv[1,1]*mb_flow + MatInv[1,2]*Hb_flow;
+  der(medium.T)= MatInv[2,1]*mb_flow + MatInv[2,2]*Hb_flow;
+  
+  //
+  
   for i in 1:nPorts loop
     ports[i].p= medium.p;
     ports[i].h_outflow= medium.h;
     ports[i].Xi_outflow= medium.Xi;
   end for;  
+  
   
 end IdealGasVolume_base01;

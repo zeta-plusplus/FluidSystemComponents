@@ -41,6 +41,7 @@ equation
   
   
 annotation(
+    defaultComponentName = "boundary",
     Icon(graphics = {Text(origin = {0, -116}, extent = {{-100, 10}, {100, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))), Ellipse(fillColor = DynamicSelect({85, 170, 255}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}})}));
   
   
