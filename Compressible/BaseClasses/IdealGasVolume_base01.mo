@@ -17,7 +17,7 @@ model IdealGasVolume_base01
   "= true to use the HeatTransfer model"
       annotation (Dialog(tab="Assumptions", group="Heat transfer"));
   
-  parameter units.Volume Vol=1.0;
+  parameter units.Volume V=1.0;
   
   parameter units.Pressure p_start=100*1000;
   parameter units.Temperature T_start= 288.15;
@@ -54,13 +54,13 @@ algorithm
   mb_flow := sum(ports.m_flow);
   Hb_flow := sum(ports_H_flow);
   
-  mass:= medium.d*Vol;
+  mass:= medium.d*V;
   Cp:= Medium.specificHeatCapacityCp(medium.state);
   
-  Mat[1,1]:= Vol/(medium.R_s*medium.T);
-  Mat[1,2]:= -1*Vol*medium.p/(medium.R_s*medium.T^2);
-  Mat[2,1]:= Vol*(Cp-medium.R_s)/(medium.R_s);
-  Mat[2,2]:= (Cp-medium.R_s)*(-1*Vol*medium.p/(medium.R_s*medium.T)+mass);
+  Mat[1,1]:= V/(medium.R_s*medium.T);
+  Mat[1,2]:= -1*V*medium.p/(medium.R_s*medium.T^2);
+  Mat[2,1]:= V*(Cp-medium.R_s)/(medium.R_s);
+  Mat[2,2]:= (Cp-medium.R_s)*(-1*V*medium.p/(medium.R_s*medium.T)+mass);
   
   detMat:= Mat[1,1]*Mat[2,2]-Mat[1,2]*Mat[2,1];
   
@@ -84,13 +84,13 @@ equation
   mb_flow = sum(ports.m_flow);
   Hb_flow = sum(ports_H_flow);
   
-  mass= medium.d*Vol;
+  mass= medium.d*V;
   Cp= Medium.specificHeatCapacityCp(medium.state);
   
-  Mat[1,1]= Vol/(medium.R_s*medium.T);
-  Mat[1,2]= -1*Vol*medium.p/(medium.R_s*medium.T^2);
-  Mat[2,1]= Vol*(Cp-medium.R_s)/(medium.R_s);
-  Mat[2,2]= (Cp-medium.R_s)*(-1*Vol*medium.p/(medium.R_s*medium.T)+mass);
+  Mat[1,1]= V/(medium.R_s*medium.T);
+  Mat[1,2]= -1*V*medium.p/(medium.R_s*medium.T^2);
+  Mat[2,1]= V*(Cp-medium.R_s)/(medium.R_s);
+  Mat[2,2]= (Cp-medium.R_s)*(-1*V*medium.p/(medium.R_s*medium.T)+mass);
   
   detMat= Mat[1,1]*Mat[2,2]-Mat[1,2]*Mat[2,1];
   

@@ -1,0 +1,6 @@
+within FluidSystemComponents.CommonAnyFluid.BaseClasses;
+
+model VolumeColorP01
+equation
+
+end VolumeColorP01;

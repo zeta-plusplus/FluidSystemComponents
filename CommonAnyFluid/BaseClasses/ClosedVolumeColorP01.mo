@@ -1,11 +1,12 @@
-within FluidSystemComponents.Sources;
+within FluidSystemComponents.CommonAnyFluid.BaseClasses;
 
-model Boundary_ph_colorP
-  extends Modelica.Fluid.Sources.Boundary_ph;
+model ClosedVolumeColorP01
+  
   //----------------------------------------
   // Import
   //----------------------------------------
   import Colors = Modelica.Mechanics.MultiBody.Visualizers.Colors;
+  import units= Modelica.Units.SI;
   //----------------------------------------
   // parameter
   //----------------------------------------
@@ -17,23 +18,34 @@ model Boundary_ph_colorP
   //----------------------------------------
   // variables
   //----------------------------------------
+  units.Pressure p;
+  //
   Real vecRGB[3];
   Real pVis;
   Real pMinContour;
   Real pMaxContour;
+  
+  
 equation
-//----------
+  
+  //----------
   if (switchUnitP == Visualizers.Types.SwitchUnitVisPressure.kPa) then
-    pVis = medium.p/1000.0;
+    pVis = p/1000.0;
     pMinContour = valMin/1000.0;
     pMaxContour = valMax/1000.0;
   else
-    pVis = medium.p;
+    pVis = p;
     pMinContour = valMin;
     pMaxContour = valMax;
   end if;
 //----------
   vecRGB = Colors.scalarToColor(pVis, pMinContour, pMaxContour, colorMap);
+  
+  
+  
   annotation(
-    Icon(graphics = {Text(origin = {0, -116}, extent = {{-100, 10}, {100, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))), Ellipse(fillColor = DynamicSelect({85, 170, 255}, {vecRGB[1], vecRGB[2], vecRGB[3]}), fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-100, 100}, {100, -100}})}));
-end Boundary_ph_colorP;
+    defaultComponentName = "Vol",
+    Icon(graphics = {Ellipse( fillColor = DynamicSelect({85, 170, 255}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Text(origin = {0, -130}, extent = {{-100, 10}, {100, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))), Text(extent = {{-150, 12}, {150, -18}}, textString = "V=%V")}));
+    
+    
+end ClosedVolumeColorP01;

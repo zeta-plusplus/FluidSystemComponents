@@ -2,7 +2,6 @@ within FluidSystemComponents.Sources;
 
 model Boundary_pT_colorP
   extends Modelica.Fluid.Sources.Boundary_pT;
-  
   //----------------------------------------
   // Import
   //----------------------------------------
@@ -22,11 +21,8 @@ model Boundary_pT_colorP
   Real pVis;
   Real pMinContour;
   Real pMaxContour;
-  
-  
 equation
-  
-  //----------
+//----------
   if (switchUnitP == Visualizers.Types.SwitchUnitVisPressure.kPa) then
     pVis = medium.p/1000.0;
     pMinContour = valMin/1000.0;
@@ -38,12 +34,7 @@ equation
   end if;
 //----------
   vecRGB = Colors.scalarToColor(pVis, pMinContour, pMaxContour, colorMap);
-  
-  
-annotation(
+  annotation(
     defaultComponentName = "boundary",
-    Icon(graphics = {Text(origin = {0, -116}, extent = {{-100, 10}, {100, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))), Ellipse(fillColor = DynamicSelect({85, 170, 255}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}})}));
-  
-  
-  
+    Icon(graphics = {Text(origin = {0, -116}, extent = {{-100, 10}, {100, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))), Ellipse(fillColor = DynamicSelect({85, 170, 255}, {vecRGB[1], vecRGB[2], vecRGB[3]}), fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-100, 100}, {100, -100}})}));
 end Boundary_pT_colorP;
