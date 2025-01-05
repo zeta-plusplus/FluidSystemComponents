@@ -16,9 +16,9 @@ model IdealGasVolume01_test01
   parameter Real arrowMassFlowMin = 0.01;
   parameter Real arrowMassFlowMax = 40;
   //-------------------------
-  Sources.Boundary_pT_colorP boundary1(nPorts = 1, p = 150*1000, T (displayUnit = "K")= 400, redeclare package Medium = fluid1, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP)  annotation(
+  Sources.Boundary_pT_colorP boundary1(nPorts = 2, p = 150*1000, T (displayUnit = "K")= 400, redeclare package Medium = fluid1, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP)  annotation(
     Placement(transformation(origin = {-22, 82}, extent = {{-10, -10}, {10, 10}})));
-  Sources.Boundary_pT_colorP boundary2(redeclare package Medium = fluid1, T = 561.3, nPorts = 1, p = 100*1000, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP) annotation(
+  Sources.Boundary_pT_colorP boundary2(redeclare package Medium = fluid1, T = 561.3, nPorts = 2, p = 100*1000, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP) annotation(
     Placement(transformation(origin = {-22, -86}, extent = {{-10, -10}, {10, 10}})));
   Components.IdealGasVolumeColorP01 Vol1(redeclare package Medium = fluid1, nPorts = 2, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP)  annotation(
     Placement(transformation(origin = {-12, 30}, extent = {{-10, -10}, {10, 10}})));
@@ -30,6 +30,16 @@ model IdealGasVolume01_test01
     Placement(transformation(origin = {-12, -28}, extent = {{-10, -10}, {10, 10}})));
   Components.IdealGasNozzleFlow01 Restriction3(redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin, AmechTot_par = 1000*1e-6) annotation(
     Placement(transformation(origin = {-12, -58}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Components.NozzleFlowEquation03 Restriction_1(AmechTot_par = 1000*1e-6, redeclare package Medium = fluid1)  annotation(
+    Placement(transformation(origin = {32, 56}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Components.NozzleFlowEquation03 Restriction_2(AmechTot_par = 1000*1e-6, redeclare package Medium = fluid1) annotation(
+    Placement(transformation(origin = {32, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Components.NozzleFlowEquation03 Restriction_3(AmechTot_par = 1000*1e-6, redeclare package Medium = fluid1) annotation(
+    Placement(transformation(origin = {32, -58}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Components.IdealGasVolumeColorP01 Vol_1(redeclare package Medium = fluid1, nPorts = 2, sigDigits = digitP, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {32, 30}, extent = {{-10, -10}, {10, 10}})));
+  Components.IdealGasVolumeColorP01 Vol_2(redeclare package Medium = fluid1, nPorts = 2, sigDigits = digitP, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {32, -28}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(boundary1.ports[1], Restriction1.port_a) annotation(
     Line(points = {{-12, 82}, {-12, 66}}, color = {0, 127, 255}));
@@ -43,6 +53,18 @@ equation
     Line(points = {{-12, -38}, {-12, -48}}, color = {0, 127, 255}));
   connect(Restriction3.port_b, boundary2.ports[1]) annotation(
     Line(points = {{-12, -68}, {-12, -86}}, color = {0, 127, 255}));
+  connect(boundary1.ports[2], Restriction_1.port_a) annotation(
+    Line(points = {{-12, 82}, {32, 82}, {32, 66}}, color = {0, 127, 255}));
+  connect(boundary2.ports[2], Restriction_3.port_b) annotation(
+    Line(points = {{-12, -86}, {32, -86}, {32, -68}}, color = {0, 127, 255}));
+  connect(Restriction_1.port_b, Vol_1.ports[1]) annotation(
+    Line(points = {{32, 46}, {32, 20}}, color = {0, 127, 255}));
+  connect(Restriction_2.port_a, Vol_1.ports[2]) annotation(
+    Line(points = {{32, 10}, {32, 20}}, color = {0, 127, 255}));
+  connect(Restriction_2.port_b, Vol_2.ports[1]) annotation(
+    Line(points = {{32, -10}, {32, -38}}, color = {0, 127, 255}));
+  connect(Restriction_3.port_a, Vol_2.ports[2]) annotation(
+    Line(points = {{32, -48}, {32, -38}}, color = {0, 127, 255}));
   annotation(
     experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.01),
   __OpenModelica_simulationFlags(lv = "LOG_STDOUT,LOG_ASSERT,LOG_STATS", s = "euler", variableFilter = ".*"),

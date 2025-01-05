@@ -15,6 +15,14 @@ equation
   AmechTot = AmechTot_par;
   Cd = Cd_par;
   
+  /* */
+  if(Modelica.Constants.small<=AmechTot_par*Cd_par)then
+    flagClosed=false;
+  else
+    flagClosed=true;
+  end if;
+  
+  
   
   annotation(
     defaultComponentName = "Restriction",

@@ -13,7 +13,7 @@ model Boundary_ph_colorP
   parameter Integer sigDigits(min = 1) = 6 "";
   parameter Real valMin = 100 "";
   parameter Real valMax = 1000 "";
-  parameter Real colorMap[:, 3] = Colors.ColorMaps.jet();
+  parameter Real colorMap[:, 3] = Colors.ColorMaps.jet() annotation(HideResult = true);
   //----------------------------------------
   // variables
   //----------------------------------------
