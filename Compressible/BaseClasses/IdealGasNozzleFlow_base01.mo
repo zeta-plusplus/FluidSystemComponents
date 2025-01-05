@@ -38,7 +38,6 @@ partial model IdealGasNozzleFlow_base01
   Boolean flagClosed;
   Real PRcr;
   Real PRcrInv;
-  //Real gams_H "gamma, static, high-p side";
   Real gamtH "";
   Real gamtL "";
   //-----
@@ -54,7 +53,6 @@ partial model IdealGasNozzleFlow_base01
   units.Temperature Tl;
   units.MassFraction Xl[Medium.nXi];
   units.SpecificEnthalpy hsTh;
-  //units.Density rhoTh;
   units.SpecificHeatCapacity Rg;
   units.Pressure pHsmall;
   Real inSqrtSmall;
@@ -87,8 +85,7 @@ equation
   hL = noEvent(if port_a.p >= port_b.p then Medium.specificEnthalpy(state_b) else Medium.specificEnthalpy(state_a));
   Xh = noEvent(if port_a.p >= port_b.p then inStream(port_b.Xi_outflow) else inStream(port_a.Xi_outflow));
   gamtL = noEvent(if port_a.p >= port_b.p then Medium.specificHeatCapacityCp(state_b)/Medium.specificHeatCapacityCv(state_b) else Medium.specificHeatCapacityCp(state_a)/Medium.specificHeatCapacityCv(state_a));
-  //rhoTh = Medium.density(Medium.setState_pTX(pL, Th, Xh));
-//-----
+  
 //-----
   PR = state_a.p/state_b.p;
   PRabs = pH/pL;
@@ -99,7 +96,6 @@ equation
   port_a.h_outflow = inStream(port_b.h_outflow);
   port_b.h_outflow = inStream(port_a.h_outflow);
 //-----
-  //PRcr = FluidSystemComponents.Compressible.Function.CriticalPressureRatio(gamma_in = gamtH);
   PRcr= ((gamtH+1)/2)^(gamtH/(gamtH-1));
   
   
@@ -122,12 +118,10 @@ equation
     
     if PRabs < PRcr then
       flagChoke = false;
-      //m_flow_abs = homotopy(Aeff*pH*Modelica.Fluid.Utilities.regRoot2(x = (2.0*gamtH/(Th*Rg*(gamtH - 1.0 + Modelica.Constants.small))*((pL/pH)^(2.0/gamtH) - (pL/pH)^((gamtH + 1.0)/gamtH))), x_small = inSqrtSmall), dp*m_flow_homotopy_init/dp_homotopy_init);
-      //m_flow = homotopy(sign(dp)*Aeff*pH*Modelica.Fluid.Utilities.regRoot2(x = (2.0*gamtH/(Th*Rg*(gamtH - 1.0 + Modelica.Constants.small))*((pL/pH)^(2.0/gamtH) - (pL/pH)^((gamtH + 1.0)/gamtH))), x_small = inSqrtSmall), dp*m_flow_homotopy_init/dp_homotopy_init);
+      
     else
       flagChoke = true;
-      //m_flow_abs = homotopy(Aeff*pH/sqrt(Rg*Th)*sqrt(gamtH)*((gamtH + 1.0)/2.0)^(-1.0*(gamtH + 1.0)/(2.0*(gamtH - 1.0 + Modelica.Constants.small))), dp*m_flow_homotopy_init/dp_homotopy_init);
-      //m_flow = homotopy(sign(dp)*Aeff*pH/sqrt(Rg*Th)*sqrt(gamtH)*((gamtH + 1.0)/2.0)^(-1.0*(gamtH + 1.0)/(2.0*(gamtH - 1.0 + Modelica.Constants.small))), dp*m_flow_homotopy_init/dp_homotopy_init);
+      
     end if;
     
     m_flow_abs= Aeff*pH/sqrt(Th)*sqrt(2*gamtH/(Rg*(gamtH-1))*((pLcalc/pH)^(2/gamtH)-(pLcalc/pH)^((gamtH+1)/gamtH)));
@@ -142,7 +136,10 @@ equation
     m_flow_abs = 0.0;
     m_flow = 0.0;
   end if;
-//--------------------
+  
+  
+  
+  //--------------------
   if (0 <= m_flow) then
     thickArrowFwd = max(thickArrowMin, min(thickArrowMax, thickArrowMin + m_flow*(thickArrowMax - thickArrowMin)/(m_flow_Max - m_flow_Min)));
     sizeArrowFwd = 3.5*thickArrowFwd;
@@ -155,7 +152,9 @@ equation
     sizeArrowFwd = 0.0;
   end if;
 //************************************************************
+
   annotation(
     defaultComponentName = "restriction",
     Icon(graphics = {Line(origin = {-2, 45.21}, points = {{-77.9965, 14.7929}, {-47.9965, -15.2071}, {-17.9965, -15.2071}, {22.0035, -15.2071}, {52.0035, -15.2071}, {82.0035, 14.7929}}, thickness = 4), Line(origin = {-2, -45.24}, points = {{-77.9964, -14.7964}, {-47.9964, 15.2036}, {-19.9964, 15.2036}, {22.0036, 15.2036}, {52.0036, 15.2036}, {82.0036, -14.7964}}, thickness = 4), Line(origin = {-2.8, -0.42}, points = {{-100, 0}, {90, 0}}, color = {0, 0, 255}, thickness = DynamicSelect(3, thickArrowFwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(14, sizeArrowFwd)), Line(origin = {-177.049, -10.9544}, points = {{270, 0}, {90, 0}}, color = {0, 0, 255}, pattern = LinePattern.Dash, thickness = DynamicSelect(0.25, thickArrowBwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(0, sizeArrowBwd)), Text(origin = {0, 85}, extent = {{-100, 11}, {100, -11}}, textString = DynamicSelect("0.0", String(m_flow, significantDigits_m_flow, 0, true))), Text(origin = {20, 60}, extent = {{-20, 6}, {20, -6}}, textString = "kg/s", horizontalAlignment = TextAlignment.Right)}, coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}})));
+
 end IdealGasNozzleFlow_base01;
