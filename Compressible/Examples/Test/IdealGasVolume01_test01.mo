@@ -16,7 +16,7 @@ model IdealGasVolume01_test01
   parameter Real arrowMassFlowMin = 0.01;
   parameter Real arrowMassFlowMax = 40;
   //-------------------------
-  Sources.Boundary_pT_colorP boundary1(nPorts = 2, p = 150*1000, T (displayUnit = "K")= 400, redeclare package Medium = fluid1, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP)  annotation(
+  Sources.Boundary_pT_colorP boundary1(nPorts = 2, p = 140*1000, T (displayUnit = "K")= 400, redeclare package Medium = fluid1, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP)  annotation(
     Placement(transformation(origin = {-22, 82}, extent = {{-10, -10}, {10, 10}})));
   Sources.Boundary_pT_colorP boundary2(redeclare package Medium = fluid1, T (displayUnit = "K")= 288.15, nPorts = 2, p = 100*1000, valMin = pContourMin, valMax = pContourMax, sigDigits = digitP) annotation(
     Placement(transformation(origin = {-22, -84}, extent = {{-10, -10}, {10, 10}})));
@@ -66,7 +66,7 @@ equation
   connect(Restriction3.port_b, boundary2.ports[1]) annotation(
     Line(points = {{-12, -66}, {-12, -84}}, color = {0, 127, 255}));
   annotation(
-    experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.01),
+    experiment(StartTime = 0, StopTime = 0.1, Tolerance = 1e-06, Interval = 0.001),
   __OpenModelica_simulationFlags(lv = "LOG_STDOUT,LOG_ASSERT,LOG_STATS", s = "euler", variableFilter = ".*"),
   Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}})));
 end IdealGasVolume01_test01;

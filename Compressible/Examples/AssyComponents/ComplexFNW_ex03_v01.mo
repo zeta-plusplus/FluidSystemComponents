@@ -136,5 +136,7 @@ equation
   connect(firstOrder5.y, boundary5.p_in) annotation(
     Line(points = {{53, 120}, {53, 114}}, color = {0, 0, 127}));
   annotation(
-    Diagram(coordinateSystem(extent = {{-240, -200}, {200, 200}})));
+    Diagram(coordinateSystem(extent = {{-240, -200}, {200, 200}})),
+  experiment(StartTime = 0, StopTime = 1, Tolerance = 1e-06, Interval = 0.002),
+  __OpenModelica_simulationFlags(lv = "LOG_STDOUT,LOG_ASSERT,LOG_STATS", s = "dassl", variableFilter = ".*"));
 end ComplexFNW_ex03_v01;
