@@ -58,6 +58,9 @@ partial model IdealGasNozzleFlow_base01
   Real inSqrtSmall;
   units.Velocity Vth;
   
+  units.SpecificHeatCapacity CptH;
+  units.SpecificHeatCapacity CptL;
+  
   units.Pressure pLcalc;
   //-----
   Real thickArrowFwd;
@@ -80,11 +83,14 @@ equation
   Xh = noEvent(if port_a.p >= port_b.p then inStream(port_a.Xi_outflow) else inStream(port_b.Xi_outflow));
   Rg = noEvent(if port_a.p >= port_b.p then fluid_a.R_s else fluid_b.R_s);
   gamtH = noEvent(if port_a.p >= port_b.p then Medium.specificHeatCapacityCp(state_a)/Medium.specificHeatCapacityCv(state_a) else Medium.specificHeatCapacityCp(state_b)/Medium.specificHeatCapacityCv(state_b));
+  CptH = noEvent(if port_a.p >= port_b.p then Medium.specificHeatCapacityCp(state_a) else Medium.specificHeatCapacityCp(state_b));
+  //---
   pL = noEvent(if port_a.p >= port_b.p then state_b.p else state_a.p);
   Tl = noEvent(if port_a.p >= port_b.p then state_b.T else state_a.T);
   hL = noEvent(if port_a.p >= port_b.p then Medium.specificEnthalpy(state_b) else Medium.specificEnthalpy(state_a));
   Xh = noEvent(if port_a.p >= port_b.p then inStream(port_b.Xi_outflow) else inStream(port_a.Xi_outflow));
   gamtL = noEvent(if port_a.p >= port_b.p then Medium.specificHeatCapacityCp(state_b)/Medium.specificHeatCapacityCv(state_b) else Medium.specificHeatCapacityCp(state_a)/Medium.specificHeatCapacityCv(state_a));
+  CptL = noEvent(if port_a.p >= port_b.p then Medium.specificHeatCapacityCp(state_b) else Medium.specificHeatCapacityCp(state_a));
   
 //-----
   PR = state_a.p/state_b.p;
