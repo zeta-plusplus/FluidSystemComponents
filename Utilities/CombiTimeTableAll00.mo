@@ -14,7 +14,9 @@ model CombiTimeTableAll00
   /*-----------------------------------
           parameters
   -----------------------------------*/
-  parameter Integer nColMax=10;
+  parameter Integer nColMax=10 "number of columns of data array";
+  parameter Integer iRowBegin=1 "row data table begins in text";
+  parameter Integer iColBegin=1 "colmn data table begins in text";
   
   parameter Boolean tableOnFile=true
     "= true, if table is defined on file or in function usertab"
@@ -150,8 +152,10 @@ initial algorithm
     colPickedUp[i]:=i;
   end for;
   //-----
-  matCSVread:= Modelica.Utilities.Streams.readLine(fileName, 1);
-  nColumns:=Strings.count(matCSVread,",")+1;
+  //matCSVread:= Modelica.Utilities.Streams.readLine(fileName, 1);
+  //nColumns:=Strings.count(matCSVread,",")+1;
+  matCSVread:= Modelica.Utilities.Streams.readLine(fileName, iRowBegin);
+  nColumns:=Strings.count(matCSVread,strDelim)+1-(iColBegin-1);
   
   Streams.print("initialization");
   Streams.print("nColumns= " + String(nColumns));
