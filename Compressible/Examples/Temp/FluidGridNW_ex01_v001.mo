@@ -21,19 +21,14 @@ model FluidGridNW_ex01_v001
   //-------------------------
   Modelica.Blocks.Interaction.Show.RealValue dispTime(significantDigits = 3) annotation(
     Placement(transformation(origin = {-268, 99}, extent = {{-16, -13}, {16, 13}})));
-  
   //----------
   InteractiveSimulation.System.getCPUclock CPUtime annotation(
     Placement(transformation(origin = {-300, 240}, extent = {{-10, -10}, {10, 10}})));
   InteractiveSimulation.System.terminateByCPUtimer terminateByCPUtimer annotation(
     Placement(transformation(origin = {-270, 240}, extent = {{-10, -10}, {10, 10}})));
-  
   //----------
-  
   inner Modelica.Fluid.System system(T_ambient(displayUnit = "K") = 288.15, T_start(displayUnit = "K") = 288.15, energyDynamics = Modelica.Fluid.Types.Dynamics.DynamicFreeInitial, m_flow_start = 0, massDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, p_ambient = 100*1000, p_start = 100*1000) annotation(
     Placement(visible = true, transformation(origin = {-340, 526}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  
-  
   //----------
   Modelica.Blocks.Sources.Ramp ramp_p_0_1(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {-240, 200}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -57,22 +52,18 @@ model FluidGridNW_ex01_v001
     Placement(transformation(origin = {-360, -102}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Ramp ramp_p_3_6(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
     Placement(transformation(origin = {260, -102}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
-  
   //----------
-  
   Modelica.Blocks.Sources.Ramp ramp_fracA_1_2_to_2_2(duration = durStd2, height = -1, offset = 1, startTime = 30) annotation(
     Placement(transformation(origin = {-168, 14}, extent = {{-4, -4}, {4, 4}})));
   Modelica.Blocks.Sources.Ramp ramp_fracA_1_4_to_2_4(duration = durStd2, height = -1, offset = 1, startTime = 30) annotation(
     Placement(transformation(origin = {-8, 14}, extent = {{-4, -4}, {4, 4}})));
 
-  //----------
-  
+//----------
   Modelica.Blocks.Math.Gain Amech_rst_1_2_to_2_2(k = 0.01^2*Modelica.Constants.pi/4)  annotation(
     Placement(transformation(origin = {-152, 14}, extent = {{-4, -4}, {4, 4}})));
   Modelica.Blocks.Math.Gain Amech_rst_1_4_to_2_4(k = 0.1^2*Modelica.Constants.pi/4) annotation(
     Placement(transformation(origin = {8, 14}, extent = {{-4, -4}, {4, 4}})));
-    
-  //----------
+    //----------
   Modelica.Blocks.Continuous.FirstOrder firstOrder_p_0_3(T = TconstStd, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
     Placement(transformation(origin = {-80, 170}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Continuous.FirstOrder firstOrder_p_0_2(T = TconstStd, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
@@ -95,8 +86,6 @@ model FluidGridNW_ex01_v001
     Placement(transformation(origin = {-326, -102}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Continuous.FirstOrder firstOrder_p_3_6(T = TconstStd, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
     Placement(transformation(origin = {230, -102}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
-  
-  
   //----------
   Sources.Boundary_pT_colorP boundary_1_0(nPorts = 1, redeclare package Medium = fluid1, use_p_in = true, sigDigits = 4, valMin = pContourMin, valMax = pContourMax, T = 700) annotation(
     Placement(transformation(origin = {-290, 50}, extent = {{-10, -10}, {10, 10}})));
@@ -120,8 +109,6 @@ model FluidGridNW_ex01_v001
     Placement(transformation(origin = {-290, -110}, extent = {{-10, -10}, {10, 10}})));
   Sources.Boundary_pT_colorP boundary_3_6(redeclare package Medium = fluid1, T = 700, nPorts = 1, sigDigits = 4, use_p_in = true, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {190, -110}, extent = {{10, -10}, {-10, 10}})));
-  
-  
   //----------
   CommonAnyFluid.Components.ClosedVolumeColorP vol_1_1(nPorts = 4, redeclare package Medium = fluid1, use_portsData = false, V = volStd, sigDigits = 4, valMin = pContourMin, valMax = pContourMax) annotation(
     Placement(transformation(origin = {-210, 50}, extent = {{-10, -10}, {10, 10}})));
@@ -143,18 +130,16 @@ model FluidGridNW_ex01_v001
     Placement(transformation(origin = {110, -30}, extent = {{-10, -10}, {10, 10}})));
   CommonAnyFluid.Components.ClosedVolumeColorP vol_2_3(redeclare package Medium = fluid1, V = volStd, nPorts = 4, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {-50, -30}, extent = {{-10, -10}, {10, 10}})));
-  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_1(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_1(redeclare package Medium = fluid1, V = volStd, nPorts = 4, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {-210, -110}, extent = {{-10, -10}, {10, 10}})));
-  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_2(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_2(redeclare package Medium = fluid1, V = volStd, nPorts = 4, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {-130, -110}, extent = {{-10, -10}, {10, 10}})));
-  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_3(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_3(redeclare package Medium = fluid1, V = volStd, nPorts = 4, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {-50, -110}, extent = {{-10, -10}, {10, 10}})));
-  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_4(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_4(redeclare package Medium = fluid1, V = volStd, nPorts = 4, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {30, -110}, extent = {{-10, -10}, {10, 10}})));
-  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_5(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+  CommonAnyFluid.Components.ClosedVolumeColorP vol_3_5(redeclare package Medium = fluid1, V = volStd, nPorts = 4, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
     Placement(transformation(origin = {110, -110}, extent = {{-10, -10}, {10, 10}})));
-  
-  
   //----------
   Compressible.Components.NozzleFlowEquation03 rst_1_0_to_1_1(redeclare package Medium = fluid1, AmechTot_par = 0.005^2*Modelica.Constants.pi/4, m_flow_Min = m_flow_Min, m_flow_Max = m_flow_Max, thickArrowMin = arrowMassFlowMin, thickArrowMax = arrowMassFlowMax) annotation(
     Placement(transformation(origin = {-250, 50}, extent = {{-10, -10}, {10, 10}})));
@@ -213,9 +198,9 @@ model FluidGridNW_ex01_v001
   Components.NozzleFlowEquation_varArea01 rst_3_3_to_3_4(redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
     Placement(transformation(origin = {-10, -110}, extent = {{10, -10}, {-10, 10}}, rotation = 180)));
   Modelica.Blocks.Sources.Ramp ramp_fracA_3_3_to_3_4(duration = durStd2, height = 1, offset = 0, startTime = 30) annotation(
-    Placement(transformation(origin = {-14, -148}, extent = {{-4, -4}, {4, 4}}, rotation = 90)));
+    Placement(transformation(origin = {-14, -142}, extent = {{-4, -4}, {4, 4}}, rotation = 90)));
   Modelica.Blocks.Math.Gain Amech_rst_3_3_to_3_4(k = 0.01^2*Modelica.Constants.pi/4) annotation(
-    Placement(transformation(origin = {-14, -132}, extent = {{-4, -4}, {4, 4}}, rotation = 90)));
+    Placement(transformation(origin = {-14, -128}, extent = {{-4, -4}, {4, 4}}, rotation = 90)));
   Components.NozzleFlowEquation03 rst_2_1_to_3_1(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
     Placement(transformation(origin = {-210, -70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Components.NozzleFlowEquation03 rst_2_2_to_3_2(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
@@ -230,11 +215,51 @@ model FluidGridNW_ex01_v001
     Placement(transformation(origin = {-72, -66}, extent = {{-4, -4}, {4, 4}})));
   Components.NozzleFlowEquation_varArea01 rst_2_3_to_3_3(redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
     Placement(transformation(origin = {-50, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
-  
-  
   //----------
-  
-  
+  FluidSystemComponents.Sources.Boundary_pT_colorP boundary_4_0(redeclare package Medium = fluid1, T = 700, nPorts = 1, sigDigits = 4, use_p_in = true, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {-290, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.CommonAnyFluid.Components.ClosedVolumeColorP vol_4_1(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {-210, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.CommonAnyFluid.Components.ClosedVolumeColorP vol_4_2(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {-130, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.CommonAnyFluid.Components.ClosedVolumeColorP vol_4_3(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {-50, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.CommonAnyFluid.Components.ClosedVolumeColorP vol_4_4(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {30, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.CommonAnyFluid.Components.ClosedVolumeColorP vol_4_5(redeclare package Medium = fluid1, V = volStd, nPorts = 3, sigDigits = 4, use_portsData = false, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {110, -190}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Ramp ramp_p_4_0(duration = durStd, height = 900*1000, offset = 100*1000, startTime = 5) annotation(
+    Placement(transformation(origin = {-362, -182}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Continuous.FirstOrder firstOrder_p_3_01(T = TconstStd, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
+    Placement(transformation(origin = {-328, -182}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Ramp ramp_p_4_6(duration = durStd, height = 0*1000, offset = 100*1000, startTime = 5) annotation(
+    Placement(transformation(origin = {260, -182}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
+  Modelica.Blocks.Continuous.FirstOrder firstOrder_p_4_6(T = TconstStd, initType = Modelica.Blocks.Types.Init.SteadyState) annotation(
+    Placement(transformation(origin = {230, -182}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
+  FluidSystemComponents.Sources.Boundary_pT_colorP boundary_4_6(redeclare package Medium = fluid1, T = 700, nPorts = 1, sigDigits = 4, use_p_in = true, valMax = pContourMax, valMin = pContourMin) annotation(
+    Placement(transformation(origin = {190, -190}, extent = {{10, -10}, {-10, 10}})));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_4_0_to_4_1(AmechTot_par = 0.03^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {-250, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_4_2_to_4_3(AmechTot_par = 0.02^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {-90, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_4_1_to_4_2(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {-170, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_4_3_to_4_4(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {-10, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_4_4_to_4_5(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {70, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_4_5_to_4_6(AmechTot_par = 0.02^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {150, -190}, extent = {{-10, -10}, {10, 10}})));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_3_1_to_4_1(AmechTot_par = 0.03^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {-210, -150}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_3_2_to_4_2(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {-130, -150}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_3_3_to_4_3(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {-50, -150}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_3_5_to_4_5(AmechTot_par = 0.01^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {110, -150}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  FluidSystemComponents.Compressible.Components.NozzleFlowEquation03 rst_3_4_to_4_4(AmechTot_par = 0.05^2*Modelica.Constants.pi/4, redeclare package Medium = fluid1, m_flow_Max = m_flow_Max, m_flow_Min = m_flow_Min, thickArrowMax = arrowMassFlowMax, thickArrowMin = arrowMassFlowMin) annotation(
+    Placement(transformation(origin = {30, -150}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 equation
   dispTime.numberPort = time;
 //-----
@@ -403,9 +428,9 @@ equation
   connect(rst_3_3_to_3_4.port_b, vol_3_4.ports[2]) annotation(
     Line(points = {{0, -110}, {30, -110}, {30, -120}}, color = {0, 127, 255}));
   connect(rst_3_3_to_3_4.u_Amech, Amech_rst_3_3_to_3_4.y) annotation(
-    Line(points = {{-14, -120}, {-14, -128}}, color = {0, 0, 127}));
+    Line(points = {{-14, -120}, {-14, -124}}, color = {0, 0, 127}));
   connect(ramp_fracA_3_3_to_3_4.y, Amech_rst_3_3_to_3_4.u) annotation(
-    Line(points = {{-14, -144}, {-14, -136}}, color = {0, 0, 127}));
+    Line(points = {{-14, -138}, {-14, -133}}, color = {0, 0, 127}));
   connect(ramp_fracA_2_3_to_3_3.y, Amech_rst_2_3_to_3_3.u) annotation(
     Line(points = {{-84, -66}, {-76, -66}}, color = {0, 0, 127}));
   connect(Amech_rst_2_3_to_3_3.y, rst_2_3_to_3_3.u_Amech) annotation(
@@ -430,6 +455,58 @@ equation
     Line(points = {{110, -60}, {110, -40}}, color = {0, 127, 255}));
   connect(rst_2_5_to_3_5.port_b, vol_3_5.ports[3]) annotation(
     Line(points = {{110, -80}, {110, -120}}, color = {0, 127, 255}));
+  connect(firstOrder_p_3_01.y, boundary_4_0.p_in) annotation(
+    Line(points = {{-317, -182}, {-302, -182}}, color = {0, 0, 127}));
+  connect(ramp_p_4_0.y, firstOrder_p_3_01.u) annotation(
+    Line(points = {{-351, -182}, {-341, -182}}, color = {0, 0, 127}));
+  connect(firstOrder_p_4_6.u, ramp_p_4_6.y) annotation(
+    Line(points = {{242, -182}, {250, -182}}, color = {0, 0, 127}));
+  connect(boundary_4_6.p_in, firstOrder_p_4_6.y) annotation(
+    Line(points = {{202, -182}, {219, -182}}, color = {0, 0, 127}));
+  connect(rst_4_5_to_4_6.port_b, boundary_4_6.ports[1]) annotation(
+    Line(points = {{160, -190}, {180, -190}}, color = {0, 127, 255}));
+  connect(rst_4_5_to_4_6.port_a, vol_4_5.ports[1]) annotation(
+    Line(points = {{140, -190}, {110, -190}, {110, -200}}, color = {0, 127, 255}));
+  connect(rst_4_4_to_4_5.port_b, vol_4_5.ports[2]) annotation(
+    Line(points = {{80, -190}, {110, -190}, {110, -200}}, color = {0, 127, 255}));
+  connect(rst_4_4_to_4_5.port_a, vol_4_4.ports[1]) annotation(
+    Line(points = {{60, -190}, {30, -190}, {30, -200}}, color = {0, 127, 255}));
+  connect(rst_4_3_to_4_4.port_b, vol_4_4.ports[2]) annotation(
+    Line(points = {{0, -190}, {30, -190}, {30, -200}}, color = {0, 127, 255}));
+  connect(rst_4_3_to_4_4.port_a, vol_4_3.ports[1]) annotation(
+    Line(points = {{-20, -190}, {-50, -190}, {-50, -200}}, color = {0, 127, 255}));
+  connect(rst_4_2_to_4_3.port_b, vol_4_3.ports[2]) annotation(
+    Line(points = {{-80, -190}, {-50, -190}, {-50, -200}}, color = {0, 127, 255}));
+  connect(rst_4_2_to_4_3.port_a, vol_4_2.ports[1]) annotation(
+    Line(points = {{-100, -190}, {-130, -190}, {-130, -200}}, color = {0, 127, 255}));
+  connect(rst_4_1_to_4_2.port_b, vol_4_2.ports[2]) annotation(
+    Line(points = {{-160, -190}, {-130, -190}, {-130, -200}}, color = {0, 127, 255}));
+  connect(rst_4_1_to_4_2.port_a, vol_4_1.ports[1]) annotation(
+    Line(points = {{-180, -190}, {-210, -190}, {-210, -200}}, color = {0, 127, 255}));
+  connect(rst_4_0_to_4_1.port_b, vol_4_1.ports[2]) annotation(
+    Line(points = {{-240, -190}, {-210, -190}, {-210, -200}}, color = {0, 127, 255}));
+  connect(boundary_4_0.ports[1], rst_4_0_to_4_1.port_a) annotation(
+    Line(points = {{-280, -190}, {-260, -190}}, color = {0, 127, 255}));
+  connect(rst_3_1_to_4_1.port_a, vol_3_1.ports[4]) annotation(
+    Line(points = {{-210, -140}, {-210, -120}}, color = {0, 127, 255}));
+  connect(rst_3_1_to_4_1.port_b, vol_4_1.ports[3]) annotation(
+    Line(points = {{-210, -160}, {-210, -200}}, color = {0, 127, 255}));
+  connect(rst_3_2_to_4_2.port_a, vol_3_2.ports[4]) annotation(
+    Line(points = {{-130, -140}, {-130, -120}}, color = {0, 127, 255}));
+  connect(rst_3_2_to_4_2.port_b, vol_4_2.ports[3]) annotation(
+    Line(points = {{-130, -160}, {-130, -200}}, color = {0, 127, 255}));
+  connect(rst_3_3_to_4_3.port_a, vol_3_3.ports[4]) annotation(
+    Line(points = {{-50, -140}, {-50, -120}}, color = {0, 127, 255}));
+  connect(rst_3_3_to_4_3.port_b, vol_4_3.ports[3]) annotation(
+    Line(points = {{-50, -160}, {-50, -200}}, color = {0, 127, 255}));
+  connect(vol_3_5.ports[4], rst_3_5_to_4_5.port_a) annotation(
+    Line(points = {{110, -120}, {110, -140}}, color = {0, 127, 255}));
+  connect(rst_3_5_to_4_5.port_b, vol_4_5.ports[3]) annotation(
+    Line(points = {{110, -160}, {110, -200}}, color = {0, 127, 255}));
+  connect(vol_3_4.ports[4], rst_3_4_to_4_4.port_a) annotation(
+    Line(points = {{30, -120}, {30, -140}}, color = {0, 127, 255}));
+  connect(rst_3_4_to_4_4.port_b, vol_4_4.ports[3]) annotation(
+    Line(points = {{30, -160}, {30, -200}}, color = {0, 127, 255}));
   annotation(
     Diagram(coordinateSystem(extent = {{-400, -260}, {400, 260}}), graphics = {Text(origin = {-291, 112}, extent = {{-19, 8}, {19, -8}}, textString = "time=")}),
     experiment(StartTime = 0, StopTime = 150, Tolerance = 1e-06, Interval = 0.05),
