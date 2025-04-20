@@ -1,6 +1,6 @@
-within FluidSystemComponents.Compressible.Examples.Temp;
+within FluidSystemComponents.Compressible.Examples.Tutorial;
 
-model FluidGridNW_ex01_v001
+model FluidGridNW_5x5_ex01
   extends Modelica.Icons.Example;
   //-------------------------
   import units = Modelica.Units.SI;
@@ -687,4 +687,4 @@ equation
     Diagram(coordinateSystem(extent = {{-400, -420}, {400, 260}}), graphics = {Text(origin = {-291, 112}, extent = {{-19, 8}, {19, -8}}, textString = "time=")}),
     experiment(StartTime = 0, StopTime = 150, Tolerance = 1e-06, Interval = 0.05),
     Icon(coordinateSystem(extent = {{-300, -260}, {300, 260}})));
-end FluidGridNW_ex01_v001;
+end FluidGridNW_5x5_ex01;
