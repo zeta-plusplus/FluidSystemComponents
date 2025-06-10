@@ -41,7 +41,7 @@ equation
   
   
   annotation(
-    defaultComponentName = "Vol",
+    defaultComponentName = "volume",
     Icon(graphics = {Ellipse( fillColor = DynamicSelect({85, 170, 255}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Text(origin = {0, -130}, extent = {{-100, 10}, {100, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))), Text(extent = {{-150, 12}, {150, -18}}, textString = "V=%V")}));
     
     

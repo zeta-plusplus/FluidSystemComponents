@@ -1,0 +1,5 @@
+within FluidSystemComponents.MSLfluidWithVisualization.Examples;
+
+package Vessels
+  extends Modelica.Icons.ExamplesPackage;
+end Vessels;
