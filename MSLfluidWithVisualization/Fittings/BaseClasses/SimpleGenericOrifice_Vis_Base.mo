@@ -1,6 +1,6 @@
-within FluidSystemComponents.MSLfluidWithVisualization.Vessels.BaseClasses;
+within FluidSystemComponents.MSLfluidWithVisualization.Fittings.BaseClasses;
 
-model ClosedVolume_Vis_Base
+model SimpleGenericOrifice_Vis_Base
   //----------------------------------------
   // Import
   //----------------------------------------
@@ -17,17 +17,23 @@ model ClosedVolume_Vis_Base
   //----------------------------------------
   // variables
   //----------------------------------------
-  Real vecRGB[3];
-  units.Pressure pVis;
+  Real vecRGB_a[3];
+  Real vecRGB_b[3];
+  Real vecRGB_mid[3];
+  units.Pressure pVis_a;
+  units.Pressure pVis_b;
+  units.Pressure pVis_mid;
   units.Pressure pMinContour;
   units.Pressure pMaxContour;
   
 equation
-  
-  
+
 annotation(
-    Diagram(graphics),
-    Icon(graphics = {Rectangle(origin = {0, -14}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-200, 215}, {200, -186}}), Text(origin = {0, -218}, extent = {{-120, 10}, {120, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true)))}, coordinateSystem(extent = {{-200, -200}, {200, 200}})));
-  
-  
-end ClosedVolume_Vis_Base;
+    Icon(coordinateSystem(extent = {{-120, -100}, {120, 100}}), 
+    graphics = {
+      Rectangle(origin = {-80, -7}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_a[1], vecRGB_a[2], vecRGB_a[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-40, 107}, {40, -94}}), 
+      Rectangle(origin = {0, -7}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_mid[1], vecRGB_mid[2], vecRGB_mid[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-40, 107}, {40, -94}}), 
+      Rectangle(origin = {80, -8}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_b[1], vecRGB_b[2], vecRGB_b[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-40, 108}, {40, -93}})
+      }),
+    Diagram(graphics));
+end SimpleGenericOrifice_Vis_Base;
