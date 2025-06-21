@@ -34,6 +34,21 @@ equation
     vecRGB_mid[i,:] = Colors.scalarToColor(pVis_mid[i], pMinContour, pMaxContour, colorMap);
   end for;
   
+  //---------------------------------------------
+  m_flow_vis=m_flow;
+  unitStr_m_flow="kg/s";
+  if(0<=m_flow_vis)then
+    thickArrowFwd= max(thickArrowMin, min(thickArrowMax, thickArrowMin + m_flow_vis* (thickArrowMax-thickArrowMin)/(m_flow_Max-m_flow_Min) ));
+    sizeArrowFwd= 3.5*thickArrowFwd;
+    thickArrowBwd= 0.0;
+    sizeArrowBwd= 0.0;
+  else
+    thickArrowBwd= max(thickArrowMin, min(thickArrowMax, thickArrowMin + abs(m_flow_vis)* (thickArrowMax-thickArrowMin)/(m_flow_Max-m_flow_Min) ));
+    sizeArrowBwd= 3.5*thickArrowBwd;
+    thickArrowFwd= 0.0;
+    sizeArrowFwd= 0.0;
+  end if;  
+  
   
   annotation(
     defaultComponentName = "orifice",

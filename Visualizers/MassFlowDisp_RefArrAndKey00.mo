@@ -69,5 +69,15 @@ equation
 //************************************************************
   annotation(
     defaultComponentName = "VisMflow",
-    Icon(graphics = {Text(origin = {0, 52}, extent = {{-100, 8}, {100, -8}}, textString = DynamicSelect("0.0", String(m_flow_vis, significantDigits_m_flow, 0, true))), Text(origin = {0, -51}, extent = {{-100, 5}, {100, -5}}, textString = "%keyString"), Line(origin = {-0.2, -1.33},points = {{-100, 0}, {90, 0}}, thickness = DynamicSelect(3,thickArrowFwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(14,sizeArrowFwd)), Line(origin = {-180.17, -0.73}, points = {{270, 0}, {90, 0}}, pattern = LinePattern.Dash, thickness = DynamicSelect(0.25,thickArrowBwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(0,sizeArrowBwd))}, coordinateSystem(extent = {{-100, -60}, {100, 60}})));
+    Icon(graphics = 
+    {
+    
+    Text(origin = {0, 52}, extent = {{-100, 8}, {100, -8}}, textString = DynamicSelect("0.0", String(m_flow_vis, significantDigits_m_flow, 0, true))), 
+    Text(origin = {0, -51}, extent = {{-100, 5}, {100, -5}}, textString = "%keyString"), 
+    
+    Line(origin = {-0.2, -1.33},points = {{-100, 0}, {90, 0}}, thickness = DynamicSelect(3,thickArrowFwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(14,sizeArrowFwd)), 
+    
+    Line(origin = {-180.17, -0.73}, points = {{270, 0}, {90, 0}}, pattern = LinePattern.Dash, thickness = DynamicSelect(0.25,thickArrowBwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(0,sizeArrowBwd))
+    
+    }, coordinateSystem(extent = {{-100, -60}, {100, 60}})));
 end MassFlowDisp_RefArrAndKey00;

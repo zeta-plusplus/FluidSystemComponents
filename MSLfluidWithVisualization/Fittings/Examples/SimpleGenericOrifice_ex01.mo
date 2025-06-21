@@ -14,10 +14,11 @@ model SimpleGenericOrifice_ex01
   parameter units.Pressure TcontourMin = 100*1000 "";
   parameter units.Pressure TcontourMax = 1000*1000 "";
   parameter units.MassFlowRate m_flow_arrow_Min = 0.0001;
-  parameter units.MassFlowRate m_flow_arrow_Max = 0.1;
-  parameter Real arrowMin = 0.01;
-  parameter Real arrowMax = 30;
+  parameter units.MassFlowRate m_flow_arrow_Max = 10;
+  parameter Real arrowMin = 0.001;
+  parameter Real arrowMax = 40;
   parameter Integer sigDigit_p = 4;
+  parameter Integer sigDigit_m_flow = 4;
   //--------------------
   Vessels.ClosedVolume volume(nPorts = 2, redeclare package Medium = fluid1, valMin = pContourMin, valMax = pContourMax, use_portsData = false, V = 0.001, sigDigits = sigDigit_p, switchUnitP = FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa) annotation(
     Placement(transformation(origin = {-18, 19}, extent = {{-10, -10}, {10, 10}})));
@@ -25,7 +26,7 @@ model SimpleGenericOrifice_ex01
     Placement(transformation(origin = {84, 14}, extent = {{10, -10}, {-10, 10}})));
   inner Modelica.Fluid.System system annotation(
     Placement(transformation(origin = {-80, 88}, extent = {{-10, -10}, {10, 10}})));
-  SimpleGenericOrifice orifice(redeclare package Medium = fluid1, diameter = 0.05, zeta = 1, sigDigits = sigDigit_p, valMin = pContourMin, valMax = pContourMax)  annotation(
+  SimpleGenericOrifice orifice(redeclare package Medium = fluid1, diameter = 0.05, zeta = 1, sigDigits = sigDigit_p, valMin = pContourMin, valMax = pContourMax, thickArrowMin = arrowMin, thickArrowMax = arrowMax, significantDigits_m_flow = sigDigit_m_flow, m_flow_Min = m_flow_arrow_Min, m_flow_Max = m_flow_arrow_Max)  annotation(
     Placement(transformation(origin = {14, 14}, extent = {{-14, -12}, {14, 12}})));
   FluidSystemComponents.MSLfluidWithVisualization.Vessels.ClosedVolume volume1(redeclare package Medium = fluid1, V = 0.001, nPorts = 2, sigDigits = sigDigit_p, use_portsData = false, valMax = pContourMax, valMin = pContourMin, switchUnitP = FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa) annotation(
     Placement(transformation(origin = {44, 19}, extent = {{-10, -10}, {10, 10}})));
