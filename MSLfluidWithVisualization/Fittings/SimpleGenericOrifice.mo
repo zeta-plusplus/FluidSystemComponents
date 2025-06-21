@@ -1,7 +1,7 @@
 within FluidSystemComponents.MSLfluidWithVisualization.Fittings;
 
 model SimpleGenericOrifice
-  extends FluidSystemComponents.MSLfluidWithVisualization.Fittings.BaseClasses.SimpleGenericOrifice_Vis_Base;
+  extends FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses.FlowPath_Vis_Base;
   extends Modelica.Fluid.Fittings.SimpleGenericOrifice;
   //----------------------------------------
   // Import

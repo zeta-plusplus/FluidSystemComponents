@@ -1,0 +1,41 @@
+within FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses;
+
+model Volume_Vis_Base
+  //----------------------------------------
+  // Import
+  //----------------------------------------
+  import units = Modelica.Units.SI;
+  import Colors = Modelica.Mechanics.MultiBody.Visualizers.Colors;
+  //----------------------------------------
+  // parameter
+  //----------------------------------------
+  parameter Visualizers.Types.SwitchUnitVisPressure switchUnitP = Visualizers.Types.SwitchUnitVisPressure.kPa annotation(
+    Dialog(tab = "Visualization", group = "Pressure"));
+  parameter Integer sigDigits(min = 1) = 6 "" annotation(
+    Dialog(tab = "Visualization", group = "Pressure"));
+  parameter Real valMin = 100 "" annotation(
+    Dialog(tab = "Visualization", group = "Pressure"));
+  parameter Real valMax = 1000 "" annotation(
+    Dialog(tab = "Visualization", group = "Pressure"));
+  parameter Real colorMap[:, 3] = Colors.ColorMaps.jet() annotation(
+    HideResult = true,
+    Dialog(tab = "Visualization", group = "Pressure"));
+  //----------------------------------------
+  // variables
+  //----------------------------------------
+  Real vecRGB[3];
+  units.Pressure pVis;
+  units.Pressure pMinContour;
+  units.Pressure pMaxContour;
+equation
+
+  annotation(
+    Diagram(graphics),
+    Icon(graphics = {
+    
+    Rectangle(origin = {0, -14}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-200, 215}, {200, -186}}), 
+    
+    Text(origin = {0, -218}, extent = {{-120, 10}, {120, -10}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true)))
+    
+    }, coordinateSystem(extent = {{-200, -200}, {200, 200}})));
+end Volume_Vis_Base;

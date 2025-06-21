@@ -1,8 +1,9 @@
-within FluidSystemComponents.MSLfluidWithVisualization.Vessels;
+within FluidSystemComponents.MSLfluidWithVisualization.Sources;
 
-model ClosedVolume
+model Boundary_pT
   extends FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses.Volume_Vis_Base;
-  extends Modelica.Fluid.Vessels.ClosedVolume;
+  extends Modelica.Fluid.Sources.Boundary_pT;
+  
   //----------------------------------------
   // Import
   //----------------------------------------
@@ -22,8 +23,8 @@ equation
 //----------
   vecRGB = Colors.scalarToColor(pVis, pMinContour, pMaxContour, colorMap);
   
-  
   annotation(
     defaultComponentName = "volume",
     Icon(coordinateSystem(preserveAspectRatio = false)));
-end ClosedVolume;
+  
+end Boundary_pT;

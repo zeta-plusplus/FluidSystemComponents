@@ -1,0 +1,11 @@
+within FluidSystemComponents.MSLfluidWithVisualization.Fittings.BaseClasses;
+
+model SimpleGenericOrifice_Vis_Base
+  extends FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses.FlowPath_Vis_Base;
+  //----------------------------------------
+  // Import
+  //----------------------------------------
+  import units= Modelica.Units.SI;
+  import Colors = Modelica.Mechanics.MultiBody.Visualizers.Colors;
+  
+end SimpleGenericOrifice_Vis_Base;
