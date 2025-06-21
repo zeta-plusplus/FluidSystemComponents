@@ -25,10 +25,14 @@ equation
     pMaxContour = valMax;
   end if;
   //----------
-  pVis_mid= (pVis_a+pVis_b)/2.0;
+  delta_p= (pVis_b-pVis_a)/(nMid+1);
   vecRGB_a = Colors.scalarToColor(pVis_a, pMinContour, pMaxContour, colorMap);
   vecRGB_b = Colors.scalarToColor(pVis_b, pMinContour, pMaxContour, colorMap);
-  vecRGB_mid = Colors.scalarToColor(pVis_mid, pMinContour, pMaxContour, colorMap);
+  
+  for i in 1:nMid loop
+    pVis_mid[i]= pVis_a + i*delta_p;
+    vecRGB_mid[i,:] = Colors.scalarToColor(pVis_mid[i], pMinContour, pMaxContour, colorMap);
+  end for;
   
   
   annotation(
