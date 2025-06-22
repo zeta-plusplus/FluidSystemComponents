@@ -1,30 +1,33 @@
 within FluidSystemComponents.MSLfluidWithVisualization.Vessels;
 
-model ClosedVolume
-  extends FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses.Volume_Vis_Base;
-  extends Modelica.Fluid.Vessels.ClosedVolume;
+model OpenTank
+  extends FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses.Tank_Vis_Base;
+  extends Modelica.Fluid.Vessels.OpenTank;
+  
   //----------------------------------------
   // Import
   //----------------------------------------
   import units = Modelica.Units.SI;
   import Colors = Modelica.Mechanics.MultiBody.Visualizers.Colors;
+  
 equation
-//----------
+  
+  //----------
   if (switchUnitP == Visualizers.Types.SwitchUnitVisPressure.kPa) then
-    pVis = medium.p/1000.0;
+    pVis_top = medium.p/1000.0;
     pMinContour = valMin/1000.0;
     pMaxContour = valMax/1000.0;
   else
-    pVis = medium.p;
+    pVis_top = medium.p;
     pMinContour = valMin;
     pMaxContour = valMax;
   end if;
-//----------
-  vecRGB = Colors.scalarToColor(pVis, pMinContour, pMaxContour, colorMap);
-  
+  //----------
+  vecRGB = Colors.scalarToColor(pVis_top, pMinContour, pMaxContour, colorMap);
   
   annotation(
-    defaultComponentName = "volume",
+    defaultComponentName = "tank",
     Icon(coordinateSystem(preserveAspectRatio = false)));
-    
-end ClosedVolume;
+  
+  
+end OpenTank;
