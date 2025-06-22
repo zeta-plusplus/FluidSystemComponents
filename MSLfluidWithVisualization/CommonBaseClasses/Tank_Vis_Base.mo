@@ -23,9 +23,10 @@ model Tank_Vis_Base
   //----------------------------------------
   // variables
   //----------------------------------------
-  Real vecRGB[3];
+  Real vecRGB_top[3];
+  Real vecRGB_bottom[3];
   units.Pressure pVis_top;
-  //units.Pressure pVis_bottom;
+  units.Pressure pVis_bottom;
   units.Pressure pMinContour;
   units.Pressure pMaxContour;
 equation
@@ -34,9 +35,15 @@ equation
     Diagram(graphics),
     Icon(graphics = {
     
-    Rectangle(origin = {0, 98}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB[1], vecRGB[2], vecRGB[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-200, 22}, {200, -19}}), 
+    Text(origin = {150, 97}, extent = {{-50, 9}, {50, -9}}, textString = DynamicSelect("0.0", String(pVis_top, sigDigits, 0, true))),
     
-    Text(origin = {150, 97}, extent = {{-50, 9}, {50, -9}}, textString = DynamicSelect("0.0", String(pVis_top, sigDigits, 0, true)))
+    
+    Rectangle(origin = {0, 98}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_top[1], vecRGB_top[2], vecRGB_top[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-200, 22}, {200, -19}}), 
+    
+    
+    Rectangle(origin = {0, -102}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_bottom[1], vecRGB_bottom[2], vecRGB_bottom[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-200, 22}, {200, -19}})
+    
+    
     
     }, coordinateSystem(extent = {{-200, -120}, {200, 120}})));
 end Tank_Vis_Base;

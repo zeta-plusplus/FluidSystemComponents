@@ -14,16 +14,20 @@ equation
   
   //----------
   if (switchUnitP == Visualizers.Types.SwitchUnitVisPressure.kPa) then
-    pVis_top = medium.p/1000.0;
+    pVis_top = p_ambient/1000.0;
+    pVis_bottom = (max(0, level)*system.g*medium.d + p_ambient)/1000;
     pMinContour = valMin/1000.0;
     pMaxContour = valMax/1000.0;
   else
-    pVis_top = medium.p;
+    pVis_top = p_ambient;
+    pVis_bottom = (max(0, level)*system.g*medium.d + p_ambient);
     pMinContour = valMin;
     pMaxContour = valMax;
   end if;
   //----------
-  vecRGB = Colors.scalarToColor(pVis_top, pMinContour, pMaxContour, colorMap);
+  vecRGB_top = Colors.scalarToColor(pVis_top, pMinContour, pMaxContour, colorMap);
+  vecRGB_bottom = Colors.scalarToColor(pVis_bottom, pMinContour, pMaxContour, colorMap);
+  
   
   annotation(
     defaultComponentName = "tank",

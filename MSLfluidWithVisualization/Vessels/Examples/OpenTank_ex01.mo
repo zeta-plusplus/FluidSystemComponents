@@ -11,7 +11,7 @@ model OpenTank_ex01
   import units = Modelica.Units.SI;
   //--------------------
   parameter units.Pressure pContourMin = 100*1000 "";
-  parameter units.Pressure pContourMax = 1000*1000 "";
+  parameter units.Pressure pContourMax = 500*1000 "";
   parameter units.Pressure TcontourMin = 100*1000 "";
   parameter units.Pressure TcontourMax = 1000*1000 "";
   parameter units.MassFlowRate m_flow_arrow_Min = 0.0001;
@@ -31,9 +31,9 @@ model OpenTank_ex01
     Placement(transformation(origin = {-34, 50}, extent = {{-12, -8}, {12, 8}})));
   FluidSystemComponents.MSLfluidWithVisualization.Sources.Boundary_pT boundary(redeclare package Medium = fluid1, nPorts = 1, p = 1e5, use_p_in = true, use_C_in = false, valMin = pContourMin, valMax = pContourMax, switchUnitP = FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa) annotation(
     Placement(transformation(origin = {-80, 50}, extent = {{-11, -11}, {11, 11}})));
-  Modelica.Blocks.Sources.TimeTable tT_p_boundary(table = [0, 200*1000; 0.001, 200*1000; 10, 1000*1000; 20, 1000*1000]) annotation(
+  Modelica.Blocks.Sources.TimeTable tT_p_boundary(table = [0, 200*1000; 0.001, 200*1000; 10, 500*1000; 20, 500*1000]) annotation(
     Placement(transformation(origin = {-104, 54}, extent = {{-8, -8}, {8, 8}})));
-  OpenTank tank(nPorts = 2, height = 2, crossArea = 1, use_portsData = true, portsData(each diameter = 0.05, each height = 0), redeclare package Medium = fluid1, switchUnitP = FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa, sigDigits = sigDigit_p, valMin = pContourMin, valMax = pContourMax, p_ambient = 2e5)  annotation(
+  OpenTank tank(nPorts = 2, height = 5, crossArea = 1, use_portsData = true, portsData(each diameter = 0.05, each height = 0), redeclare package Medium = fluid1, switchUnitP = FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa, sigDigits = sigDigit_p, valMin = pContourMin, valMax = pContourMax, p_ambient = 2e5)  annotation(
     Placement(transformation(origin = {5, 45}, extent = {{-21, -13}, {21, 13}})));
   FluidSystemComponents.MSLfluidWithVisualization.Fittings.SimpleGenericOrifice orifice1(redeclare package Medium = fluid1, diameter = 0.01, m_flow_Max = m_flow_arrow_Max, m_flow_Min = m_flow_arrow_Min, sigDigits = sigDigit_p, significantDigits_m_flow = sigDigit_m_flow, thickArrowMax = arrowMax, thickArrowMin = arrowMin, valMax = pContourMax, valMin = pContourMin, zeta = 1) annotation(
     Placement(transformation(origin = {44, 34}, extent = {{-12, -8}, {12, 8}})));
