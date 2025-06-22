@@ -15,7 +15,7 @@ model OpenTank_ex01
   parameter units.Pressure TcontourMin = 100*1000 "";
   parameter units.Pressure TcontourMax = 1000*1000 "";
   parameter units.MassFlowRate m_flow_arrow_Min = 0.0001;
-  parameter units.MassFlowRate m_flow_arrow_Max = 10;
+  parameter units.MassFlowRate m_flow_arrow_Max = 3;
   parameter Real arrowMin = 0.001;
   parameter Real arrowMax = 40;
   parameter Integer sigDigit_p = 4;
@@ -33,7 +33,7 @@ model OpenTank_ex01
     Placement(transformation(origin = {-80, 50}, extent = {{-11, -11}, {11, 11}})));
   Modelica.Blocks.Sources.TimeTable tT_p_boundary(table = [0, 200*1000; 0.001, 200*1000; 10, 500*1000; 20, 500*1000]) annotation(
     Placement(transformation(origin = {-104, 54}, extent = {{-8, -8}, {8, 8}})));
-  OpenTank tank(nPorts = 2, height = 5, crossArea = 1, use_portsData = true, portsData(each diameter = 0.05, each height = 0), redeclare package Medium = fluid1, switchUnitP = FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa, sigDigits = sigDigit_p, valMin = pContourMin, valMax = pContourMax, p_ambient = 2e5)  annotation(
+  OpenTank tank(nPorts = 2, height = 10, crossArea = 1, use_portsData = true, portsData(each diameter = 0.05, height = {2, 0}), redeclare package Medium = fluid1, switchUnitP = FluidSystemComponents.Visualizers.Types.SwitchUnitVisPressure.kPa, sigDigits = sigDigit_p, valMin = pContourMin, valMax = pContourMax, p_ambient = 2e5)  annotation(
     Placement(transformation(origin = {5, 45}, extent = {{-21, -13}, {21, 13}})));
   FluidSystemComponents.MSLfluidWithVisualization.Fittings.SimpleGenericOrifice orifice1(redeclare package Medium = fluid1, diameter = 0.01, m_flow_Max = m_flow_arrow_Max, m_flow_Min = m_flow_arrow_Min, sigDigits = sigDigit_p, significantDigits_m_flow = sigDigit_m_flow, thickArrowMax = arrowMax, thickArrowMin = arrowMin, valMax = pContourMax, valMin = pContourMin, zeta = 1) annotation(
     Placement(transformation(origin = {44, 34}, extent = {{-12, -8}, {12, 8}})));
@@ -51,7 +51,7 @@ equation
   connect(tank.ports[2], orifice1.port_a) annotation(
     Line(points = {{5, 34}, {34, 34}}, color = {0, 127, 255}));
   annotation(
-    experiment(StartTime = 0, StopTime = 20, Tolerance = 1e-06, Interval = 0.01),
+    experiment(StartTime = 0, StopTime = 20, Tolerance = 1e-06, Interval = 0.05),
     Diagram(coordinateSystem(extent = {{-120, 0}, {120, 100}})));
   
 end OpenTank_ex01;

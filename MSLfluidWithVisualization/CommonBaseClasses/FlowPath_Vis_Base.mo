@@ -57,6 +57,23 @@ model FlowPath_Vis_Base
 equation
 
   annotation(
-    Icon(coordinateSystem(extent = {{-120, -100}, {120, 100}}), graphics = {Rectangle(origin = {-90, -7}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_a[1], vecRGB_a[2], vecRGB_a[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 107}, {30, -94}}), Rectangle(origin = {-30, -7}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_mid[1, 1], vecRGB_mid[1, 2], vecRGB_mid[1, 3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 107}, {30, -94}}), Rectangle(origin = {30, -8}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_mid[2, 1], vecRGB_mid[2, 2], vecRGB_mid[2, 3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 108}, {30, -93}}), Rectangle(origin = {90, -8}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_b[1], vecRGB_b[2], vecRGB_b[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 108}, {30, -93}}), Text(origin = {0, 126}, extent = {{-100, 8}, {100, -8}}, textString = DynamicSelect("0.0", String(m_flow_vis, significantDigits_m_flow, 0, true))), Text(origin = {90, 110}, extent = {{-30, 5}, {30, -5}}, textString = DynamicSelect("kg/s", unitStr_m_flow)), Line(origin = {-0.2, -1.33}, points = {{-100, 0}, {90, 0}}, thickness = DynamicSelect(3, thickArrowFwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(14, sizeArrowFwd)), Line(origin = {-180.17, -0.73}, points = {{270, 0}, {90, 0}}, pattern = LinePattern.Dash, thickness = DynamicSelect(0.25, thickArrowBwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(0, sizeArrowBwd))}),
+    Icon(coordinateSystem(extent = {{-120, -100}, {120, 100}}), 
+    graphics = {
+    
+    
+    Rectangle(origin = {-90, -7}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_a[1], vecRGB_a[2], vecRGB_a[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 107}, {30, -94}}), 
+    Rectangle(origin = {-30, -7}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_mid[1, 1], vecRGB_mid[1, 2], vecRGB_mid[1, 3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 107}, {30, -94}}), 
+    Rectangle(origin = {30, -8}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_mid[2, 1], vecRGB_mid[2, 2], vecRGB_mid[2, 3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 108}, {30, -93}}), 
+    Rectangle(origin = {90, -8}, fillColor = DynamicSelect({245, 245, 245}, {vecRGB_b[1], vecRGB_b[2], vecRGB_b[3]}), pattern = LinePattern.Dot, fillPattern = FillPattern.Solid, extent = {{-30, 108}, {30, -93}}), 
+    
+    
+    Text(origin = {0, 126}, extent = {{-100, 8}, {100, -8}}, textString = DynamicSelect("0.0", String(m_flow_vis, significantDigits_m_flow, 0, true))), 
+    Text(origin = {90, 110}, extent = {{-30, 5}, {30, -5}}, textString = DynamicSelect("kg/s", unitStr_m_flow)), 
+    
+    
+    Line(origin = {-0.2, -1.33}, points = {{-100, 0}, {90, 0}}, thickness = DynamicSelect(3, thickArrowFwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(14, sizeArrowFwd)), 
+    Line(origin = {-180.17, -0.73}, points = {{270, 0}, {90, 0}}, pattern = LinePattern.Dash, thickness = DynamicSelect(0.25, thickArrowBwd), arrow = {Arrow.None, Arrow.Open}, arrowSize = DynamicSelect(0, sizeArrowBwd))
+    
+    }),
     Diagram(graphics));
 end FlowPath_Vis_Base;
