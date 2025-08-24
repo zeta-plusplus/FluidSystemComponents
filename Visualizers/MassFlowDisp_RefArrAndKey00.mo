@@ -69,7 +69,7 @@ equation
 //************************************************************
   annotation(
     defaultComponentName = "VisMflow",
-    Icon(graphics = 
+    Icon(coordinateSystem(preserveAspectRatio = false), graphics = 
     {
     
     Text(origin = {0, 52}, extent = {{-100, 8}, {100, -8}}, textString = DynamicSelect("0.0", String(m_flow_vis, significantDigits_m_flow, 0, true))), 

@@ -17,8 +17,8 @@ model FluidNW_ex01_Vis_ex01
   parameter Real arrowMax = 30;
   //--------------------
   //Modelica.Units.SI.MassFlowRate m_flow;
-  VolumeVisP_RefArrAndKey00 Vol_pVis_1_1(nPorts = 3, redeclare package Medium = fluid1, varVector = combiTimeTable1.y, stringVector = combiTimeTable1.y_column, keyString = "vol_1_1.medium.p", pContourMin = pContourMin, pContourMax = pContourMax) annotation(
-    Placement(transformation(origin = {-38, -10}, extent = {{-10, -10}, {10, 10}})));
+  VolumeVisP_RefArrAndKey01 Vol_pVis_1_1(nPorts = 3, redeclare package Medium = fluid1, varVector = combiTimeTable1.y, stringVector = combiTimeTable1.y_column, keyString = "vol_1_1.medium.p", pContourMin = pContourMin, pContourMax = pContourMax) annotation(
+    Placement(transformation(origin = {-38, -9}, extent = {{-10, -10}, {10, 10}})));
   Utilities.CombiTimeTableAll00 combiTimeTable1(nColMax = 849, strFileName = "modelica://FluidSystemComponents/Visualizers/Examples/ex_FluidNW_ex01_v001_res.csv", timeEvents = Modelica.Blocks.Types.TimeEvents.NoTimeEvents) annotation(
     Placement(transformation(origin = {-62, 80}, extent = {{-10, -10}, {10, 10}})));
   VolumeVisP_RefArrAndKey00 Vol_pVis_1_2(redeclare package Medium = fluid1, keyString = "vol_1_2.medium.p", nPorts = 3, pContourMax = pContourMax, pContourMin = pContourMin, stringVector = combiTimeTable1.y_column, varVector = combiTimeTable1.y) annotation(
@@ -54,11 +54,11 @@ model FluidNW_ex01_Vis_ex01
 equation
   dispTime.numberPort = time;
   connect(visMflow_1_0_to_1_1.port_b, Vol_pVis_1_1.ports[1]) annotation(
-    Line(points = {{-52, -14}, {-38, -14}, {-38, -20}}, color = {0, 127, 255}));
+    Line(points = {{-52, -14}, {-38, -14}}, color = {0, 127, 255}));
   connect(visMflow_1_0_to_1_1.port_a, Vol_pVis_1_0.ports[1]) annotation(
     Line(points = {{-69, -14}, {-82, -14}, {-82, -20}}, color = {0, 127, 255}));
   connect(visMflow_1_1_to_1_2.port_a, Vol_pVis_1_1.ports[2]) annotation(
-    Line(points = {{-26, -14}, {-38, -14}, {-38, -20}}, color = {0, 127, 255}));
+    Line(points = {{-26, -14}, {-38, -14}}, color = {0, 127, 255}));
   connect(visMflow_1_1_to_1_2.port_b, Vol_pVis_1_2.ports[1]) annotation(
     Line(points = {{-8, -14}, {4, -14}, {4, -20}}, color = {0, 127, 255}));
   connect(VisMflow_1_2_to_1_3.port_a, Vol_pVis_1_2.ports[2]) annotation(
@@ -72,7 +72,7 @@ equation
   connect(Vol_pVis_0_1.ports[1], VisMflow_0_1_to_1_1.port_a) annotation(
     Line(points = {{-38, 34.2}, {-38, 28.2}}, color = {0, 127, 255}));
   connect(VisMflow_0_1_to_1_1.port_b, Vol_pVis_1_1.ports[3]) annotation(
-    Line(points = {{-38, 12}, {-38, -20}}, color = {0, 127, 255}));
+    Line(points = {{-38, 12}, {-38, -14}}, color = {0, 127, 255}));
   connect(VisMflow_0_2_to_1_2.port_a, Vol_pVis_0_2.ports[1]) annotation(
     Line(points = {{3.6667, 28.3333}, {3.6667, 34.3333}}, color = {0, 127, 255}));
   connect(VisMflow_0_2_to_1_2.port_b, Vol_pVis_1_2.ports[3]) annotation(

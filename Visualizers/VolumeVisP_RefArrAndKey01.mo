@@ -1,6 +1,8 @@
 within FluidSystemComponents.Visualizers;
 
-model VolumeVisP_RefArrAndKey00
+model VolumeVisP_RefArrAndKey01
+  extends FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses.Volume_Vis_Base;
+  
   //----------------------------------------
   // Import
   //----------------------------------------
@@ -31,8 +33,8 @@ model VolumeVisP_RefArrAndKey00
   //----------------------------------------
   // variables
   //----------------------------------------
-  Real vecRGB[3];
-  Real pVis;
+  //Real vecRGB[3];
+  //Real pVis;
   Integer indexP;
   Medium.BaseProperties medium;
   Medium.EnthalpyFlowRate ports_H_flow[nPorts];
@@ -63,6 +65,8 @@ equation
   medium.T = 288.15;
   mb_flow = sum(ports.m_flow);
   Hb_flow = sum(ports_H_flow) + sum(ports_E_flow);
+  
+  
   if (use_HeatTransfer) then
     Qb_flow = heatPort.Q_flow;
   else
@@ -75,7 +79,18 @@ equation
     ports[i].h_outflow = medium.h;
     ports[i].Xi_outflow = medium.Xi;
   end for;
+  
+  
+  
   annotation(
     defaultComponentName = "Vol_pVis",
-    Icon(coordinateSystem(preserveAspectRatio = false), graphics = {Ellipse(fillColor = DynamicSelect({192, 192, 192}, {vecRGB[1], vecRGB[2], vecRGB[3]}), fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Text(origin = {0, 121}, extent = {{-100, 15}, {100, -15}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))), Text(origin = {0, 154}, extent = {{-100, 10}, {100, -10}}, textString = "%keyString")}));
-end VolumeVisP_RefArrAndKey00;
+    Icon(coordinateSystem(preserveAspectRatio = false), 
+    graphics = {
+    
+    Ellipse(fillColor = {0, 85, 255}, fillPattern = FillPattern.Sphere, extent = {{-100, 100}, {100, -100}}), 
+    
+    Text(origin = {0, 121}, extent = {{-100, 15}, {100, -15}}, textString = DynamicSelect("0.0", String(pVis, sigDigits, 0, true))),
+    Text(origin = {0, 154}, extent = {{-100, 10}, {100, -10}}, textString = "%keyString")}
+    ));
+
+end VolumeVisP_RefArrAndKey01;
