@@ -1,6 +1,8 @@
+Examples
 PressureDispColor00
 MonitorMassFlow00
 TemperatureDispColor00
+StaticStatesTwoPort
 PressureDisp00
 TemperatureDisp00
 Monitor_MassFlow
@@ -13,4 +15,3 @@ PressureRatio
 DispColorGrad00
 Monitor_p_kPa
 icons
-Examples

@@ -48,10 +48,17 @@ partial model flow1d2ports00
     Dialog(tab = "Initialization", group = "fluid_1"));
   parameter units.Velocity Vpath_init = 100.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
+  parameter units.Velocity Vsound_init = 340 "" annotation(
+    Dialog(tab = "Initialization", group = "others"));
+  parameter Real Mn_init = 0.8 "" annotation(
+    Dialog(tab = "Initialization", group = "others"));
+  
   parameter units.SpecificEntropy s_fluid_1_init = 6800.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   parameter units.SpecificEntropy s_fluid_2_init = 7000.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
+  
+  //
   parameter units.Area AeffPath_paramInput = 1.0 "" annotation(
     Dialog(tab = "Initialization", group = "others"));
   /* ---------------------------------------------
@@ -75,6 +82,13 @@ partial model flow1d2ports00
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
   units.SpecificEntropy s_fluid_path(start = s_fluid_1_init) "specific entropy, fluid_path" annotation(
     Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  units.Velocity Vsound(start= Vsound_init) "" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true)); 
+  Real Mn(start= Mn_init) "mach number" annotation(
+    Dialog(tab = "Variables", group = "start attribute", enable = false, showStartAttribute = true));
+  
+  units.Length diamEff "equivalent diameter of Aeff";
+  
   /* ---------------------------------------------
         Internal objects
     --------------------------------------------- */
@@ -150,6 +164,9 @@ equation
   s_fluid_path = Medium.specificEntropy(fluid_path.state);
   m_flow = AeffPath * fluid_path.d * Vpath;
   V_flow= AeffPath*Vpath;
+  
+  Vsound= Medium.velocityOfSound(fluidStat_path.state);
+  Mn= Vpath/Vsound;
   
   // -- total <-> static --
   fluidStat_path.h = fluid_path.h - 1.0 / 2.0 * (sign(Vpath) * abs(Vpath) ^ 2.0);
