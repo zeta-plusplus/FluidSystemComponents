@@ -66,7 +66,7 @@ equation
   
   //--
   Tsolid= port_solid.T;
-  Q_flow_solid= port_solid.Q_flow;
+  Q_flow_solid= -1*port_solid.Q_flow;
   
 //********************
   deltaMh = port_1.m_flow*(fluid_1.h - fluid_2.h);
