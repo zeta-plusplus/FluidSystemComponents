@@ -12,7 +12,6 @@ model DispColorGrad00
   
   parameter Real valMin = 0 "";
   parameter Real valMax = 25 "";
-  parameter Integer significantDigits(min = 1) = 6 "Number of significant digits to be shown, pressure";
   parameter Real colorMap[:, 3] = Colors.ColorMaps.jet();
   
   //----------------------------------------
