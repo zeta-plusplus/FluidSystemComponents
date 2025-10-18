@@ -45,6 +45,6 @@ equation
   fluid_1.p = fluid_2.p;
   annotation(
     defaultComponentName = "StaticStates",
-    Icon(graphics = {Text(origin = {0, -90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Rectangle(origin = {1, 20}, fillPattern = FillPattern.Solid, extent = {{-7, 24}, {5, -22}}), Line(origin = {-75, 38.6701}, points = {{-25, -39}, {35, -39}}, thickness = 2), Line(origin = {65.4381, 38.7165}, points = {{-25, -39}, {35, -39}}, thickness = 2)}),
+    Icon(coordinateSystem(preserveAspectRatio = false),graphics = {Text(origin = {0, -90}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Rectangle(origin = {1, 20}, fillPattern = FillPattern.Solid, extent = {{-7, 24}, {5, -22}}), Line(origin = {-75, 38.6701}, points = {{-25, -39}, {35, -39}}, thickness = 2), Line(origin = {65.4381, 38.7165}, points = {{-25, -39}, {35, -39}}, thickness = 2)}),
     __OpenModelica_commandLineOptions = "");
 end StaticStatesTwoPort;

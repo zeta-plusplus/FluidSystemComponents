@@ -83,10 +83,6 @@ equation
   fluid_2_med2.p = port_2_med2.p;
   fluid_2_med2.h = actualStream(port_2_med2.h_outflow);
   fluid_2_med2.Xi = actualStream(port_2_med2.Xi_outflow);
-//port_1_med1.h_outflow= fluid_1_med1.h;
-//port_1_med2.h_outflow= fluid_1_med2.h;
-//port_2_med1.h_outflow= fluid_2_med1.h;
-//port_2_med2.h_outflow= fluid_2_med2.h;
 //********************
   deltaMh1 = port_1_med1.m_flow*(fluid_1_med1.h - fluid_2_med1.h);
   deltaMh2 = port_1_med2.m_flow*(fluid_1_med2.h - fluid_2_med2.h);

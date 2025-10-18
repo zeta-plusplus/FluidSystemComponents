@@ -14,14 +14,31 @@ model HX_modulatedEff00
   /********************************************************
             Declaration
   ********************************************************/
+  parameter FluidSystemComponents.Types.Switches.switchHowToDetVar swDetermine_eff= FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput "switch how to determine effHX" annotation(
+    Dialog(group = "switch"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = true); 
   
-  Modelica.Blocks.Interfaces.RealInput u_eff annotation(
+  
+  parameter Real eff_par=0.7;
+  
+  /********************************************************
+            Interface
+  ********************************************************/
+  Modelica.Blocks.Interfaces.RealInput u_eff if swDetermine_eff==FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput annotation(
     Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
+//*************************************************************************************
 equation
+  //--
+  if(swDetermine_eff==FluidSystemComponents.Types.Switches.switchHowToDetVar.param)then
+    effHX=eff_par;
+  elseif(swDetermine_eff==FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput)then
+    effHX= u_eff;
+  end if;
   
-  effHX= u_eff;
-  
+  //--
   if(flagHotSide==1)then
     Q_flow1= -1.0*Q_flow;
     Q_flow2= Q_flow;
@@ -53,7 +70,7 @@ annotation(
 
 </html>"
     ),
-  Icon(graphics = {Text(origin = {0, -118}, extent = {{-140, 18}, {140, -2}}, textString = "%name"), Rectangle(origin = {0, 11}, fillColor = {211, 211, 211}, fillPattern = FillPattern.Solid, extent = {{-140, 71}, {140, -91}}), Line(origin = {0.795966, -46.2381}, rotation = 180, points = {{-138, 25.6465}, {-114, -95.3535}, {-100, 9.64643}, {-80, -94.3536}, {-60, 9.64645}, {-44, -94.3536}, {-20, 9.64645}, {2, -94.3536}, {20, 9.64645}, {38, -94.3536}, {60, 9.64645}, {74, -94.3536}, {100, 9.64645}, {112, -94.3535}, {142, 29.6465}}, thickness = 3)}, coordinateSystem(extent = {{-140, -100}, {140, 100}}, initialScale = 0.1)),
+  Icon(graphics = {Text(origin = {0, -118}, extent = {{-140, 18}, {140, -2}}, textString = "%name"), Rectangle(origin = {0, 11}, fillColor = {211, 211, 211}, fillPattern = FillPattern.Solid, extent = {{-140, 71}, {140, -91}}), Line(origin = {-1.97, -4.44}, points = {{-136.029, -71.556}, {-78.029, -63.556}, {-56.029, 52.444}, {1.97098, -39.556}, {61.971, 54.444}, {81.971, -63.556}, {135.971, -73.556}}, thickness = 10)}, coordinateSystem(preserveAspectRatio = false, extent = {{-140, -100}, {140, 100}}, initialScale = 0.1)),
   __OpenModelica_commandLineOptions = "");
 
 end HX_modulatedEff00;
