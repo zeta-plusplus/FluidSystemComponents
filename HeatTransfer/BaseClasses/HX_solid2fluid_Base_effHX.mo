@@ -73,10 +73,6 @@ equation
   m_flow_max = max(port_1.m_flow, port_2.m_flow);
   m_flow_min = min(port_1.m_flow, port_2.m_flow);
   
-    /*port_1.h_outflow = fluid_1.h;
-    TfluidIn = fluid_1.state.T;
-    dmCpIn = port_1.m_flow*Medium.specificHeatCapacityCp(fluid_1.state);
-  */
   
 // distinguish inlet side, medium 1
   if m_flow_max == port_1.m_flow then
@@ -95,13 +91,15 @@ equation
     dmCpIn = port_1.m_flow*Medium.specificHeatCapacityCp(fluid_1.state);
   end if;
     
-  //--
+  //---------------
   if (TfluidIn > Tsolid) then
     TH = TfluidIn;
     TC = Tsolid;
+  
   elseif (TfluidIn < Tsolid) then
     TH = Tsolid;
     TC = TfluidIn;
+  
   else
     TH = TfluidIn;
     TC = Tsolid;
