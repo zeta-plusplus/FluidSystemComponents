@@ -35,6 +35,9 @@ partial model HX_Base_effHX
   units.Temperature T2in;
   units.Temperature THIn;
   units.Temperature TCIn;
+  units.TemperatureDifference dTmed1;
+  units.TemperatureDifference dTmed2;
+  units.TemperatureDifference dTin;
   units.ThermalConductance dmCp1in;
   units.ThermalConductance dmCp2in;
   units.ThermalConductance dmCpMax;
@@ -143,6 +146,11 @@ equation
   dmCpMax = max(dmCp1in, dmCp2in);
   ratioDmCp = dmCpMin/dmCpMax;
   Q_flow_max = dmCpMin*(THIn - TCIn);
+  
+  dTmed1= max(fluid_2_med1.T, fluid_1_med1.T) - min(fluid_2_med1.T, fluid_1_med1.T);
+  dTmed2= max(fluid_2_med2.T, fluid_1_med2.T) - min(fluid_2_med2.T, fluid_1_med2.T);
+  dTin=THIn - TCIn;
+  
 //********** equations of physics **********
   Q_flow = effHX*Q_flow_max;
   port_1_med1.m_flow + port_2_med1.m_flow = 0.0;

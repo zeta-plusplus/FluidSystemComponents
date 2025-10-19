@@ -26,6 +26,8 @@ partial model HX_solid2fluid_Base_effHX
   units.Temperature TH;
   units.Temperature TC;
   units.Temperature Tsolid;
+  units.TemperatureDifference dTfluid;
+  units.TemperatureDifference dTin;
   units.ThermalConductance dmCpIn;
   units.HeatFlowRate Q_flow_max;
   units.HeatFlowRate Q_flow;
@@ -108,6 +110,10 @@ equation
   
   //--
   Q_flow_max = dmCpIn*(TH - TC);
+  
+  dTfluid= max(fluid_1.T, fluid_2.T) - min(fluid_1.T, fluid_2.T);
+  dTin= TH-TC;
+  
 //********** equations of physics **********
   Q_flow = effHX*Q_flow_max;
   port_1.m_flow + port_2.m_flow = 0.0;
