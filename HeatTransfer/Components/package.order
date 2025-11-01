@@ -3,5 +3,6 @@ HX_modulatedEff00
 HX_ShellTube_NTU00
 HX_ParallelFlow_NTU00
 HX_CounterFlow_NTU00
+HX_CrossFlow_BothUnmixed_NTU00
 HX_solid2fluid_modulatedEff00
 SubComponents
