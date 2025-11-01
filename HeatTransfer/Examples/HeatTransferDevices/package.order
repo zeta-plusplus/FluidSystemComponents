@@ -2,6 +2,7 @@ HX_modulatedEff00_ex01
 HX_solid2fluid_modulatedEfff00_ex01
 HX_Parallel_NTU00_ex01
 HX_Counter_NTU00_ex01
+HX_Counter_NTU00_ex02
 HX_ShellTube_NTU00_ex01
 HX_ShellTube_parallel_discrete005_ex01
 HX_ShellTube_parallel_discrete010_ex01
@@ -9,4 +10,3 @@ HX_ShellTube_parallel_discrete020_ex01
 HX_ShellTube_counter_discrete005_ex01
 HX_ShellTube_counter_discrete010_ex01
 HX_ShellTube_counter_discrete020_ex01
-HX_Counter_NTU00_ex02
