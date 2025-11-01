@@ -9,20 +9,69 @@ model HX_CounterFlow_NTU00
   import units = Modelica.Units.SI;
   import unitsNonSI = Modelica.Units.NonSI;
   import unitConversions = Modelica.Units.Conversions;
+  
   /********************************************************
                               Declaration
-                ********************************************************/
+  ********************************************************/  
   //********** Parameters **********
+  parameter FluidSystemComponents.Types.Switches.switchHowToDetVar swDetermine_eff= FluidSystemComponents.Types.Switches.switchHowToDetVar.asCalculated "switch how to determine effHX" annotation(
+    Dialog(group = "switch"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = true); 
+  
+  parameter FluidSystemComponents.Types.Switches.switchHowToDetVar swDetermine_A= FluidSystemComponents.Types.Switches.switchHowToDetVar.param "switch how to determine A, representative area of heat transfer" annotation(
+    Dialog(group = "switch"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = true); 
+  
+  parameter FluidSystemComponents.Types.Switches.switchHowToDetVar swDetermine_Uoa= FluidSystemComponents.Types.Switches.switchHowToDetVar.param "switch how to determine Uoa, representative overall heat transfer coefficient" annotation(
+    Dialog(group = "switch"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = true); 
+  
+  
   parameter units.Area A_par = 0.1 "representative heat transfer area";
-  parameter units.CoefficientOfHeatTransfer Uoa_par = 5000.0 "representative overall heat transfer coefficient";
+  parameter units.CoefficientOfHeatTransfer Uoa_par = 1000.0 "representative overall heat transfer coefficient";
+  parameter units.MacroscopicCrossSection AqVol_par= 1500 "m2/m3";
+  parameter units.Density rho_par= 2500 "kg/m3";
+  parameter Real effHX_par = 0.8 "heat exchanger effectiveness";
+  
   //********** Internal variables/objects **********
+  units.Area A;
+  units.CoefficientOfHeatTransfer Uoa;
+  units.MacroscopicCrossSection AqVol;
+  units.Density rho;
+  units.Volume Vol;
+  units.Mass m;
+  
   SubComponents.effHX_NTU_Counter block_effHX annotation(
     Placement(transformation(origin = {14, 18}, extent = {{-10, -10}, {10, 10}})));
   SubComponents.calcNTU calcNTU annotation(
     Placement(transformation(origin = {-28, 22}, extent = {{-10, -10}, {10, 10}})));
 equation
-  calcNTU.u_A = A_par;
-  calcNTU.u_U = Uoa_par;
+  
+  //----------
+  if(swDetermine_A==FluidSystemComponents.Types.Switches.switchHowToDetVar.param)then
+    A=A_par;
+  end if;
+  
+  if(swDetermine_Uoa==FluidSystemComponents.Types.Switches.switchHowToDetVar.param)then
+    Uoa=Uoa_par;
+  end if;
+  
+  if(swDetermine_eff==FluidSystemComponents.Types.Switches.switchHowToDetVar.param)then
+    effHX=effHX_par;
+  end if;
+  
+  AqVol=AqVol_par;
+  rho=rho_par;
+  
+  //----------
+  calcNTU.u_A = A;
+  calcNTU.u_U = Uoa;
   calcNTU.u_dmCpMin = dmCpMin;
   block_effHX.u_ratioDmCp = ratioDmCp;
   effHX = block_effHX.y_effHX;
@@ -39,6 +88,12 @@ equation
   end if;
   connect(calcNTU.y_NTU, block_effHX.u_NTU) annotation(
     Line(points = {{-16, 22}, {4, 22}}, color = {0, 0, 127}));
+  
+  //-------------------------
+  Vol= A/AqVol;
+  m= Vol*rho;
+  
+  
   annotation(
     defaultComponentName = "HX",
     Documentation(info = "<html>

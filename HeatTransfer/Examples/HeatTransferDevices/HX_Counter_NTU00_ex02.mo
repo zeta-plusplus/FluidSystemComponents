@@ -1,6 +1,6 @@
 within FluidSystemComponents.HeatTransfer.Examples.HeatTransferDevices;
 
-model HX_Counter_NTU00_ex01
+model HX_Counter_NTU00_ex02
   extends Modelica.Icons.Example;
   //----------
   replaceable package liquid1 = Modelica.Media.Water.StandardWater;
@@ -20,7 +20,7 @@ model HX_Counter_NTU00_ex01
     Placement(visible = true, transformation(origin = {30, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Fluid.Pipes.StaticPipe pipe1(redeclare package Medium = liquid2, diameter = 0.05, length = 0.2) annotation(
     Placement(visible = true, transformation(origin = {30, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Components.HX_CounterFlow_NTU00 HX(redeclare package Medium1 = liquid1, redeclare package Medium2 = liquid2, A_par = 10) annotation(
+  Components.HX_CounterFlow_NTU00 HX(redeclare package Medium1 = liquid1, redeclare package Medium2 = liquid2, A_par = 10, swDetermine_eff = FluidSystemComponents.Types.Switches.switchHowToDetVar.param, swDetermine_A = FluidSystemComponents.Types.Switches.switchHowToDetVar.asCalculated) annotation(
     Placement(transformation(origin = {-19, 6.42857}, extent = {{-23, -16.4286}, {23, 16.4286}})));
   Modelica.Blocks.Sources.Ramp ramp_m_flow_2(duration = 10, height = 5, offset = 5, startTime = 10) annotation(
     Placement(transformation(origin = {-105, -32}, extent = {{-7, -7}, {7, 7}})));
@@ -43,4 +43,4 @@ equation
     experiment(StartTime = 0, StopTime = 30, Tolerance = 1e-06, Interval = 0.1),
     __OpenModelica_simulationFlags(lv = "LOG_STATS", outputFormat = "mat", s = "dassl"),
     Diagram(coordinateSystem(extent = {{-140, -100}, {100, 100}})));
-end HX_Counter_NTU00_ex01;
+end HX_Counter_NTU00_ex02;
