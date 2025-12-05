@@ -1,0 +1,3 @@
+getCPUclock
+terminateWhenTriggered
+terminateByCPUtimer

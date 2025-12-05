@@ -1,0 +1,21 @@
+within FluidSystemComponents.Interfaces;
+
+connector FluidStaticStatePort
+  import units = Modelica.Units.SI;
+  
+  Real Mn;
+  units.Area Aeff;
+  units.Pressure Ps;
+  units.Temperature Ts;
+  units.Velocity Vsound;
+  units.Velocity V;
+  units.SpecificEnthalpy hs;
+  
+  
+  annotation(
+    defaultComponentName = "portStat",
+    Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics = {Ellipse(fillColor = {145, 65, 172}, fillPattern = FillPattern.Solid, extent = {{-40, 40}, {40, -40}}), Text(extent = {{-150, 110}, {150, 50}}, textString = "%name")}),
+    Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics = {Ellipse(lineColor = {0, 127, 255}, fillColor = {0, 127, 255}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Ellipse(fillColor = {145, 65, 172}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}})}));
+  
+  
+end FluidStaticStatePort;

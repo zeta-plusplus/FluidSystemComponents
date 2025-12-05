@@ -1,0 +1,4 @@
+within FluidSystemComponents.Interfaces;
+
+connector FluidStaticPort
+end FluidStaticPort;

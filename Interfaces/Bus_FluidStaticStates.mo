@@ -9,7 +9,8 @@ expandable connector Bus_FluidStaticStates
   units.Area Aeff;
   units.Pressure Ps;
   units.Temperature Ts;
-  units.Velocity VelocityOfSound;
+  units.Velocity Vsound;
+  units.Velocity V;
   units.SpecificEnthalpy hs;
   
   annotation(
