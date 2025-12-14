@@ -147,7 +147,7 @@ equation
     m_flow = port_2.m_flow;
   else
 //-- pressure loss --
-    dPqP = dp/fluid_2.p;
+    dPqP = dp/fluid_1.p;
     PR = fluid_1.p/fluid_2.p;
     dp = fluid_1.p - fluid_2.p;
     m_flow = port_1.m_flow;

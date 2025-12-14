@@ -22,10 +22,6 @@ model FluidGridNW_5x5_ex01
   Modelica.Blocks.Interaction.Show.RealValue dispTime(significantDigits = 3) annotation(
     Placement(transformation(origin = {-268, 99}, extent = {{-16, -13}, {16, 13}})));
   //----------
-  InteractiveSimulation.System.getCPUclock CPUtime annotation(
-    Placement(transformation(origin = {-374, 182}, extent = {{-10, -10}, {10, 10}})));
-  InteractiveSimulation.System.terminateByCPUtimer terminateByCPUtimer annotation(
-    Placement(transformation(origin = {-344, 182}, extent = {{-10, -10}, {10, 10}})));
   //----------
   inner Modelica.Fluid.System system(T_ambient(displayUnit = "K") = 288.15, T_start(displayUnit = "K") = 288.15, energyDynamics = Modelica.Fluid.Types.Dynamics.DynamicFreeInitial, m_flow_start = 0, massDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, p_ambient = 100*1000, p_start = 100*1000) annotation(
     Placement(transformation(origin = {-369, 130}, extent = {{-9, -10}, {9, 10}})));
