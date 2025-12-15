@@ -10,6 +10,7 @@ Monitor_MassFlow
 Temperature_degC_DispColor00
 Monitor_p_kPa_T_K
 SpecificHeatCapacity
+SpecificHeatCapacityRatio
 MassFractionsArray
 StaticPressureTwoPort
 PressureRatio
