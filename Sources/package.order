@@ -1,5 +1,8 @@
 Boundary_pT_colorP
 Boundary_ph_colorP
+Boundary_StatpTMn
+MassFlowSource_StatTMn
+Sink_FlowWithMn
 Examples
 MassFlowSource_T
 VolumeFlowSource_T

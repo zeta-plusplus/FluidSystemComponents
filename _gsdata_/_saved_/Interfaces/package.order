@@ -1,5 +1,4 @@
 FluidStaticStateOutput
-FluidStaticStatePort
 Frame_2FluidPorts
 Frame_2FluidPorts_1Shaft
 Frame_4FluidPorts
@@ -11,3 +10,4 @@ StringOutput
 Bus
 RealInput
 Bus_FluidStaticStates
+FluidStaticStateInput
