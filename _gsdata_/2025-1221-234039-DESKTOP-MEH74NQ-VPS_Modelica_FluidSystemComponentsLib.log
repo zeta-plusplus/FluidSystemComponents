@@ -1,0 +1,45 @@
+2025-12-21 23:40:40: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2025-12-21 23:40:40: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2025-12-21 23:40:40: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2025-12-21 23:40:40: Chosen Host Key: ssh-ed25519
+2025-12-21 23:40:40: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2025-12-21 23:40:40: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2025-12-21 23:40:40: Auth: start: publickey
+2025-12-21 23:40:40: Auth: publickey: no keys available
+2025-12-21 23:40:40: Auth: start: password
+2025-12-21 23:40:41: -- Analysis Started by On File Change Incremental
+2025-12-21 23:40:41: L: Reading State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-21 23:40:42: R: Reading State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-21 23:41:24: Changes: 2, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 6071
+2025-12-21 23:41:24: Left to Right: Copy File: 2 
+2025-12-21 23:41:24: == Sync Started by On File Change Incremental
+2025-12-21 23:41:24: Start only 2 threads, limited by tasks to run
+2025-12-21 23:41:24: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-21 23:41:24: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-21 23:41:24: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2025-12-21 23:41:24: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2025-12-21 23:41:24: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2025-12-21 23:41:24: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2025-12-21 23:41:24: Chosen Host Key: ssh-ed25519
+2025-12-21 23:41:24: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2025-12-21 23:41:24: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2025-12-21 23:41:24: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2025-12-21 23:41:24: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2025-12-21 23:41:24: Chosen Host Key: ssh-ed25519
+2025-12-21 23:41:24: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2025-12-21 23:41:24: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2025-12-21 23:41:24: Auth: start: publickey
+2025-12-21 23:41:24: Auth: publickey: no keys available
+2025-12-21 23:41:24: Auth: start: password
+2025-12-21 23:41:24: Auth: start: publickey
+2025-12-21 23:41:24: Auth: publickey: no keys available
+2025-12-21 23:41:24: Auth: start: password
+2025-12-21 23:41:25: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-21 23:41:25: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-21 23:41:26: C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/ObliqueShock00.mo: Source file has changed between Analyze and Sync from '[file] size=7,817 accu-time=2025-12-21 23:40:33 attr=Archive,WArchive cktype=0' to 'size=7,839 time=2025-12-21 23:41:17', noted in source file state
+2025-12-21 23:41:26: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/ObliqueShock00.mo' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/ObliqueShock00.mo' (7,817)
+2025-12-21 23:41:26: C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/package.order: Source file has changed between Analyze and Sync from '[file] size=222 accu-time=2025-12-21 23:40:33 attr=Archive,WArchive cktype=0' to 'size=222 time=2025-12-21 23:41:17', noted in source file state
+2025-12-21 23:41:26: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/package.order' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/package.order' (222)
+2025-12-21 23:41:26: Save State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-21 23:41:27: Save State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-21 23:41:47: == Sync Complete. Time: 00:00:23, Speed: 3.97 KB/s, OK: 2, Errors: 0
