@@ -8,18 +8,31 @@ model ObliqueShock00
   import Modelica.Utilities.Streams;
   import PropulsionSystem.Types.switches;
   import units = Modelica.Units.SI;
+  
+  
+  
   /********************************************************
                        Declaration
       ********************************************************/
   /* ---------------------------------------------
               switch
       --------------------------------------------- */
-  //---
+  parameter FluidSystemComponents.Types.Switches.switchHowToDetVar switchDetermine_DELTA= FluidSystemComponents.Types.Switches.switchHowToDetVar.param "switch how to DELTA" annotation(
+    Dialog(group = "switch"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = true); 
+  
+  
+  
   /* ---------------------------------------------
               Package
       --------------------------------------------- */
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);
+  
+  
+  
   /* ---------------------------------------------
               parameters
           --------------------------------------------- */
@@ -36,9 +49,9 @@ model ObliqueShock00
   /* ---------------------------------------------
               Internal variables
       --------------------------------------------- */
-  units.Angle DELTA(start=10*Modelica.Constants.pi/180) "deflection angle";
-  units.Angle delta(start=10*Modelica.Constants.pi/180) "";
-  units.Angle theta(start=80*Modelica.Constants.pi/180) "";
+  units.Angle DELTA(start=DELTA_par) "deflection angle";
+  units.Angle delta(start=DELTA_par) "";
+  units.Angle theta(min=0, max= 90*Modelica.Constants.pi/180, start=10*Modelica.Constants.pi/180) "";
   
   /*
   */
@@ -48,11 +61,11 @@ model ObliqueShock00
   units.SpecificEntropy s_fluid_1 "specific entropy, fluid_1" ;
   units.SpecificEntropy s_fluid_2 "specific entropy, fluid_2" ;
   
-  units.Velocity Vsound_1(min=0) "upstream, static temperature refered";
-  units.Velocity Vsound_2(min=0) "downstream, static temperature refered";
+  units.Velocity Vsound_1(min=340) "upstream, static temperature refered";
+  units.Velocity Vsound_2(min=340) "downstream, static temperature refered";
   
-  units.Velocity V_1(min=0) "absolute, upstream";
-  units.Velocity V_2(min=0) "absolute, downstream";
+  units.Velocity V_1(min=340*2) "absolute, upstream";
+  units.Velocity V_2(min=340*1.5) "absolute, downstream";
   
   units.Velocity Vt_1(min=0) "tangential to shock, upstream";
   units.Velocity Vt_2(min=0) "tangential to shock, downstream";
@@ -102,14 +115,24 @@ model ObliqueShock00
     Placement(transformation(origin = {-100, 20}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 20}, extent = {{-10, -10}, {10, 10}})));
   FluidSystemComponents.Interfaces.FluidWithMach_b portStatWithMn_2(redeclare package Medium = Medium) annotation(
     Placement(transformation(origin = {100, -40}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, -40}, extent = {{-10, -10}, {10, 10}})));
-  //******************************************************************************************
   
+  Modelica.Blocks.Interfaces.RealInput u_DELTA if switchDetermine_DELTA == FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput annotation(
+    Placement(transformation(origin = {-20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+
+  //******************************************************************************************
 equation
   
+  //-----
+  if switchDetermine_DELTA == FluidSystemComponents.Types.Switches.switchHowToDetVar.param then
+    DELTA=DELTA_par;
+  elseif switchDetermine_DELTA == FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput then
+    DELTA=u_DELTA;
+  end if;
   
-  DELTA=DELTA_par;
   
-  delta=DELTA;
+  
+  //-----
+  delta=DELTA; //flow angle deflection = angle of corner
   /**/
   
   /* ---------------------------------------------
@@ -143,13 +166,6 @@ equation
   Vsound_1= Medium.velocityOfSound(fluidStat_1.state);
   Vsound_2= Medium.velocityOfSound(fluidStat_2.state);
   
-  Mn_1= V_1/Vsound_1;
-  Mn_2= V_2/Vsound_2;
-  
-  Mnt_1= Vt_1/Vsound_1;
-  Mnt_2= Vt_2/Vsound_2;
-  Mnn_1= Vn_1/Vsound_1;
-  Mnn_2= Vn_2/Vsound_2;
   /**/
   
   // isentropic between static and total
@@ -164,17 +180,31 @@ equation
   fluid_2.h= fluidStat_2.h + 1/2*V_2^2;
   
   // conservation of momentum in direction normal to shock
-  fluidStat_1.p - fluidStat_2.p = fluidStat_2.d*Vn_2^2 - fluidStat_1.d*Vn_1^2;
+  fluidStat_1.p + fluidStat_1.d*Vn_1^2 = fluidStat_2.p + fluidStat_2.d*Vn_2^2 ;
   
   
   // velocity triangles
   Vt_1=V_1*cos(theta);
   Vn_1=V_1*sin(theta);
   
-  Vt_1=Vt_2;
-  
   Vt_2=V_2*cos(theta-delta);
   Vn_2=V_2*sin(theta-delta);
+  
+  fluidStat_1.d/fluidStat_2.d=tan(theta-delta)/tan(theta);
+  //Vt_1=Vt_2;
+  
+  // Mach triangles
+  Mn_1= V_1/Vsound_1;
+  
+  Mnt_1=Mn_1*cos(theta);
+  Mnn_1=Mn_1*sin(theta);
+  
+  //Mnt_1= Mnt_2;
+  Mnt_2= Mn_2*cos(theta-delta);
+  Mnn_2= Mn_2*sin(theta-delta);
+  
+  Mn_2= V_2/Vsound_2;
+  
   /**/
   
   // mass conservation
@@ -205,7 +235,7 @@ equation
   
 annotation(
     defaultComponentName = "Shock",
-  Icon(graphics = {Text(origin = {0, -70}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {0.17, 29.83}, points = {{-100.171, 30.1708}, {-40.1708, 30.1708}, {101.829, -29.8292}}, thickness = 5), Line(origin = {-4, 16}, points = {{-36, 44}, {32, -54}}, pattern = LinePattern.Dash, thickness = 2), Line(origin = {-66, 20}, points = {{-14, 0}, {16, 0}}, thickness = 1, arrow = {Arrow.None, Arrow.Open}, arrowSize = 6), Line(origin = {28, 10}, points = {{-14, 0}, {14, -12}}, thickness = 1, arrow = {Arrow.None, Arrow.Open}, arrowSize = 6)}, coordinateSystem(preserveAspectRatio = false, extent = {{-100, -60}, {100, 60}})),
+  Icon(graphics = {Text(origin = {0, -70}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {0.17, 29.83}, points = {{-100.171, 30.1708}, {-40.1708, 30.1708}, {101.829, -29.8292}}, thickness = 6), Line(origin = {-4, 16}, points = {{-36, 44}, {32, -54}}, pattern = LinePattern.Dash, thickness = 3), Line(origin = {-70, 20}, points = {{-14, 0}, {38, 0}}, thickness = 4, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10), Line(origin = {30, 2}, points = {{-14, 0}, {38, -22}}, thickness = 4, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10), Text(origin = {9, 53}, extent = {{-7, 3}, {7, -3}}, textString = "DELTA"), Text(origin = {24, 18}, extent = {{-12, 4}, {12, -4}}, textString = "theta"), Line(origin = {-3.21, 53.96}, points = {{-0.792893, 6.03629}, {3.20711, 4.03629}, {3.20711, -1.96371}, {1.20711, -3.96371}, {-0.792893, -5.96371}}, arrow = {Arrow.None, Arrow.Open}, smooth = Smooth.Bezier), Line(origin = {6.79, 39.96}, points = {{17.2071, 20.0363}, {17.2071, 0.03629}, {13.2071, -15.9637}, {3.20711, -25.9637}, {-8.7929, -31.9637}}, arrow = {Arrow.None, Arrow.Open}, smooth = Smooth.Bezier), Line(origin = {30, 60}, points = {{-70, 0}, {70, 0}}, pattern = LinePattern.DashDot)}, coordinateSystem(preserveAspectRatio = false, extent = {{-100, -60}, {100, 60}})),
   Diagram(graphics));
   
   
