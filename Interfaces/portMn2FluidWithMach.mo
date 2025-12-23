@@ -17,5 +17,5 @@ equation
   u_Mn = portStatWithMn.Mn;
   annotation(
     defaultComponentName = "port2FluidStatMn",
-    Icon(graphics = {Rectangle(fillPattern = FillPattern.Solid, extent = {{-20, 100}, {20, -100}}), Text(origin = {0, 110}, extent = {{-100, 10}, {100, -10}}, textString = "%name")}, coordinateSystem(preserveAspectRatio = false, extent = {{-20, -100}, {20, 100}})));
+    Icon(graphics = {Rectangle(fillPattern = FillPattern.Solid, extent = {{-20, 100}, {20, -100}}), Text(origin = {0, 120}, extent = {{-100, 10}, {100, -10}}, textString = "%name")}, coordinateSystem(preserveAspectRatio = false, extent = {{-20, -100}, {20, 100}})));
 end portMn2FluidWithMach;

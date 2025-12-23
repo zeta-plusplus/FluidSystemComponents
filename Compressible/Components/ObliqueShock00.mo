@@ -23,6 +23,11 @@ model ObliqueShock00
     Evaluate = true,
     HideResult = true); 
   
+  parameter FluidSystemComponents.Types.Switches.switchHowToDetVar switchDetermine_angCtrLine4plot= FluidSystemComponents.Types.Switches.switchHowToDetVar.param "switch how to angCtrLine4plot" annotation(
+    Dialog(group = "switch"),
+    choicesAllMatching = true,
+    Evaluate = true,
+    HideResult = true); 
   
   
   /* ---------------------------------------------
@@ -86,18 +91,19 @@ model ObliqueShock00
   Real TR "TR total";
   Real TRs "TR static";
   
-  
   /**/
   
   //-----
-  /*
-  units.Length x4plot[2];
-  units.Length y4plot[2];
+  
+  units.Length arr4plot_wall_x[2];
+  units.Length arr4plot_wall_y[2];
+  units.Length arr4plot_shock_x[2];
+  units.Length arr4plot_shock_y[2];
   
   units.Angle angCtrLine4plot;
   units.Length lenWall4plot;
   units.Length lenShock4plot;
-  */
+  /**/
   
   
   /* ---------------------------------------------
@@ -118,8 +124,13 @@ model ObliqueShock00
   
   Modelica.Blocks.Interfaces.RealInput u_DELTA if switchDetermine_DELTA == FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput annotation(
     Placement(transformation(origin = {-20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-
+  Modelica.Blocks.Interfaces.RealInput u_angCtrLine4plot if switchDetermine_angCtrLine4plot == FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput annotation(
+    Placement(transformation(origin = {-60, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-60, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   //******************************************************************************************
+  Modelica.Blocks.Interfaces.RealOutput y_DELTA_pls_angCtrLine annotation(
+    Placement(transformation(origin = {105, 45}, extent = {{-5, -5}, {5, 5}}), iconTransformation(origin = {105, 45}, extent = {{-5, -5}, {5, 5}})));
+  Modelica.Blocks.Interfaces.RealOutput y_theta_pls_angCtrLine annotation(
+    Placement(transformation(origin = {105, 25}, extent = {{-5, -5}, {5, 5}}), iconTransformation(origin = {105, 25}, extent = {{-5, -5}, {5, 5}})));
 equation
   
   //-----
@@ -129,6 +140,9 @@ equation
     DELTA=u_DELTA;
   end if;
   
+  //-----
+  y_DELTA_pls_angCtrLine=DELTA+angCtrLine4plot;
+  y_theta_pls_angCtrLine=theta+angCtrLine4plot;
   
   
   //-----
@@ -191,7 +205,7 @@ equation
   Vn_2=V_2*sin(theta-delta);
   
   fluidStat_1.d/fluidStat_2.d=tan(theta-delta)/tan(theta);
-  //Vt_1=Vt_2;
+  
   
   // Mach triangles
   Mn_1= V_1/Vsound_1;
@@ -199,7 +213,6 @@ equation
   Mnt_1=Mn_1*cos(theta);
   Mnn_1=Mn_1*sin(theta);
   
-  //Mnt_1= Mnt_2;
   Mnt_2= Mn_2*cos(theta-delta);
   Mnn_2= Mn_2*sin(theta-delta);
   
@@ -222,20 +235,35 @@ equation
   /* ---------------------------------------------
   for plot visualization
   --------------------------------------------- */
-  /*
-  x4plot[1]=x0_4plot_par;
-  y4plot[1]=y0_4plot_par;
+  //-----
+  if switchDetermine_angCtrLine4plot == FluidSystemComponents.Types.Switches.switchHowToDetVar.param then
+    angCtrLine4plot= angCtrLine4plot_par;
+  elseif switchDetermine_angCtrLine4plot == FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput then
+    angCtrLine4plot= u_angCtrLine4plot;
+  end if;
   
-  angCtrLine4plot= angCtrLine4plot_par;
+  //-----
+  arr4plot_wall_x[1]=x0_4plot_par;
+  arr4plot_wall_y[1]=y0_4plot_par;
+  arr4plot_shock_x[1]=x0_4plot_par;
+  arr4plot_shock_y[1]=y0_4plot_par;
+  
   lenWall4plot= lenWall4plot_par;
   lenShock4plot= lenShock4plot_par;
-  */
+  
+  arr4plot_wall_x[2]=arr4plot_wall_x[1] + lenWall4plot*cos(angCtrLine4plot+DELTA);
+  arr4plot_wall_y[2]=arr4plot_wall_y[1] - lenWall4plot*sin(angCtrLine4plot+DELTA);
+  arr4plot_shock_x[2]=arr4plot_shock_x[1] + lenWall4plot*cos(angCtrLine4plot+theta);
+  arr4plot_shock_y[2]=arr4plot_shock_y[1] - lenWall4plot*sin(angCtrLine4plot+theta);
+  
+  
+  /**/
   
   
   
 annotation(
     defaultComponentName = "Shock",
-  Icon(graphics = {Text(origin = {0, -70}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {0.17, 29.83}, points = {{-100.171, 30.1708}, {-40.1708, 30.1708}, {101.829, -29.8292}}, thickness = 6), Line(origin = {-4, 16}, points = {{-36, 44}, {32, -54}}, pattern = LinePattern.Dash, thickness = 3), Line(origin = {-70, 20}, points = {{-14, 0}, {38, 0}}, thickness = 4, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10), Line(origin = {30, 2}, points = {{-14, 0}, {38, -22}}, thickness = 4, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10), Text(origin = {9, 53}, extent = {{-7, 3}, {7, -3}}, textString = "DELTA"), Text(origin = {24, 18}, extent = {{-12, 4}, {12, -4}}, textString = "theta"), Line(origin = {-3.21, 53.96}, points = {{-0.792893, 6.03629}, {3.20711, 4.03629}, {3.20711, -1.96371}, {1.20711, -3.96371}, {-0.792893, -5.96371}}, arrow = {Arrow.None, Arrow.Open}, smooth = Smooth.Bezier), Line(origin = {6.79, 39.96}, points = {{17.2071, 20.0363}, {17.2071, 0.03629}, {13.2071, -15.9637}, {3.20711, -25.9637}, {-8.7929, -31.9637}}, arrow = {Arrow.None, Arrow.Open}, smooth = Smooth.Bezier), Line(origin = {30, 60}, points = {{-70, 0}, {70, 0}}, pattern = LinePattern.DashDot)}, coordinateSystem(preserveAspectRatio = false, extent = {{-100, -60}, {100, 60}})),
+  Icon(graphics = {Text(origin = {0, -70}, extent = {{-100, 10}, {100, -10}}, textString = "%name"), Line(origin = {0.17, 29.83}, points = {{-100.171, 30.1708}, {-40.1708, 30.1708}, {101.829, -29.8292}}, thickness = 6), Line(origin = {-4, 16}, points = {{-36, 44}, {36, -68}}, pattern = LinePattern.Dash, thickness = 3), Line(origin = {-70, 20}, points = {{-14, 0}, {38, 0}}, thickness = 4, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10), Line(origin = {30, 2}, points = {{-14, 0}, {38, -22}}, thickness = 4, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10), Text(origin = {9, 53}, extent = {{-7, 3}, {7, -3}}, textString = "DELTA"), Text(origin = {24, 18}, extent = {{-12, 4}, {12, -4}}, textString = "theta"), Line(origin = {-3.21, 53.96}, points = {{-0.792893, 6.03629}, {3.20711, 4.03629}, {3.20711, -1.96371}, {1.20711, -3.96371}, {-0.792893, -5.96371}}, arrow = {Arrow.None, Arrow.Open}, smooth = Smooth.Bezier), Line(origin = {6.79, 39.96}, points = {{17.2071, 20.0363}, {17.2071, 0.03629}, {13.2071, -15.9637}, {3.20711, -25.9637}, {-8.7929, -31.9637}}, arrow = {Arrow.None, Arrow.Open}, smooth = Smooth.Bezier), Line(origin = {30, 60}, points = {{-70, 0}, {70, 0}}, pattern = LinePattern.DashDot)}, coordinateSystem(preserveAspectRatio = false, extent = {{-100, -60}, {100, 60}})),
   Diagram(graphics));
   
   
