@@ -6,7 +6,7 @@ model FluidWithMach2portMn
         --------------------------------------------- */
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);
-  Modelica.Fluid.Interfaces.FluidPort_a port(redeclare package Medium = Medium) annotation(
+  Modelica.Fluid.Interfaces.FluidPort_b port(redeclare package Medium = Medium) annotation(
     Placement(transformation(origin = {20, 80}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {20, 80}, extent = {{-10, -10}, {10, 10}})));
   FluidWithMach_a portStatWithMn(redeclare package Medium = Medium) annotation(
     Placement(transformation(origin = {-20, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-20, 0}, extent = {{-10, -10}, {10, 10}})));

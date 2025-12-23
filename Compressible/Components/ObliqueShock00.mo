@@ -113,6 +113,9 @@ model ObliqueShock00
   Medium.BaseProperties fluid_2(T(min=0, start=288.15, nominal=288.15), p(min=0, start=1e5)) "fluid obj, total, downstream of shock";
   Medium.BaseProperties fluidStat_1(T(min=0, start=288.15, nominal=288.15), p(min=0, start=1e5)) "fluid station obj, static, upstream of shock";
   Medium.BaseProperties fluidStat_2(T(min=0, start=288.15, nominal=288.15), p(min=0, start=1e5)) "fluid station obj, static, downstream of shock";
+  
+  
+  
   /* ---------------------------------------------
                     Interface
                 --------------------------------------------- */
@@ -126,11 +129,14 @@ model ObliqueShock00
     Placement(transformation(origin = {-20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-20, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealInput u_angCtrLine4plot if switchDetermine_angCtrLine4plot == FluidSystemComponents.Types.Switches.switchHowToDetVar.viaRealInput annotation(
     Placement(transformation(origin = {-60, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-60, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  //******************************************************************************************
   Modelica.Blocks.Interfaces.RealOutput y_DELTA_pls_angCtrLine annotation(
     Placement(transformation(origin = {105, 45}, extent = {{-5, -5}, {5, 5}}), iconTransformation(origin = {105, 45}, extent = {{-5, -5}, {5, 5}})));
   Modelica.Blocks.Interfaces.RealOutput y_theta_pls_angCtrLine annotation(
     Placement(transformation(origin = {105, 25}, extent = {{-5, -5}, {5, 5}}), iconTransformation(origin = {105, 25}, extent = {{-5, -5}, {5, 5}})));
+
+
+  //******************************************************************************************
+
 equation
   
   //-----
