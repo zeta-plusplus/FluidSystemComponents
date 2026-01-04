@@ -1,0 +1,85 @@
+2025-12-29 23:16:09: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2025-12-29 23:16:09: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2025-12-29 23:16:09: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2025-12-29 23:16:09: Chosen Host Key: ssh-ed25519
+2025-12-29 23:16:09: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2025-12-29 23:16:09: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2025-12-29 23:16:09: Auth: start: publickey
+2025-12-29 23:16:09: Auth: publickey: no keys available
+2025-12-29 23:16:09: Auth: start: password
+2025-12-29 23:16:10: -- Analysis Started by Periodic Timer
+2025-12-29 23:16:10: L: Reading State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-29 23:16:11: R: Reading State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-29 23:16:31: /.git/FETCH_HEAD: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /CommonAnyFluid/Examples/EngineeringStudies/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /CommonAnyFluid/Examples/EngineeringStudies/RectifierByTeslaValves_01.mo: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/CommonBaseClasses/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Examples/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Fittings/BaseClasses/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Fittings/Examples/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Fittings/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Sources/BaseClasses/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Sources/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Vessels/BaseClasses/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Vessels/Examples/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /MSLfluidWithVisualization/Vessels/package.order: L:TimeSize<>; Conflict: File Modified on Both Sides
+2025-12-29 23:16:31: /CommonAnyFluid/Examples/EngineeringStudies/package.order: Sync will delete Folder /CommonAnyFluid/Examples/EngineeringStudies on Left because it is deleted on Right, File /CommonAnyFluid/Examples/EngineeringStudies/package.order changed on Left (Vertical Conflict)
+2025-12-29 23:16:31: /CommonAnyFluid/Examples/EngineeringStudies/package.mo: Parent folder conflict propagated down to children
+2025-12-29 23:16:31: /CommonAnyFluid/Examples/EngineeringStudies/RectifierByTeslaValves_02.mo: Parent folder conflict propagated down to children
+2025-12-29 23:16:31: Analyze has finished with Conflicts. Resolve Conflicts by selecting the correct sync direction, then click Sync
+2025-12-29 23:16:31: Changes: 17, Conflicts: 17, CopyTime: 0, FixState: 0, Errors: 0, All: 6668
+2025-12-29 23:16:31: == Sync Started by Periodic Timer
+2025-12-29 23:16:31: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-29 23:16:31: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-29 23:16:31: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-29 23:16:31: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2025-12-29 23:16:31: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2025-12-29 23:16:31: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2025-12-29 23:16:31: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2025-12-29 23:16:31: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2025-12-29 23:16:31: Chosen Host Key: ssh-ed25519
+2025-12-29 23:16:31: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2025-12-29 23:16:31: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2025-12-29 23:16:31: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2025-12-29 23:16:31: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2025-12-29 23:16:31: Chosen Host Key: ssh-ed25519
+2025-12-29 23:16:31: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2025-12-29 23:16:31: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2025-12-29 23:16:31: Chosen Host Key: ssh-ed25519
+2025-12-29 23:16:31: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2025-12-29 23:16:31: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2025-12-29 23:16:31: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2025-12-29 23:16:31: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2025-12-29 23:16:31: Auth: start: publickey
+2025-12-29 23:16:31: Auth: publickey: no keys available
+2025-12-29 23:16:31: Auth: start: password
+2025-12-29 23:16:31: Auth: start: publickey
+2025-12-29 23:16:31: Auth: start: publickey
+2025-12-29 23:16:31: Auth: publickey: no keys available
+2025-12-29 23:16:31: Auth: start: password
+2025-12-29 23:16:31: Auth: publickey: no keys available
+2025-12-29 23:16:31: Auth: start: password
+2025-12-29 23:16:32: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-29 23:16:32: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-29 23:16:32: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2025-12-29 23:16:32: /.git/FETCH_HEAD: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/CommonBaseClasses/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Examples/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Fittings/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Fittings/Examples/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Fittings/BaseClasses/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Sources/BaseClasses/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Vessels/BaseClasses/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /CommonAnyFluid/Examples/EngineeringStudies: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Vessels/Examples/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Sources/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /CommonAnyFluid/Examples/EngineeringStudies/package.mo: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /MSLfluidWithVisualization/Vessels/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /CommonAnyFluid/Examples/EngineeringStudies/RectifierByTeslaValves_01.mo: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /CommonAnyFluid/Examples/EngineeringStudies/RectifierByTeslaValves_02.mo: unresolved conflict results in No Copy
+2025-12-29 23:16:32: /CommonAnyFluid/Examples/EngineeringStudies/package.order: unresolved conflict results in No Copy
+2025-12-29 23:16:33: Save State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-29 23:16:33: Save State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2025-12-29 23:17:14: == Sync Complete. Time: 00:00:43, Speed: 0.00/s, OK: 0, Errors: 0, Conflicts: 17

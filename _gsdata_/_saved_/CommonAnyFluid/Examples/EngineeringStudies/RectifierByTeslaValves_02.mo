@@ -5,7 +5,6 @@ model RectifierByTeslaValves_02
   //-----
   //package fluid1 = Modelica.Media.Water.StandardWater;
   package fluid1 = Modelica.Media.Air.DryAirNasa;
-  
   //-----
   parameter Modelica.Units.SI.Pressure p_contour_min = 1*1000;
   parameter Modelica.Units.SI.Pressure p_contour_max = 150*1000;

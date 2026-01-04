@@ -4,6 +4,8 @@ MonitorMassFlow00
 TemperatureDispColor00
 StaticStatesTwoPort01
 StaticStatesTwoPort
+Ps_FluidWithMach_DispColor00
+Ts_FluidWithMach_DispColor00
 PressureDisp00
 TemperatureDisp00
 Monitor_MassFlow
