@@ -10,7 +10,7 @@ model ObliqueShock00_ex01
   parameter Modelica.Units.SI.Temperature TcntrMin = 200;
   parameter Modelica.Units.SI.Temperature TcntrMax = 500;
   //-----
-  Components.ObliqueShock00 Shock(redeclare package Medium = Fluid1, DELTA_par = 0.15707963267948966, switchDetermine_DELTA = Types.Switches.switchHowToDetVar.viaRealInput, use_sensorPortTotal1 = true, use_sensorPortTotal2 = true) annotation(
+  Components.ObliqueShock00 Shock(redeclare package Medium = Fluid1, DELTA_par = 0.15707963267948966, switchDetermine_DELTA = Types.Switches.switchHowToDetVar.viaRealInput) annotation(
     Placement(transformation(origin = {0, -12}, extent = {{-20, -11}, {20, 11}})));
   Interfaces.portMn2FluidWithMach port2FluidStatMn(redeclare package Medium = Fluid1) annotation(
     Placement(transformation(origin = {-42, -8}, extent = {{-2, -10}, {2, 10}})));
@@ -38,14 +38,6 @@ model ObliqueShock00_ex01
     Placement(transformation(origin = {-13, -34}, extent = {{-10, -4}, {10, 4}})));
   FluidSystemComponents.Sensor.Ts_FluidWithMach_DispColor00 Temperature_Shock_Static2(redeclare package Medium = Fluid1, valMax = TcntrMax, valMin = TcntrMin) annotation(
     Placement(transformation(origin = {16, -34}, extent = {{10, -4}, {-10, 4}})));
-  FluidSystemComponents.Sensor.PressureDispColor00 Pressure_Shock_Total1(redeclare package Medium = Fluid1, valMax = pCntrMax, valMin = pCntrMin) annotation(
-    Placement(transformation(origin = {-22, -80}, extent = {{-10, -10}, {10, 10}})));
-  FluidSystemComponents.Sensor.PressureDispColor00 Pressure_Shock_Total2(redeclare package Medium = Fluid1, valMax = pCntrMax, valMin = pCntrMin) annotation(
-    Placement(transformation(origin = {23, -80}, extent = {{10, -10}, {-10, 10}})));
-  Sensor.TemperatureDispColor00 Temperature_Shock_Total1(redeclare package Medium = Fluid1, valMin = TcntrMin, valMax = TcntrMax)  annotation(
-    Placement(transformation(origin = {-18, -60}, extent = {{-10, -4}, {10, 4}})));
-  FluidSystemComponents.Sensor.TemperatureDispColor00 Temperature_Shock_Total2(redeclare package Medium = Fluid1, valMax = TcntrMax, valMin = TcntrMin) annotation(
-    Placement(transformation(origin = {19, -60}, extent = {{10, -4}, {-10, 4}})));
 equation
   connect(port2FluidStatMn.portStatWithMn, Shock.portStatWithMn_1) annotation(
     Line(points = {{-40, -8}, {-20, -8}}, color = {0, 127, 255}, thickness = 3));
@@ -71,14 +63,6 @@ equation
     Line(points = {{20, -19}, {26, -19}, {26, -34}}, color = {0, 127, 255}));
   connect(from_deg.y, Shock.u_DELTA) annotation(
     Line(points = {{-19, 80}, {-4, 80}, {-4, 1}}, color = {0, 0, 127}));
-  connect(Shock.sensorPortTotal2, Pressure_Shock_Total2.port) annotation(
-    Line(points = {{20, -23}, {33, -23}, {33, -80}}, color = {0, 127, 255}));
-  connect(Shock.sensorPortTotal1, Temperature_Shock_Total1.port) annotation(
-    Line(points = {{-20, -12}, {-28, -12}, {-28, -60}}, color = {0, 127, 255}));
-  connect(Shock.sensorPortTotal2, Temperature_Shock_Total2.port) annotation(
-    Line(points = {{20, -23}, {29, -23}, {29, -60}}, color = {0, 127, 255}));
-  connect(Shock.sensorPortTotal1, Pressure_Shock_Total1.port) annotation(
-    Line(points = {{-20, -12}, {-32, -12}, {-32, -80}}, color = {0, 127, 255}));
   annotation(
     experiment(StartTime = 0, StopTime = 20, Tolerance = 1e-06, Interval = 0.1),
     __OpenModelica_simulationFlags(lv = "LOG_STDOUT,LOG_ASSERT", s = "dassl", variableFilter = ".*"));

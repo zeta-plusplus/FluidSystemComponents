@@ -1,0 +1,198 @@
+2026-01-04 15:37:40: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-04 15:37:40: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-04 15:37:40: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-04 15:37:40: Chosen Host Key: ssh-ed25519
+2026-01-04 15:37:40: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-04 15:37:40: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-04 15:37:40: Auth: start: publickey
+2026-01-04 15:37:40: Auth: publickey: no keys available
+2026-01-04 15:37:40: Auth: start: password
+2026-01-04 15:37:41: -- Analysis Started by On File Change, After Delay
+2026-01-04 15:37:42: Changes: 5, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 6760
+2026-01-04 15:37:42: Left to Right: Copy File: 5 
+2026-01-04 15:37:42: == Sync Started by On File Change, After Delay
+2026-01-04 15:37:42: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-04 15:37:42: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-04 15:37:42: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-04 15:37:42: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-04 15:37:42: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-04 15:37:42: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-04 15:37:42: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-04 15:37:42: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-04 15:37:42: Chosen Host Key: ssh-ed25519
+2026-01-04 15:37:42: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-04 15:37:42: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-04 15:37:42: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-04 15:37:42: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-04 15:37:42: Chosen Host Key: ssh-ed25519
+2026-01-04 15:37:42: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-04 15:37:42: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-04 15:37:42: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-04 15:37:42: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-04 15:37:42: Chosen Host Key: ssh-ed25519
+2026-01-04 15:37:42: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-04 15:37:42: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-04 15:37:42: Auth: start: publickey
+2026-01-04 15:37:42: Auth: publickey: no keys available
+2026-01-04 15:37:42: Auth: start: password
+2026-01-04 15:37:42: Auth: start: publickey
+2026-01-04 15:37:42: Auth: publickey: no keys available
+2026-01-04 15:37:42: Auth: start: password
+2026-01-04 15:37:42: Auth: start: publickey
+2026-01-04 15:37:42: Auth: publickey: no keys available
+2026-01-04 15:37:42: Auth: start: password
+2026-01-04 15:37:43: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-04 15:37:43: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-04 15:37:43: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-04 15:37:45: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/package.order' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/package.order' (222)
+2026-01-04 15:37:45: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/ObliqueShock00.mo' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/ObliqueShock00.mo' (13,319)
+2026-01-04 15:37:45: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/package.order' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/package.order' (456)
+2026-01-04 15:37:45: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/TemperatureDispColor00.mo' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/TemperatureDispColor00.mo' (2,599)
+2026-01-04 15:37:45: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/.git/FETCH_HEAD' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/.git/FETCH_HEAD' (0)
+2026-01-04 15:37:45: Save State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-01-04 15:37:46: Save State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-01-04 15:39:00: File Monitoring: asked to stop on: L-nw: Going to Sleep
+2026-01-04 15:39:00: File Monitoring: asked to stop on: R-nw: Going to Sleep
+2026-01-04 15:39:00: Stop requested by Going to Sleep: #1
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: ListDir: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: ListDir: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: ListDir: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:00: GsDeleteEmptyFoldersFS: Cannot list folder: Going to Sleep
+2026-01-04 15:39:01: == Sync Complete. Time: 00:01:19, Speed: 7.43 KB/s, OK: 5, Errors: 0
+2026-01-04 15:39:01: Going to Sleep

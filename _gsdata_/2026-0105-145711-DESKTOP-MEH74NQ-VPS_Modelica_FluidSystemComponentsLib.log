@@ -1,0 +1,91 @@
+2026-01-05 14:57:11: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-05 14:57:11: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-05 14:57:11: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-05 14:57:11: Chosen Host Key: ssh-ed25519
+2026-01-05 14:57:11: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-05 14:57:11: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-05 14:57:11: Auth: start: publickey
+2026-01-05 14:57:11: Auth: publickey: no keys available
+2026-01-05 14:57:11: Auth: start: password
+2026-01-05 14:57:12: -- Analysis Started by User Command
+2026-01-05 14:57:12: L: Reading State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-01-05 14:57:12: R: Reading State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-01-05 14:58:14: Changes: 3, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 6760
+2026-01-05 14:58:14: Left to Right: Copy File: 3 
+2026-01-05 14:58:14: == Sync Started by User Command
+2026-01-05 14:58:14: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-05 14:58:14: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-05 14:58:14: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-05 14:58:14: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-05 14:58:14: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-05 14:58:14: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-05 14:58:14: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-05 14:58:14: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-05 14:58:14: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-05 14:58:14: Chosen Host Key: ssh-ed25519
+2026-01-05 14:58:14: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-05 14:58:14: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-05 14:58:14: Chosen Host Key: ssh-ed25519
+2026-01-05 14:58:14: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-05 14:58:14: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-05 14:58:14: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-05 14:58:14: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-05 14:58:14: Chosen Host Key: ssh-ed25519
+2026-01-05 14:58:14: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-05 14:58:14: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-05 14:58:14: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-05 14:58:14: Auth: start: publickey
+2026-01-05 14:58:14: Auth: publickey: no keys available
+2026-01-05 14:58:14: Auth: start: password
+2026-01-05 14:58:14: Auth: start: publickey
+2026-01-05 14:58:14: Auth: publickey: no keys available
+2026-01-05 14:58:14: Auth: start: password
+2026-01-05 14:58:14: Auth: start: publickey
+2026-01-05 14:58:14: Auth: publickey: no keys available
+2026-01-05 14:58:14: Auth: start: password
+2026-01-05 14:58:15: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-05 14:58:15: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-05 14:58:15: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-01-05 14:58:16: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/.git/FETCH_HEAD' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/.git/FETCH_HEAD' (0)
+2026-01-05 14:58:16: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/package.order' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/package.order' (222)
+2026-01-05 14:58:16: Copy Over 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/ObliqueShock00.mo' -> 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Compressible/Components/ObliqueShock00.mo' (13,360)
+2026-01-05 14:58:16: Save State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-01-05 14:58:19: Save State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-01-05 14:58:19: Deleted Recycled: C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_saved_/Interfaces/FluidStaticStateOutput.mo
+2026-01-05 14:58:19: Deleted Recycled: C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_saved_/Interfaces/package.mo
+2026-01-05 14:58:19: Deleted Recycled: C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_saved_/Sensor/StaticStatesTwoPort01.mo
+2026-01-05 14:58:35: Waiting for 1 + 0 of 1 sec on FXP_OPENDIR: [receiving data os3-310-44666.vs.sakura.ne.jp:22]: Connection was aborted due to timeout or other failure
+2026-01-05 14:58:36: GsDeleteEmptyFoldersFS: Cannot list folder: [receiving data os3-310-44666.vs.sakura.ne.jp:22]: Connection was aborted due to timeout or other failure
+2026-01-05 14:58:52: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-05 14:58:52: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+2026-01-05 14:58:52: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-05 14:58:52: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-05 14:58:52: Chosen Host Key: ssh-ed25519
+2026-01-05 14:58:52: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-05 14:58:52: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-05 14:58:52: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-01-05 14:58:52: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-01-05 14:58:52: Chosen Host Key: ssh-ed25519
+2026-01-05 14:58:52: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-01-05 14:58:52: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-01-05 14:58:52: Auth: start: publickey
+2026-01-05 14:58:52: Auth: publickey: no keys available
+2026-01-05 14:58:52: Auth: start: password
+2026-01-05 14:58:52: Auth: start: publickey
+2026-01-05 14:58:52: Auth: publickey: no keys available
+2026-01-05 14:58:52: Auth: start: password
+2026-01-05 14:58:57: Recovered the connection, continuing operations
+2026-01-05 14:59:25: Stop requested by Stop By User: #1
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: ListDir: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: ListDir: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: GsDeleteEmptyFoldersFS: Cannot list folder: Stop By User
+2026-01-05 14:59:25: == Sync Complete. Time: 00:01:11, Speed: 4.31 KB/s, OK: 3, Errors: 0

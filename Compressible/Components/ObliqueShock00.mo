@@ -29,13 +29,14 @@ model ObliqueShock00
     Evaluate = true,
     HideResult = true); 
   
+  /*
   parameter Boolean use_sensorPortTotal1 = false
     "Get the pressure from the input connector"
     annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean use_sensorPortTotal2 = false
     "Get the pressure from the input connector"
     annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
-  
+  */
   
   /* ---------------------------------------------
               Package
@@ -98,6 +99,8 @@ model ObliqueShock00
   Real TR "TR total";
   Real TRs "TR static";
   
+  Real dptqpt "delta pt / pt";
+  
   /**/
   
   //-----
@@ -140,12 +143,13 @@ model ObliqueShock00
     Placement(transformation(origin = {105, 45}, extent = {{-5, -5}, {5, 5}}), iconTransformation(origin = {105, 45}, extent = {{-5, -5}, {5, 5}})));
   Modelica.Blocks.Interfaces.RealOutput y_theta_pls_angCtrLine annotation(
     Placement(transformation(origin = {105, 25}, extent = {{-5, -5}, {5, 5}}), iconTransformation(origin = {105, 25}, extent = {{-5, -5}, {5, 5}})));
-
+  
+  /*
   Modelica.Fluid.Interfaces.FluidPort_a sensorPortTotal1(redeclare package Medium = Medium) if use_sensorPortTotal1 annotation(
     Placement(transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Fluid.Interfaces.FluidPort_b sensorPortTotal2(redeclare package Medium = Medium) if use_sensorPortTotal2 annotation(
     Placement(transformation(origin = {100, -60}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, -60}, extent = {{-10, -10}, {10, 10}})));
-  
+  */
   
   //******************************************************************************************
 
@@ -187,18 +191,19 @@ equation
   Mn_2= portStatWithMn_2.Mn;
   
   //-----
+  /*
   if use_sensorPortTotal1==true then
     fluid_1.p = sensorPortTotal1.p;
-    fluid_1.h = actualStream(sensorPortTotal1.h_outflow);
-    fluid_1.Xi = actualStream(sensorPortTotal1.Xi_outflow);
-  end if;
-  //-----
-  if use_sensorPortTotal2==true then
-    fluid_2.p = sensorPortTotal2.p;
-    fluid_2.h = actualStream(sensorPortTotal2.h_outflow);
-    fluid_2.Xi = actualStream(sensorPortTotal2.Xi_outflow);
+    fluid_1.h = sensorPortTotal1.h_outflow;
+    fluid_1.Xi = sensorPortTotal1.Xi_outflow;
   end if;
   
+  if use_sensorPortTotal2==true then
+    fluid_2.p = sensorPortTotal2.p;
+    fluid_2.h = sensorPortTotal2.h_outflow;
+    fluid_2.Xi = sensorPortTotal2.Xi_outflow;
+  end if;
+  */
   
   /* ---------------------------------------------
   Eqns describing physics
@@ -257,11 +262,13 @@ equation
   fluidStat_2.Xi = fluidStat_1.Xi;
   
   
+  //
   PR= fluid_2.p/fluid_1.p;
   PRs= fluidStat_2.p/fluidStat_1.p;
   TR= fluid_2.T/fluid_1.T;
   TRs= fluidStat_2.T/fluidStat_1.T;
   
+  dptqpt= (fluid_1.p-fluid_2.p)/fluid_1.p;
   
   /* ---------------------------------------------
   for plot visualization

@@ -1,7 +1,7 @@
 within FluidSystemComponents.Sensor;
 
 model TemperatureDispColor00
-  //----------------------------------------
+    //----------------------------------------
   // Import
   //----------------------------------------
   import Colors = Modelica.Mechanics.MultiBody.Visualizers.Colors;
@@ -28,6 +28,9 @@ model TemperatureDispColor00
   Real vecRGB[3];
   Real valDisp(final quantity="ThermodynamicTemperature",
                final unit = "K", displayUnit = "degC", min=0);
+  
+  Medium.BaseProperties fluid(p(min = 0.0 + 1.0e-10), T(min = 0.0 + 1.0e-10), h(min = 0.0 + 1.0e-10)) "";
+  
   //----------------------------------------
   // interface
   //----------------------------------------
@@ -36,12 +39,20 @@ model TemperatureDispColor00
 equation
   //
   port.m_flow=0;
-  port.h_outflow = Medium.h_default;
-  port.Xi_outflow = Medium.X_default[1:Medium.nXi];
+  port.h_outflow = fluid.h;
+  port.Xi_outflow = fluid.Xi;
   port.C_outflow = zeros(Medium.nC);
+  
+  fluid.h=inStream(port.h_outflow);
+  fluid.Xi=inStream(port.Xi_outflow);
+  
+  
+  fluid.p= port.p;
+  
   valDisp = Medium.temperature(Medium.setState_phX(port.p, inStream(port.h_outflow), inStream(port.Xi_outflow)));
   //
   vecRGB = Colors.scalarToColor(valDisp, valMin, valMax, colorMap);
+  
   
   
 annotation(
