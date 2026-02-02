@@ -22,8 +22,8 @@ package ConstantPropertyLiquidWater_0K_5000K
     eta_const=1.e-3,
     lambda_const=0.598,
     a_const=1484,
-    T_min=0,
-    T_max=5000,
+    T_min=Cv.from_degC(-273.15),
+    T_max=Cv.from_degC(5000-273.15),
     T0=273.15,
     MM_const=0.018015268,
     fluidConstants=simpleWaterConstants);

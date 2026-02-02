@@ -46,5 +46,5 @@ equation
   connect(specificHeatCapacity.port, volume.ports[6]) annotation(
     Line(points = {{36, 30}, {36, 2}, {14, 2}}, color = {0, 127, 255}));
 annotation(
-    experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.1));
+    experiment(StartTime = 0, StopTime = 1, Tolerance = 1e-06, Interval = 0.002));
 end ConstPropLiqWater_0K_5000K_test01;
