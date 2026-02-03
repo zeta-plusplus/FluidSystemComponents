@@ -41,9 +41,9 @@ model LiquidPowerGenerator00_01
     Placement(visible = true, transformation(origin = {100, 80}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   FluidSystemComponents.HeatTransfer.Components.HeatInjector00 HeatInjector(redeclare package Medium = liquid1) annotation(
     Placement(visible = true, transformation(origin = {70, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Utilities.VariableBySolver VarBySolver1 annotation(
+  FluidSystemComponents.Utilities.VariableBySolver VarBySolver1 annotation(
     Placement(visible = true, transformation(origin = {70, 80}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
-  Utilities.ConstrainVariable Constraint1 annotation(
+  FluidSystemComponents.Utilities.ConstrainVariable Constraint1 annotation(
     Placement(visible = true, transformation(origin = {100, 50}, extent = {{10, -10}, {-10, 10}}, rotation = -90)));
 equation
   connect(Motor.port_2, boundary1.ports[1]) annotation(
