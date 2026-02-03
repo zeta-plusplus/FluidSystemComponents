@@ -1,9 +1,8 @@
 within FluidSystemComponents.MSLfluidWithVisualization.Sources;
 
-model Boundary_pT
-  extends FluidSystemComponents.MSLfluidWithVisualization.CommonBaseClasses.Volume_Vis_Base;
-  extends Modelica.Fluid.Sources.Boundary_pT;
-  
+model MassFlowSource_T
+  extends MSLfluidWithVisualization.CommonBaseClasses.Volume_Vis_Base;
+  extends Modelica.Fluid.Sources.MassFlowSource_T;
   //----------------------------------------
   // Import
   //----------------------------------------
@@ -22,9 +21,8 @@ equation
   end if;
 //----------
   vecRGB = Colors.scalarToColor(pVis, pMinContour, pMaxContour, colorMap);
-  
   annotation(
     defaultComponentName = "boundary",
     Icon(coordinateSystem(preserveAspectRatio = false)));
   
-end Boundary_pT;
+end MassFlowSource_T;
