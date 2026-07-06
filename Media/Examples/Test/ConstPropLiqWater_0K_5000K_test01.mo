@@ -5,7 +5,7 @@ model ConstPropLiqWater_0K_5000K_test01
   //-----
   replaceable package liquid1 = FluidSystemComponents.Media.Liquid.ConstantPropertyLiquidWater_0K_5000K;
   //-----
-  Modelica.Blocks.Sources.Ramp ramp_T(duration = 5, height = 4900, offset = 10, startTime = 5) annotation(
+  Modelica.Blocks.Sources.Ramp ramp_T(duration = 5, height = 4000, offset = 10, startTime = 5) annotation(
     Placement(transformation(origin = {-76, -16}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Ramp ramp_p(duration = 5, height = 0, offset = 100*1000, startTime = 15) annotation(
     Placement(transformation(origin = {-76, 30}, extent = {{-10, -10}, {10, 10}})));

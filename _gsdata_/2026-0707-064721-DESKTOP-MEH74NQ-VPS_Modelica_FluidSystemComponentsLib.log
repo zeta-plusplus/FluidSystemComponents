@@ -1,0 +1,70 @@
+2026-07-07 06:47:21: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16
+2026-07-07 06:47:21: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-07-07 06:47:21: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-07-07 06:47:21: Chosen Host Key: ssh-ed25519
+2026-07-07 06:47:21: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-07-07 06:47:21: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-07-07 06:47:21: Server ext-info: publickey-hostbound@openssh.com: 0
+2026-07-07 06:47:21: Server ext-info: server-sig-algs: ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256
+2026-07-07 06:47:21: Server ext-info: ping@openssh.com: 0
+2026-07-07 06:47:21: Auth: start: publickey
+2026-07-07 06:47:21: Auth: publickey: no keys available
+2026-07-07 06:47:21: Auth: start: password
+2026-07-07 06:47:22: -- Analysis Started by Periodic Timer
+2026-07-07 06:47:22: L: Reading State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-07-07 06:47:23: R: Reading State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-07-07 06:48:00: Changes: 7, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 6886
+2026-07-07 06:48:00: Right to Left: Copy File: 7 
+2026-07-07 06:48:00: == Sync Started by Periodic Timer
+2026-07-07 06:48:00: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-07-07 06:48:00: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-07-07 06:48:00: ConnectCloned connected to file:///~grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-07-07 06:48:00: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16
+2026-07-07 06:48:00: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16
+2026-07-07 06:48:00: Server: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16
+2026-07-07 06:48:00: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-07-07 06:48:00: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-07-07 06:48:00: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-07-07 06:48:00: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-07-07 06:48:00: Chosen Host Key: ssh-ed25519
+2026-07-07 06:48:00: Chosen Host Key: ssh-ed25519
+2026-07-07 06:48:00: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-07-07 06:48:00: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-07-07 06:48:00: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-07-07 06:48:00: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-07-07 06:48:00: Server KEXes: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+2026-07-07 06:48:00: Server Host Keys: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+2026-07-07 06:48:00: Chosen Host Key: ssh-ed25519
+2026-07-07 06:48:00: Ciphers: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+2026-07-07 06:48:00: MACs: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+2026-07-07 06:48:00: Server ext-info: publickey-hostbound@openssh.com: 0
+2026-07-07 06:48:00: Server ext-info: server-sig-algs: ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256
+2026-07-07 06:48:00: Server ext-info: ping@openssh.com: 0
+2026-07-07 06:48:00: Server ext-info: publickey-hostbound@openssh.com: 0
+2026-07-07 06:48:00: Server ext-info: server-sig-algs: ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256
+2026-07-07 06:48:00: Server ext-info: ping@openssh.com: 0
+2026-07-07 06:48:00: Server ext-info: publickey-hostbound@openssh.com: 0
+2026-07-07 06:48:00: Server ext-info: server-sig-algs: ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256
+2026-07-07 06:48:00: Server ext-info: ping@openssh.com: 0
+2026-07-07 06:48:00: Auth: start: publickey
+2026-07-07 06:48:00: Auth: start: publickey
+2026-07-07 06:48:00: Auth: start: publickey
+2026-07-07 06:48:00: Auth: publickey: no keys available
+2026-07-07 06:48:00: Auth: start: password
+2026-07-07 06:48:00: Auth: publickey: no keys available
+2026-07-07 06:48:00: Auth: publickey: no keys available
+2026-07-07 06:48:00: Auth: start: password
+2026-07-07 06:48:00: Auth: start: password
+2026-07-07 06:48:01: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-07-07 06:48:01: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-07-07 06:48:01: GsConnectAndSetRoot1 connected to sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents
+2026-07-07 06:48:02: Copy New 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/MassFractionsArrayTwoPort.mo' -> 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/MassFractionsArrayTwoPort.mo' (2,138)
+2026-07-07 06:48:02: Copy New 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/Examples/MassFractionsArrayTwoPort_ex01.mo' -> 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/Examples/MassFractionsArrayTwoPort_ex01.mo' (1,785)
+2026-07-07 06:48:02: Copy Over 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/MassFractionsArray.mo' -> 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/MassFractionsArray.mo' (1,035)
+2026-07-07 06:48:02: Copy Over 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/Examples/package.mo' -> 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/Examples/package.mo' (111)
+2026-07-07 06:48:02: Copy Over 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/Examples/package.order' -> 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/Examples/package.order' (160)
+2026-07-07 06:48:02: Copy Over 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/package.mo' -> 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/package.mo' (99)
+2026-07-07 06:48:02: Copy Over 'sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/package.order' -> 'C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/Sensor/package.order' (460)
+2026-07-07 06:48:02: Save State File C:/Users/grabacr/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-07-07 06:48:03: Save State File sftp://os3-310-44666.vs.sakura.ne.jp/home/ubuntu/VPSsync/01-WorkspaceSync/modelica-shared/CustomLib/FluidSystemComponents/_gsdata_/_file_state_v4._gs
+2026-07-07 06:48:04: == Sync Complete. Time: 00:00:04, Speed: 9.56 KB/s, OK: 7, Errors: 0

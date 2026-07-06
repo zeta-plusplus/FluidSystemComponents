@@ -14,6 +14,7 @@ Monitor_p_kPa_T_K
 SpecificHeatCapacity
 SpecificHeatCapacityRatio
 MassFractionsArray
+MassFractionsArrayTwoPort
 StaticPressureTwoPort
 PressureRatio
 DispColorGrad00
